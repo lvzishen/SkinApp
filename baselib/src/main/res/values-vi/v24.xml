@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_today">Ngày hôm nay</string>
+    <string name="string_yesterday">Ngày hôm qua</string>
+
+    <string name="string_permissions">Sự cho phép</string>
+    <string name="string_storage">Không gian lưu trữ</string>
+    <string name="string_layer_overlapping_permissions">Vẽ trên ứng dụng khác</string>
+
+</resources>

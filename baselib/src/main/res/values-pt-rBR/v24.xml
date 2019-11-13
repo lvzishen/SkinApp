@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_today">Hoje</string>
+    <string name="string_yesterday">Ontem</string>
+
+    <string name="string_permissions">Permissões</string>
+    <string name="string_storage">Armazenamento</string>
+    <string name="string_layer_overlapping_permissions">Sobrepor a outros aplicativos</string>
+
+</resources>

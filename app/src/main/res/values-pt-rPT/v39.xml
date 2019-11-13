@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+	<string name="no_permissions_allowed">Não existem permissões autorizadas</string>
+	<string name="string_privacy_policy"><u>Política de Privacidade</u></string>
+	<string name="please_agreement">Por favor, aceite o Acordo de Utilização</string>
+	<string name="please_privacy">Por favor, aceite a Política de Privacidade</string>
+	<string name="string_user_agreement"><u>Acordo de Utilização</u></string>
+</resources>

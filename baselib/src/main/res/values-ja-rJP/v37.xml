@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_clean">クリーンアップ</string>
+    <string name="string_applications">アプリケーション</string>
+    <string name="allow_access">アクセスを許可する</string>
+</resources>

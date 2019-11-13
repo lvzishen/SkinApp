@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_permissions_allowed">لم يتم السماح بأذونات</string>
+    <string name="string_privacy_policy">سياسة الخصوصية</string>
+    <string name="please_agreement">يرجى الموافقة على اتفاقية المستخدم</string>
+    <string name="please_privacy">يرجى الموافقة على سياسة خصوصية</string>
+    <string name="string_user_agreement">اتفاقية المستخدم</string>
+</resources>

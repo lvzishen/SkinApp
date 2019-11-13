@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_name">بهینه‌سازی گوشی</string>
+    <string name="notification_channel_des">حفاظت از حریم خصوصی، پاکسازی فایل‌های هرز، حذف ویروس و تقویت گوشی</string>
+</resources>

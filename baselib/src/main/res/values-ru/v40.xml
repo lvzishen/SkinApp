@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">Сканировать сейчас</string>
+    <string name="choose_pic">Выбрать</string>
+    <string name="selected">Выбрано</string>
+    <string name="no_suitable_app_found">Приложений для открытия этого типа файла не обнаружено</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="one">Удалить %1$d элемент?</item>
+        <item quantity="other">Удалить %1$d элементов?</item>
+        <item quantity="few">Удалить %1$d элемента?</item>
+        <item quantity="many">Удалить %1$d элементов?</item>
+    </plurals>
+</resources>

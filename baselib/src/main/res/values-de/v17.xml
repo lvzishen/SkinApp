@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">%s-Reiniger</string>
+    <string name="app_clean_h_c_d">"Prüfen und säubern Sie alte Fotos, Videos und andere Dateien, um Speicherplatz zu befreien."</string>
+    <string name="app_clean_handle">PRÜFEN</string>
+    <string name="string_app_clean_title_image">Fotos</string>
+    <string name="string_app_clean_title_audio">Audiodateien</string>
+    <string name="string_app_clean_title_file">Dokumente</string>
+    <string name="string_app_clean_title_voice_note">Sprachnachrichten</string>
+    <string name="string_app_clean_description_cache">Die Cache-Junkdateien enthalten keinen Chat-Verlauf. Sie können sicher gereinigt werden.</string>
+    <string name="string_app_clean_junks">Summe</string>
+    <string name="app_clean_h_c_d_d">%1$s Speicherplatz erhöht</string>
+    <string name="app_clean_confirm_delete_dialog_desc">Diese Elemente können nicht wiederhergestellt werden und werden nicht mehr in %s verfügbar sein.</string>
+    <string name="wa_clean_dialog_delete_text">Löschen</string>
+    <string name="wa_clean_dialog_cancel_text">Abbrechen</string>
+    <string name="string_app_clean_btn_clean">BEREINIGEN</string>
+    <string name="string_app_clean_title_video">Video</string>
+</resources>

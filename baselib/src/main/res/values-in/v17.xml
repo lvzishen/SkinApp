@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">Pembersih %s</string>
+    <string name="app_clean_h_c_d">"Periksa dan bersihkan foto-foto, video, serta file lama untuk meningkatkan penyimpanan"</string>
+    <string name="app_clean_handle">PERIKSA</string>
+    <string name="string_app_clean_title_image">Foto</string>
+    <string name="string_app_clean_title_audio">Audio</string>
+    <string name="string_app_clean_title_file">Dokumen</string>
+    <string name="string_app_clean_title_voice_note">Pesan Suara</string>
+    <string name="string_app_clean_description_cache">Riwat obrolan tidak termasuk di dalam sampah cache, aman untuk dibersihkan</string>
+    <string name="string_app_clean_junks">Total</string>
+    <string name="app_clean_h_c_d_d">Penyimpanan bertambah %1$s</string>
+    <string name="app_clean_confirm_delete_dialog_desc">File tidak dapat dipulihkan, dan tidak akan dapat dibuka lagi di %s</string>
+    <string name="wa_clean_dialog_delete_text">Hapus</string>
+    <string name="wa_clean_dialog_cancel_text">Batal</string>
+    <string name="string_app_clean_btn_clean">BERSIHKAN</string>
+    <string name="string_app_clean_title_video">Video</string>
+</resources>

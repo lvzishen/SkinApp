@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_name">Optimisation du téléphone</string>
+    <string name="notification_channel_des">Protection de la confidentialité, nettoyage des fichiers indésirables, suppression de virus et boost du téléphone</string>
+</resources>

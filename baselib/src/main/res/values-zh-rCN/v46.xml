@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_guide_float_default">找到\“显示悬浮窗\”, 然后开启该权限</string>
+    <string name="permission_guide_float">显示悬浮窗</string>
+</resources>

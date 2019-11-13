@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">Limpeza %s</string>
+    <string name="app_clean_h_c_d">"Reveja e limpe fotos, vídeos, e outros ficheiros antigos para libertar espaço"</string>
+    <string name="app_clean_handle">OPINIÃO</string>
+    <string name="string_app_clean_title_image">Fotos</string>
+    <string name="string_app_clean_title_audio">Ficheiros áudio</string>
+    <string name="string_app_clean_title_file">Documentos</string>
+    <string name="string_app_clean_title_voice_note">Mensagens de voz</string>
+    <string name="string_app_clean_description_cache">O lixo da cache não inclui o histórico do chat, e pode ser limpo em segurança</string>
+    <string name="string_app_clean_junks">Total</string>
+    <string name="app_clean_h_c_d_d">%1$s armazenamento aumentado</string>
+    <string name="app_clean_confirm_delete_dialog_desc">Estes itens não podem ser recuperados, e deixarão de estar disponíveis em %s</string>
+    <string name="wa_clean_dialog_delete_text">Excluir</string>
+    <string name="wa_clean_dialog_cancel_text">Cancelar</string>
+    <string name="string_app_clean_btn_clean">LIMPAR</string>
+    <string name="string_app_clean_title_video">Vídeo</string>
+</resources>

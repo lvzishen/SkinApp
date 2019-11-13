@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="need_your_permissions_to_work">Per funzionare, a %1$s serve il tuo permesso</string>
+    <string name="chat_messages_may_be_read_without_app_lock">Senza App Lock i messaggi della chat potrebbero essere letti da altri</string>
+</resources>

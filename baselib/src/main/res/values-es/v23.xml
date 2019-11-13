@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="string_delete">Borrar</string>
+    <string name="string_cancel">Cancelar</string>
+    <string name="string_loading">Cargando…</string>
+    <string name="string_ok">OK</string>
+    <string name="string_open">Abrir</string>
+    <string name="string_update_now">Actualizar ahora</string>
+    <string name="scanning_progress">Explorando: %1$s</string>
+    <string name="string_boost_main_add_white_list">"Añadir a lista blanca"</string>
+    <string name="applock_gp_reset_dialog_ok">Continuar</string>
+    <string name="string_splash_start">comenzar</string>
+    <string name="string_uninstall">DesinsTalar</string>
+    <string name="string_please_wait">Por favor, espera…</string>
+    <string name="string_ignore">Ignorar</string>
+    <string name="string_safe">Seguro</string>
+    <string name="string_path">Ruta</string>
+    <string name="string_try_again">Probar de nuevo</string>
+    <string name="string_stop">Detener</string>
+    <string name="string_unknown">Desconocido</string>
+    <string name="string_network_error">Error de conexión</string>
+    <string name="string_check_network_try_again">Por favor, comprueba tu red y vuelve a probar.</string>
+    <string name="string_update">Actualización</string>
+    <string name="string_enable_now">"Permitir"</string>
+
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="need_your_permissions_to_work">%1$s cần sự cho phép của bạn để có thể hoạt động</string>
+    <string name="chat_messages_may_be_read_without_app_lock">Các tin nhắn trò chuyện của bạn có thể bị người khác đọc khi không có App Lock</string>
+</resources>

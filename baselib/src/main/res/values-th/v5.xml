@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_name">ปรับค่าเหมาะสมให้โทรศัพท์</string>
+    <string name="notification_channel_des">การปกป้องความเป็นส่วนตัว ล้างขยะ ลบไวรัส และเพิ่มประสิทธิภาพให้โทรศัพท์</string>
+</resources>

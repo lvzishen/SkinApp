@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">Şimdi Tara</string>
+    <string name="choose_pic">Seçmek</string>
+    <string name="selected">Seçildi</string>
+    <string name="no_suitable_app_found">Bu dosya türünü açacak uygulama bulunamadı</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="one">%1$d öge silinsin mi?</item>
+        <item quantity="other">%1$d öge silinsin mi?</item>
+    </plurals>
+</resources>

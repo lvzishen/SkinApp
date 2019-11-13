@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_clean">Clean</string>
+    <string name="string_applications">Applications</string>
+    <string name="allow_access">Allow Access</string>
+</resources>

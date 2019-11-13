@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">Limpador do %s</string>
+    <string name="app_clean_h_c_d">"Analise e limpe fotos antigas, vídeos e outros arquivos para liberar espaço de armazenamento"</string>
+    <string name="app_clean_handle">ANALISAR</string>
+    <string name="string_app_clean_title_image">Fotos</string>
+    <string name="string_app_clean_title_audio">Arquivos de áudio</string>
+    <string name="string_app_clean_title_file">Documentos</string>
+    <string name="string_app_clean_title_voice_note">Mensagens de voz</string>
+    <string name="string_app_clean_description_cache">Os lixos em cache não incluem histórico de conversas. Eles podem ser eliminados com segurança</string>
+    <string name="string_app_clean_junks">Total</string>
+    <string name="app_clean_h_c_d_d">%1$s de espaço de armazenamento aumentado</string>
+    <string name="app_clean_confirm_delete_dialog_desc">Estes itens não podem ser recuperados e não estarão mais disponíveis em %s</string>
+    <string name="wa_clean_dialog_delete_text">Excluir</string>
+    <string name="wa_clean_dialog_cancel_text">Cancelar</string>
+    <string name="string_app_clean_btn_clean">LIMPAR</string>
+    <string name="string_app_clean_title_video">Vídeo</string>
+</resources>

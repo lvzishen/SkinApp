@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">همین الآن اسکن کنید</string>
+    <string name="choose_pic">انتخاب کنید</string>
+    <string name="selected">انتخاب شد</string>
+    <string name="no_suitable_app_found">این فایل با هیچ برنامه ای باز نمیشود</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="one">%1$d آیتم را حذف می‌کنید؟</item>
+        <item quantity="other">%1$d آیتم را حذف می‌کنید؟</item>
+    </plurals>
+</resources>

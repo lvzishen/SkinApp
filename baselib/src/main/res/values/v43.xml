@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="guide_activity_usage_stats_page_text2">Please permit usage access</string>
+    <string name="applock_permission_guide_reminder">You need to grant Usage Access permission to enable this feature</string>
+</resources>

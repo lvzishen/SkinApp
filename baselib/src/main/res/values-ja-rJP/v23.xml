@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="string_delete">削除</string>
+    <string name="string_cancel">キャンセル</string>
+    <string name="string_loading">読込み中…</string>
+    <string name="string_ok">OK</string>
+    <string name="string_open">開く</string>
+    <string name="string_update_now">すぐに更新します</string>
+    <string name="scanning_progress">スキャン中: %1$s</string>
+    <string name="string_boost_main_add_white_list">"ホワイトリストに追加する"</string>
+    <string name="applock_gp_reset_dialog_ok">続ける</string>
+    <string name="string_splash_start">開始</string>
+    <string name="string_uninstall">アンインストール</string>
+    <string name="string_please_wait">お待ちください…</string>
+    <string name="string_ignore">無視する</string>
+    <string name="string_safe">安全</string>
+    <string name="string_path">パス</string>
+    <string name="string_try_again">再試行</string>
+    <string name="string_stop">終了</string>
+    <string name="string_unknown">不明</string>
+    <string name="string_network_error">接続エラー</string>
+    <string name="string_check_network_try_again">ネットワークを確認してから再度お試しください。</string>
+    <string name="string_update">更新する</string>
+    <string name="string_enable_now">"今すぐ有効にします。"</string>
+
+</resources>

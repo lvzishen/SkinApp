@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_permissions_allowed">No permissions allowed</string>
+    <string name="activate_storage">Select \"Permissions\" and Activate %1$s</string>
+    <string name="allow_access_to_do">Allow Access to %1$s</string>
+</resources>

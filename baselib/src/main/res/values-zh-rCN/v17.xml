@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">%s 专清</string>
+    <string name="app_clean_h_c_d">"查看并清理WhatsApp聊天中无用的图片、视频等文件以释放手机空间"</string>
+    <string name="app_clean_handle">查看</string>
+    <string name="string_app_clean_title_image">图片</string>
+    <string name="string_app_clean_title_audio">音频</string>
+    <string name="string_app_clean_title_file">文档</string>
+    <string name="string_app_clean_title_voice_note">语音消息</string>
+    <string name="string_app_clean_description_cache">运行中产生的无用缓存垃圾，不包含任何聊天信息，请放心清理</string>
+    <string name="string_app_clean_junks">总计</string>
+    <string name="app_clean_h_c_d_d">%1$s 空间已释放</string>
+    <string name="app_clean_confirm_delete_dialog_desc">删除后，这些文件将永远不能在%1$s中显示或打开，亦无法恢复</string>
+    <string name="wa_clean_dialog_delete_text">删除</string>
+    <string name="wa_clean_dialog_cancel_text">取消</string>
+    <string name="string_app_clean_btn_clean">清理</string>
+    <string name="string_app_clean_title_video">视频</string>
+</resources>

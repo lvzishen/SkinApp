@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">立即检测</string>
+    <string name="choose_pic">选择</string>
+    <string name="selected">已选择</string>
+    <string name="zip_page_title">浏览文件信息</string>
+    <string name="no_suitable_app_found">未找到打开此文件类型的应用程序</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="other">删除 %1$d 文件?</item>
+    </plurals>
+</resources>

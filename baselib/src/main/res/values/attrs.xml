@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CommonCheckBox">
+        <attr name="isChecked" format="boolean" />
+        <attr name="drawable_checked" format="reference" />
+        <attr name="drawable_unchecked" format="reference" />
+        <attr name="drawable_partly_checked" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RegularCheckBox">
+        <attr name="tickWidth" format="dimension" />
+        <attr name="tickColor" format="color" />
+        <attr name="boxWidth" format="dimension" />
+        <attr name="boxColor" format="color" />
+        <attr name="checked" format="boolean" />
+        <attr name="boxRadius" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomFontTextView">
+        <attr name="customFont" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="XView">
+        <attr name="XColor" format="color" />
+        <attr name="lineWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ArrowView">
+        <attr name="arrowColor" format="color" />
+        <attr name="arrowWidth" format="dimension" />
+        <attr name="arrowDir">
+            <enum name="top" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="material_progress">
+        <attr name="bgColor" format="color" />
+        <attr name="progressColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="IndicatorView">
+        <attr name="currentIndex" format="integer" />
+        <attr name="count" format="integer" />
+        <attr name="selectColor" format="color" />
+        <attr name="unSelectColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="margin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CommonSwitchButton">
+        <attr name="is_checked" format="boolean" />
+        <attr name="checked_bg_res" format="reference" />
+        <attr name="unchecked_bg_res" format="reference" />
+        <attr name="ball_padding" format="dimension" />
+        <attr name="background_color" format="color" />
+        <attr name="ballBgColor" format="color" />
+        <attr name="ballCheckedColor" format="color" />
+        <attr name="ballUnCheckedColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="StarView">
+        <attr name="isCircleStar" format="boolean" />
+        <attr name="starWidth" format="dimension" />
+        <attr name="starCount" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomMeteorView">
+        <attr name="meteorDir">
+            <enum name="top" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+        <attr name="meteorColor" format="color" />
+        <attr name="meteorStartColor" format="color" />
+        <attr name="meteorEndColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ShreddedPaperView">
+        <attr name="paperWidth" format="dimension" />
+        <attr name="paperCount" format="integer" />
+        <attr name="paperAnimationDuration" format="integer" />
+        <attr name="paperAnimationDelay" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="RatingBar">
+        <!--尺寸值-->
+        <attr name="starImageSize" format="dimension" />
+        <!--星星宽度-->
+        <attr name="ratingStarWidth" format="dimension" />
+        <!--星星高度-->
+        <attr name="ratingStarHeight" format="dimension" />
+        <!--星星间距-->
+        <attr name="starPadding" format="dimension" />
+        <!--星星总数-->
+        <attr name="ratingStarCount" format="integer" />
+        <!--空白的星星资源文件值-->
+        <attr name="starEmpty" format="reference" />
+        <!--满星资源文件值-->
+        <attr name="starFill" format="reference" />
+        <!--半星资源文件值-->
+        <attr name="starHalf" format="reference" />
+        <!--是否可点击boolean值-->
+        <attr name="isClickable" format="boolean" />
+        <!--当前进度float值-->
+        <attr name="starStep" format="float" />
+        <!--每次进度方式的值，整星还是半星-->
+        <attr name="stepSize">
+            <enum name="Half" value="0" />
+            <enum name="Full" value="1" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <!-- {@deprecated Use civ_circlebackground_color instead.} -->
+        <attr name="civ_fill_color" format="color" />
+        <attr name="civ_circle_background_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AutofitTextView">
+        <attr name="minTextSize" format="dimension" />
+        <attr name="maxTextSize" format="dimension" />
+        <attr name="sizeToFit" format="boolean" />
+        <attr name="precision" format="float" />
+        <attr name="autoCustomFont" format="string" />
+    </declare-styleable>
+    <declare-styleable name="RoundImageView">
+        <attr name="type" format="enum">
+            <enum name="circle" value="1" />
+            <enum name="round" value="2" />
+        </attr>
+        <attr name="cornerRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RippleCircleBack">
+        <attr name="rb_color" format="color" />
+        <attr name="rb_strokeWidth" format="dimension" />
+        <attr name="rb_radius" format="dimension" />
+        <attr name="rb_duration" format="integer" />
+        <attr name="rb_rippleAmount" format="integer" />
+        <attr name="rb_scale" format="float" />
+        <attr name="rb_type" format="enum">
+            <enum name="fillRipple" value="0" />
+            <enum name="strokeRipple" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SwitchButton">
+        <attr name="clickable" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="RoundedImageView">
+        <attr name="riv_corner_radius" format="dimension" />
+        <attr name="riv_corner_radius_top_left" format="dimension" />
+        <attr name="riv_corner_radius_top_right" format="dimension" />
+        <attr name="riv_corner_radius_bottom_left" format="dimension" />
+        <attr name="riv_corner_radius_bottom_right" format="dimension" />
+        <attr name="riv_border_width" format="dimension" />
+        <attr name="riv_border_color" format="color" />
+        <attr name="riv_mutate_background" format="boolean" />
+        <attr name="riv_oval" format="boolean" />
+        <attr name="android:scaleType" />
+        <attr name="riv_tile_mode">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_x">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+        <attr name="riv_tile_mode_y">
+            <enum name="clamp" value="0" />
+            <enum name="repeat" value="1" />
+            <enum name="mirror" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

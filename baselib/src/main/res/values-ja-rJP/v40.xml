@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">スキャン</string>
+    <string name="choose_pic">選択</string>
+    <string name="selected">選択済み</string>
+    <string name="no_suitable_app_found">このファイル形式を開けるアプリが見つかりません</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="other">%1$d個のアイテムを削除しますか？</item>
+    </plurals>
+</resources>

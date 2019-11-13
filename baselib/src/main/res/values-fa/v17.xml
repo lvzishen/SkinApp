@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">پاکسازی %s</string>
+    <string name="app_clean_h_c_d">"عکسها، ویدئوهای قدیمی و فایلهای دیگر را بررسی و پاکسازی کنید تا فضای حافظه خالی شود"</string>
+    <string name="app_clean_handle">بررسی</string>
+    <string name="string_app_clean_title_image">عکسها</string>
+    <string name="string_app_clean_title_audio">فایلهای صوتی</string>
+    <string name="string_app_clean_title_file">اسناد</string>
+    <string name="string_app_clean_title_voice_note">پیامهای صوتی</string>
+    <string name="string_app_clean_description_cache">فایلهای هرز پنهان، تاریخچه چت را دربرنمی‌گیرد. آنها را می‌توان با خیال راحت پاک کرد.</string>
+    <string name="string_app_clean_junks">همه</string>
+    <string name="app_clean_h_c_d_d">فضای حافظه تا %1$s افزایش یافت</string>
+    <string name="app_clean_confirm_delete_dialog_desc">این موارد را نمی‌توان بازیابی کرد و دیگر در %s قابل دسترس نخواهند بود</string>
+    <string name="wa_clean_dialog_delete_text">حذف</string>
+    <string name="wa_clean_dialog_cancel_text">لغو</string>
+    <string name="string_app_clean_btn_clean">پاکسازی</string>
+    <string name="string_app_clean_title_video">فیلم</string>
+
+</resources>

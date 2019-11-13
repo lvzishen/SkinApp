@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_today">आज</string>
+    <string name="string_yesterday">कल</string>
+
+    <string name="string_permissions">अनुमतियां</string>
+    <string name="string_storage">स्टोरेज</string>
+    <string name="string_layer_overlapping_permissions">अन्य ऐप्स को ऊपर से खींचें</string>
+
+</resources>

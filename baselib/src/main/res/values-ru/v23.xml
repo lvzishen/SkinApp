@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="string_delete">Удалить</string>
+    <string name="string_cancel">Отмена</string>
+    <string name="string_loading">Загрузка…</string>
+    <string name="string_ok">OK</string>
+    <string name="string_open">Открыть</string>
+    <string name="string_update_now">Обновить сейчас</string>
+    <string name="scanning_progress">Сканирование: %1$s</string>
+    <string name="string_boost_main_add_white_list">"Добавить в список игнорируемых"</string>
+    <string name="applock_gp_reset_dialog_ok">Продолжить</string>
+    <string name="string_splash_start">начать</string>
+    <string name="string_uninstall">УДАЛИТЬ</string>
+    <string name="string_please_wait">Подождите…</string>
+    <string name="string_ignore">Игнорировать</string>
+    <string name="string_safe">Безопасно</string>
+    <string name="string_path">Путь</string>
+    <string name="string_try_again">Повторить попытку</string>
+    <string name="string_stop">Остановить</string>
+    <string name="string_unknown">Неизвестно</string>
+    <string name="string_network_error">Ошибка подключения</string>
+    <string name="string_check_network_try_again">Проверьте подключение к сети и попробуйте еще раз.</string>
+    <string name="string_update">Обновить</string>
+    <string name="string_enable_now">"Включить сейчас"</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">%s क्लीनर</string>
+    <string name="app_clean_h_c_d">"पुराने फोटो, वीडियो व अन्य फाइलों की समीक्षा कर उन्हें हटाएं ताकि स्टोरेज को मुक्त किया जा सके"</string>
+    <string name="app_clean_handle">समीक्षा करें</string>
+    <string name="string_app_clean_title_image">फोटो</string>
+    <string name="string_app_clean_title_audio">ऑडियो फाइलें</string>
+    <string name="string_app_clean_title_file">दस्तावेज</string>
+    <string name="string_app_clean_title_voice_note">ध्वनि संदेश</string>
+    <string name="string_app_clean_description_cache">कैशे जंक में चैट इतिहास शामिल नहीं होती हैं, उन्हें सुरक्षित रूप से साफ किया जा सकता है।</string>
+    <string name="string_app_clean_junks">कुल</string>
+    <string name="app_clean_h_c_d_d">%1$s स्टोरेज बढ़ा</string>
+    <string name="app_clean_confirm_delete_dialog_desc">इन चीजों वापस नहीं लाया जा सकता है और आगे से %s में उपलब्ध नहीं होंगी</string>
+    <string name="wa_clean_dialog_delete_text">हटाएं</string>
+    <string name="wa_clean_dialog_cancel_text">निरस्त करें</string>
+    <string name="string_app_clean_btn_clean">साफ करें</string>
+    <string name="string_app_clean_title_video">वीडियो</string>
+
+</resources>

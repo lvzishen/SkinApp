@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">%s Temizleyici</string>
+    <string name="app_clean_h_c_d">"Hafızada yer açmak için eski fotoğrafları, videoları ve diğer dosyaları gözden geçirip temizle"</string>
+    <string name="app_clean_handle">GÖZDEN GEÇİR</string>
+    <string name="string_app_clean_title_image">Fotoğraflar</string>
+    <string name="string_app_clean_title_audio">Ses Dosyaları</string>
+    <string name="string_app_clean_title_file">Belgeler</string>
+    <string name="string_app_clean_title_voice_note">Sesli Mesajlar</string>
+    <string name="string_app_clean_description_cache">Ara bellekteki önemsiz dosyalar sohbet geçmişini içermez, güvenli şekilde silinebilir</string>
+    <string name="string_app_clean_junks">Toplam</string>
+    <string name="app_clean_h_c_d_d">Hafızada %1$s yer açıldı</string>
+    <string name="app_clean_confirm_delete_dialog_desc">Bu ögeler kurtarılamıyor, artık %s\'de mevcut değil</string>
+    <string name="wa_clean_dialog_delete_text">Sil</string>
+    <string name="wa_clean_dialog_cancel_text">İptal</string>
+    <string name="string_app_clean_btn_clean">TEMİZLE</string>
+    <string name="string_app_clean_title_video">Video</string>
+</resources>

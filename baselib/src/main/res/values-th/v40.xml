@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">สแกนเดี๋ยวนี้</string>
+    <string name="choose_pic">เลือก</string>
+    <string name="selected">เลือกไว้</string>
+    <string name="no_suitable_app_found">ไม่พบแอพพลิเคชั่นที่จะเปิดไฟล์ประเภทนี้</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="other">ลบ %1$d อย่าง?</item>
+    </plurals>
+</resources>

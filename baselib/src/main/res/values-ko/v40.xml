@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">지금 스캔</string>
+    <string name="choose_pic">선택</string>
+    <string name="selected">선택됨</string>
+    <string name="no_suitable_app_found">이 파일을 열기 위한 애플리케이션을 찾을 수 없습니다</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="other">%1$d개 항목을 삭제할까요?</item>
+    </plurals>
+</resources>

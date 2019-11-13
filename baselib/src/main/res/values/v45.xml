@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="supmanager_files_not_able_to_view">We can not open this file type</string>
+    <string name="file_browser_menu_item_open_with">Open with</string>
+    <string name="modified">Modified: %1$s</string>
+    <string name="result_rubbish_scanclean_card">Clean your phone regularly for better performance</string>
+    <string name="result_rubbish_never_card">You haven\'t cleaned up the phone yet . Do you need to free up storage and improve phone performance now?</string>
+    <string name="result_rubbish_haverubbish_card">Used storage is up to %1$s, Clean Now!</string>
+    <string name="result_antivirus_maybedanger_card">Scan your phone regularly to reduce safety risk!</string>
+    <string name="result_antivirus_never_card">"90% of users don\'t know their device is infected. Start your first scan to find out."</string>
+    <string name="result_antivirus_dangerous_card">"%1$s issue(s) need to be resolved immediately"</string>
+    <string name="string_resolve_immediately">Resolve immediately</string>
+    <string name="string_immediately_clean_up">Clean Now</string>
+    <string name="string_probably_has_ads">Probably have ads</string>
+    <string name="string_notification_cleaner_push_info">Clean up junk notifications to enjoy a faster phone!</string>
+</resources>

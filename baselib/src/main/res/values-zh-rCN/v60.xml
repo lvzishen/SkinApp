@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="float_window">悬浮窗</string>
+    <string name="desktop_display">只在桌面显示</string>
+    <string name="flashlight">手电筒</string>
+    <string name="mobile_data">移动数据</string>
+    <string name="auto_rotate">自动横屏</string>
+    <string name="float_upload">上传</string>
+    <string name="float_download">下载</string>
+    <string name="float_window_permission">悬浮窗需要以下权限允许</string>
+    <string name="open_float_window_permission">找到“显示悬浮窗”，然后开启该权限</string>
+    <string name="image_clean">图片清理</string>
+    <string name="float_screenshot">截屏</string>
+    <string name="float_whatsapp">WhatsApp</string>
+    <string name="float_speed">实时网速</string>
+    <string name="float_speed_limitation">网速限制</string>
+    <string name="float_stop_process">可手动停止进程，管理您的网速</string>
+    <string name="float_stop">停止</string>
+    <string name="float_mobile_wallpaper">手机壁纸</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_name">फोन ऑप्टिमाइजेशन</string>
+    <string name="notification_channel_des">निजता सुरक्षा, जंक साफ करें, वायरस हटाएं और फोन बूस्ट करें</string>
+</resources>

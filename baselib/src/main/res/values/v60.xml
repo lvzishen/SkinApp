@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="float_window">Widget</string>
+    <string name="desktop_display">Display only on the desktop</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="mobile_data">Mobile data</string>
+    <string name="auto_rotate">Auto-rotate</string>
+    <string name="float_upload">Upload</string>
+    <string name="float_download">Download</string>
+    <string name="float_window_permission">Widget needs permission</string>
+    <string name="open_float_window_permission">Find "Widget" and open the permission</string>
+    <string name="image_clean">Image cleaner</string>
+    <string name="float_screenshot">Screenshots</string>
+    <string name="float_whatsapp">WhatsApp</string>
+    <string name="float_speed">speed</string>
+    <string name="float_speed_limitation">Speed limitation</string>
+    <string name="float_stop_process">Stop processes manually and manage your network speed</string>
+    <string name="float_stop">stop</string>
+    <string name="float_mobile_wallpaper">mobile wallpaper</string>
+</resources>

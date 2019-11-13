@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="float_window">Widget</string>
+    <string name="desktop_display">Mostrar apenas no desktop</string>
+    <string name="flashlight">Lanterna</string>
+    <string name="mobile_data">Dados Móveis</string>
+    <string name="auto_rotate">Girar automaticamente</string>
+    <string name="float_upload">Fazer upload</string>
+    <string name="float_download">Fazer download</string>
+    <string name="float_window_permission">Widget precisa de permissão</string>
+    <string name="open_float_window_permission">Encontre \"Widget\" e abra a permissão</string>
+    <string name="image_clean">Image cleaner</string>
+    <string name="float_screenshot">Capturas de tela</string>
+</resources>

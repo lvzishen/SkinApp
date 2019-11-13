@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">Cleaner %s</string>
+    <string name="app_clean_h_c_d">"Controlla ed elimina le vecchie foto, i vecchi video e altri file per liberare lo spazio di archiviazione"</string>
+    <string name="app_clean_handle">CONTROLLA</string>
+    <string name="string_app_clean_title_image">Foto</string>
+    <string name="string_app_clean_title_audio">File audio</string>
+    <string name="string_app_clean_title_file">Documenti</string>
+    <string name="string_app_clean_title_voice_note">Messaggi vocali</string>
+    <string name="string_app_clean_description_cache">I file spazzatura della cache non comprendono la cronologia della chat. Possono essere eliminati senza problemi.</string>
+    <string name="string_app_clean_junks">Totale</string>
+    <string name="app_clean_h_c_d_d">Spazio di archiviazione aumentato del %1$s</string>
+    <string name="app_clean_confirm_delete_dialog_desc">Impossibile recuperare questi elementi. Non saranno più disponibili su %s</string>
+    <string name="wa_clean_dialog_delete_text">Elimina</string>
+    <string name="wa_clean_dialog_cancel_text">Annulla</string>
+    <string name="string_app_clean_btn_clean">DISATTIVA</string>
+    <string name="string_app_clean_title_video">Video</string>
+</resources>

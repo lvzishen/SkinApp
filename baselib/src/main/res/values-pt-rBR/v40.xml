@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">Verificar temperatura</string>
+    <string name="choose_pic">Selecione</string>
+    <string name="selected">Selecionados</string>
+    <string name="no_suitable_app_found">Nenhum aplicativo encontrado para abrir esse tipo de arquivo</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="one">Excluir %1$d item?</item>
+        <item quantity="other">Excluir %1$d itens?</item>
+    </plurals>
+</resources>

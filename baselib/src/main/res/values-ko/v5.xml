@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_channel_name">스마트폰 최적화</string>
+    <string name="notification_channel_des">개인정보 보호, 정크 제거, 바이러스 제거 및 스마트폰 부스트</string>
+</resources>

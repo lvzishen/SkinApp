@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="float_window">Widget</string>
+    <string name="desktop_display">Visualizar solo en el escritorio</string>
+    <string name="flashlight">Linterna</string>
+    <string name="mobile_data">Datos móviles</string>
+    <string name="auto_rotate">Girar automáticamente</string>
+    <string name="float_upload">Carga</string>
+    <string name="float_download">Descarga</string>
+    <string name="float_window_permission">El widget necesita permiso</string>
+    <string name="open_float_window_permission">Encuentra la opción \"Widget\" y abre el permiso</string>
+    <string name="image_clean">Limpiador de imagen</string>
+    <string name="float_screenshot">Capturas de pantalla</string>
+</resources>
