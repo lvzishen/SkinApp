@@ -9,7 +9,7 @@ import com.ads.lib.mediation.loader.LoaderFactory;
 import com.ads.lib.mediation.loader.natives.MopubNativeAdLoader;
 import com.ads.lib.splash.model.SplashNativeAd;
 import com.ads.lib.util.AdErrorCodeConvertUtil;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import org.saturn.splash.loader.interf.INativeAdLoader;
 import org.saturn.splash.loader.callback.NativeAdListener;

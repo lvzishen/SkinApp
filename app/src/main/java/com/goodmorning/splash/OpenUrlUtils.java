@@ -1,4 +1,4 @@
-package com.hotvideo.splash;
+package com.goodmorning.splash;
 
 import android.app.Activity;
 import android.content.Context;

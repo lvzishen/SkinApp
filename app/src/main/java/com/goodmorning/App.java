@@ -1,4 +1,4 @@
-package com.hotvideo;
+package com.goodmorning;
 
 import android.app.Activity;
 import android.app.Application;
@@ -12,7 +12,6 @@ import android.util.Log;
 import android.webkit.WebView;
 
 import com.OverallBinderProxy;
-import com.ads.lib.api.FileAdSDK;
 import com.ads.lib.init.MoPubStarkInit;
 import com.ads.lib.mediation.config.IAllowLoaderAdListener;
 import com.ads.lib.splash.SplashModule;
@@ -26,9 +25,9 @@ import com.baselib.statistic.StatisticLoggerX;
 import com.baselib.ui.CommonConstants;
 import com.baselib.utils.ModuleConfig;
 import com.clean.binder.mgr.BinderManager;
-import com.hotvideo.config.GlobalConfig;
-import com.hotvideo.xal.NeptuneReporter;
-import com.hotvideo.xal.StatisticSettingCollectorForXAL;
+import com.goodmorning.config.GlobalConfig;
+import com.goodmorning.xal.NeptuneReporter;
+import com.goodmorning.xal.StatisticSettingCollectorForXAL;
 import com.cleanerapp.supermanager.BuildConfig;
 import com.cleanerapp.supermanager.R;
 import com.lachesis.common.AlexListener;

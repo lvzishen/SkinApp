@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.baselib.sp.SharedPref;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 
 /**

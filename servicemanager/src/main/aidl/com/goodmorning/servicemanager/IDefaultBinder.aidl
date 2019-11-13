@@ -1,5 +1,5 @@
 // IDefaultBinder.aidl
-package com.hotvideo.servicemanager;
+package com.goodmorning.servicemanager;
 import android.content.Intent;
 
 // Declare any non-default types here with import statements

@@ -13,7 +13,7 @@ import com.ads.lib.mediation.loader.interstitial.InterstitialWrapperAdAdListener
 import com.ads.lib.mediation.loader.interstitial.MopubInterstitialWrapperAdLoader;
 import com.ads.lib.splash.model.SplashInterstitialAd;
 import com.ads.lib.util.AdErrorCodeConvertUtil;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import org.saturn.splash.loader.callback.InterstitialAdListener;
 import org.saturn.splash.loader.interf.IInterstitialAdLoader;

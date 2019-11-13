@@ -1,7 +1,7 @@
 package com.ads.lib;
 
 
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 /**
  * Created by Eric Tjitra on 3/14/2017.

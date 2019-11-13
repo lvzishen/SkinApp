@@ -7,7 +7,7 @@ import com.ads.lib.AdUnitId;
 import com.ads.lib.AdsLoader;
 import com.ads.lib.prop.AdPositionIdProp;
 import com.baselib.cloud.CloudPropertyManager;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 public class NotifyAdsLoader extends BaseAdsLoader {
 

@@ -7,7 +7,7 @@ import com.ads.lib.concurrent.ThreadHelper;
 import com.ads.lib.trigger.config.EventTriggerConfig;
 import com.ads.lib.trigger.listener.EventListener;
 import com.ads.lib.trigger.listener.EventType;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 
 /**

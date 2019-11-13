@@ -7,7 +7,7 @@ import com.ads.lib.concurrent.ThreadHelper;
 import com.ads.lib.mediation.bean.AdErrorCode;
 import com.ads.lib.mediation.bean.NativeAd;
 import com.ads.lib.mediation.loader.dispatcher.AdLoaderDispatcher;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 
 public class NativeAdLoader implements INativeAdLoader, NativeAdListener {

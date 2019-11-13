@@ -1,7 +1,7 @@
-package com.hotvideo;
+package com.goodmorning;
 
 
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 public class AppConfig {
 

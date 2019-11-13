@@ -1,4 +1,4 @@
-package com.hotvideo.splash;
+package com.goodmorning.splash;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,8 +16,8 @@ import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
 import com.baselib.ui.CommonConstants;
 import com.baselib.ui.activity.BaseActivity;
-import com.hotvideo.MainActivity;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.MainActivity;
+import com.goodmorning.config.GlobalConfig;
 import com.cleanerapp.supermanager.R;
 import com.k.permission.CheckCallback;
 import com.k.permission.PermissionCheck;

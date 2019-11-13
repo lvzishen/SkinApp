@@ -12,7 +12,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.baselib.sp.SharedPref;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

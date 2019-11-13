@@ -7,7 +7,7 @@ import com.ads.lib.AdUnitId;
 import com.ads.lib.AdsLoader;
 import com.ads.lib.prop.AdPositionIdProp;
 import com.baselib.cloud.CloudPropertyManager;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 /**
  * Created by Eric Tjitra on 2/24/2017.

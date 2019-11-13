@@ -1,4 +1,4 @@
-package com.hotvideo.xal;
+package com.goodmorning.xal;
 
 import android.content.Context;
 import android.os.Bundle;

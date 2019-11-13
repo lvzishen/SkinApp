@@ -15,7 +15,7 @@ import com.ads.lib.mediation.loader.natives.NativeAdLoader;
 import com.ads.lib.util.InstallTimeHelper;
 import com.ads.lib.util.PossibilityCalculator;
 import com.baselib.cloud.CloudPropertyManager;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import java.util.ArrayList;
 import java.util.List;

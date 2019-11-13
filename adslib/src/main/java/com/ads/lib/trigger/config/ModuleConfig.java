@@ -1,7 +1,7 @@
 package com.ads.lib.trigger.config;
 
 
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 public class ModuleConfig {
 

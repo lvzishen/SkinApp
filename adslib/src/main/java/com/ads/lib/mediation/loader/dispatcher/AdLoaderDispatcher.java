@@ -34,7 +34,7 @@ import com.ads.lib.prop.AdCacheProp;
 import com.ads.lib.prop.AdIDMappingProp;
 import com.ads.lib.util.PageUtil;
 import com.ads.lib.util.StrategyUtil;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import org.jetbrains.annotations.NotNull;
 

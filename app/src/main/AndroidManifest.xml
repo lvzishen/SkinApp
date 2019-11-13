@@ -52,7 +52,7 @@
 
 
     <application
-        android:name="com.hotvideo.App"
+        android:name="com.goodmorning.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher1"
         android:label="@string/string_app_name"
@@ -64,14 +64,14 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
         <activity
-            android:name="com.hotvideo.splash.SplashActivity"
+            android:name="com.goodmorning.splash.SplashActivity"
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode"
             android:label="@string/string_app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/windowShowPreviewTheme" />
         <activity
-            android:name="com.hotvideo.splash.SplashDispatcherActivity"
+            android:name="com.goodmorning.splash.SplashDispatcherActivity"
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode"
             android:label="@string/string_app_name"
             android:launchMode="singleTop"
@@ -84,7 +84,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hotvideo.MainActivity"
+            android:name="com.goodmorning.MainActivity"
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode"
             android:label="@string/string_app_name"
             android:launchMode="singleTask"

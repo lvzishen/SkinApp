@@ -1,4 +1,4 @@
-package com.hotvideo.config;
+package com.goodmorning.config;
 
 import android.app.Application;
 import android.content.Context;

@@ -6,7 +6,7 @@ import android.text.format.DateUtils;
 import android.util.Log;
 
 import com.baselib.cloud.CloudPropertyManager;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 /**
  * Created by tangchun on 2017/7/24.

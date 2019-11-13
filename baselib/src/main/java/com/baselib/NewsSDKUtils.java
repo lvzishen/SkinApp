@@ -3,7 +3,7 @@ package com.baselib;
 import android.content.Context;
 import android.util.Log;
 
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import org.adoto.xut.AdotoUserTagKeys;
 import org.adoto.xut.AdotoUserTagSDK;

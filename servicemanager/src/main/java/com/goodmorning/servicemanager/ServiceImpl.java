@@ -1,4 +1,4 @@
-package com.hotvideo.servicemanager;
+package com.goodmorning.servicemanager;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.hotvideo;
+package com.goodmorning;
 
 
 import android.os.Bundle;
 
 import com.ads.lib.commen.AdLifecyclerManager;
 import com.baselib.ui.activity.BaseActivity;
-import com.hotvideo.splash.SplashLifeMonitor;
+import com.goodmorning.splash.SplashLifeMonitor;
 import com.cleanerapp.supermanager.R;
 
 

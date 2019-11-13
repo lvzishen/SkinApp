@@ -13,7 +13,7 @@ import com.baselib.statistic.AdjustStatConstant;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
 import com.baselib.ui.CommonConstants;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 /**
  * Created by apus on 2018/9/25.

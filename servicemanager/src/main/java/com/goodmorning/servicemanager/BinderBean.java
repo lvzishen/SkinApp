@@ -1,4 +1,4 @@
-package com.hotvideo.servicemanager;
+package com.goodmorning.servicemanager;
 
 import android.content.ComponentName;
 

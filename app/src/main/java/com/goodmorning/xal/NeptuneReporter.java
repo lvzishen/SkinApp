@@ -1,10 +1,10 @@
-package com.hotvideo.xal;
+package com.goodmorning.xal;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.baselib.cloud.CloudPropertyManager;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import org.adoto.xrg.IAdotoActivateListener;
 import org.cloud.library.Cloud;

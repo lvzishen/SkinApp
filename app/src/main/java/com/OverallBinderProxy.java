@@ -4,7 +4,7 @@ import android.app.Application;
 import android.os.IBinder;
 
 import com.clean.binder.mgr.BinderManager;
-import com.hotvideo.servicemanager.ServiceManager;
+import com.goodmorning.servicemanager.ServiceManager;
 
 
 public class OverallBinderProxy implements BinderManager.BinderManangerProxy {

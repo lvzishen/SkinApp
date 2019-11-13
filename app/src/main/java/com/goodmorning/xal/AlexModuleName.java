@@ -1,4 +1,4 @@
-package com.hotvideo.xal;
+package com.goodmorning.xal;
 
 
 /**

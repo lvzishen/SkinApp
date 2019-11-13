@@ -6,7 +6,7 @@ import android.view.View;
 import com.ads.lib.mediation.bean.NativeAd;
 import com.ads.lib.mediation.bean.NativeViewBinder;
 import com.ads.lib.mediation.loader.natives.NativeEventListener;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package com.baselib.sp;
 import android.content.Context;
 import android.util.Log;
 
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import java.util.List;
 

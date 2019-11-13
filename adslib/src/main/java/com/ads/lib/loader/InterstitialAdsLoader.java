@@ -18,7 +18,7 @@ import com.ads.lib.mediation.loader.interstitial.InterstitialWrapperAdLoader;
 import com.ads.lib.prop.AdPositionIdProp;
 import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.ui.CommonConstants;
-import com.hotvideo.config.GlobalConfig;
+import com.goodmorning.config.GlobalConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
