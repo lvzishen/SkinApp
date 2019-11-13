@@ -2,12 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <org.thanos.ThanosHomeView
-        android:id="@+id/thanos_home_view"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.goodmorning.view.tab.BottomBarLayout
+        android:id="@+id/bottombar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@color/tab_gb">
+
+        <com.goodmorning.view.tab.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@drawable/ic_launcher"
+            app:iconSelected="@drawable/ic_launcher"
+            app:itemText="@string/tab_greeting"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"
+            app:itemTextSize="8sp"
+            app:itemMarginTop="-5dp"
+            app:openTouchBg="true"
+            app:touchDrawable="@drawable/selector_bg"/>
+
+        <com.goodmorning.view.tab.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@drawable/ic_launcher"
+            app:iconSelected="@drawable/ic_launcher"
+            app:itemText="@string/tab_my"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"
+            app:itemTextSize="8sp"
+            app:itemMarginTop="-5dp"
+            app:openTouchBg="true"
+            app:touchDrawable="@drawable/selector_bg"/>
+
+
+    </com.goodmorning.view.tab.BottomBarLayout>
+
 </LinearLayout>

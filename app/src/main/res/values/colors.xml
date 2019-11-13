@@ -57,4 +57,12 @@
     <color name="color_my_page_vip_text">#FFDE00</color>
     <color name="bill_page_bg">#2A2424</color>
     <color name="vip_page_item_text_color">#FFF7D8</color>
+
+    <color name="color_999999">#999999</color>
+
+    <color name="tab_gb">#F3F5F4</color>
+    <color name="tab_normal_color">#515051</color>
+    <color name="tab_selected_color">#D33D3C</color>
+    <color name="selector_grey">#DDDDDD</color>
+
 </resources>
