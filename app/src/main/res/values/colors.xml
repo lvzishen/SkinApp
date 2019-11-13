@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="black">#ff000000</color>
+    <color name="color_file_cleaner_title">#282837</color>
+    <color name="color_file_cleaner_choose_title">@color/color_main</color>
+    <color name="color_file_cleaner_unchoose_title">#B3282837</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_white_alpha">#bbffffff</color>
+    <color name="main_tab_anim_color">#1a000000</color>
+    <color name="color_battery_saver_circle_bg">#1040B8</color>
+    <color name="main_tab_text_color">#5F6267</color>
+    <color name="main_tab_text_color_select">#1B73E8</color>
+    <color name="color_list_text_black">#FF282837</color>
+    <color name="color_list_text_gray">#99282837</color>
+    <color name="color_list_text_grayw">#BAD9FF</color>
+    <color name="color_list_text_small_gray">#B3282837</color>
+    <color name="color_text_blue_disenable">#BBBABF</color>
+    <color name="color_av_text_black">#2E3136</color>
+    <color name="color_av_text_grey">#882E3136</color>
+    <color name="color_grid_text_grey">#FF787881</color>
+    <color name="color_text_green">#47C00E</color>
+    <color name="main_tab_split_color">#F0F0F0</color>
+    <color name="color_battery_list_bg">#f2f2f2</color>
+    <color name="color_main_status_color">#DADADA</color>
+    <color name="color_rubbish_list_item_size">#FF282837</color>
+    <color name="color_rubbish_list_item_child_title">#FF000039</color>
+    <color name="color_rubbish_scan_stay_dialog_cancel">#FF7E7E87</color>
+    <color name="color_text_black_rubbishscan">#282837</color>
+    <color name="color_stoke_green">#06C168</color>
+    <color name="color_ff0007">#FF0007</color>
+    <color name="color_result_title">#CC282837</color>
+    <color name="color_result_content">#80282837</color>
+    <color name="preference_title">#444</color>
+    <color name="preference_summary">#80444444</color>
+
+    <color name="orange">#ffa800</color>
+    <color name="dark_red">#f7432b</color>
+    <color name="color_53535F">#53535F</color>
+    <color name="color_282837">#282837</color>
+    <color name="color_444468">#444468</color>
+    <color name="color_80333333">#80333333</color>
+    <color name="color_05BC48">#05BC48</color>
+    <color name="light_black">#1a000000</color>
+
+    <color name="text_dark">#444444</color>
+    <color name="color_app_clean_group_item_title">#8D8D8D</color>
+
+    <color name="gray">#808080</color>
+    <color name="md_grey_300">#e0e0e0</color>
+    <color name="transparency">#00000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="translucent_white_50">#80ffffff</color>
+
+    <color name="color_white_tran">#00ffffff</color>
+
+    <color name="color_my_page_vip_text">#FFDE00</color>
+    <color name="bill_page_bg">#2A2424</color>
+    <color name="vip_page_item_text_color">#FFF7D8</color>
 </resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.ads.lib.mediation.widget.NativeAdContainer
+        android:id="@+id/ad_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_ad">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
+
+            <ImageView
+                android:id="@+id/imageView_banner_reflection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#B3000000"
+                android:scaleType="fitXY" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/replace_view"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"/>
+
+                <com.ads.lib.mediation.widget.AdIconView
+                    android:id="@+id/imageView_icon"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="46dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textview_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:maxLines="1"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/gp_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google Play: "
+                    android:textColor="#8FFFFFFF"
+                    android:textSize="14sp" />
+
+                <org.saturn.splash.widget.TradeRatingBar
+                    android:id="@+id/star_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:trade_clickable="false"
+                    app:trade_drawableEmpty="@drawable/trade_star_empty"
+                    app:trade_drawableFilled="@drawable/trade_star_full"
+                    app:trade_isIndicator="true"
+                    app:trade_numStars="5"
+                    app:trade_rating="4.5"
+                    app:trade_starHeight="22dp"
+                    app:trade_starPadding="2dp"
+                    app:trade_starWidth="22dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textview_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#8FFFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/bottom_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_action">
+
+        <com.ads.lib.mediation.widget.NativeMediaView
+            android:id="@+id/imageView_banner"
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
+            android:scaleType="fitXY" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/button_action"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="#348adb"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/qb_px_50"
+        android:textColor="@color/splash_white"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:id="@+id/ad_choice"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+        <TextView
+            android:id="@+id/ad_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/splash_white"
+            android:padding="3dp"
+            android:text="AD"
+            android:textColor="#7f000000"
+            android:textSize="8sp" />
+
+    </RelativeLayout>
+
+    </com.ads.lib.mediation.widget.NativeAdContainer>
+</merge>

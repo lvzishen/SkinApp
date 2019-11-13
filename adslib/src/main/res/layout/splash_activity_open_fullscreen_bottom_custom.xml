@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <org.saturn.splash.widget.AppNameView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6">
+
+            <include layout="@layout/splash_layout_native_bottom_custom" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/button_skip"
+        android:layout_width="44dp"
+        android:layout_height="26dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10.5dp"
+        android:layout_marginTop="8.5dp"
+        android:background="@drawable/count_down_back"
+        android:gravity="center"
+        android:text="SKIP"
+        android:textColor="#CCFFFFFF"
+        android:textSize="12sp"
+        android:visibility="invisible" />
+
+</FrameLayout>

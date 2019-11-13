@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_clean_wa">منظف %s</string>
+    <string name="app_clean_h_c_d">"استعرض وامسح الصور ومقاطع الفيديو القديمة والملفات الأخرى لإخلاء مساحة تخزينية"</string>
+    <string name="app_clean_handle">استعراض</string>
+    <string name="string_app_clean_title_image">الصور</string>
+    <string name="string_app_clean_title_audio">الملفات الصوتية</string>
+    <string name="string_app_clean_title_file">المستندات</string>
+    <string name="string_app_clean_title_voice_note">الرسائل الصوتية</string>
+    <string name="string_app_clean_description_cache">ملفات ذاكرة التخزين المؤقت المهملة لا تشمل سجل الدردشة، ويمكن تنظيفها بشكل آمن</string>
+    <string name="string_app_clean_junks">الإجمالي</string>
+    <string name="app_clean_h_c_d_d">تمت زيادة %1$s في المساحة التخزينية</string>
+    <string name="app_clean_confirm_delete_dialog_desc">لا يمكن استرداد هذه العناصر، ولن تكون متاحة في %s</string>
+    <string name="wa_clean_dialog_delete_text">حذف</string>
+    <string name="wa_clean_dialog_cancel_text">إلغاء</string>
+    <string name="string_app_clean_btn_clean">تنظيف</string>
+    <string name="string_app_clean_title_video">فيديو</string>
+</resources>

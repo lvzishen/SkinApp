@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_app_name">Hot Video News</string>
+    <string name="app_name">@string/string_app_name</string>
+    <string name="string_today">Today</string>
+    <string name="string_yesterday">Yesterday</string>
+
+    <string name="permission_states_no">No</string>
+    <string name="string_off">Off</string>
+    <string name="string_permissions">Permissions</string>
+    <string name="string_storage">Storage</string>
+    <string name="string_layer_overlapping_permissions">Draw over other apps</string>
+
+</resources>

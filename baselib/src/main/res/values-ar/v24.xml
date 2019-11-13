@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_today">اليوم</string>
+    <string name="string_yesterday">أمس</string>
+
+    <string name="string_permissions">الأذونات</string>
+    <string name="string_storage">التخزين</string>
+    <string name="string_layer_overlapping_permissions">سحب فوق التطبيقات الأخرى</string>
+
+</resources>

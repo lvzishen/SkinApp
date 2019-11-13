@@ -1,0 +1,74 @@
+apply plugin: 'xal.library'
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion Integer.parseInt(CompileSdkVersion)
+    buildToolsVersion BuildToolsVersion
+    defaultConfig {
+        minSdkVersion Integer.parseInt(MinSdkVersion)
+        targetSdkVersion Integer.parseInt(TargetSdkVersion)
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support:appcompat-v7:' + SupportVersion
+    api 'com.android.support:support-v4:' + SupportVersion
+    api 'com.android.support:design:' + SupportVersion
+    api 'com.android.support:cardview-v7:' + SupportVersion
+    api 'com.android.support:recyclerview-v7:' + SupportVersion
+    api 'androidx.constraintlayout:constraintlayout:1.1.2'
+    api 'org.greenrobot:eventbus:3.0.0'
+    api 'com.google.android.play:core:1.6.0'
+
+    // 消息推送的依赖
+    api "com.google.android.gms:play-services-gcm:${GOOGLE_VERSION}"
+    api 'androidx.multidex:multidex:2.0.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    xalApi 'org.zeus:networklayer:' + ZEUS_VERSION
+    //XAL 激活云控升级
+    xalApi 'com.xal.publicrepository:register:' + ADOTO_REGISTER_VERSION
+    api 'com.adjust.sdk:adjust-android:4.17.0'
+    api 'com.github.bumptech.glide:glide:3.7.0'
+
+    debugApi('org.alex:monitor:' + ALEX_MONITOR_VERSION + '-debug') {
+        exclude(group: 'com.android.support', module: 'support-compat')
+    }
+    xalApi('org.alex:analytics:' + ALEX_VERSION) {
+        exclude(group: 'com.android.support', module: 'support-v4')
+        exclude(group: 'org.zeus', module: 'networklayer')
+        exclude(group: 'com.android.support', module: 'support-compat')
+    }
+
+    xalApi 'org.homeplanet:interlaken:' + INTERLAKEN_VERSION
+    xalApi 'org.homeplanet:interlaken-compat:' + INTERLAKEN_COMPAT_VERSION
+
+    // 崩溃上传
+    xalApi 'com.hera:crashguard:' + CRASH_GUARD_VERSION
+
+    //    debugApi "com.hera:crashguardndk:" + CRASH_GUARD_NDK_VERSION + "-debug"
+
+    //    releaseApi "com.hera:crashguardndk:" + CRASH_GUARD_NDK_VERSION + "-release"
+    xalApi 'com.xal.publicrepository:coreserviceprovider:' + CORE_SERVICE_PROVIDER_VERSION
+
+    xalApi 'com.xal.publicrepository:cloud:' + CLOUD_VERSION
+
+    api project(path: ':config')
+    api project(path: ':servicemanager')
+    api project(path: ':permission')
+
+    xalApi 'com.xal.publicrepository:apk-update:' + APK_UPDATE_VERSION
+    xalApi 'com.xal.publicrepository:apk-update-glide:' + APK_UPDATE_GLIDE_VERSION
+}
+
+xal {
+    testPersistProcessName 'com.filemagic.background'
+}

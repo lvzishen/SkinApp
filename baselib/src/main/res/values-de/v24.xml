@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_today">Heute</string>
+    <string name="string_yesterday">Gestern</string>
+
+    <string name="string_permissions">Freigaben</string>
+    <string name="string_storage">Speicher</string>
+    <string name="string_layer_overlapping_permissions">Über anderen Apps einblenden</string>
+
+</resources>

@@ -1,0 +1,86 @@
+<manifest package="com.ads.lib"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--允许读取网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--允许读取wifi网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--电量变化-->
+    <uses-permission android:name="android.permission.BATTERY_STATS"/>
+
+    <application>
+        <!-- mopub -->
+        <activity
+            android:name="com.mopub.common.privacy.ConsentDialogActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:multiprocess="false"
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity
+            android:name="com.mopub.mobileads.MoPubActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:multiprocess="false"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.mopub.mobileads.MraidActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:multiprocess="false"
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.mopub.common.MoPubBrowser"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:multiprocess="false"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:multiprocess="false"
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.mopub.mobileads.RewardedMraidActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:multiprocess="false"
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+
+        <activity android:name="org.saturn.splash.view.SplashMainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.notAnimation"
+            android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode">
+        </activity>
+
+        <activity
+            android:name="com.facebook.ads.AudienceNetworkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:multiprocess="false"
+            android:noHistory="true"
+            android:taskAffinity="com.facebook.ads.AudienceNetworkActivity"
+            android:excludeFromRecents="true" />
+
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:excludeFromRecents="true"
+            android:label=""
+            android:multiprocess="false"
+            android:noHistory="true"
+            android:taskAffinity="com.google.android.gms.ads.AdActivity"
+            android:theme="@android:style/Theme.Translucent" />
+
+
+    </application>
+</manifest>

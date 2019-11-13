@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">goodmorning</string>
+    <string name="string_privacy_policy"><u>Privacy Policy</u></string>
+    <string name="string_user_agreement"><u>User Agreement</u></string>
+    <string name="please_privacy">Please agree Privacy Policy</string>
+    <string name="please_agreement">Please agree User Agreement</string>
+    <string name="user_terms_n_privacy_link_text">By clicking START, you agree to our [User Agreement] and [Privacy Policy].We may use some device information and applications usage behavior  to provide a better service. You could manage or delete such data at any time in Settings.</string>
 </resources>

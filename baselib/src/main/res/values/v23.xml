@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="string_delete">Delete</string>
+    <string name="string_cancel">Cancel</string>
+    <string name="string_loading">Loading…</string>
+    <string name="string_ok">OK</string>
+    <string name="string_open">Open</string>
+    <string name="string_update_now">Update now</string>
+    <string name="scanning_progress">Scanning: %1$s</string>
+    <string name="string_boost_main_add_white_list">"Add to ignore list"</string>
+    <string name="applock_gp_reset_dialog_ok">Continue</string>
+    <string name="string_splash_start">Start</string>
+    <string name="string_uninstall">Uninstall</string>
+    <string name="string_please_wait">Please wait…</string>
+    <string name="string_ignore">Ignore</string>
+    <string name="string_safe">Safe</string>
+    <string name="string_path">Path</string>
+    <string name="string_try_again">Try again</string>
+    <string name="string_stop">Stop</string>
+    <string name="string_unknown">"Unknown"</string>
+    <string name="string_network_error">Network Error</string>
+    <string name="string_check_network_try_again">Please check your network and retry</string>
+    <string name="string_update">Update</string>
+    <string name="string_enable_now">"Enable Now"</string>
+    <string name="string_empty_files">Great!\nAll files in the folder have been cleaned up.</string>
+</resources>

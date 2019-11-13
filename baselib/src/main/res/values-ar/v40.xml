@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_scan_now">مسح الآن</string>
+    <string name="choose_pic">تحديد</string>
+    <string name="selected">تم التحديد</string>
+    <string name="no_suitable_app_found">لم يتم العثور على تطبيق قادر على فتح هذا الملف</string>
+    <plurals name="wa_dialog_delete_x_items">
+        <item quantity="one">هل تريد حذف %1$d عنصر؟</item>
+        <item quantity="other">هل تريد حذف %1$d عنصر؟</item>
+        <item quantity="few">هل تريد حذف %1$d عناصر؟</item>
+        <item quantity="many">هل تريد حذف %1$d عنصر؟</item>
+        <item quantity="two">هل تريد حذف عنصرين (%1$d)؟</item>
+        <item quantity="zero">هل تريد حذف %1$d عناصر؟</item>
+    </plurals>
+</resources>

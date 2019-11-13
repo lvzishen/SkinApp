@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_pressed">#33000000</color>
+    <color name="color_white">#ffffffff</color>
+    <color name="color_black">#000000</color>
+    <color name="blue_pressed">#FFF1F6FF</color>
+    <color name="color_main">#4C84FF</color>
+    <color name="color_main_pressed">#3C69CC</color>
+    <color name="black_alpha_70">#B3000000</color>
+    <color name="color_text_black_rubbishscan">#282837</color>
+    <color name="transparent">#00000000</color>
+    <color name="color_notifi_status">#4C6CFF</color>
+    <color name="sky_dark_blue">#54A2FF</color>
+    <color name="color_2C66DA">#2C66DA</color>
+    <color name="color_block_gray">#999999</color>
+    <color name="permission_bg">#33000000</color>
+    <color name="network_monitor_color">#FF4C84FF</color>
+    <color name="transpant_white">#87BEFF</color>
+    <color name="color_btn_bg_blue">#FF4C84FF</color>
+    <color name="color_stoke_green">#06C168</color>
+   <!-- <color name="color_rubbish_scan_bg">#ECF1F4  #FFECF1F4</color>-->
+    <color name="color_rubbish_scan_bg">#54A2FF</color>
+    <color name="preview_doc_bg">#222222</color>
+    <color name="light_mask">#1a000000</color>
+    <color name="dark_red">#f7432b</color>
+    <color name="orange">#ffa800</color>
+    <color name="light_black">#1a000000</color>
+    <color name="color_spread">#65ABFF</color>
+    <color name="color_white_tran">#00ffffff</color>
+</resources>

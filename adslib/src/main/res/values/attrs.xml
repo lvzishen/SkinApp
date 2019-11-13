@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AdsView">
+        <attr name="logo_text_color" format="color" />
+        <attr name="logo_bg_color" format="color" />
+        <attr name="logo_bg" format="reference" />
+        <attr name="logo_visible" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="NormalAdsView">
+        <attr name="bottomParentBackground" format="reference" />
+        <attr name="logoParentBgColor" format="color" />
+    </declare-styleable>
+</resources>
