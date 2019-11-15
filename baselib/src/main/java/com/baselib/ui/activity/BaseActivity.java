@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.baselib.LocaleUtils;
+import com.baselib.language.LanguageType;
+import com.baselib.language.LanguageUtil;
+import com.baselib.sp.SharedPref;
 import com.cleanerapp.supermanager.baselib.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +20,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleUtils.attachBaseContext(newBase));
+        //获取我们存储的语言环境 比如 "en","zh",等等
+        String language = SharedPref.getString(newBase,SharedPref.LANGUAGE, LanguageType.ENGLISH.getLanguage());
+        /**
+         * attach对应语言环境下的context
+         */
+        super.attachBaseContext(LanguageUtil.attachBaseContext(newBase, language));
     }
 
     @Override

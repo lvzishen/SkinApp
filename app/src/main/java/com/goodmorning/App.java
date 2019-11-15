@@ -19,6 +19,8 @@ import com.ads.lib.util.AdSwitchUtil;
 import com.baselib.BaseModule;
 import com.baselib.LocaleUtils;
 import com.baselib.cloud.CloudPropertyManager;
+import com.baselib.language.LanguageType;
+import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticLogger;
 import com.baselib.statistic.StatisticLoggerX;
@@ -129,8 +131,15 @@ public class App extends Application {
         }
 
         mContext = this;
-        LocaleUtils.LocaleBean _UserLocale = LocaleUtils.getUserLocale(this);
-        LocaleUtils.updateLocale(this, _UserLocale);
+//        LocaleUtils.LocaleBean _UserLocale = LocaleUtils.getUserLocale(this);
+//        LocaleUtils.updateLocale(this, _UserLocale);
+        /**
+         * 对于7.0以下，需要在Application创建的时候进行语言切换
+         */
+        String language = SharedPref.getString(sContext,SharedPref.LANGUAGE, LanguageType.ENGLISH.getLanguage());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            LanguageUtil.changeAppLanguage(sContext, language);
+        }
         setProcessWebViewPath();
         MoPubStarkInit.getInstance().setAllowLoaderAdListener(new IAllowLoaderAdListener() {
             @Override

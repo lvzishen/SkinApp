@@ -5,4 +5,6 @@
 	<string name="please_agreement">请同意用户协议</string>
 	<string name="string_user_agreement"><u>用戶协议</u></string>
 	<string name="please_privacy">请同意隐私政策</string>
+	<string name="tab_greeting">祝福</string>
+	<string name="tab_my">我的</string>
 </resources>
