@@ -192,6 +192,9 @@ public class App extends Application {
                 }
             }.start();
         }
+
+
+
         initThanos();
         // 只在常驻进程初始化PUSH
         if (XalContext.isPersistProcess()) {
@@ -203,7 +206,7 @@ public class App extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             String processName = getProcessName();
             if (FLAG_PROCESS_UI != getFlag(this, mCurrProcessName)) {
-            WebView.setDataDirectorySuffix(setPath(processName, mCurrProcessName));
+                WebView.setDataDirectorySuffix(setPath(processName, mCurrProcessName));
             }
         }
     }

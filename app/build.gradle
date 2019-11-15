@@ -77,6 +77,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':libCore')
     implementation project(':baselib')
     implementation project(':permission')
     implementation project(':binder')
@@ -95,6 +96,7 @@ dependencies {
     releaseImplementation("org.trade.vision:vision-sdk:1.0.50-release")
 
     debugImplementation("org.trade.vision:vision-sdk:1.0.50-debug")
+
 
     // Thanos
     xalApi 'com.xal.thanos:ui:1.0.24-push3rd'

@@ -1,0 +1,35 @@
+apply plugin: 'xal.library'
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.0"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // Zeus必须使用api依赖，因为需要别人使用到ZeusRequestResult类
+    xalApi 'org.zeus:networklayer:1.6.2'
+
+    xalApi 'org.alex:event:1.1.3'
+
+    // SharedPref
+    xalApi 'com.xal.publicrepository:coreserviceprovider:3.0.4'
+}
+xal {
+    testPersistProcessName 'com.your.persist.process.name'
+}

@@ -6,8 +6,8 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <org.thanos.ThanosHomeView
-        android:id="@+id/thanos_home_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="sadasd" />
 </LinearLayout>
