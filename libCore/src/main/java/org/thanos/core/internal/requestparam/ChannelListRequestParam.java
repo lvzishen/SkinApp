@@ -23,11 +23,16 @@ public class ChannelListRequestParam extends BaseRequestParam {
 
     @Override
     public BaseProtocol createProtocol() {
-        return null;
+        return new ChannelListProtocol();
     }
 
     @Override
     public String getCacheKey() {
         return String.valueOf(module);
     }
+
+    public static class ChannelListProtocol extends BaseProtocol {
+
+    }
+
 }

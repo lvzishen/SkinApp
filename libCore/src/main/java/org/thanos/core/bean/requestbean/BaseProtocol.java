@@ -6,5 +6,4 @@ package org.thanos.core.bean.requestbean;
  * 作者: lvzishen
  */
 public abstract class BaseProtocol {
-    public boolean acceptCache;
 }

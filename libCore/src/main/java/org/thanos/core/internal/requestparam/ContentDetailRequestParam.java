@@ -11,16 +11,18 @@ import static org.thanos.core.internal.MorningDataCore.DEBUG;
  * 作者: lvzishen
  */
 public class ContentDetailRequestParam extends BaseRequestParam<ContentDetailRequestParam.ContentDetailProtocol> {
-    private ContentDetailProtocol contentDetailProtocol;
+    private int resourceID;
 
-    public ContentDetailRequestParam(ContentDetailProtocol contentDetailProtocol) {//, int module
-        super("CD", contentDetailProtocol.acceptCache, false, 1);//module
-        this.contentDetailProtocol = contentDetailProtocol;
+    public ContentDetailRequestParam(boolean acceptCache, int resourceId) {//, int module
+        super("CD", acceptCache, false, 1);//module
+        this.resourceID = resourceId;
     }
 
 
     @Override
     public ContentDetailProtocol createProtocol() {
+        ContentDetailProtocol contentDetailProtocol = new ContentDetailProtocol();
+        contentDetailProtocol.resourceID = this.resourceID;
         return contentDetailProtocol;
     }
 
@@ -31,13 +33,13 @@ public class ContentDetailRequestParam extends BaseRequestParam<ContentDetailReq
      */
     @Override
     public String getCacheKey() {
-        return String.valueOf(this.contentDetailProtocol.resourceID + module);
+        return String.valueOf(this.resourceID + module);
     }
 
     @Override
     public String toString() {
         return DEBUG ? "ContentDetailBaseRequestParam{" +
-                "resourceID=" + contentDetailProtocol.resourceID +
+                "resourceID=" + resourceID +
                 ", requestModuleName='" + requestModuleName + '\'' +
                 ", acceptCache=" + acceptCache +
                 ", module=" + module +

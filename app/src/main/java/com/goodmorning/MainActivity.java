@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.ads.lib.commen.AdLifecyclerManager;
 import com.baselib.ui.activity.BaseActivity;
+import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.cleanerapp.supermanager.R;
 import com.goodmorning.ui.fragment.HomeFragment;
@@ -25,6 +26,7 @@ import org.thanos.core.bean.ContentList;
 import org.thanos.core.internal.requestparam.ChannelListRequestParam;
 import org.thanos.core.internal.requestparam.ContentDetailRequestParam;
 import org.thanos.core.internal.requestparam.ContentListRequestParam;
+import org.thanos.utils.CloudConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,34 +54,15 @@ public class MainActivity extends BaseActivity {
 
 
         //1
-//        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
-//        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
-//            @Override
-//            public void onSuccess(ChannelList data) {
-//
-//            }
-//
-//            @Override
-//            public void onLoadFromCache(ChannelList data) {
-//
-//            }
-//
-//            @Override
-//            public void onFail(Exception e) {
-//
-//            }
-//        });
-        //2
-        int sessioID = (int) System.currentTimeMillis();
-        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 0, false, false, false);
-        MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
+        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
+        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
             @Override
-            public void onSuccess(ContentList data) {
+            public void onSuccess(ChannelList data) {
 
             }
 
             @Override
-            public void onLoadFromCache(ContentList data) {
+            public void onLoadFromCache(ChannelList data) {
 
             }
 
@@ -88,12 +71,29 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+        //2
+//        int sessioID = (int) System.currentTimeMillis();
+//        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 6, false, false, false);
+//        MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
+//            @Override
+//            public void onSuccess(ContentList data) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadFromCache(ContentList data) {
+//
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
+//
+//            }
+//        });
 
 
-        //3
-//        ContentDetailRequestParam.ContentDetailProtocol contentDetailProtocol = new ContentDetailRequestParam.ContentDetailProtocol();
-//        contentDetailProtocol.resourceID = 12345;
-//        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(contentDetailProtocol), new ResultCallback<ContentDetail>() {
+//        //3
+//        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 92270262), new ResultCallback<ContentDetail>() {
 //            @Override
 //            public void onLoadFromCache(ContentDetail data) {
 //            }
@@ -101,11 +101,11 @@ public class MainActivity extends BaseActivity {
 //            @Override
 //            public void onSuccess(ContentDetail data) {
 //                if (data != null && data.item != null) {
-//                    if (DEBUG) {
+//                    if (GlobalConfig.DEBUG) {
 //                        Log.d(TAG, "有数据--->" + data.message);
 //                    }
 //                } else {
-//                    if (DEBUG) {
+//                    if (GlobalConfig.DEBUG) {
 //                        Log.d(TAG, "无数据--->");
 //                    }
 //                }
@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity {
 //
 //            @Override
 //            public void onFail(Exception e) {
-//                Log.i("aasd", e.getMessage());
+//                Log.i(TAG, e.getMessage());
 //            }
 //        });
 
