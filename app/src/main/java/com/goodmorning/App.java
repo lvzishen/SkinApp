@@ -63,12 +63,16 @@ import org.interlaken.common.XalContext;
 import org.interlaken.common.utils.ParamUtils;
 import org.interlaken.common.utils.ProcessUtil;
 import org.thanos.ThanosSDK;
+import org.thanos.core.MorningDataAPI;
+import org.thanos.core.internal.ThanosDataCore;
 import org.thanos.push.ThanosPush;
+import org.thanos.utils.Utils;
 import org.xal.config.NoxInitConfig;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -136,7 +140,7 @@ public class App extends Application {
         /**
          * 对于7.0以下，需要在Application创建的时候进行语言切换
          */
-        String language = SharedPref.getString(sContext,SharedPref.LANGUAGE, LanguageType.ENGLISH.getLanguage());
+        String language = SharedPref.getString(sContext, SharedPref.LANGUAGE, LanguageType.ENGLISH.getLanguage());
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             LanguageUtil.changeAppLanguage(sContext, language);
         }
@@ -202,7 +206,38 @@ public class App extends Application {
             }.start();
         }
 
+        MorningDataAPI.init(new MorningDataAPI.IThanosCoreConfig() {
 
+            @Override
+            public int getProductID() {
+                return AppConfig.UIVERSION;
+            }
+
+            @Override
+            public String getNewsCountry() {
+                if (DEBUG) {
+                    Properties testProp = ThanosDataCore.getTestProp();
+                    String newsCountry = testProp.getProperty("newsCountry", null);
+                    if (!TextUtils.isEmpty(newsCountry)) {
+                        if (DEBUG) {
+                            Log.i(TAG, "getNewsCountry: Use " + newsCountry + " for TEST");
+                        }
+                        return newsCountry;
+                    }
+                }
+                return Utils.getNewsCountry(XalContext.getContext());
+            }
+
+            @Override
+            public String getLang() {
+                return Utils.getLang(XalContext.getContext());
+            }
+
+            @Override
+            public String getServerUrlHost() {
+                return "https://feed.subcdn.com";
+            }
+        });
 
         initThanos();
         // 只在常驻进程初始化PUSH
@@ -267,6 +302,8 @@ public class App extends Application {
     }
 
     private void initThanos() {
+
+
         ThanosSDK.init(this, new ThanosSDK.IThanosSDKConfig() {
             @Override
             public boolean openDeepLink(String s) {

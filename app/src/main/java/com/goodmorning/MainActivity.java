@@ -53,22 +53,22 @@ public class MainActivity extends BaseActivity {
 
         //1
 //        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
-        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
-            @Override
-            public void onSuccess(ChannelList data) {
-
-            }
-
-            @Override
-            public void onLoadFromCache(ChannelList data) {
-
-            }
-
-            @Override
-            public void onFail(Exception e) {
-
-            }
-        });
+//        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
+//            @Override
+//            public void onSuccess(ChannelList data) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadFromCache(ChannelList data) {
+//
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
+//
+//            }
+//        });
         //2
         int sessioID = (int) System.currentTimeMillis();
         ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 0, false, false, false);
@@ -91,31 +91,31 @@ public class MainActivity extends BaseActivity {
 
 
         //3
-        ContentDetailRequestParam.ContentDetailProtocol contentDetailProtocol = new ContentDetailRequestParam.ContentDetailProtocol();
-        contentDetailProtocol.resourceID = 12345;
-        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(contentDetailProtocol), new ResultCallback<ContentDetail>() {
-            @Override
-            public void onLoadFromCache(ContentDetail data) {
-            }
-
-            @Override
-            public void onSuccess(ContentDetail data) {
-                if (data != null && data.item != null) {
-                    if (DEBUG) {
-                        Log.d(TAG, "有数据--->" + data.message);
-                    }
-                } else {
-                    if (DEBUG) {
-                        Log.d(TAG, "无数据--->");
-                    }
-                }
-            }
-
-            @Override
-            public void onFail(Exception e) {
-                Log.i("aasd", e.getMessage());
-            }
-        });
+//        ContentDetailRequestParam.ContentDetailProtocol contentDetailProtocol = new ContentDetailRequestParam.ContentDetailProtocol();
+//        contentDetailProtocol.resourceID = 12345;
+//        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(contentDetailProtocol), new ResultCallback<ContentDetail>() {
+//            @Override
+//            public void onLoadFromCache(ContentDetail data) {
+//            }
+//
+//            @Override
+//            public void onSuccess(ContentDetail data) {
+//                if (data != null && data.item != null) {
+//                    if (DEBUG) {
+//                        Log.d(TAG, "有数据--->" + data.message);
+//                    }
+//                } else {
+//                    if (DEBUG) {
+//                        Log.d(TAG, "无数据--->");
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
+//                Log.i("aasd", e.getMessage());
+//            }
+//        });
 
         //4
 //        int page=1;
