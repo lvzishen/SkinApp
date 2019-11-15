@@ -224,7 +224,10 @@ public class SharedPref {
      * 广告开关
      */
     public static final String KEY_VIP_AD_SWITCH = "key_vip_ad_switch";
-
+    /**
+     * 语言切换
+     */
+    public static final String LANGUAGE = "language";
 //    static SharedPrefStub getInstance(Context cxt) {
 //        return SharedPrefStub.getInstance(cxt);
 ////        IBinder binder = BinderManager.getService(cxt, KEY_SHAREDPREF);
