@@ -99,7 +99,7 @@ dependencies {
 
 
     // Thanos
-//    xalApi 'com.xal.thanos:ui:1.0.24-push3rd'
+    xalApi 'com.xal.thanos:ui:1.0.24-push3rd'
     xalApi 'com.push:pushsdk:2.3.17.17.2-3rd'
     xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
 }
