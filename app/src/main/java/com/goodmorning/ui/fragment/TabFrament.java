@@ -16,6 +16,7 @@ import com.goodmorning.bean.DataListItem;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.CommonRecyclerViewAdapter;
 import com.goodmorning.view.recyclerview.decoration.DiverItemDecoration;
+import com.goodmorning.view.recyclerview.interfaces.OnItemClickListener;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
@@ -35,6 +36,7 @@ public class TabFrament extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_layout, container, false);
         initView(view);
         initData();
+        setListener();
         return view;
     }
 
@@ -59,7 +61,9 @@ public class TabFrament extends Fragment {
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
+    }
 
+    private void setListener(){
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -70,6 +74,13 @@ public class TabFrament extends Fragment {
                         mRecyclerView.setNoMore(true);
                     }
                 },3000);
+            }
+        });
+
+        mRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
             }
         });
     }

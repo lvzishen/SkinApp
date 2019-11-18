@@ -92,7 +92,7 @@ dependencies {
         exclude(group: 'com.squareup.okhttp3', module: 'okhttp')
     }
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
     releaseImplementation("org.trade.vision:vision-sdk:1.0.50-release")
 
     debugImplementation("org.trade.vision:vision-sdk:1.0.50-debug")

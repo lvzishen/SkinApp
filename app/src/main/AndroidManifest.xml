@@ -50,7 +50,6 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-
     <application
         android:name="com.goodmorning.App"
         android:allowBackup="true"
@@ -60,9 +59,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label">
+        <activity android:name="com.goodmorning.ui.activity.WebviewActivity"
+            android:screenOrientation="portrait"></activity>
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <activity
             android:name="com.goodmorning.splash.SplashActivity"
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode"
@@ -89,7 +92,7 @@
             android:label="@string/string_app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name="com.clean.binder.mgr.BinderService"
