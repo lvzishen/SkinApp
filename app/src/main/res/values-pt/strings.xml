@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Means user can click here to read original news -->
+    <!-- When a news article is shared to others,it will be presented like this -->
+    <string name="contents_ui__news_share" formatted="false">PARTILHAR através do </string>
+    <!-- Means there're some articles or videos user can read -->
+    <string name="contents_ui__news_update_tips">%d notícias recomendadas para si</string>
+    <!-- Means there is no more news can read -->
+    <!-- Means it's saving the picture -->
+    <!-- Remind user choose app language -->
+    <!-- A modal particle of surprise -->
+    <string name="news_ui__text_ooops">Ups!</string>
+    <!-- Means there's no Internet connection -->
+    <string name="news_ui__text_network_unavailable_hint">Ligação fraca à Internet; por favor, verifique a sua ligação.</string>
+    <!-- Means user can try again later -->
+    <string name="news_ui__text_no_data_hint">Existem novos conteúdos para atualizar, por favor, tente novamente.</string>
+    <!-- Click here to refresh -->
+    <!-- 	Means this card was viewed a few minutes ago -->
+    <!-- 	Means this card was viewed a few hours ago -->
+    <!-- 	Means this card was viewed a few days ago -->
+    <!--guide the user to open the quick view mode when user enter news detail page-->
+    <!--The user successfully opens the quick view mode prompt-->
+    <string name="quick_view_mode_opened_toast">Modo visualização rápida ativado</string>
+    <!--The user successfully closes the quick view mode prompt-->
+    <string name="quick_view_mode_closed_toast">Modo visualização rápida desativado</string>
+    <!-- Remind user can use quick view mode to read news 	-->
+    <!-- Click here to open quick view mode	-->
+    <!-- Means next time still use quick view mode to read news	-->
+    <!-- Means user can close quick view mode on settings pages	-->
+    <!-- A recommended way to read news	-->
+    <!-- Means there's no more articles or videos user can read	-->
+    <!-- Click here to refresh -->
+    <string name="news_ui__text_retry">Atualizar</string>
+    <!-- This news is published just now-->
+    <!-- The following are related articles or videos -->
+    <!-- Means user can set this application here -->
+    <!-- Means the photo has saved in Album	-->
+    <!-- Means didn't save photo successfully	-->
+    <!-- Means swipe to see next photo-->
+    <!-- Means reload picture-->
+    <!-- This is to show when video failed to play. -->
+    <string name="news_ui__video_fail_play">Desculpe, não foi possível reproduzir o vídeo</string>
+    <!-- When video failed to play, user can click this button to retry -->
+    <string name="news_ui__retry">Toque para tentar de novo</string>
+    <!-- This is to show when play video using mobile data -->
+    <string name="news_ui__video_mobile_data_tips">A visualização deste vídeo utilizará os seus dados móveis.</string>
+    <!-- This is to show when play video using mobile data, click continue will play video -->
+    <string name="news_ui__contiue">Continuar</string>
+    <!-- There are videos on this page -->
+    <!-- The following are articles or videos that are recommended to you -->
+    <!-- There are funny or offbeat stories on this page -->
+    <!-- There are news on this page -->
+    <!-- Means user can pull to refresh this page -->
+    <string name="news_ui_refresh_header_pull_down">Puxe para atualizar</string>
+    <!-- Means this page is being refreshed -->
+    <string name="news_ui_refresh_header_refreshing">A atualizar</string>
+    <!-- Means this page is being loaded-->
+    <string name="news_ui_refresh_header_loading">A carregar</string>
+    <!-- Remind you release, then this page will be refreshed -->
+    <string name="news_ui_refresh_header_release">Soltar para atualizar</string>
+    <!-- Means this page has been refreshed -->
+    <string name="news_ui_refresh_header_finish">Atualização terminada</string>
+    <!-- Means this page failed to refresh -->
+    <string name="news_ui_refresh_header_failed">Erro na atualização</string>
+    <!-- Means these content was updated last time -->
+    <string name="news_ui_refresh_header_lasttime">Última atualização</string>
+    <!-- Remind user pull up to refresh the page -->
+    <string name="news_ui_refresh_footer_pull_down">Puxe para cima para atualizar</string>
+    <string name="news_ui_refresh_footer_refreshing">@string/news_ui_refresh_header_refreshing</string>
+    <string name="news_ui_refresh_footer_loading">@string/news_ui_refresh_header_loading</string>
+    <string name="news_ui_refresh_footer_release">@string/news_ui_refresh_header_release</string>
+    <string name="news_ui_refresh_footer_finish">@string/news_ui_refresh_header_finish</string>
+    <!-- Means this page failed to load -->
+    <!-- Means this page has been loaded successfully -->
+    <string name="news_ui_refresh_footer_allloaded">Carregamento terminado</string>
+
+    <string name="news_ui_video_detail_view_share">Partilhar</string>
+    <string name="view_count_text">%1$s Views</string>
+    <string name="wallpaper_load_more_data_no_network">Falha na ligação, por favor verifique a rede.</string>
+    <string name="news_ui_refresh_header_refresh">обновление...</string>
+    <string name="share_files">Compartilhar</string>
+    <!--it's a guide to introduce users how to set default browser-->
+    <!--It’s a prompt, which means articles that users don't like have been marked successfully, and we will reduce the recommendation of such articles in the future.-->
+    <!--users's feedback why they don't like this article-->
+    <string name="news_dislike_not_interested">Não interessado</string>
+    <!--one feedback why users don't like this article, and want to blcok all articles of the same source-->
+    <string name="news_dislike_source">Bloquear fonte</string>
+    <!--users don't like this article,and want to report it's low quality-->
+    <!--users don't like this article,and feedback it's fake or misleading news-->
+    <string name="news_dislike_quality_fake">Notícias falsas</string>
+    <!--users don't like this article,and feedback it's vulgar content-->
+    <string name="news_dislike_quality_Vulgar">Conteúdo vulgar</string>
+    <!--users don't like this article,and feedback it's too clickbait-->
+    <string name="news_dislike_quality_clickbait">Clickbait</string>
+    <!-- one feedback why users don't like this article-->
+    <string name="news_dislike_quality_repetitive">Notícias antigas ou repetitivas</string>
+    <!-- users don't like this article because of some keywords in it, and they want to block the same keywords in other articles -->
+    <!--不喜欢弹窗默认文案请选择原因-->
+    <string name="news_dislike_reson">Motivos</string>
+
+
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_fake_content">Conteúdo falso</string>
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_discomfort">Conteúdo pode causar desconforto</string>
+    <!--one of the reasons why users don't like this news/videos.this content has been showed before-->
+    <string name="videos_dislike_duplicate">Duplicado</string>
+    <!--A tips for news center guide documents-->
+    <!--A tips for show how many news refreshed -->
+    <string name="network_error_tips">Clique no ecrã para tentar novamente</string>
+    <!--It is a button, users click it to replay the video-->
+    <!--It is a prompt to introduce users that the video failed to play-->
+    <string name="video_play_failed">Desculpe, não foi possível iniciar o vídeo</string>
+    <!--It is a button, users click it to reload video-->
+    <string name="tap_to_retry_reload_video">Toque para tentar de novo</string>
+    <string name="err_net_tips">Uuups! Algo correu mal</string>
+    <string name="settings_break_news_language">Язык новостей</string>
+    <string name="news_center_language_change_success_toast">alteração bem-sucedida</string>
+    <string name="last_view_tip">Leia até aqui agora mesmo. Toque para atualizar.</string>
+    <string name="font_setting">Tamanho do Texto</string>
+    <string name="button_cancle">Cancelar</string>
+    <string name="news_dislike_toast">Você verá menos como este</string>
+    <string name="swipe_up_to_view_next_video">Deslize para cima para ver o próximo vídeo</string>
+    <!--This is a share description of news-->
+    <string name="share_news_watch">Encontrei um artigo incrível sobre %s. Vamos ler!</string>
+    <!--This is a share description of videos-->
+    <string name="share_videos_watch">Encontrei um vídeo incrível sobre %s. Vamos assistir!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_videos_download">Baixe o %s para ler mais vídeos em destaque!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_news_download">Baixe o %s para ler mais notícias em destaque!</string>
+
+    <string name="news_ui__saving">A guardar</string>
+    <string name="news_ui__save_successful">Guardada no Álbum</string>
+    <!-- Means didn't save photo successfully	-->
+    <string name="news_ui__save_failure">Não foi possível guardar; por favor, tente de novo mais tarde</string>
+</resources>

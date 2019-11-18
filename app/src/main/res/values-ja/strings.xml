@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Means user can click here to read original news -->
+    <!-- When a news article is shared to others,it will be presented like this -->
+    <string name="contents_ui__news_share" formatted="false">でシェア </string>
+    <!-- Means there're some articles or videos user can read -->
+    <string name="contents_ui__news_update_tips">あなたにおすすめのニュース%d件</string>
+    <!-- Means there is no more news can read -->
+    <!-- Means it's saving the picture -->
+    <!-- Remind user choose app language -->
+    <!-- A modal particle of surprise -->
+    <string name="news_ui__text_ooops">おっと！</string>
+    <!-- Means there's no Internet connection -->
+    <string name="news_ui__text_network_unavailable_hint">ネットワーク接続不良です。接続を確認してください。</string>
+    <!-- Means user can try again later -->
+    <string name="news_ui__text_no_data_hint">新しいコンテンツのリフレッシュ準備完了。再度お試しください。</string>
+    <!-- Click here to refresh -->
+    <!-- 	Means this card was viewed a few minutes ago -->
+    <!-- 	Means this card was viewed a few hours ago -->
+    <!-- 	Means this card was viewed a few days ago -->
+    <!--guide the user to open the quick view mode when user enter news detail page-->
+    <!--The user successfully opens the quick view mode prompt-->
+    <string name="quick_view_mode_opened_toast">クイックビューモードが有効になりました</string>
+    <!--The user successfully closes the quick view mode prompt-->
+    <string name="quick_view_mode_closed_toast">クイックビューモードが無効になりました</string>
+    <!-- Remind user can use quick view mode to read news 	-->
+    <!-- Click here to open quick view mode	-->
+    <!-- Means next time still use quick view mode to read news	-->
+    <!-- Means user can close quick view mode on settings pages	-->
+    <!-- A recommended way to read news	-->
+    <!-- Means there's no more articles or videos user can read	-->
+    <!-- Click here to refresh -->
+    <string name="news_ui__text_retry">リフレッシュ</string>
+    <!-- This news is published just now-->
+    <!-- The following are related articles or videos -->
+    <!-- Means user can set this application here -->
+    <!-- Means the photo has saved in Album	-->
+    <!-- Means didn't save photo successfully	-->
+    <!-- Means swipe to see next photo-->
+    <!-- Means reload picture-->
+    <!-- This is to show when video failed to play. -->
+    <string name="news_ui__video_fail_play">申し訳ありませんが、動画の再生に失敗しました</string>
+    <!-- When video failed to play, user can click this button to retry -->
+    <string name="news_ui__retry">タップしてリトライ</string>
+    <!-- This is to show when play video using mobile data -->
+    <string name="news_ui__video_mobile_data_tips">この動画を視聴するとモバイルデータ通信が使用されます。</string>
+    <!-- This is to show when play video using mobile data, click continue will play video -->
+    <string name="news_ui__contiue">続行する</string>
+    <!-- There are videos on this page -->
+    <!-- The following are articles or videos that are recommended to you -->
+    <!-- There are funny or offbeat stories on this page -->
+    <!-- There are news on this page -->
+    <!-- Means user can pull to refresh this page -->
+    <string name="news_ui_refresh_header_pull_down">プルしてリフレッシュ</string>
+    <!-- Means this page is being refreshed -->
+    <string name="news_ui_refresh_header_refreshing">リフレッシュ中</string>
+    <!-- Means this page is being loaded-->
+    <string name="news_ui_refresh_header_loading">読み込み中</string>
+    <!-- Remind you release, then this page will be refreshed -->
+    <string name="news_ui_refresh_header_release">リリースしてリフレッシュ</string>
+    <!-- Means this page has been refreshed -->
+    <string name="news_ui_refresh_header_finish">リフレッシュが完了しました</string>
+    <!-- Means this page failed to refresh -->
+    <string name="news_ui_refresh_header_failed">リフレッシュに失敗しました</string>
+    <!-- Means these content was updated last time -->
+    <string name="news_ui_refresh_header_lasttime">最終更新</string>
+    <!-- Remind user pull up to refresh the page -->
+    <string name="news_ui_refresh_footer_pull_down">プルアップしてリフレッシュ</string>
+    <string name="news_ui_refresh_footer_refreshing">@string/news_ui_refresh_header_refreshing</string>
+    <string name="news_ui_refresh_footer_loading">@string/news_ui_refresh_header_loading</string>
+    <string name="news_ui_refresh_footer_release">@string/news_ui_refresh_header_release</string>
+    <string name="news_ui_refresh_footer_finish">@string/news_ui_refresh_header_finish</string>
+    <!-- Means this page failed to load -->
+    <!-- Means this page has been loaded successfully -->
+    <string name="news_ui_refresh_footer_allloaded">読み込みがすべて完了しました</string>
+
+    <string name="news_ui_video_detail_view_share">シェア</string>
+    <string name="wallpaper_load_more_data_no_network">接続失敗,ネットワークを確認してください.</string>
+    <string name="news_ui_refresh_header_refresh">リフレッシュ</string>
+    <string name="share_files">シェア</string>
+    <!--it's a guide to introduce users how to set default browser-->
+    <!--It’s a prompt, which means articles that users don't like have been marked successfully, and we will reduce the recommendation of such articles in the future.-->
+    <!--users's feedback why they don't like this article-->
+    <string name="news_dislike_not_interested">興味がない</string>
+    <!--one feedback why users don't like this article, and want to blcok all articles of the same source-->
+    <string name="news_dislike_source">ソースをブロック</string>
+    <!--users don't like this article,and want to report it's low quality-->
+    <!--users don't like this article,and feedback it's fake or misleading news-->
+    <string name="news_dislike_quality_fake">フェイクニュース</string>
+    <!--users don't like this article,and feedback it's vulgar content-->
+    <string name="news_dislike_quality_Vulgar">攻撃的なコンテンツ</string>
+    <!--users don't like this article,and feedback it's too clickbait-->
+    <string name="news_dislike_quality_clickbait">クリックベイト</string>
+    <!-- one feedback why users don't like this article-->
+    <string name="news_dislike_quality_repetitive">古いまたは繰り返されるニュース</string>
+    <!-- users don't like this article because of some keywords in it, and they want to block the same keywords in other articles -->
+    <!--不喜欢弹窗默认文案请选择原因-->
+    <!--不喜欢弹窗默认文案请选择原因-->
+    <string name="news_dislike_reson">理由</string>
+
+
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_fake_content">フェイクが含まれた内容</string>
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_discomfort">不快なコンテンツ</string>
+    <!--one of the reasons why users don't like this news/videos.this content has been showed before-->
+    <string name="videos_dislike_duplicate">以前に同じものを見た</string>
+
+    <!--A tips for news center guide documents-->
+    <!--A tips for show how many news refreshed -->
+    <string name="network_error_tips">画面をクリックして再試行してください</string>
+
+    <!--It is a prompt to introduce users that the video failed to play-->
+    <string name="video_play_failed">申し訳ありません。動画の再生に失敗しました</string>
+    <!--It is a button, users click it to reload video-->
+    <string name="tap_to_retry_reload_video">タップして再試行</string>
+
+    <string name="err_net_tips">おっと! 何かがおかしいです。</string>
+    <string name="settings_break_news_language">ニュースの言語</string>
+    <string name="news_center_language_change_success_toast">変更が完了しました</string>
+    <string name="last_view_tip">ここまで読み終わりました。タップしてリフレッシュ</string>
+    <string name="font_setting">テキストサイズ</string>
+    <string name="button_cancle">キャンセル</string>
+    <string name="view_count_text">%1$s 見る</string>
+    <string name="news_dislike_toast">このような記事が表示されるのが減ります</string>
+    <string name="swipe_up_to_view_next_video">上にスワイプして次の動画を表示</string>
+    <!--This is a share description of news-->
+    <string name="share_news_watch">%sで素晴らしい記事を見つけました。一緒に読みましょう！</string>
+    <!--This is a share description of videos-->
+    <string name="share_videos_watch">%sで素晴らしい動画を見つけました。一緒に観ましょう！</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_videos_download">%sをダウンロードして人気の動画をもっと読み込みましょう！</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_news_download">%sをダウンロードして人気のニュースをもっと読みましょう！</string>
+
+
+    <string name="news_ui__saving">保存中</string>
+    <string name="news_ui__save_successful">アルバムに保存</string>
+    <!-- Means didn't save photo successfully	-->
+    <string name="news_ui__save_failure">保存に失敗しました。後ほど再度お試しください</string>
+
+
+</resources>

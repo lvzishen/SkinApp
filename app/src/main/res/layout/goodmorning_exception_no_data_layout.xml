@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:contentDescription="@null"
+            android:src="@drawable/goodmorning_exception_no_data" />
+
+        <TextView
+            android:id="@+id/thanos_text_ooops_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/news_ui__text_ooops"
+            android:textColor="@color/color_444444"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/thanos_text_no_data_hint_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:maxWidth="195dp"
+            android:text="@string/news_ui__text_no_data_hint"
+            android:textColor="@color/color_444444_alpha_50"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="62dp"
+            android:text="@string/news_ui__text_retry"
+            android:textColor="@color/goodmorning_exception_retry_btn_txt_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</merge>
