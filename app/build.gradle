@@ -6,7 +6,8 @@ android {
     compileSdkVersion Integer.parseInt(CompileSdkVersion)
     buildToolsVersion BuildToolsVersion
     defaultConfig {
-        applicationId "com.hot.video.news"
+//        applicationId "com.hot.video.news"
+        applicationId "com.apusapps.launcher"
         minSdkVersion Integer.parseInt(MinSdkVersion)
         targetSdkVersion Integer.parseInt(TargetSdkVersion)
         ndk {
@@ -102,6 +103,14 @@ dependencies {
     xalApi 'com.xal.thanos:ui:1.0.24-push3rd'
     xalApi 'com.push:pushsdk:2.3.17.17.2-3rd'
     xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
+
+    //账号sdk，【必选】
+    xalImplementation 'org.njord.account:core:'+ account_Core
+    xalImplementation 'org.njord.account:ui:'+ account_Ui
+    //facebook
+    implementation 'com.facebook.android:facebook-core:4.34.0'
+    implementation 'com.facebook.android:facebook-login:4.34.0'
+
 }
 
 // XAL Plugin

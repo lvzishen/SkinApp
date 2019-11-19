@@ -8,4 +8,9 @@
     <integer name="app_version_code">2</integer>
     <string name="app_name">@string/string_app_name</string>
 
+
+    <!--launcher-->
+    <string name="app_id">143549955815480</string>
+    <string name="provider_auth">com.facebook.app.FacebookContentProvider143549955815480</string>
+    <string name="client_token">c4c1dd1026c9f14c2eafbd55035f050b</string>
 </resources>

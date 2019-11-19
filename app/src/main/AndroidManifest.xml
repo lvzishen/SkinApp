@@ -49,6 +49,7 @@
         tools:ignore="ProtectedPermissions" /> <!-- android.permission.WRITE_SETTINGS -->
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
 
     <application
         android:name="com.goodmorning.App"
@@ -110,6 +111,21 @@
         <meta-data
             android:name="com.adjustX.sdk.appToken"
             android:value="6dtee7ciunsw" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/client_token" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="@string/provider_auth"
+            android:exported="true" />
     </application>
 
 </manifest>

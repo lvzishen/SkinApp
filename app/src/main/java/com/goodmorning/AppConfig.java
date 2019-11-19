@@ -20,6 +20,7 @@ public class AppConfig {
      * productid
      */
     public static final short UIVERSION = 30420;//gp 690 apk 691 , pre 692
+    public static final String ACCOUNT_CONFIG_APP_ID = "1000";//TODO 需要修改
 
     /** 透明虚拟按键 */
 //    public static final int FLAG_TRANSLUCENT_NAVIGATION = 134217728;

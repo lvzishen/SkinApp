@@ -62,6 +62,7 @@ import org.hera.crash.HeraStore;
 import org.interlaken.common.XalContext;
 import org.interlaken.common.utils.ParamUtils;
 import org.interlaken.common.utils.ProcessUtil;
+import org.n.account.core.AccountSDK;
 import org.thanos.ThanosSDK;
 import org.thanos.core.MorningDataAPI;
 import org.thanos.core.internal.ThanosDataCore;
@@ -244,6 +245,7 @@ public class App extends Application {
         if (XalContext.isPersistProcess()) {
             initPush();
         }
+        initAccountSDK();
     }
 
     private void setProcessWebViewPath() {
@@ -251,6 +253,21 @@ public class App extends Application {
             String processName = getProcessName();
             if (FLAG_PROCESS_UI != getFlag(this, mCurrProcessName)) {
                 WebView.setDataDirectorySuffix(setPath(processName, mCurrProcessName));
+            }
+        }
+    }
+    private void initAccountSDK() {
+        try {
+            AccountSDK.newBuilder(this)
+                    .initConfiguration(new AccountConfig(this))  //账号基础配置
+                    .setProfileScopes(AccountConfig.PROFILE_SCOPE)  //个人主页显示的条目控制
+                    .setExceptionHandler(new AccountConfig.AccountExceptionHandler())  //账号系统异常的处理
+                    .setIsV5Prop(true)
+                    .putAlexLogWatcher(new AccountConfig.AlexLogStatistic("Account"))
+                    .build();
+        } catch (Exception e) {
+            if (DEBUG) {
+                Log.e(TAG, "initAccountSDK: ", e);
             }
         }
     }

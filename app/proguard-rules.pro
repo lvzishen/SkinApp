@@ -78,6 +78,8 @@
 
 # for facebook sdk start
 -keep class com.facebook.** { *; }
+-dontwarn com.facebook.BuildConfig
+
 # for facebook sdk  end 
 
 
