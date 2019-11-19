@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Means user can click here to read original news -->
+    <!-- When a news article is shared to others,it will be presented like this -->
+    <string name="contents_ui__news_share" formatted="false"> 런처로 공유 </string>
+    <!-- Means there're some articles or videos user can read -->
+    <string name="contents_ui__news_update_tips">%d 개의 추천 뉴스</string>
+    <!-- Means there is no more news can read -->
+    <!-- Means it's saving the picture -->
+    <!-- Remind user choose app language -->
+    <!-- A modal particle of surprise -->
+    <string name="news_ui__text_ooops">앗!</string>
+    <!-- Means there's no Internet connection -->
+    <string name="news_ui__text_network_unavailable_hint">인터넷 연결이 약합니다. 연결 상태를 확인하세요.</string>
+    <!-- Means user can try again later -->
+    <string name="news_ui__text_no_data_hint">새로운 콘텐츠가 새로 고침될 준비가 되었습니다. 다시 시도하세요.</string>
+    <!-- Click here to refresh -->
+    <!-- 	Means this card was viewed a few minutes ago -->
+    <!-- 	Means this card was viewed a few hours ago -->
+    <!-- 	Means this card was viewed a few days ago -->
+    <!--guide the user to open the quick view mode when user enter news detail page-->
+    <!--The user successfully opens the quick view mode prompt-->
+    <string name="quick_view_mode_opened_toast">빠른 보기 모드 활성화됨</string>
+    <!--The user successfully closes the quick view mode prompt-->
+    <string name="quick_view_mode_closed_toast">빠른 보기 모드 비활성화됨</string>
+    <!-- Remind user can use quick view mode to read news 	-->
+    <!-- Click here to open quick view mode	-->
+    <!-- Means next time still use quick view mode to read news	-->
+    <!-- Means user can close quick view mode on settings pages	-->
+    <!-- A recommended way to read news	-->
+    <!-- Means there's no more articles or videos user can read	-->
+    <!-- Click here to refresh -->
+    <string name="news_ui__text_retry">새로 고침</string>
+    <!-- This news is published just now-->
+    <!-- The following are related articles or videos -->
+    <!-- Means user can set this application here -->
+    <!-- Means the photo has saved in Album	-->
+    <!-- Means didn't save photo successfully	-->
+    <!-- Means swipe to see next photo-->
+    <!-- Means reload picture-->
+    <!-- This is to show when video failed to play. -->
+    <string name="news_ui__video_fail_play">죄송합니다만, 동영상 재생에 실패했습니다</string>
+    <!-- When video failed to play, user can click this button to retry -->
+    <string name="news_ui__retry">탭해서 다시 시도하기</string>
+    <!-- This is to show when play video using mobile data -->
+    <string name="news_ui__video_mobile_data_tips">이 동영상을 보면 모바일 데이터가 사용됩니다.</string>
+    <!-- This is to show when play video using mobile data, click continue will play video -->
+    <string name="news_ui__contiue">계속</string>
+    <!-- There are videos on this page -->
+    <!-- The following are articles or videos that are recommended to you -->
+    <!-- There are funny or offbeat stories on this page -->
+    <!-- There are news on this page -->
+    <!-- Means user can pull to refresh this page -->
+    <string name="news_ui_refresh_header_pull_down">당겨서 새로 고침</string>
+    <!-- Means this page is being refreshed -->
+    <string name="news_ui_refresh_header_refreshing">새로 고침 중</string>
+    <!-- Means this page is being loaded-->
+    <string name="news_ui_refresh_header_loading">로드 중</string>
+    <!-- Remind you release, then this page will be refreshed -->
+    <string name="news_ui_refresh_header_release">놓아서 새로 고침</string>
+    <!-- Means this page has been refreshed -->
+    <string name="news_ui_refresh_header_finish">새로 고침 완료</string>
+    <!-- Means this page failed to refresh -->
+    <string name="news_ui_refresh_header_failed">새로 고침 실패</string>
+    <!-- Means these content was updated last time -->
+    <string name="news_ui_refresh_header_lasttime">최근 업데이트</string>
+    <!-- Remind user pull up to refresh the page -->
+    <string name="news_ui_refresh_footer_pull_down">위로 당겨서 새로 고침</string>
+    <string name="news_ui_refresh_footer_refreshing">@string/news_ui_refresh_header_refreshing</string>
+    <string name="news_ui_refresh_footer_loading">@string/news_ui_refresh_header_loading</string>
+    <string name="news_ui_refresh_footer_release">@string/news_ui_refresh_header_release</string>
+    <string name="news_ui_refresh_footer_finish">@string/news_ui_refresh_header_finish</string>
+    <!-- Means this page failed to load -->
+    <!-- Means this page has been loaded successfully -->
+    <string name="news_ui_refresh_footer_allloaded">전부 로드 완료</string>
+
+    <string name="news_ui_video_detail_view_share">나누기</string>
+    <string name="view_count_text">%1$s ビュー</string>
+    <string name="wallpaper_load_more_data_no_network">로딩하기에 실패하였습니다, 인터넷 연결을 확인해 주세요.</string>
+    <string name="news_ui_refresh_header_refresh">새로 고침</string>
+    <string name="share_files">공유</string>
+    <!--it's a guide to introduce users how to set default browser-->
+    <!--It’s a prompt, which means articles that users don't like have been marked successfully, and we will reduce the recommendation of such articles in the future.-->
+    <!--users's feedback why they don't like this article-->
+    <string name="news_dislike_not_interested">관심 없음</string>
+    <!--one feedback why users don't like this article, and want to blcok all articles of the same source-->
+    <string name="news_dislike_source">소스 차단</string>
+    <!--users don't like this article,and want to report it's low quality-->
+    <!--users don't like this article,and feedback it's fake or misleading news-->
+    <string name="news_dislike_quality_fake">가짜 뉴스</string>
+    <!--users don't like this article,and feedback it's vulgar content-->
+    <string name="news_dislike_quality_Vulgar">저속한 콘텐츠</string>
+    <!--users don't like this article,and feedback it's too clickbait-->
+    <string name="news_dislike_quality_clickbait">클릭 유도</string>
+    <!-- one feedback why users don't like this article-->
+    <string name="news_dislike_quality_repetitive">과거 또는 반복 뉴스</string>
+    <!-- users don't like this article because of some keywords in it, and they want to block the same keywords in other articles -->
+    <!--不喜欢弹窗默认文案请选择原因-->
+    <string name="news_dislike_reson">원인</string>
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_fake_content">가짜 콘텐츠</string>
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_discomfort">불편한 콘텐츠</string>
+    <!--one of the reasons why users don't like this news/videos.this content has been showed before-->
+    <string name="videos_dislike_duplicate">중복</string>
+
+
+    <!--A tips for news center guide documents-->
+    <!--A tips for show how many news refreshed -->
+    <string name="network_error_tips">화면을 클릭하여 다시 시도하십시오.</string>
+    <!--It is a button, users click it to replay the video-->
+    <!--It is a prompt to introduce users that the video failed to play-->
+    <string name="video_play_failed">죄송합니다. 영상 재생에 실패했습니다</string>
+    <!--It is a button, users click it to reload video-->
+    <string name="tap_to_retry_reload_video">탭하여 재시도</string>
+    <string name="button_cancle">취소</string>
+
+    <string name="err_net_tips">웁스! 문제 발생</string>
+    <string name="settings_break_news_language">뉴스 언어</string>
+    <string name="news_center_language_change_success_toast">변경 성공</string>
+    <string name="last_view_tip">지금 바로 여기에서 읽고, 탭하여 갱신하세요</string>
+
+    <string name="font_setting">텍스트 크기</string>
+    <string name="news_dislike_toast">더 적게 봅니다</string>
+    <string name="swipe_up_to_view_next_video">위로 밀어서 다음 동영상을 보세요</string>
+    <!--This is a share description of news-->
+    <string name="share_news_watch">%s에서 놀라운 글을 찾았어요. 읽어 볼까요!</string>
+    <!--This is a share description of videos-->
+    <string name="share_videos_watch">%s에서 놀라운 영상을 찾았어요. 한번 볼까요!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_videos_download">%s을(를) 다운로드해서 더 많은 인기 영상을 보세요!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_news_download">%s을(를) 다운로드해서 더 많은 인기 뉴스를 보세요!</string>
+
+    <string name="news_ui__saving">저장 중</string>
+    <string name="news_ui__save_successful">앨범에 저장됨</string>
+    <!-- Means didn't save photo successfully	-->
+    <string name="news_ui__save_failure">저장 실패. 나중에 다시 시도하세요</string>
+
+</resources>

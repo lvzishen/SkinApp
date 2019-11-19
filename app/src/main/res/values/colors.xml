@@ -64,5 +64,10 @@
     <color name="tab_normal_color">#515051</color>
     <color name="tab_selected_color">#D33D3C</color>
     <color name="selector_grey">#DDDDDD</color>
+    <color name="color_444444">#444444</color>
+    <color name="color_444444_alpha_50">#80444444</color>
 
+    <color name="color_909090">#909090</color>
+    <color name="color_ffd001">#ffd001</color>
+    <color name="color_ffd001_alpha_80">#ccffd001</color>
 </resources>

@@ -1,6 +1,7 @@
 apply plugin: 'xal.app'
 apply plugin: 'com.android.application'
 apply plugin: 'AndResGuard'
+apply from: '../MobSDK.gradle'
 
 android {
     compileSdkVersion Integer.parseInt(CompileSdkVersion)

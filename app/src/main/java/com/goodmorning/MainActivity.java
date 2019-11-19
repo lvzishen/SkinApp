@@ -20,18 +20,15 @@ import com.goodmorning.view.tab.BottomBarLayout;
 
 import org.thanos.core.MorningDataAPI;
 import org.thanos.core.ResultCallback;
-import org.thanos.core.bean.ChannelList;
 import org.thanos.core.bean.ContentDetail;
+import org.thanos.core.bean.ContentItem;
 import org.thanos.core.bean.ContentList;
-import org.thanos.core.internal.requestparam.ChannelListRequestParam;
+import org.thanos.core.bean.NewsItem;
 import org.thanos.core.internal.requestparam.ContentDetailRequestParam;
 import org.thanos.core.internal.requestparam.ContentListRequestParam;
-import org.thanos.utils.CloudConstants;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.thanos.ThanosSDK.DEBUG;
 
 
 public class MainActivity extends BaseActivity {
@@ -54,30 +51,33 @@ public class MainActivity extends BaseActivity {
 
 
         //1
-        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
-        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
-            @Override
-            public void onSuccess(ChannelList data) {
-
-            }
-
-            @Override
-            public void onLoadFromCache(ChannelList data) {
-
-            }
-
-            @Override
-            public void onFail(Exception e) {
-
-            }
-        });
+//        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
+//        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
+//            @Override
+//            public void onSuccess(ChannelList data) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadFromCache(ChannelList data) {
+//
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
+//
+//            }
+//        });
         //2
 //        int sessioID = (int) System.currentTimeMillis();
 //        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 6, false, false, false);
 //        MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
 //            @Override
 //            public void onSuccess(ContentList data) {
-//
+//                for (ContentItem newsItem : data.items) {
+//                    NewsItem newsItem1 = (NewsItem) newsItem;
+//                    Log.i("NewsItem", newsItem1.toString());
+//                }
 //            }
 //
 //            @Override
@@ -93,29 +93,29 @@ public class MainActivity extends BaseActivity {
 
 
 //        //3
-//        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 92270262), new ResultCallback<ContentDetail>() {
-//            @Override
-//            public void onLoadFromCache(ContentDetail data) {
-//            }
-//
-//            @Override
-//            public void onSuccess(ContentDetail data) {
-//                if (data != null && data.item != null) {
-//                    if (GlobalConfig.DEBUG) {
-//                        Log.d(TAG, "有数据--->" + data.message);
-//                    }
-//                } else {
-//                    if (GlobalConfig.DEBUG) {
-//                        Log.d(TAG, "无数据--->");
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFail(Exception e) {
-//                Log.i(TAG, e.getMessage());
-//            }
-//        });
+        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 49879935), new ResultCallback<ContentDetail>() {
+            @Override
+            public void onLoadFromCache(ContentDetail data) {
+            }
+
+            @Override
+            public void onSuccess(ContentDetail data) {
+                if (data != null && data.item != null) {
+                    if (GlobalConfig.DEBUG) {
+                        Log.d(TAG, "有数据--->" + data.message);
+                    }
+                } else {
+                    if (GlobalConfig.DEBUG) {
+                        Log.d(TAG, "无数据--->");
+                    }
+                }
+            }
+
+            @Override
+            public void onFail(Exception e) {
+                Log.i(TAG, e.getMessage());
+            }
+        });
 
         //4
 //        int page=1;

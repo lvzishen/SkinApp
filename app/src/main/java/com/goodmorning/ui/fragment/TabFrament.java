@@ -21,8 +21,15 @@ import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
 
+import org.thanos.core.MorningDataAPI;
+import org.thanos.core.ResultCallback;
+import org.thanos.core.bean.ContentList;
+import org.thanos.core.internal.requestparam.ContentListRequestParam;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class TabFrament extends Fragment {
 
@@ -80,6 +87,27 @@ public class TabFrament extends Fragment {
         mRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+
+            }
+        });
+    }
+
+    private void requestData(){
+        int sessioID = Math.abs((int) System.currentTimeMillis());
+        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 6, false, false, false);
+        MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
+            @Override
+            public void onSuccess(ContentList data) {
+
+            }
+
+            @Override
+            public void onLoadFromCache(ContentList data) {
+
+            }
+
+            @Override
+            public void onFail(Exception e) {
 
             }
         });

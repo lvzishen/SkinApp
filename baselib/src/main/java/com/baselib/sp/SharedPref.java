@@ -228,6 +228,8 @@ public class SharedPref {
      * 语言切换
      */
     public static final String LANGUAGE = "language";
+
+    public static final String ISFIRSTSTART = "isfirststart";
 //    static SharedPrefStub getInstance(Context cxt) {
 //        return SharedPrefStub.getInstance(cxt);
 ////        IBinder binder = BinderManager.getService(cxt, KEY_SHAREDPREF);

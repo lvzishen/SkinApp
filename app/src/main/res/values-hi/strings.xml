@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Means user can click here to read original news -->
+    <!-- When a news article is shared to others,it will be presented like this -->
+    <string name="contents_ui__news_share" formatted="false">से शेयर करें </string>
+    <!-- Means there're some articles or videos user can read -->
+    <string name="contents_ui__news_update_tips">%d आपके लिए अनुशंसित %d समाचार</string>
+    <!-- Means there is no more news can read -->
+    <!-- Means it's saving the picture -->
+    <!-- Remind user choose app language -->
+    <!-- A modal particle of surprise -->
+    <string name="news_ui__text_ooops">अरे!</string>
+    <!-- Means there's no Internet connection -->
+    <string name="news_ui__text_network_unavailable_hint">खराब नेटवर्क कनेक्शन, कृपया अपना कनेक्शन जांचें।</string>
+    <!-- Means user can try again later -->
+    <string name="news_ui__text_no_data_hint">नई सामग्री रीफ्रेश होने के लिए तैयार है, कृपया पुनः प्रयास करें।</string>
+    <!-- Click here to refresh -->
+    <!-- 	Means this card was viewed a few minutes ago -->
+    <!-- 	Means this card was viewed a few hours ago -->
+    <!-- 	Means this card was viewed a few days ago -->
+    <!--guide the user to open the quick view mode when user enter news detail page-->
+    <!--The user successfully opens the quick view mode prompt-->
+    <string name="quick_view_mode_opened_toast">क्विक व्यू मोड सक्षम हुआ</string>
+    <!--The user successfully closes the quick view mode prompt-->
+    <string name="quick_view_mode_closed_toast">क्विक व्यू मोड अक्षम हुआ</string>
+    <!-- Remind user can use quick view mode to read news 	-->
+    <!-- Click here to open quick view mode	-->
+    <!-- Means next time still use quick view mode to read news	-->
+    <!-- Means user can close quick view mode on settings pages	-->
+    <!-- A recommended way to read news	-->
+    <!-- Means there's no more articles or videos user can read	-->
+    <!-- Click here to refresh -->
+    <string name="news_ui__text_retry">रीफ्रेश करें</string>
+    <!-- This news is published just now-->
+    <!-- The following are related articles or videos -->
+    <!-- Means user can set this application here -->
+    <!-- Means the photo has saved in Album	-->
+    <!-- Means didn't save photo successfully	-->
+    <!-- Means swipe to see next photo-->
+    <!-- Means reload picture-->
+    <!-- This is to show when video failed to play. -->
+    <string name="news_ui__video_fail_play">माफ कीजिए, वीडियो चलाया नहीं जा सका</string>
+    <!-- When video failed to play, user can click this button to retry -->
+    <string name="news_ui__retry">दुबारा कोशिश करने के लिए टैप करें</string>
+    <!-- This is to show when play video using mobile data -->
+    <string name="news_ui__video_mobile_data_tips">इस वीडियो को देखने से आपके मोबाइल डाटा का खर्च बढ़ेगा</string>
+    <!-- This is to show when play video using mobile data, click continue will play video -->
+    <string name="news_ui__contiue">जारी रखें</string>
+    <!-- There are videos on this page -->
+    <!-- The following are articles or videos that are recommended to you -->
+    <!-- There are funny or offbeat stories on this page -->
+    <!-- There are news on this page -->
+    <!-- Means user can pull to refresh this page -->
+    <string name="news_ui_refresh_header_pull_down">रीफ्रेश करने के लिए खींचें</string>
+    <!-- Means this page is being refreshed -->
+    <string name="news_ui_refresh_header_refreshing">रीफ्रेश हो रहा है</string>
+    <!-- Means this page is being loaded-->
+    <string name="news_ui_refresh_header_loading">लोड हो रहा है</string>
+    <!-- Remind you release, then this page will be refreshed -->
+    <string name="news_ui_refresh_header_release">रीफ्रेश करने के लिए रिलीज करें</string>
+    <!-- Means this page has been refreshed -->
+    <string name="news_ui_refresh_header_finish">रीफ्रेश पूरा हुआ</string>
+    <!-- Means this page failed to refresh -->
+    <string name="news_ui_refresh_header_failed">रीफ्रेश नहीं हो पाया</string>
+    <!-- Means these content was updated last time -->
+    <string name="news_ui_refresh_header_lasttime">अंतिम अपडेट:</string>
+    <!-- Remind user pull up to refresh the page -->
+    <string name="news_ui_refresh_footer_pull_down">रीफ्रेश करने के लिए ऊपर खींचें</string>
+    <string name="news_ui_refresh_footer_refreshing">@string/news_ui_refresh_header_refreshing</string>
+    <string name="news_ui_refresh_footer_loading">@string/news_ui_refresh_header_loading</string>
+    <string name="news_ui_refresh_footer_release">@string/news_ui_refresh_header_release</string>
+    <string name="news_ui_refresh_footer_finish">@string/news_ui_refresh_header_finish</string>
+    <!-- Means this page failed to load -->
+    <!-- Means this page has been loaded successfully -->
+    <string name="news_ui_refresh_footer_allloaded">लोड होना पूर्ण</string>
+
+    <string name="news_ui_video_detail_view_share">साझा करें</string>
+    <string name="view_count_text">%1$s दृश्य</string>
+    <!--倒计时-->
+    <string name="wallpaper_load_more_data_no_network">कनेक्ट करने में विफल। कृपया नेटवर्क की जांच करें </string>
+    <string name="news_ui_refresh_header_refresh">ताज़ा करना</string>
+    <string name="share_files">शेयर करें</string>
+    <!--it's a guide to introduce users how to set default browser-->
+    <!--It’s a prompt, which means articles that users don't like have been marked successfully, and we will reduce the recommendation of such articles in the future.-->
+    <!--users's feedback why they don't like this article-->
+    <string name="news_dislike_not_interested">रुचि नहीं है</string>
+    <!--one feedback why users don't like this article, and want to blcok all articles of the same source-->
+    <string name="news_dislike_source">स्रोत को ब्लॉक करें</string>
+    <!--users don't like this article,and want to report it's low quality-->
+    <!--users don't like this article,and feedback it's fake or misleading news-->
+    <string name="news_dislike_quality_fake">झूठी खबर</string>
+    <!--users don't like this article,and feedback it's vulgar content-->
+    <string name="news_dislike_quality_Vulgar">अशिष्ट सामग्री</string>
+    <!--users don't like this article,and feedback it's too clickbait-->
+    <string name="news_dislike_quality_clickbait">क्लिकबेट</string>
+    <!-- one feedback why users don't like this article-->
+    <string name="news_dislike_quality_repetitive">पुराना या दोहराव वाला समाचार</string>
+    <!-- users don't like this article because of some keywords in it, and they want to block the same keywords in other articles -->
+    <!--不喜欢弹窗默认文案请选择原因-->
+    <string name="news_dislike_reson">कारण</string>
+
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_fake_content">झूठी सामग्री</string>
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_discomfort">असहजता के वर्तमान कारण</string>
+    <!--one of the reasons why users don't like this news/videos.this content has been showed before-->
+    <string name="videos_dislike_duplicate">डुप्लिकेट</string>
+
+
+    <!--A tips for news center guide documents-->
+    <!--A tips for show how many news refreshed -->
+    <string name="network_error_tips">दुबारा कोशिश करने के लिए स्क्रीन पर टैप करें।</string>
+    <!--It is a prompt to introduce users that the video failed to play-->
+    <string name="video_play_failed">माफ कीजिए, वीडियो चल नहीं सका</string>
+    <!--It is a button, users click it to reload video-->
+    <string name="tap_to_retry_reload_video">दुबारा कोशिश करने के लिए टैप करें</string>
+    <string name="err_net_tips">अरे! कुछ त्रुटि हो गई है।</string>
+
+    <string name="settings_break_news_language">समाचार की भाषा</string>
+    <string name="news_center_language_change_success_toast">बदलाव सफल</string>
+    <string name="last_view_tip">अभी यहां तक पढ़ें, रीफ्रेश करने के लिए टैप करें।</string>
+    <string name="font_setting">टेक्स्ट का आकार</string>
+    <string name="button_cancle">निरस्त करें</string>
+    <string name="news_dislike_toast">आपको इस तरह के कम दिखेंगे</string>
+    <string name="swipe_up_to_view_next_video">अगला वीडियो देखने के लिए ऊपर स्वाइप करें</string>
+    <!--This is a share description of news-->
+    <string name="share_news_watch">मुझे %s पर एक लाजवाब आलेख मिला है, चलिए इसे पढ़ते हैं!</string>
+    <!--This is a share description of videos-->
+    <string name="share_videos_watch">%s पर मुझे एक लाजवाब वीडियो मिला है, चलो इसे देखते हैं!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_videos_download">और शानदार वीडियो देखने के लिए %s डाउनलोड करें!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_news_download">और ज़्यादा ताजी खबर पढ़ने के लिए %s डाउनलोड करें!</string>
+
+
+    <string name="news_ui__saving">सहेज रहा</string>
+    <string name="news_ui__save_successful">एलबम में सहेजा गया</string>
+    <!-- Means didn't save photo successfully	-->
+    <string name="news_ui__save_failure">सहेजना असफल, कृपया फिर से कोशिश करें</string>
+
+
+
+</resources>

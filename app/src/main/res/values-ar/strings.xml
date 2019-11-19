@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="contents_ui__news_share" formatted="false">شارك عبر</string>
+    <string name="contents_ui__news_update_tips">%d أخبار مستحسنة لك</string>
+
+    <!-- 语言切换 -->
+
+    <!-- 无网络页面 -->
+    <string name="news_ui__text_ooops">يا إلهي</string>
+    <string name="news_ui__text_network_unavailable_hint">لا يمكن إتمام العملية، يرجى الاتصال بالإنترنت</string>
+
+    <!-- 无内容页面 -->
+    <string name="news_ui__text_no_data_hint">أخفق الحصول على المحتويات، يرجى المحاولة مرة أخرى في وقت لاحق</string>
+
+    <!-- Quick View -->
+    <!-- 设置页面-->
+    <!--guide the user to open the quick view mode when user enter news detail page-->
+    <!--The user successfully opens the quick view mode prompt-->
+    <string name="quick_view_mode_opened_toast">تم تمكين وضع العرض السريع</string>
+    <!--The user successfully closes the quick view mode prompt-->
+    <string name="quick_view_mode_closed_toast">تم تعطيل وضع العرض السريع</string>
+
+    <string name="news_ui__text_retry">اضغط للتحديث</string>
+
+    <!-- Means photo saved in Album	-->
+    <!-- Means didn't save photo successfully	-->
+
+    <!-- Means swipe to see next photo-->
+    <!-- Means reload picture-->
+    <!-- This is to show when video failed to play. -->
+    <string name="news_ui__video_fail_play">عذرا، أخفق تشغيل الفيديو</string>
+    <!-- When video failed to play, user can click this button to retry -->
+    <string name="news_ui__retry">اضغط لمحاولة مرة أخرى</string>
+    <!-- This is to show when play video using mobile data -->
+    <string name="news_ui__video_mobile_data_tips">لا واي فاي المتاحة، واستخدم شبكة الجوال لمواصلة تشغيل الفيديو؟</string>
+    <!-- This is to show when play video using mobile data, click continue will play video -->
+    <string name="news_ui__contiue">استمر</string>
+
+    <!-- Video tab -->
+
+    <string name="news_ui_refresh_header_pull_down">اسحب إلى الأسفل لتحديث</string>
+    <string name="news_ui_refresh_header_refreshing">جارى التحديث</string>
+    <string name="news_ui_refresh_header_loading">جارى التحميل</string>
+    <string name="news_ui_refresh_header_release">رفع الإصبع للتحديث</string>
+    <string name="news_ui_refresh_header_finish">نجاح في التحديث</string>
+    <string name="news_ui_refresh_header_failed">فشل في التحديث</string>
+    <string name="news_ui_refresh_header_lasttime">التحديث في آخر المرة</string>
+
+    <string name="news_ui_refresh_footer_pull_down">اسحب لأعلى للتحميل</string>
+    <string name="news_ui_refresh_footer_refreshing">@string/news_ui_refresh_header_refreshing</string>
+    <string name="news_ui_refresh_footer_loading">@string/news_ui_refresh_header_loading</string>
+    <string name="news_ui_refresh_footer_release">رفع الإصبع للتحديث</string>
+    <string name="news_ui_refresh_footer_finish">نجاح في التحديث</string>
+    <string name="news_ui_refresh_footer_allloaded">نجاح في التحميل</string>
+
+    <string name="news_ui_video_detail_view_share">مشاركة</string>
+    <string name="view_count_text">%1$s الآراء</string>
+    <string name="wallpaper_load_more_data_no_network">لم نتمكن من التواصل. الرجاء تفقد الشبكة</string>
+    <string name="news_ui_refresh_header_refresh">تحديث</string>
+    <string name="share_files">مشاركة</string>
+    <!--it's a guide to introduce users how to set default browser-->
+    <!--It’s a prompt, which means articles that users don't like have been marked successfully, and we will reduce the recommendation of such articles in the future.-->
+    <!--users's feedback why they don't like this article-->
+    <string name="news_dislike_not_interested">غير مهتم</string>
+    <!--one feedback why users don't like this article, and want to blcok all articles of the same source-->
+    <string name="news_dislike_source">حظر المصدر</string>
+    <!--users don't like this article,and want to report it's low quality-->
+    <!--users don't like this article,and feedback it's fake or misleading news-->
+    <string name="news_dislike_quality_fake">أخبار كاذبة</string>
+    <!--users don't like this article,and feedback it's vulgar content-->
+    <string name="news_dislike_quality_Vulgar">محتوى مبتذل</string>
+    <!--users don't like this article,and feedback it's too clickbait-->
+    <string name="news_dislike_quality_clickbait">عنوان مغري كاذب</string>
+    <!-- one feedback why users don't like this article-->
+    <string name="news_dislike_quality_repetitive">أخبار قديمة أو مكررة</string>
+    <!-- users don't like this article because of some keywords in it, and they want to block the same keywords in other articles -->
+    <!--不喜欢弹窗默认文案，选择原因-->
+    <string name="news_dislike_reson">أسباب</string>
+
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_fake_content">المحتوى مزيف</string>
+    <!--one of the reasons why users don't like this news/videos-->
+    <string name="videos_dislike_discomfort">المحتوى يسبب المضايقة</string>
+    <!--one of the reasons why users don't like this news/videos.this content has been showed before-->
+    <string name="videos_dislike_duplicate">مكرر</string>
+
+
+    <!--A tips for news center guide documents-->
+    <!--A tips for show how many news refreshed -->
+    <string name="network_error_tips">اضغط على الشاشة لإعادة المحاولة</string>
+    <!--It is a button, users click it to replay the video-->
+    <!--It is a prompt to introduce users that the video failed to play-->
+    <string name="video_play_failed">عذرًا، تعذَّر تشغيل الفيديو</string>
+    <!--It is a button, users click it to reload video-->
+    <string name="tap_to_retry_reload_video">اضغط لإعادة المحاولة</string>
+    <string name="err_net_tips">للأسف! حدث خطأٌ ما.</string>
+    <string name="settings_break_news_language">لغة الأخبار</string>
+    <string name="news_center_language_change_success_toast">نجح التغيير</string>
+    <string name="last_view_tip">لقد قرأت إلى هنا حتى الآن، اضغط للتحديث</string>
+    <string name="font_setting">حجم النص</string>
+    <string name="button_cancle">إلغاء</string>
+    <string name="news_dislike_toast">لن ترى سوى القليل من هذا</string>
+    <string name="swipe_up_to_view_next_video">اسحب لأعلى لعرض الفيديو التالي</string>
+
+    <!--This is a share description of news-->
+    <string name="share_news_watch">لقد وجدت مقالًا رائعًا عن %s، هيا نقرأه!</string>
+    <!--This is a share description of videos-->
+    <string name="share_videos_watch" tools:ignore="ExtraTranslation">لقد وجدت فيديو رائعًا عن %s، هيا نشاهده!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_videos_download">قم بتنزيل %s لمشاهدة المزيد من مقاطع الفيديو العاجلة!</string>
+    <!--This is a share description to encourage people download application-->
+    <string name="share_news_download">قم بتنزيل %s لقراءة المزيد من الأخبار العاجلة!</string>
+
+
+
+    <string name="news_ui__saving">على التحميل</string>
+    <!-- Means photo saved in Album	-->
+    <string name="news_ui__save_successful">حفظ الصورة</string>
+    <!-- Means didn't save photo successfully	-->
+    <string name="news_ui__save_failure">فشل في حفظ الصورة، يرجى المحاولة مرة أخرى</string>
+
+</resources>

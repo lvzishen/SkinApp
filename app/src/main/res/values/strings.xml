@@ -1,4 +1,5 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="string_privacy_policy"><u>Privacy Policy</u></string>
     <string name="string_user_agreement"><u>User Agreement</u></string>
     <string name="please_privacy">Please agree Privacy Policy</string>
@@ -9,4 +10,81 @@
     <string name="sign_in_to">Sign in</string>
     <string name="tab_greeting">祝福</string>
     <string name="tab_my">我的</string>
+
+
+    <string name="contents_ui__news_share" formatted="false">SHARE via </string>
+    <string name="contents_ui__news_update_tips">%d news recommending for you</string>
+
+    <!-- 语言切换 -->
+
+    <!-- 无网络页面 -->
+    <string name="news_ui__text_ooops">Ooops!</string>
+    <string name="news_ui__text_network_unavailable_hint">Poor Internet connection, please check your connection.</string>
+    <!-- 无内容页面 -->
+    <string name="news_ui__text_no_data_hint">New contents are ready to refresh, please try again.</string>
+
+    <string name="quick_view_mode_opened_toast">Quick view mode enabled</string>
+    <string name="quick_view_mode_closed_toast">Quick view mode disabled</string>
+
+    <string name="news_ui__text_retry">Refresh</string>
+    <string name="news_ui__video_fail_play">Sorry, the video failed to play</string>
+    <string name="news_ui__retry">Tap to retry</string>
+    <string name="news_ui__video_mobile_data_tips">Watching this video will use your mobile data.</string>
+    <string name="news_ui__contiue">Continue</string>
+    <string name="news_ui_refresh_header_pull_down">Pull to refresh</string>
+    <string name="news_ui_refresh_header_refreshing">Refreshing</string>
+    <string name="news_ui_refresh_header_loading">Loading</string>
+    <string name="news_ui_refresh_header_release">Release to refresh</string>
+    <string name="news_ui_refresh_header_finish">Refresh finished</string>
+    <string name="news_ui_refresh_header_failed">Refresh failed</string>
+    <string name="news_ui_refresh_header_lasttime">Last update  </string>
+    <string name="news_ui_refresh_footer_pull_down">Pull up to refresh</string>
+    <string name="news_ui_refresh_footer_refreshing">@string/news_ui_refresh_header_refreshing</string>
+    <string name="news_ui_refresh_footer_loading">@string/news_ui_refresh_header_loading</string>
+    <string name="news_ui_refresh_footer_release">Release to refresh</string>
+    <string name="news_ui_refresh_footer_finish">Refresh finished</string>
+    <string name="news_ui_refresh_footer_allloaded">Full load completion</string>
+    <string name="view_count_text">%1$s views</string>
+    <string name="news_ui_video_detail_view_share">Share</string>
+    <string name="button_cancle">Cancel</string>
+    <string name="wallpaper_load_more_data_no_network">Failed to connect,please check the network.</string>
+    <string name="news_ui_refresh_header_refresh">Refresh</string>
+    <string name="share_files">Share</string>
+    <string name="news_dislike_source">Block source</string>
+    <string name="news_dislike_reson">Reasons</string>
+    <string name="news_dislike_not_interested">Not interested</string>
+    <string name="news_dislike_quality_fake">Fake news</string>
+    <string name="news_dislike_quality_Vulgar">Vulgar content</string>
+    <string name="news_dislike_quality_clickbait">Clickbait</string>
+    <string name="news_dislike_quality_repetitive">Old or repetitive news</string>
+    <string name="videos_dislike_fake_content">Fake content</string>
+    <string name="videos_dislike_duplicate">Duplicate</string>
+    <string name="videos_dislike_discomfort">Content causes discomfort</string>
+
+    <string name="video_play_failed">Sorry, the video failed to play</string>
+    <string name="tap_to_retry_reload_video">Tap to retry</string>
+    <string name="err_net_tips">Ooops! Something is wrong</string>
+    <string name="network_error_tips">Click on the screen to try again</string>
+    <!--not all-->
+    <string name="swipe_up_to_view_next_video" tools:ignore="MissingTranslation">Swipe up to view next video</string>
+    <string name="settings_break_news_language">Language of news</string>
+    <string name="news_center_language_change_success_toast">change succeeded</string>
+    <string name="last_view_tip">Read to here just now, tap to refresh</string>
+    <string name="font_setting">Text Size</string>
+    <string name="news_dislike_toast">You will see fewer like this</string>
+
+    <string name="share_news_watch">I found a amazing article on %1$s,let\'s read it!</string>
+    <string name="share_video_watch">I found a amazing video on %1$s,let\'s watch it!</string>
+
+    <string name="share_news_download">Download %1$s to read more hot news!</string>
+    <string name="share_video_download">Download %1$s to read more hot videos!</string>
+
+
+    <string name="news_ui__reload_picture">Tap to reload</string>
+
+    <string name="news_ui__saving">Saving</string>
+    <string name="news_ui__save_successful">Saved in Album</string>
+    <string name="news_ui__save_failure">Save unsuccessful, please try again later</string>
+
+
 </resources>

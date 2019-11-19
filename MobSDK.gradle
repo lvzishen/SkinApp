@@ -1,0 +1,94 @@
+apply plugin: 'com.mob.sdk'
+
+MobSDK {
+
+    appKey "moba0b0c0d0"
+    appSecret "5713f0d88511f9f4cf100cade0610a34"
+    gui false
+
+    /* MobLink {
+         uriScheme "moba0b0c0d0://cn.sharesdk.demo"
+         appLinkHost "ahmn.t4m.cn"
+     }*/
+
+    //https true
+
+    ShareSDK {
+        loopShare true
+
+        //平台配置信息
+        devInfo {
+
+            Facebook {
+                id 8
+                sortId 8
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                callbackUri "https://mob.com"
+                shareByAppClient true
+                enable true
+            }
+
+            Twitter {
+                id 9
+                sortId 9
+                appKey "viOnkeLpHBKs6KXV7MPpeGyzE"
+                appSecret "NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey"
+                callbackUri "http://mob.com"
+                shareByAppClient true
+                enable true
+            }
+
+
+            Email {
+                id 12
+                sortId 12
+                enable true
+            }
+
+            ShortMessage {
+                id 13
+                sortId 13
+                enable true
+            }
+
+
+            Instagram {
+                id 28
+                sortId 28
+                appId "ff68e3216b4f4f989121aa1c2962d058"
+                appSecret "1b2e82f110264869b3505c3fe34e31a1"
+                callbackUri "http://sharesdk.cn"
+                enable true
+            }
+
+
+            WhatsApp {
+                id 35
+                sortId 35
+                enable true
+            }
+
+
+            FacebookMessenger {
+                id 39
+                sortId 39
+                appId "107704292745179"
+                enable true
+            }
+
+
+            Youtube {
+                id 53
+                sortId 53
+                appId "370141748022-bicrnsjfiije93bvdt63dh3728m4shas.apps.googleusercontent.com"
+                appSecret "AIzaSyAO06g-0TDpHcsXXO918a7QE3Zdct2bB5E"
+                callbackUri "http://localhost"
+                shareByAppClient true
+                enable true
+            }
+
+
+        }
+    }
+}
