@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="string_app_name">Hot Video News</string>
+    <string name="string_app_name">Sunny Day</string>
     <string name="app_name">@string/string_app_name</string>
     <string name="string_today">Today</string>
     <string name="string_yesterday">Yesterday</string>

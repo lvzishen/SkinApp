@@ -92,7 +92,7 @@ public class App extends Application {
 
     private static final int FLAG_UNKNOWN = 0x10000000;
     private static int mFlag = FLAG_UNKNOWN;
-
+//luckmorning.com  TODO 域名
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
