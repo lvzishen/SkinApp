@@ -57,7 +57,7 @@
 	public *;
 }
 
--keep class com.apusapps.launcher.track.Statistics {
+-keep class com.creativeindia.goodmorning.track.Statistics {
     public static final <fields>;    
 }
 
@@ -131,10 +131,10 @@
 
 -dontwarn com.apus.taskmanager.processclear.ProcessInfoHelper
 
--keepclassmembers class com.apusapps.launcher.track.StatisticConstants {
+-keepclassmembers class com.creativeindia.goodmorning.track.StatisticConstants {
     public static final <fields>;    
 }
--keepclassmembers class com.apusapps.launcher.track.StatisticConstantsAd {
+-keepclassmembers class com.creativeindia.goodmorning.track.StatisticConstantsAd {
     public static final <fields>;    
 }
 

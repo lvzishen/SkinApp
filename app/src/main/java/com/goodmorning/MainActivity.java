@@ -70,6 +70,7 @@ public class MainActivity extends BaseActivity {
 //        });
         //2
 //        int sessioID = (int) System.currentTimeMillis();
+//        Log.e(TAG,"sessioID="+sessioID);
 //        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 6, false, false, false);
 //        MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
 //            @Override
@@ -113,7 +114,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onFail(Exception e) {
-                Log.i(TAG, e.getMessage());
+//                Log.i(TAG, e.getMessage());
             }
         });
 

@@ -13,10 +13,18 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.cleanerapp.supermanager.R;
 import com.goodmorning.MainActivity;
+import com.goodmorning.utils.CloudConstants;
 import com.google.android.material.tabs.TabLayout;
+
+import org.thanos.core.MorningDataAPI;
+import org.thanos.core.ResultCallback;
+import org.thanos.core.bean.ChannelList;
+import org.thanos.core.internal.requestparam.ChannelListRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
@@ -55,6 +63,27 @@ public class HomeFragment extends Fragment {
             tvTab.setText("祝福"+i);
             tab.setCustomView(view);
         }
+        requestChannelList();
+    }
+
+    private void requestChannelList(){
+        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
+        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
+            @Override
+            public void onSuccess(ChannelList data) {
+
+            }
+
+            @Override
+            public void onLoadFromCache(ChannelList data) {
+
+            }
+
+            @Override
+            public void onFail(Exception e) {
+
+            }
+        });
     }
 
     class TabAdapter extends FragmentStatePagerAdapter{

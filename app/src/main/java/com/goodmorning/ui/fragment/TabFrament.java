@@ -37,6 +37,7 @@ public class TabFrament extends Fragment {
     private MainListAdapter mainListAdapter;
     private CommonRecyclerViewAdapter mRecyclerViewAdapter;
     private Handler handler = new Handler();
+    private int sessionId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,12 +69,15 @@ public class TabFrament extends Fragment {
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
+        sessionId = Math.abs((int) System.currentTimeMillis());
+        requestData();
     }
 
     private void setListener(){
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                requestData();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -93,8 +97,7 @@ public class TabFrament extends Fragment {
     }
 
     private void requestData(){
-        int sessioID = Math.abs((int) System.currentTimeMillis());
-        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessioID, 6, false, false, false);
+        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessionId, 6, false, false, false);
         MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
             @Override
             public void onSuccess(ContentList data) {

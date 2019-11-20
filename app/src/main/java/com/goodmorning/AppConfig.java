@@ -27,7 +27,7 @@ public class AppConfig {
 //    /** 透明通知栏 */
 //    public static final int FLAG_TRANSLUCENT_STATUS = 67108864;
 //    public static final String PACKAGE_NAME = "com.guardian.security.ever";
-//    public static final String APUS_PACKAGENAME = "com.apusapps.launcher";
+//    public static final String APUS_PACKAGENAME = "com.creativeindia.goodmorning";
 //
 //    public static final String MOBV_APP_ID = "21761";
 //    public static final String MOBV_APP_KEY = "aed7249ce5d328987f5d0c59433f9987";
