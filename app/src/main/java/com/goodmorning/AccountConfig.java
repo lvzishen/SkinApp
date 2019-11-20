@@ -86,7 +86,7 @@ public class AccountConfig implements IConfiguration {
 
     @Override
     public String getHost() {
-        //TODO 需替换为自有域名
+        //TODO 账号替换 AccountReplace
 //        return "http://account.picku.cloud/v2/";//正式
         return "http://test-account.apuscn.com/v2/";//测试
     }

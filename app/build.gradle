@@ -9,6 +9,7 @@ android {
     defaultConfig {
 //        applicationId "com.creativeindia.goodmorning"
         applicationId "com.creativeindia.goodmorning"
+//        applicationId "com.apusapps.launcher"
         minSdkVersion Integer.parseInt(MinSdkVersion)
         targetSdkVersion Integer.parseInt(TargetSdkVersion)
         ndk {
