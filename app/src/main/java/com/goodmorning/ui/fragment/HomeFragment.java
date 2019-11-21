@@ -11,10 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.utils.CloudConstants;
 import com.google.android.material.tabs.TabLayout;
+import com.taobao.luaview.util.JsonUtil;
 
 import org.thanos.core.MorningDataAPI;
 import org.thanos.core.ResultCallback;
@@ -71,7 +72,9 @@ public class HomeFragment extends Fragment {
         MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
             @Override
             public void onSuccess(ChannelList data) {
-
+                if (data != null){
+//                    data.languageItems
+                }
             }
 
             @Override

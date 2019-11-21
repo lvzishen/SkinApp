@@ -8,7 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.config.GlobalConfig;
 
 import org.interlaken.common.XalContext;

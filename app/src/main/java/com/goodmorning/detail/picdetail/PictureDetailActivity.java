@@ -27,7 +27,7 @@
 //
 //import androidx.annotation.Nullable;
 //
-//import com.cleanerapp.supermanager.R;
+//import com.creativeindia.goodmorning.R;
 //import com.goodmorning.common.BaseActivity;
 //import com.goodmorning.common.view.BaseExceptionView;
 //import com.goodmorning.config.GlobalConfig;

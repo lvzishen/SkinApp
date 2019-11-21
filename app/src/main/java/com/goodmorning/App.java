@@ -30,8 +30,8 @@ import com.clean.binder.mgr.BinderManager;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.xal.NeptuneReporter;
 import com.goodmorning.xal.StatisticSettingCollectorForXAL;
-import com.cleanerapp.supermanager.BuildConfig;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.BuildConfig;
+import com.creativeindia.goodmorning.R;
 import com.lachesis.common.AlexListener;
 import com.lachesis.common.LachesisBuilder;
 import com.lachesis.common.RemoteConfigSupplier;
@@ -187,7 +187,7 @@ public class App extends Application {
         //ShareSDK
         MobSDK.init(this);
 
-        ModuleConfig.VERSION_NAME = com.cleanerapp.supermanager.BuildConfig.VERSION_FULL;
+        ModuleConfig.VERSION_NAME = com.creativeindia.goodmorning.BuildConfig.VERSION_FULL;
         new SplashModule().init(getApplicationContext(), MainActivity.class);
 
         initAdSDK(mContext);

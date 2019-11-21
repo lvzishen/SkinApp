@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 
 import java.util.Locale;
 

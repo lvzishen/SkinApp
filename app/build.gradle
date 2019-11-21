@@ -112,13 +112,14 @@ dependencies {
     //facebook
     implementation 'com.facebook.android:facebook-core:4.34.0'
     implementation 'com.facebook.android:facebook-login:4.34.0'
+    implementation 'com.alibaba:fastjson:1.2.62'
 
 }
 
 // XAL Plugin
 xal {
     xmlConfigVersion true
-    persistProcessName 'com.cleanerapp.supermanager.background'
+    persistProcessName 'com.creativeindia.goodmorning.background'
     setVersionXmlFile("src/main/res/values/donottranslate.xml")
 
 }

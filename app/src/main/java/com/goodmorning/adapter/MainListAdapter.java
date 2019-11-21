@@ -3,7 +3,7 @@ package com.goodmorning.adapter;
 import android.content.Context;
 import android.util.Log;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 
 

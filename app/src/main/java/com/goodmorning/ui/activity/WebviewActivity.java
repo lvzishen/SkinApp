@@ -1,7 +1,7 @@
 package com.goodmorning.ui.activity;
 import android.os.Bundle;
 import com.baselib.ui.activity.BaseActivity;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.view.XWebView;
 
 public class WebviewActivity extends BaseActivity {

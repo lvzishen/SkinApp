@@ -10,14 +10,17 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
+import com.goodmorning.adapter.LanguageAdapter;
 import com.goodmorning.utils.ResUtils;
 
 public class LanguageDialog extends Dialog {
 
     private RecyclerView rvLanguage;
+    private LanguageAdapter languageAdapter;
 
     public LanguageDialog(@NonNull Context context) {
         super(context);
@@ -32,6 +35,9 @@ public class LanguageDialog extends Dialog {
 
     private void initView(){
         rvLanguage = findViewById(R.id.rv_language);
+        languageAdapter = new LanguageAdapter(getContext());
+        rvLanguage.setAdapter(languageAdapter);
+        rvLanguage.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     private void initDialog(){

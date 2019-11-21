@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.view.recyclerview.interfaces.ILoadMoreFooter;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.interfaces.OnNetWorkErrorListener;

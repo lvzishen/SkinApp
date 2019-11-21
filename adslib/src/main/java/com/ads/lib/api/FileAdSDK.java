@@ -35,7 +35,7 @@ public class FileAdSDK {
             WebView.setDataDirectorySuffix(processSuffix);
         }
         if (application != null) {
-            String mainActName = "com.cleanerapp.supermanager.ui.main.MainActivity";
+            String mainActName = "com.creativeindia.goodmorning.ui.main.MainActivity";
             activityLifecycleCallbacks(application, mainActName);
         }
         //手动初始化广告源

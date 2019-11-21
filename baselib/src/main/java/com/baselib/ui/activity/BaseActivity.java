@@ -10,7 +10,7 @@ import com.baselib.LocaleUtils;
 import com.baselib.language.LanguageType;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
-import com.cleanerapp.supermanager.baselib.R;
+import com.creativeindia.goodmorning.baselib.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

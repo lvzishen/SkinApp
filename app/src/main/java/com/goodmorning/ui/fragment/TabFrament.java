@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.MainListAdapter;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
@@ -97,7 +97,7 @@ public class TabFrament extends Fragment {
     }
 
     private void requestData(){
-        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessionId, 6, false, false, false);
+        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessionId, 2071, false, false, false);
         MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
             @Override
             public void onSuccess(ContentList data) {

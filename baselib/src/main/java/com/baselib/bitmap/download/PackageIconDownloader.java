@@ -7,7 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import com.baselib.bitmap.util.BitmapUtil;
-import com.cleanerapp.supermanager.baselib.R;
+import com.creativeindia.goodmorning.baselib.R;
 
 
 public class PackageIconDownloader implements Downloader {

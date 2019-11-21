@@ -13,7 +13,7 @@ import com.ads.lib.commen.AdLifecyclerManager;
 import com.baselib.ui.activity.BaseActivity;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.view.tab.BottomBarLayout;
@@ -94,29 +94,29 @@ public class MainActivity extends BaseActivity {
 
 
 //        //3
-        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 49879935), new ResultCallback<ContentDetail>() {
-            @Override
-            public void onLoadFromCache(ContentDetail data) {
-            }
-
-            @Override
-            public void onSuccess(ContentDetail data) {
-                if (data != null && data.item != null) {
-                    if (GlobalConfig.DEBUG) {
-                        Log.d(TAG, "有数据--->" + data.message);
-                    }
-                } else {
-                    if (GlobalConfig.DEBUG) {
-                        Log.d(TAG, "无数据--->");
-                    }
-                }
-            }
-
-            @Override
-            public void onFail(Exception e) {
+//        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 49879935), new ResultCallback<ContentDetail>() {
+//            @Override
+//            public void onLoadFromCache(ContentDetail data) {
+//            }
+//
+//            @Override
+//            public void onSuccess(ContentDetail data) {
+//                if (data != null && data.item != null) {
+//                    if (GlobalConfig.DEBUG) {
+//                        Log.d(TAG, "有数据--->" + data.message);
+//                    }
+//                } else {
+//                    if (GlobalConfig.DEBUG) {
+//                        Log.d(TAG, "无数据--->");
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
 //                Log.i(TAG, e.getMessage());
-            }
-        });
+//            }
+//        });
 
         //4
 //        int page=1;
