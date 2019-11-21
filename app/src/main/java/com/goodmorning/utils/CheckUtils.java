@@ -36,6 +36,7 @@ public class CheckUtils {
         //是否首次启动
         boolean isShow = SharedPref.getBoolean(getApplicationContext(),SharedPref.ISFIRSTSTART,true);
         if (isShow){
+            SharedPref.setBoolean(getApplicationContext(),SharedPref.ISFIRSTSTART,false);
             return true;
         }else {
             return false;

@@ -1,5 +1,6 @@
 package com.goodmorning.ui.fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.alibaba.fastjson.JSON;
+import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
+import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
+import com.goodmorning.view.LanguageDialog;
 import com.google.android.material.tabs.TabLayout;
 import com.taobao.luaview.util.JsonUtil;
 
@@ -31,6 +38,7 @@ public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager tabVpager;
     private List<Fragment> mFragmentList = new ArrayList<>();
+    private LanguageDialog languageDialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,18 +69,43 @@ public class HomeFragment extends Fragment {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             View view = LayoutInflater.from(getContext()).inflate(R.layout.item_tab,null);
             TextView tvTab = (TextView) view.findViewById(R.id.tv_item);
-            tvTab.setText("祝福"+i);
+            tvTab.setText(getString(R.string.tab_greeting)+i);
             tab.setCustomView(view);
         }
         requestChannelList();
     }
 
+    private void setListener(){
+        if (languageDialog != null){
+            languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
+                @Override
+                public void onLanguage(String languge) {
+                    languageDialog.dismiss();
+                    ((MainActivity)HomeFragment.this.getActivity()).changeLanguage(languge);
+                }
+            });
+        }
+    }
+
     private void requestChannelList(){
         long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
-        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
+        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(true, 0L), new ResultCallback<ChannelList>() {
             @Override
             public void onSuccess(ChannelList data) {
                 if (data != null){
+                    if (CheckUtils.isShowLanguage()){
+                        String json = JSON.toJSONString(data.languageItems);
+                        SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE_TYPE,json);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                languageDialog = new LanguageDialog(getActivity());
+                                languageDialog.show();
+                                setListener();
+                            }
+                        });
+
+                    }
 //                    data.languageItems
                 }
             }
