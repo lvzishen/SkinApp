@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.MainListAdapter;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
@@ -21,10 +21,10 @@ import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
 
-import org.thanos.core.MorningDataAPI;
-import org.thanos.core.ResultCallback;
-import org.thanos.core.bean.ContentList;
-import org.thanos.core.internal.requestparam.ContentListRequestParam;
+import org.thanos.netcore.MorningDataAPI;
+import org.thanos.netcore.ResultCallback;
+import org.thanos.netcore.bean.ContentList;
+import org.thanos.netcore.internal.requestparam.ContentListRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +97,7 @@ public class TabFrament extends Fragment {
     }
 
     private void requestData(){
-        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessionId, 6, false, false, false);
+        ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessionId, 2071, false, false, false);
         MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
             @Override
             public void onSuccess(ContentList data) {

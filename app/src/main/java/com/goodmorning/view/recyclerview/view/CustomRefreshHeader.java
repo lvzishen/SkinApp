@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.view.recyclerview.WeakHandler;
 import com.goodmorning.view.recyclerview.interfaces.IRefreshHeader;
 

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 
 import java.util.ArrayList;
 import java.util.List;

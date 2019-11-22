@@ -21,7 +21,6 @@ buildscript {
         classpath 'com.google.gms:google-services:4.2.0'
         //特征抹除 android资源文件名
         classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.13'
-        classpath 'com.mob.sdk:MobSDK:+'
     }
 }
 

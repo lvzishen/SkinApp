@@ -8,8 +8,8 @@
 
 
     <string name="sign_in_to">Sign in</string>
-    <string name="tab_greeting">祝福</string>
-    <string name="tab_my">我的</string>
+    <string name="tab_greeting">Blessing</string>
+    <string name="tab_my">my</string>
 
 
     <string name="contents_ui__news_share" formatted="false">SHARE via </string>

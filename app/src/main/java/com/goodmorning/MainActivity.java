@@ -1,6 +1,7 @@
 package com.goodmorning;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -10,22 +11,15 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ads.lib.commen.AdLifecyclerManager;
+import com.baselib.language.LanguageUtil;
+import com.baselib.sp.SharedPref;
 import com.baselib.ui.activity.BaseActivity;
-import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.view.tab.BottomBarLayout;
 
-import org.thanos.core.MorningDataAPI;
-import org.thanos.core.ResultCallback;
-import org.thanos.core.bean.ContentDetail;
-import org.thanos.core.bean.ContentItem;
-import org.thanos.core.bean.ContentList;
-import org.thanos.core.bean.NewsItem;
-import org.thanos.core.internal.requestparam.ContentDetailRequestParam;
-import org.thanos.core.internal.requestparam.ContentListRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,29 +88,29 @@ public class MainActivity extends BaseActivity {
 
 
 //        //3
-        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 49879935), new ResultCallback<ContentDetail>() {
-            @Override
-            public void onLoadFromCache(ContentDetail data) {
-            }
-
-            @Override
-            public void onSuccess(ContentDetail data) {
-                if (data != null && data.item != null) {
-                    if (GlobalConfig.DEBUG) {
-                        Log.d(TAG, "有数据--->" + data.message);
-                    }
-                } else {
-                    if (GlobalConfig.DEBUG) {
-                        Log.d(TAG, "无数据--->");
-                    }
-                }
-            }
-
-            @Override
-            public void onFail(Exception e) {
+//        MorningDataAPI.requestContentDetail(getApplicationContext(), new ContentDetailRequestParam(false, 49879935), new ResultCallback<ContentDetail>() {
+//            @Override
+//            public void onLoadFromCache(ContentDetail data) {
+//            }
+//
+//            @Override
+//            public void onSuccess(ContentDetail data) {
+//                if (data != null && data.item != null) {
+//                    if (GlobalConfig.DEBUG) {
+//                        Log.d(TAG, "有数据--->" + data.message);
+//                    }
+//                } else {
+//                    if (GlobalConfig.DEBUG) {
+//                        Log.d(TAG, "无数据--->");
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(Exception e) {
 //                Log.i(TAG, e.getMessage());
-            }
-        });
+//            }
+//        });
 
         //4
 //        int page=1;
@@ -263,6 +257,22 @@ public class MainActivity extends BaseActivity {
 //            }
             SplashLifeMonitor.closeSplash(getApplicationContext());
         }
+    }
+
+    /**
+     * 如果是7.0以下，我们需要调用changeAppLanguage方法，
+     * 如果是7.0及以上系统，直接把我们想要切换的语言类型保存在SharedPreferences中即可
+     * 然后重新启动MainActivity
+     *
+     * @param language
+     */
+    public void changeLanguage(String language) {
+        Log.e("changeLanguage", "language==" + language);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            LanguageUtil.changeAppLanguage(getApplicationContext(), language);
+        }
+        SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE, language);
+        this.recreate();
     }
 
     @Override

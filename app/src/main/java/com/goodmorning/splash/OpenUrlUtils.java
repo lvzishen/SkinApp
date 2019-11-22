@@ -18,7 +18,7 @@ public class OpenUrlUtils {
             context.startActivity(intent);
         } catch (Exception e1) {
             ToastUtils.showToast(
-                    Toast.makeText(context, com.cleanerapp.supermanager.baselib.R.string.no_browser_installed, Toast.LENGTH_SHORT)
+                    Toast.makeText(context, com.creativeindia.goodmorning.baselib.R.string.no_browser_installed, Toast.LENGTH_SHORT)
             );
             e1.printStackTrace();
         }

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.baselib.sp.SharedPref;
 import com.baselib.ui.CommonConstants;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 
 import org.saturn.splash.view.SplashMainActivity;
 

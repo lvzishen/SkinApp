@@ -30,8 +30,8 @@ import com.clean.binder.mgr.BinderManager;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.xal.NeptuneReporter;
 import com.goodmorning.xal.StatisticSettingCollectorForXAL;
-import com.cleanerapp.supermanager.BuildConfig;
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.BuildConfig;
+import com.creativeindia.goodmorning.R;
 import com.lachesis.common.AlexListener;
 import com.lachesis.common.LachesisBuilder;
 import com.lachesis.common.RemoteConfigSupplier;
@@ -39,7 +39,6 @@ import com.lachesis.daemon.LachesisDaemonSDK;
 import com.lachesis.gcm.daemon.GcmDaemon;
 import com.lachesis.model.AccountLachesisDaemon;
 import com.lachesis.module.jobscheduler.daemon.JobSchedulerDaemon;
-import com.mob.MobSDK;
 import com.nox.Nox;
 import com.nox.update.NeptuneDownloader;
 import com.vision.lib.ScenesSdk;
@@ -65,7 +64,7 @@ import org.interlaken.common.utils.ParamUtils;
 import org.interlaken.common.utils.ProcessUtil;
 import org.n.account.core.AccountSDK;
 import org.thanos.ThanosSDK;
-import org.thanos.core.MorningDataAPI;
+import org.thanos.netcore.MorningDataAPI;
 import org.thanos.core.internal.ThanosDataCore;
 import org.thanos.push.ThanosPush;
 import org.thanos.utils.Utils;
@@ -184,10 +183,8 @@ public class App extends Application {
                 return new String[0];
             }
         });
-        //ShareSDK
-        MobSDK.init(this);
 
-        ModuleConfig.VERSION_NAME = com.cleanerapp.supermanager.BuildConfig.VERSION_FULL;
+        ModuleConfig.VERSION_NAME = com.creativeindia.goodmorning.BuildConfig.VERSION_FULL;
         new SplashModule().init(getApplicationContext(), MainActivity.class);
 
         initAdSDK(mContext);

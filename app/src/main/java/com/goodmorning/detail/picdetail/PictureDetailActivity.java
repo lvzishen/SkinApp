@@ -27,7 +27,7 @@
 //
 //import androidx.annotation.Nullable;
 //
-//import com.cleanerapp.supermanager.R;
+//import com.creativeindia.goodmorning.R;
 //import com.goodmorning.common.BaseActivity;
 //import com.goodmorning.common.view.BaseExceptionView;
 //import com.goodmorning.config.GlobalConfig;
@@ -35,12 +35,12 @@
 //import com.goodmorning.utils.ResourceStringUtils;
 //
 //import org.interlaken.common.XalContext;
-//import org.thanos.core.MorningDataAPI;
-//import org.thanos.core.bean.ContentDetail;
-//import org.thanos.core.bean.ContentItem;
-//import org.thanos.core.bean.ResponseData;
-//import org.thanos.core.bean.VideoItem;
-//import org.thanos.core.push.ThanosPushConfig;
+//import MorningDataAPI;
+//import ContentDetail;
+//import ContentItem;
+//import ResponseData;
+//import VideoItem;
+//import ThanosPushConfig;
 //
 //import java.io.File;
 //import java.io.FileNotFoundException;
@@ -55,7 +55,7 @@
 //
 //import bolts.Task;
 //
-//import static org.thanos.core.push.ThanosPushConfig.EXTRA_PUSH_MESSAGE_CONTENT_ID;
+//import static ThanosPushConfig.EXTRA_PUSH_MESSAGE_CONTENT_ID;
 //
 ///**
 // * 图集详情页

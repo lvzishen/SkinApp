@@ -110,9 +110,9 @@ public class CalendarUtils {
         }
 
         if (DateUtils.isToday(millis)) { // Today
-            dateText = cxt.getString(com.cleanerapp.supermanager.baselib.R.string.string_today);
+            dateText = cxt.getString(com.creativeindia.goodmorning.baselib.R.string.string_today);
         } else if (DateUtils.isToday(testYesterdayCal.getTimeInMillis())) { // Yesterday
-            dateText = cxt.getString(com.cleanerapp.supermanager.baselib.R.string.string_yesterday);
+            dateText = cxt.getString(com.creativeindia.goodmorning.baselib.R.string.string_yesterday);
         } else { // Others
             dateText = DateFormat.getDateInstance().format(targetCal.getTime());
         }
@@ -259,13 +259,13 @@ public class CalendarUtils {
             return null;
 
         StringBuilder finalStr = new StringBuilder();
-        String qMinutes = context.getResources().getQuantityString(com.cleanerapp.supermanager.baselib.R.plurals.string_x_minutes, minutes);
+        String qMinutes = context.getResources().getQuantityString(com.creativeindia.goodmorning.baselib.R.plurals.string_x_minutes, minutes);
         if (minutes <= 60) {
             finalStr.append(String.format(Locale.US, qMinutes, minutes));
         } else {
             int hour = minutes / 60;
             int remainingMinutes = minutes % 60;
-            String qHour = context.getResources().getQuantityString(com.cleanerapp.supermanager.baselib.R.plurals.string_x_hours, hour);
+            String qHour = context.getResources().getQuantityString(com.creativeindia.goodmorning.baselib.R.plurals.string_x_hours, hour);
             finalStr.append(String.format(Locale.US, qHour, hour));
             if (remainingMinutes != 0) {
                 finalStr.append(CHAR_SPACE);

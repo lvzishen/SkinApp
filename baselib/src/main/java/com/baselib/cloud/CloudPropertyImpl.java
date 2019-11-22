@@ -9,7 +9,6 @@ import org.interlaken.common.env.BasicProp;
 import java.util.HashMap;
 
 public class CloudPropertyImpl {
-
     private Context mContext;
 
     public CloudPropertyImpl(Context cxt) {

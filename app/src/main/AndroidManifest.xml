@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.cleanerapp.supermanager">
+    package="com.creativeindia.goodmorning">
 
     <uses-feature
         android:name="android.hardware.wifi"
@@ -34,7 +34,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 查询网络链接类型需要这个权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 升级，联网查询云分类需要此权限 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 监听来电，来电后停止清理， 以免干扰到接电话 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!--  -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> &lt;!&ndash;  &ndash;&gt; -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- 读写SD卡 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 读写SD卡 -->
     <uses-permission
@@ -49,7 +49,7 @@
         tools:ignore="ProtectedPermissions" /> <!-- android.permission.WRITE_SETTINGS -->
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
     <application
         android:name="com.goodmorning.App"
@@ -60,8 +60,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label">
-        <activity android:name="com.goodmorning.ui.activity.WebviewActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.goodmorning.detail.picdetail.PicDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.goodmorning.ui.activity.WebviewActivity"
+            android:screenOrientation="portrait" />
 
         <uses-library
             android:name="org.apache.http.legacy"

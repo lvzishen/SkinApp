@@ -10,20 +10,29 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cleanerapp.supermanager.R;
+import com.baselib.sp.SharedPref;
+import com.creativeindia.goodmorning.R;
+import com.goodmorning.adapter.LanguageAdapter;
 import com.goodmorning.utils.ResUtils;
+
+import org.thanos.netcore.bean.ChannelList;
+import org.thanos.netcore.helper.JsonHelper;
+
+import java.util.ArrayList;
 
 public class LanguageDialog extends Dialog {
 
     private RecyclerView rvLanguage;
-
+    private LanguageAdapter languageAdapter;
+    private JsonHelper<ArrayList<ChannelList.LanguageItem> > jsonHelper;
     public LanguageDialog(@NonNull Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setCanceledOnTouchOutside(false);
-        setCancelable(false);
+        setCancelable(true);
         View view = ResUtils.getInflater().inflate(R.layout.language_layout, null);
         setContentView(view);
         initView();
@@ -32,6 +41,19 @@ public class LanguageDialog extends Dialog {
 
     private void initView(){
         rvLanguage = findViewById(R.id.rv_language);
+        languageAdapter = new LanguageAdapter(getContext());
+        jsonHelper = new JsonHelper<ArrayList<ChannelList.LanguageItem>>() {
+        };
+        ArrayList<ChannelList.LanguageItem> languageItems = jsonHelper.getJsonObject(SharedPref.getString(getContext(), SharedPref.LANGUAGE_TYPE,""));
+        languageAdapter.addAll(languageItems);
+        rvLanguage.setAdapter(languageAdapter);
+        rvLanguage.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void setOnSwitchLanguage(LanguageAdapter.OnSwitchLanguage onSwitchLanguage){
+        if (languageAdapter != null){
+            languageAdapter.setOnSwitchLanguage(onSwitchLanguage);
+        }
     }
 
     private void initDialog(){

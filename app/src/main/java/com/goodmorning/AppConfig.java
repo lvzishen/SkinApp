@@ -19,6 +19,8 @@ public class AppConfig {
     /**
      * productid
      */
+//    public static final short UIVERSION = 23220;//gp 690 apk 691 , pre 692
+//    public static final String ACCOUNT_CONFIG_APP_ID = "1000";//TODO 需要修改
     public static final short UIVERSION = 30720;//GP30720    APK30721    PRE30722
     public static final String ACCOUNT_CONFIG_APP_ID = "100010000";//TODO 账号替换 AccountReplace
 

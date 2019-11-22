@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.text.style.URLSpan;
 import android.view.View;
 
-import com.cleanerapp.supermanager.R;
+import com.creativeindia.goodmorning.R;
 
 
 public class SplashUrlSpan extends URLSpan {

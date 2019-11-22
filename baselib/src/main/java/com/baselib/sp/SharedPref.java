@@ -229,7 +229,14 @@ public class SharedPref {
      */
     public static final String LANGUAGE = "language";
 
+    /**
+     * 是否首次启动
+     */
     public static final String ISFIRSTSTART = "isfirststart";
+    /**
+     * 语言类型
+     */
+    public static final String LANGUAGE_TYPE = "language_type";
 //    static SharedPrefStub getInstance(Context cxt) {
 //        return SharedPrefStub.getInstance(cxt);
 ////        IBinder binder = BinderManager.getService(cxt, KEY_SHAREDPREF);
