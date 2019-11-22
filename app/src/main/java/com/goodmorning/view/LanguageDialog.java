@@ -13,14 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.fastjson.JSON;
 import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.LanguageAdapter;
 import com.goodmorning.utils.ResUtils;
 
-import org.thanos.core.bean.ChannelList;
-import org.thanos.core.helper.JsonHelper;
+import org.thanos.netcore.bean.ChannelList;
+import org.thanos.netcore.helper.JsonHelper;
 
 import java.util.ArrayList;
 

@@ -64,7 +64,7 @@ import org.interlaken.common.utils.ParamUtils;
 import org.interlaken.common.utils.ProcessUtil;
 import org.n.account.core.AccountSDK;
 import org.thanos.ThanosSDK;
-import org.thanos.core.MorningDataAPI;
+import org.thanos.netcore.MorningDataAPI;
 import org.thanos.core.internal.ThanosDataCore;
 import org.thanos.push.ThanosPush;
 import org.thanos.utils.Utils;

@@ -1,13 +1,12 @@
 package com.goodmorning.adapter;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.creativeindia.goodmorning.R;
 
-import org.thanos.core.bean.ChannelList;
+import org.thanos.netcore.bean.ChannelList;
 
 public class LanguageAdapter extends ListBaseAdapter<ChannelList.LanguageItem> {
     OnSwitchLanguage onSwitchLanguage;

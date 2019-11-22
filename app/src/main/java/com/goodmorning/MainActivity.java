@@ -21,12 +21,6 @@ import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.view.tab.BottomBarLayout;
 
 
-import org.thanos.core.MorningDataAPI;
-import org.thanos.core.ResultCallback;
-import org.thanos.core.bean.ContentItem;
-import org.thanos.core.bean.ContentList;
-import org.thanos.core.bean.NewsItem;
-
 import java.util.ArrayList;
 import java.util.List;
 

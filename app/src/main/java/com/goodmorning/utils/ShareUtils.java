@@ -12,7 +12,7 @@ import com.creativeindia.goodmorning.R;
 import com.goodmorning.config.GlobalConfig;
 
 import org.interlaken.common.XalContext;
-import org.thanos.core.MorningDataAPI;
+import org.thanos.netcore.MorningDataAPI;
 
 
 /**

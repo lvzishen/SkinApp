@@ -1,6 +1,5 @@
 package com.goodmorning.ui.fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,11 @@ import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
 import com.goodmorning.view.LanguageDialog;
 import com.google.android.material.tabs.TabLayout;
-import com.taobao.luaview.util.JsonUtil;
 
-import org.thanos.core.MorningDataAPI;
-import org.thanos.core.ResultCallback;
-import org.thanos.core.bean.ChannelList;
-import org.thanos.core.internal.requestparam.ChannelListRequestParam;
+import org.thanos.netcore.MorningDataAPI;
+import org.thanos.netcore.ResultCallback;
+import org.thanos.netcore.bean.ChannelList;
+import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;

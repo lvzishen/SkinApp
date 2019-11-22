@@ -1,6 +1,6 @@
 package com.goodmorning.utils;
 
-import org.thanos.core.ThanosCloudConstants;
+import org.thanos.netcore.ThanosCloudConstants;
 
 import java.util.concurrent.TimeUnit;
 
