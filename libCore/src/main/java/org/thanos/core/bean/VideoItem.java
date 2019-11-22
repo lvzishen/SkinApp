@@ -156,7 +156,7 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
                 ", type=" + type +
                 ", id=" + id +
                 ", category=" + category +
-                '}' :"";
+                '}' : "";
     }
 
     @Override
@@ -184,14 +184,14 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
 
         @Override
         public String toString() {
-            return  DEBUG ?"SpreadInfo{" +
+            return DEBUG ? "SpreadInfo{" +
                     "enable=" + enable +
                     ", icon='" + icon + '\'' +
                     ", gp='" + gp + '\'' +
                     ", name='" + name + '\'' +
                     ", description='" + description + '\'' +
                     ", packageName='" + packageName + '\'' +
-                    '}' :"";
+                    '}' : "";
         }
     }
 
@@ -234,18 +234,23 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
 
     public static class PhotoInfo extends NewsItem.ImageInfo implements Serializable {
         private static final long serialVersionUID = -5561886504124438144L;
-        public  String photoTitle;
-        public  String localUrl;
+        public String photoTitle;
+        public String localUrl;
+        public String originWidth;
+        public String originHeight;
+        public String originUrl;
         public int percent;
         public final ArrayList<PhotoSizeInfo> photoSizeInfos = new ArrayList<>();
-
-
 
 
         PhotoInfo(JSONObject jsonObject) throws JSONException {
             super(jsonObject);
             photoTitle = jsonObject.getString("photo_title");
             localUrl = jsonObject.getString("local_url");
+            originWidth = jsonObject.getString("origin_width");
+            originHeight = jsonObject.getString("origin_height");
+            originUrl = jsonObject.getString("origin_url");
+
             JSONArray sizeArray = jsonObject.getJSONArray("sizes");
             for (int i = 0, len = sizeArray.length(); i < len; i++) {
                 PhotoSizeInfo photoSizeInfo = new PhotoSizeInfo(sizeArray.getJSONObject(i));
@@ -258,14 +263,14 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
 
         @Override
         public String toString() {
-            return DEBUG ?"PhotoInfo{" +
+            return DEBUG ? "PhotoInfo{" +
                     "photoTitle='" + photoTitle + '\'' +
                     ", localUrl='" + localUrl + '\'' +
                     ", photoSizeInfos=" + photoSizeInfos +
                     ", height=" + height +
                     ", width=" + width +
                     ", url='" + url + '\'' +
-                    '}' :"";
+                    '}' : "";
         }
     }
 
@@ -299,7 +304,7 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
                     ", url='" + url + '\'' +
                     ", height=" + height +
                     ", imageType=" + imageType +
-                    '}' :"";
+                    '}' : "";
         }
     }
 }

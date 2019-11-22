@@ -39,7 +39,6 @@ import com.lachesis.daemon.LachesisDaemonSDK;
 import com.lachesis.gcm.daemon.GcmDaemon;
 import com.lachesis.model.AccountLachesisDaemon;
 import com.lachesis.module.jobscheduler.daemon.JobSchedulerDaemon;
-import com.mob.MobSDK;
 import com.nox.Nox;
 import com.nox.update.NeptuneDownloader;
 import com.vision.lib.ScenesSdk;
@@ -184,8 +183,6 @@ public class App extends Application {
                 return new String[0];
             }
         });
-        //ShareSDK
-        MobSDK.init(this);
 
         ModuleConfig.VERSION_NAME = com.creativeindia.goodmorning.BuildConfig.VERSION_FULL;
         new SplashModule().init(getApplicationContext(), MainActivity.class);

@@ -11,25 +11,21 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ads.lib.commen.AdLifecyclerManager;
-import com.baselib.language.LanguageType;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
 import com.baselib.ui.activity.BaseActivity;
-import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.view.tab.BottomBarLayout;
 
+
 import org.thanos.core.MorningDataAPI;
 import org.thanos.core.ResultCallback;
-import org.thanos.core.bean.ContentDetail;
 import org.thanos.core.bean.ContentItem;
 import org.thanos.core.bean.ContentList;
 import org.thanos.core.bean.NewsItem;
-import org.thanos.core.internal.requestparam.ContentDetailRequestParam;
-import org.thanos.core.internal.requestparam.ContentListRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -273,16 +269,18 @@ public class MainActivity extends BaseActivity {
      * 如果是7.0以下，我们需要调用changeAppLanguage方法，
      * 如果是7.0及以上系统，直接把我们想要切换的语言类型保存在SharedPreferences中即可
      * 然后重新启动MainActivity
+     *
      * @param language
      */
     public void changeLanguage(String language) {
-        Log.e("changeLanguage","language=="+language);
+        Log.e("changeLanguage", "language==" + language);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             LanguageUtil.changeAppLanguage(getApplicationContext(), language);
         }
-        SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE, language);
+        SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE, language);
         this.recreate();
     }
+
     @Override
     protected boolean useStartDefaultAnim() {
         return false;

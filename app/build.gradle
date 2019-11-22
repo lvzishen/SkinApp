@@ -1,7 +1,6 @@
 apply plugin: 'xal.app'
 apply plugin: 'com.android.application'
 apply plugin: 'AndResGuard'
-apply from: '../MobSDK.gradle'
 
 android {
     compileSdkVersion Integer.parseInt(CompileSdkVersion)
@@ -107,8 +106,8 @@ dependencies {
     xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
 
     //账号sdk，【必选】
-    xalImplementation 'org.njord.account:core:'+ account_Core
-    xalImplementation 'org.njord.account:ui:'+ account_Ui
+    xalImplementation 'org.njord.account:core:' + account_Core
+    xalImplementation 'org.njord.account:ui:' + account_Ui
     //facebook
     implementation 'com.facebook.android:facebook-core:4.34.0'
     implementation 'com.facebook.android:facebook-login:4.34.0'
