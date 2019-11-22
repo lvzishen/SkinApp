@@ -9,7 +9,11 @@ import android.os.LocaleList;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.baselib.sp.SharedPref;
+
 import java.util.Locale;
+
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 
 public class LanguageUtil {
@@ -64,5 +68,14 @@ public class LanguageUtil {
         configuration.setLocale(locale);
         configuration.setLocales(new LocaleList(locale));
         return context.createConfigurationContext(configuration);
+    }
+
+    /**
+     * 获取当前切换使用的语言
+     * @return
+     */
+    public static String getLanguage(){
+        String language = SharedPref.getString(getApplicationContext(), SharedPref.LANGUAGE, LanguageType.ENGLISH.getLanguage());
+        return language;
     }
 }

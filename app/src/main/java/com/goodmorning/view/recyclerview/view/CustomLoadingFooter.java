@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,8 +16,9 @@ import com.goodmorning.view.recyclerview.interfaces.OnNetWorkErrorListener;
 public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFooter {
     private State mState = State.Normal;
     private View mMoreContainer;
-    private ImageView ivMore;
+//    private ImageView ivMore;
     private TextView tvMore;
+    private LinearLayout llFooter;
 
     public CustomLoadingFooter(Context context) {
         super(context);
@@ -35,8 +37,10 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
 
     public void initView(){
         mMoreContainer = inflate(getContext(), R.layout.layout_footer_more,this);
-        ivMore = mMoreContainer.findViewById(R.id.iv_more);
+        llFooter = mMoreContainer.findViewById(R.id.ll_footer);
+//        ivMore = mMoreContainer.findViewById(R.id.iv_more);
         tvMore = mMoreContainer.findViewById(R.id.tv_more);
+//        llFooter.setVisibility(GONE);
         setOnClickListener(null);
         //初始化隐藏状态
         onReset();
@@ -63,8 +67,8 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
                 break;
             case Loading:
                 setOnClickListener(null);
-                mMoreContainer.setVisibility(VISIBLE);
-                tvMore.setText("正在加载...");
+//                mMoreContainer.setVisibility(GONE);
+//                tvMore.setText("正在加载...");
                 break;
             case NoMore:
                 setOnClickListener(null);
@@ -72,8 +76,9 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
                 tvMore.setText("已经到底了");
                 break;
             case NetWorkError:
-                mMoreContainer.setVisibility(VISIBLE);
-                tvMore.setText("点击重新加载");
+//                mMoreContainer.setVisibility(GONE);
+//                llFooter.setVisibility(GONE);
+//                tvMore.setText("点击重新加载");
                 break;
         }
     }

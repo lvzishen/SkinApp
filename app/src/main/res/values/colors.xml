@@ -61,8 +61,8 @@
     <color name="color_999999">#999999</color>
 
     <color name="tab_gb">#F3F5F4</color>
-    <color name="tab_normal_color">#515051</color>
-    <color name="tab_selected_color">#D33D3C</color>
+    <color name="tab_normal_color">#FFB7B7B7</color>
+    <color name="tab_selected_color">#FF292529</color>
     <color name="selector_grey">#DDDDDD</color>
     <color name="color_444444">#444444</color>
     <color name="color_444444_alpha_50">#80444444</color>
@@ -70,4 +70,7 @@
     <color name="color_909090">#909090</color>
     <color name="color_ffd001">#ffd001</color>
     <color name="color_ffd001_alpha_80">#ccffd001</color>
+    <color name="color_B8B8B8">#FFB8B8B8</color>
+    <color name="color_9D9D9D">#9D9D9D</color>
+    <color name="color_F7F7F7">#FFF7F7F7</color>
 </resources>

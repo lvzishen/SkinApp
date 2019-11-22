@@ -21,23 +21,23 @@
         <com.goodmorning.view.tab.BottomBarLayout
             android:id="@+id/bottombar_layout"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/qb_px_56"
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_alignParentBottom="true"
-            android:background="@color/tab_gb">
+            android:background="@color/color_F7F7F7">
 
             <com.goodmorning.view.tab.BottomBarItem
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:iconNormal="@drawable/ic_launcher"
-                app:iconSelected="@drawable/ic_launcher"
+                app:iconNormal="@drawable/home_tab_daytime"
+                app:iconSelected="@drawable/home_tab_daytime_press"
                 app:itemText="@string/tab_greeting"
                 app:textColorNormal="@color/tab_normal_color"
                 app:textColorSelected="@color/tab_selected_color"
-                app:itemTextSize="8sp"
+                app:itemTextSize="11sp"
                 app:itemMarginTop="-5dp"
                 app:openTouchBg="true"
                 app:touchDrawable="@drawable/selector_bg"/>
@@ -46,12 +46,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:iconNormal="@drawable/ic_launcher"
-                app:iconSelected="@drawable/ic_launcher"
+                app:iconNormal="@drawable/home_tab_my_daytime"
+                app:iconSelected="@drawable/home_tab_my_daytime_press"
                 app:itemText="@string/tab_my"
                 app:textColorNormal="@color/tab_normal_color"
                 app:textColorSelected="@color/tab_selected_color"
-                app:itemTextSize="8sp"
+                app:itemTextSize="11sp"
                 app:itemMarginTop="-5dp"
                 app:openTouchBg="true"
                 app:touchDrawable="@drawable/selector_bg"/>

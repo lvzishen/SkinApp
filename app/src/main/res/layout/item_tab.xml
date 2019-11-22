@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:background="@drawable/shape_tab_item">
+    android:padding="5dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_launcher"/>
+        android:layout_width="@dimen/qb_px_42"
+        android:layout_height="@dimen/qb_px_42"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/iv_tab"/>
 
     <TextView
         android:layout_width="wrap_content"

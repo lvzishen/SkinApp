@@ -78,7 +78,14 @@ public class ContentItem implements Serializable {
     static ContentItem createFromJSONObject(JSONObject jsonObject, String requestId) throws JSONException {
         int type = jsonObject.getInt("type");
         int show = jsonObject.optInt("show");
-
+        String contentType = jsonObject.optString("content_type");
+        if ("NEWS".equals(contentType)){
+            return new NewsItem(jsonObject, requestId);
+        }else if ("PHOTO".equals(contentType)){
+            return new VideoItem(jsonObject, requestId);
+        }else if ("VIDEO".equals(contentType)){
+            return new VideoItem(jsonObject, requestId);
+        }
         if (DEBUG) {
             Log.d(TAG, "返回数据的的type--->" + type + "返回数据的show-->" + show);
         }

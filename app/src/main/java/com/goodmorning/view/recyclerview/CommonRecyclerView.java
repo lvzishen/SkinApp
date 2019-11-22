@@ -25,7 +25,7 @@ public class CommonRecyclerView extends RecyclerView {
     private boolean mPullRefreshEnabled = true;
     private boolean mLoadMoreEnabled = true;
     private boolean mRefreshing = false;//是否正在下拉刷新
-    private boolean mLoadingData = false;//是否正在加载数据
+    private boolean mLoadingData = true;//是否正在加载数据
     private OnRefreshListener mRefreshListener;
     private OnLoadMoreListener mLoadMoreListener;
     private LScrollListener mLScrollListener;

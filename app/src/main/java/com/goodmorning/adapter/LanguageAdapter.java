@@ -28,12 +28,7 @@ public class LanguageAdapter extends ListBaseAdapter<ChannelList.LanguageItem> {
             @Override
             public void onClick(View v) {
                 if (onSwitchLanguage != null){
-                    String lang = "en";
-                    if ("ta_in".equals(mDataList.get(position).lang)){
-                        lang = "ta";
-                    }else {
-                        lang = mDataList.get(position).lang;
-                    }
+                    String lang = mDataList.get(position).lang;
                     onSwitchLanguage.onLanguage(lang);
                 }
             }

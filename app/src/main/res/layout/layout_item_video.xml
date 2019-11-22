@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:gravity="center"
-    android:background="@color/red">
+    android:layout_height="wrap_content"
+    android:gravity="center">
 
-    <TextView
+    <com.goodmorning.view.image.NiceImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="视频"/>
+        android:layout_centerInParent="true"
+        app:corner_radius="@dimen/qb_px_10"
+        android:id="@+id/iv_video"/>
 
-</LinearLayout>
+</RelativeLayout>

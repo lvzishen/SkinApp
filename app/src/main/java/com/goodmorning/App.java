@@ -230,7 +230,7 @@ public class App extends Application {
 
             @Override
             public String getLang() {
-                return Utils.getLang(XalContext.getContext());
+                return LanguageUtil.getLanguage();
             }
 
             @Override

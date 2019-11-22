@@ -237,6 +237,10 @@ public class SharedPref {
      * 语言类型
      */
     public static final String LANGUAGE_TYPE = "language_type";
+    /**
+     * 频道
+     */
+    public static final String CHANNEL_CONTENT = "channel_content";
 //    static SharedPrefStub getInstance(Context cxt) {
 //        return SharedPrefStub.getInstance(cxt);
 ////        IBinder binder = BinderManager.getService(cxt, KEY_SHAREDPREF);

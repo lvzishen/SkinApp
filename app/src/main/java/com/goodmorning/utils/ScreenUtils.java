@@ -1,12 +1,16 @@
 package com.goodmorning.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+
+import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.Method;
 
@@ -81,4 +85,22 @@ public class ScreenUtils {
         }
     }
 
+    /**
+     * 屏幕实际像素
+     *
+     * @param context
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static int[] screenActualPix(Activity context) {
+        int[] WH = new int[2];
+        DisplayMetrics metrics = new DisplayMetrics();
+        context.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+
+        int screenWidth = metrics.widthPixels;
+
+        int screenHeight = metrics.heightPixels;
+        WH[0] = screenWidth;  // 屏幕宽
+        WH[1] = screenHeight;  // 屏幕高
+        return WH;
+    }
 }

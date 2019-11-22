@@ -3,6 +3,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,8 +18,11 @@ import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.manager.ContentManager;
+import com.goodmorning.manager.ImageLoader;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
+import com.goodmorning.utils.TextUtils;
 import com.goodmorning.view.LanguageDialog;
 import com.google.android.material.tabs.TabLayout;
 
@@ -26,6 +30,7 @@ import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +40,7 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager tabVpager;
+    private TextView tvTitle;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
     @Nullable
@@ -49,28 +55,50 @@ public class HomeFragment extends Fragment {
     private void initView(View view){
         tabLayout = view.findViewById(R.id.tablayout);
         tabVpager = view.findViewById(R.id.tab_viewpager);
+        tvTitle = view.findViewById(R.id.tv_title);
+        tvTitle.setText(getString(R.string.string_app_name));
     }
 
     private void initData(){
-        for (int i=0;i<10;i++){
-            TabFrament tabFrament = new TabFrament();
-            Bundle bundle1 = new Bundle();
-            bundle1.putString(MainActivity.CONTENT, getString(R.string.tab_greeting)+i);
-            tabFrament.setArguments(bundle1);
-            mFragmentList.add(tabFrament);
-        }
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
-        tabLayout.setupWithViewPager(tabVpager);
-
-        for (int i=0;i<10;i++){
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            View view = LayoutInflater.from(getContext()).inflate(R.layout.item_tab,null);
-            TextView tvTab = (TextView) view.findViewById(R.id.tv_item);
-            tvTab.setText(getString(R.string.tab_greeting)+i);
-            tab.setCustomView(view);
-        }
         requestChannelList();
+    }
+
+    /**
+     * 添加数据
+     */
+    private void addData(){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
+                ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
+                for (int i=0;i<categories.size();i++){
+                    TabFrament tabFrament = new TabFrament();
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putInt(MainActivity.CONTENT, categories.get(i).id);
+                    tabFrament.setArguments(bundle1);
+                    mFragmentList.add(tabFrament);
+                }
+                tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+                tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
+                tabLayout.setupWithViewPager(tabVpager);
+                for (int i=0;i<categories.size();i++){
+                    TabLayout.Tab tab = tabLayout.getTabAt(i);
+                    View view = LayoutInflater.from(getContext()).inflate(R.layout.item_tab,null);
+                    TextView tvTab = view.findViewById(R.id.tv_item);
+                    ImageView ivTab = view.findViewById(R.id.iv_tab);
+                    String text = categories.get(i).text;
+                    String[] txts = TextUtils.channelText(text);
+                    tvTab.setText(txts[0]);
+                    if (txts.length > 1){
+                        ImageLoader.displayImageByName(getContext(),txts[1],R.drawable.ic_launcher,R.drawable.ic_launcher,ivTab);
+                    }
+                    tab.setCustomView(view);
+                }
+
+            }
+        });
+
     }
 
     private void setListener(){
@@ -78,6 +106,7 @@ public class HomeFragment extends Fragment {
             languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
                 @Override
                 public void onLanguage(String languge) {
+                    //切换语言重新请求接口
                     languageDialog.dismiss();
                     ((MainActivity)HomeFragment.this.getActivity()).changeLanguage(languge);
                 }
@@ -102,10 +131,13 @@ public class HomeFragment extends Fragment {
                                 setListener();
                             }
                         });
-
                     }
-//                    data.languageItems
+                    if (data.langCategoryInfos != null){
+                        String json = JSON.toJSONString(data.langCategoryInfos);
+                        SharedPref.setString(getApplicationContext(),SharedPref.CHANNEL_CONTENT,json);
+                    }
                 }
+                addData();
             }
 
             @Override
@@ -115,7 +147,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFail(Exception e) {
-
+                addData();
             }
         });
     }
@@ -134,6 +166,14 @@ public class HomeFragment extends Fragment {
         @Override
         public int getCount() {
             return mFragmentList.size();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (languageDialog != null && languageDialog.isShowing()){
+            languageDialog.dismiss();
         }
     }
 }
