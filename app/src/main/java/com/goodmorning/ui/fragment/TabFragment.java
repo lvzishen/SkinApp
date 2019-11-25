@@ -37,7 +37,7 @@ import java.util.List;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
-public class TabFrament extends Fragment {
+public class TabFragment extends Fragment {
 
     private CommonRecyclerView mRecyclerView;
     private MainListAdapter mainListAdapter;

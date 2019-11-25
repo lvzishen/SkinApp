@@ -31,7 +31,6 @@ import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,11 +78,11 @@ public class HomeFragment extends Fragment {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 for (int i=0;i<categories.size();i++){
-                    TabFrament tabFrament = new TabFrament();
+                    TabFragment tabFragment = new TabFragment();
                     Bundle bundle1 = new Bundle();
                     bundle1.putInt(MainActivity.CONTENT, categories.get(i).id);
-                    tabFrament.setArguments(bundle1);
-                    mFragmentList.add(tabFrament);
+                    tabFragment.setArguments(bundle1);
+                    mFragmentList.add(tabFragment);
                 }
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
