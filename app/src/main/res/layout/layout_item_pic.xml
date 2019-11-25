@@ -8,7 +8,6 @@
     <com.goodmorning.view.image.NiceImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:corner_radius="@dimen/qb_px_10"
         android:id="@+id/iv_pic"/>
 
 </LinearLayout>

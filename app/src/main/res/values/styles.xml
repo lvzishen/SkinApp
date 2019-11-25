@@ -3,7 +3,75 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="color_999999">@color/color_999999</item>
+        <item name="tab_gb">@color/tab_gb</item>
+        <item name="tab_normal_color">@color/tab_normal_color</item>
+        <item name="tab_selected_color">@color/tab_selected_color</item>
+        <item name="selector_grey">@color/selector_grey</item>
+        <item name="color_444444">@color/color_444444</item>
+        <item name="color_444444_alpha_50">@color/color_444444_alpha_50</item>
+
+        <item name="color_909090">@color/color_909090</item>
+        <item name="color_ffd001">@color/color_ffd001</item>
+        <item name="color_ffd001_alpha_80">@color/color_ffd001_alpha_80</item>
+        <item name="color_B8B8B8">@color/color_B8B8B8</item>
+        <item name="color_9D9D9D">@color/color_9D9D9D</item>
+        <item name="color_bottom_bar">@color/color_F7F7F7</item>
+        <item name="color_EFEFEF">@color/color_EFEFEF</item>
+        <item name="color_white">@color/color_white</item>
+        <item name="home_tab_daytime">@drawable/home_tab_daytime</item>
+        <item name="home_tab_daytime_press">@drawable/home_tab_daytime_press</item>
+        <item name="home_tab_my_daytime">@drawable/home_tab_my_daytime</item>
+        <item name="home_tab_my_daytime_press">@drawable/home_tab_my_daytime_press</item>
+        <item name="selector_bg">@drawable/selector_bg</item>
+        <item name="status_color">@color/white</item>
+        <item name="text_item_bg">@drawable/shape_text_item_bg</item>
+        <item name="title_bg">@color/white</item>
+        <item name="title_text_color">@color/black</item>
+        <item name="tablayout_bg">@color/white</item>
+    </style>
+
+    <style name="AppThemeNight" parent="Theme.AppCompat.DayNight">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="color_999999">#999999</item>
+        <item name="tab_gb">#F3F5F4</item>
+        <item name="tab_normal_color">#FFB7B7B7</item>
+        <item name="tab_selected_color">#FFE9E9E9</item>
+        <item name="selector_grey">#DDDDDD</item>
+        <item name="color_444444">#444444</item>
+        <item name="color_444444_alpha_50">#80444444</item>
+
+        <item name="color_909090">#909090</item>
+        <item name="color_ffd001">#ffd001</item>
+        <item name="color_ffd001_alpha_80">#ccffd001</item>
+        <item name="color_B8B8B8">#9A9A9A</item>
+        <item name="color_9D9D9D">#9D9D9D</item>
+        <item name="color_bottom_bar">#FFffff00</item>
+        <item name="color_EFEFEF">#EFEFEF</item>
+        <item name="color_white">#ffffff</item>
+        <item name="home_tab_daytime">@drawable/home_tab_night</item>
+        <item name="home_tab_daytime_press">@drawable/home_tab_night_press</item>
+        <item name="home_tab_my_daytime">@drawable/home_tab_my_night</item>
+        <item name="home_tab_my_daytime_press">@drawable/home_tab_my_night_press</item>
+        <item name="selector_bg">@drawable/selector_bottom_bg</item>
+        <item name="status_color">@color/color_372A40</item>
+        <item name="text_item_bg">@drawable/shape_text_item_night_bg</item>
+        <item name="title_bg">@color/color_1B0325</item>
+        <item name="title_text_color">@color/white</item>
+        <item name="tablayout_bg">@color/color_1B0325</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">

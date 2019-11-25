@@ -60,16 +60,12 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
 
     private void refreshUI(ImageView imageView,DataListItem dataListItem){
         ViewGroup.LayoutParams layoutParams =  imageView.getLayoutParams();
-        float itemWidth = (ScreenUtils.screenActualPix(mContext)[0] - 10*3)/2;
+        float itemWidth = (ScreenUtils.screenActualPix(mContext)[0] - 20*3)/2;
         layoutParams.width = (int) itemWidth;
         float scale = (itemWidth+0f)/dataListItem.getWidth();
         layoutParams.height = (int) (dataListItem.getHeight()*scale);
         imageView.setLayoutParams(layoutParams);
         ImageUtil.displayImageView(mContext,imageView,dataListItem.getPicUrl(),layoutParams.width, layoutParams.height);
-//        Glide.with(mContext).
-//                load(dataListItem.getPicUrl()).
-//                override(layoutParams.width, layoutParams.height).
-//                into(imageView);
     }
 
     @Override
@@ -80,5 +76,14 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
     @Override
     public int getItemViewType(int position) {
         return mDataList.get(position).getType();
+    }
+
+    /**
+     * 获取数据item
+     * @param position 位置
+     * @return 数据内容
+     */
+    public DataListItem getDataItem(int position){
+        return mDataList.get(position);
     }
 }

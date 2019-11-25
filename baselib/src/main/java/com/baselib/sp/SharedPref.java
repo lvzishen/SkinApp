@@ -241,6 +241,10 @@ public class SharedPref {
      * 频道
      */
     public static final String CHANNEL_CONTENT = "channel_content";
+    /**
+     * 切换主题
+     */
+    public static final String IS_SWITCH_THEME = "isSwitchTheme";
 //    static SharedPrefStub getInstance(Context cxt) {
 //        return SharedPrefStub.getInstance(cxt);
 ////        IBinder binder = BinderManager.getService(cxt, KEY_SHAREDPREF);

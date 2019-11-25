@@ -3,15 +3,45 @@ package com.goodmorning.bean;
 import java.io.Serializable;
 
 public class DataListItem implements Serializable {
+    /**
+     * 内容类型：1：文本，2：图片，3：视频
+     */
     private int type;
+    /**
+     * 文本数据
+     */
     private String data;
+    /**
+     * 视频URL
+     */
     private String videoUrl;
+    /**
+     * 图片URL
+     */
     private String picUrl;
+    /**
+     * 视频缩略图
+     */
     private String videoThumbUrl;
+    /**
+     * 图片宽度
+     */
     private int width;
+    /**
+     * 图片高度
+      */
     private int height;
+    /**
+     * 文本
+     */
     public static final int DATA_TYPE_1 = 1;
+    /**
+     * 图片
+     */
     public static final int DATA_TYPE_2 = 2;
+    /**
+     * 视频
+     */
     public static final int DATA_TYPE_3 = 3;
 
     public int getType() {

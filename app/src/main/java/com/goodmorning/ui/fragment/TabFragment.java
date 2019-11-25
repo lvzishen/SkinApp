@@ -1,6 +1,6 @@
 package com.goodmorning.ui.fragment;
+import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,7 @@ import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.MainListAdapter;
 import com.goodmorning.bean.DataListItem;
+import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.CommonRecyclerViewAdapter;
 import com.goodmorning.view.recyclerview.decoration.DiverItemDecoration;
@@ -36,15 +37,14 @@ import java.util.List;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
-public class TabFrament extends Fragment {
+public class TabFragment extends Fragment {
 
     private CommonRecyclerView mRecyclerView;
     private MainListAdapter mainListAdapter;
     private CommonRecyclerViewAdapter mRecyclerViewAdapter;
-    private Handler handler = new Handler();
     private int sessionId;
     private int channelId;
-    private boolean isLoadMore = false;
+    private Activity mActivity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,9 +60,11 @@ public class TabFrament extends Fragment {
     }
 
     private void initData(){
-        channelId = getArguments().getInt(MainActivity.CONTENT);
-        mainListAdapter = new MainListAdapter(getActivity());
-//        mainListAdapter.addAll(addData());
+        mActivity = getActivity();
+        if (getArguments() != null){
+            channelId = getArguments().getInt(MainActivity.CONTENT);
+        }
+        mainListAdapter = new MainListAdapter(mActivity);
         mRecyclerViewAdapter = new CommonRecyclerViewAdapter(mainListAdapter);
         CustomRefreshHeader customRefreshHeader = new CustomRefreshHeader(getContext());
         mRecyclerView.setRefreshHeader(customRefreshHeader);
@@ -73,7 +75,7 @@ public class TabFrament extends Fragment {
         //防止item位置互换
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(new DiverItemDecoration(10,2));
+        mRecyclerView.addItemDecoration(new DiverItemDecoration(20,2));
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
@@ -85,23 +87,15 @@ public class TabFrament extends Fragment {
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                Log.e("TabFragment","加载更多===sessionId="+sessionId+" ;channelID="+channelId);
-                isLoadMore = true;
                 requestData();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mainListAdapter.addAll(addData());
-//                        mRecyclerView.setNoMore(true);
-//                    }
-//                },3000);
             }
         });
 
         mRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                //调换到详情页
+//                ActivityCtrl.gotoOpenActivity(mActivity,详情activity,mainListAdapter.getDataItem(position));
             }
         });
     }
@@ -111,12 +105,10 @@ public class TabFrament extends Fragment {
         MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
             @Override
             public void onSuccess(ContentList data) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshUIData(data);
-                    }
-                });
+                if (mActivity == null){
+                    return;
+                }
+                mActivity.runOnUiThread(() -> refreshUIData(data));
             }
 
             @Override
@@ -134,63 +126,39 @@ public class TabFrament extends Fragment {
     private void refreshUIData(ContentList data){
         if (data != null){
             ArrayList<ContentItem> contentItems = data.items;
+            List<DataListItem> datas = new ArrayList<>();
             if (contentItems.size() == 0){
                 mRecyclerView.setNoMore(true);
                 return;
             }
-            Log.e("TabFragment","contentItems="+contentItems.size()+" ;channelID="+channelId);
-            List<DataListItem> datas = new ArrayList<>();
-            if (contentItems != null){
-                for (ContentItem contentItem : contentItems){
-                    DataListItem dataItem = new DataListItem();
-                    if ("NEWS".equals(contentItem.contentType)){
-                        dataItem.setType(DataListItem.DATA_TYPE_1);
-                    }else if ("PHOTO".equals(contentItem.contentType)){
-                        dataItem.setType(DataListItem.DATA_TYPE_2);
-                    }else if ("VIDEO".equals(contentItem.contentType)){
-                        dataItem.setType(DataListItem.DATA_TYPE_3);
-                    }
-                    if (contentItem instanceof VideoItem){
-                        VideoItem videoItem = (VideoItem) contentItem;
-                        dataItem.setVideoUrl(videoItem.sourceUrl);
-                        if (videoItem.photoInfos.size() >= 1){
-                            dataItem.setPicUrl(videoItem.photoInfos.get(0).originUrl);
-                            dataItem.setVideoThumbUrl(videoItem.photoInfos.get(0).originUrl);
-                            dataItem.setWidth(videoItem.photoInfos.get(0).width);
-                            dataItem.setHeight(videoItem.photoInfos.get(0).height);
-                        }
-
-                    }else if (contentItem instanceof NewsItem){
-                        NewsItem newsItem = (NewsItem) contentItem;
-                        dataItem.setData(newsItem.title);
-                    }
-                    datas.add(dataItem);
+            for (ContentItem contentItem : contentItems){
+                DataListItem dataItem = new DataListItem();
+                if ("NEWS".equals(contentItem.contentType)){
+                    dataItem.setType(DataListItem.DATA_TYPE_1);
+                }else if ("PHOTO".equals(contentItem.contentType)){
+                    dataItem.setType(DataListItem.DATA_TYPE_2);
+                }else if ("VIDEO".equals(contentItem.contentType)){
+                    dataItem.setType(DataListItem.DATA_TYPE_3);
                 }
-                mainListAdapter.addAll(datas);
-                mRecyclerView.refreshComplete(20);
-//                if (isLoadMore){
-//                    isLoadMore = false;
-//                    mRecyclerView.refreshComplete(20);
-//                }
+                if (contentItem instanceof VideoItem){
+                    VideoItem videoItem = (VideoItem) contentItem;
+                    dataItem.setVideoUrl(videoItem.sourceUrl);
+                    if (videoItem.photoInfos.size() >= 1){
+                        dataItem.setPicUrl(videoItem.photoInfos.get(0).originUrl);
+                        dataItem.setVideoThumbUrl(videoItem.photoInfos.get(0).originUrl);
+                        dataItem.setWidth(videoItem.photoInfos.get(0).width);
+                        dataItem.setHeight(videoItem.photoInfos.get(0).height);
+                    }
 
+                }else if (contentItem instanceof NewsItem){
+                    NewsItem newsItem = (NewsItem) contentItem;
+                    dataItem.setData(newsItem.title);
+                }
+                datas.add(dataItem);
             }
+            mainListAdapter.addAll(datas);
+            mRecyclerView.refreshComplete(20);
         }
-    }
-    private List<DataListItem> addData(){
-        List<DataListItem> datas = new ArrayList<>();
-        for (int i=0;i<20;i++){
-            DataListItem dataItem = new DataListItem();
-            dataItem.setData(""+i);
-            if (i%2==0){
-                dataItem.setType(DataListItem.DATA_TYPE_2);
-            }else if (i%3==0){
-                dataItem.setType(DataListItem.DATA_TYPE_3);
-            }else {
-                dataItem.setType(DataListItem.DATA_TYPE_1);
-            }
-            datas.add(dataItem);
-        }
-        return datas;
     }
 
 }

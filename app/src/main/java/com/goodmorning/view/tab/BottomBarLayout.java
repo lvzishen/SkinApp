@@ -12,6 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.creativeindia.goodmorning.R;
 
+import org.thanos.netcore.bean.ContentItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +29,24 @@ public class BottomBarLayout extends LinearLayout implements ViewPager.OnPageCha
     private boolean mSmoothScroll;
 
     public BottomBarLayout(Context context) {
-        this(context, null);
+        super(context);
+        init(context,null);
     }
 
     public BottomBarLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context,attrs);
+        init(context,attrs);
     }
 
     public BottomBarLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context,attrs);
+//        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomBarLayout);
+//        mSmoothScroll = ta.getBoolean(R.styleable.BottomBarLayout_smoothScroll, false);
+//        ta.recycle();
+    }
+
+    private void init(Context context,AttributeSet attrs){
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomBarLayout);
         mSmoothScroll = ta.getBoolean(R.styleable.BottomBarLayout_smoothScroll, false);
         ta.recycle();
