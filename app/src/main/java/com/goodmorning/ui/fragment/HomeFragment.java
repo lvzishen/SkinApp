@@ -3,6 +3,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ import com.goodmorning.manager.ContentManager;
 import com.goodmorning.manager.ImageLoader;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
+import com.goodmorning.utils.HomeGreetingHelper;
 import com.goodmorning.utils.TextUtils;
 import com.goodmorning.view.LanguageDialog;
 import com.google.android.material.tabs.TabLayout;
@@ -30,7 +33,6 @@ import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,9 @@ public class HomeFragment extends Fragment {
     private TextView tvTitle;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
+    private AlphaAnimation mHideAnimation	= null;
+    private AlphaAnimation mShowAnimation	= null;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,8 +61,77 @@ public class HomeFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayout);
         tabVpager = view.findViewById(R.id.tab_viewpager);
         tvTitle = view.findViewById(R.id.tv_title);
-        tvTitle.setText(getString(R.string.string_app_name));
+
+//        SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE, language);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                hideTitleGreetings();
+            }
+        });
+//        tvTitle.setText(getString(R.string.string_app_name));
     }
+
+    private void hideTitleGreetings() {
+        String text = HomeGreetingHelper.showText(getApplicationContext());
+        if (android.text.TextUtils.isEmpty(text)) {
+            tvTitle.setText(getString(R.string.string_app_name));
+        } else {
+            tvTitle.setText(text);
+        }
+        setHideAnimation(tvTitle, 2000, new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                tvTitle.setText(getString(R.string.string_app_name));
+                setShowAnimation(tvTitle, 1000, null);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
+    /**
+     * View渐隐动画效果
+     */
+    private void setHideAnimation(View view, int duration, Animation.AnimationListener listener) {
+        if (null == view || duration < 0) {
+            return;
+        }
+        if (null != mHideAnimation) {
+            mHideAnimation.cancel();
+        }
+        mHideAnimation = new AlphaAnimation(1.0f, 0.0f);
+        mHideAnimation.setDuration(duration);
+        mHideAnimation.setFillAfter(true);
+        mHideAnimation.setAnimationListener(listener);
+        view.startAnimation(mHideAnimation);
+    }
+
+    /**
+     * View渐现动画效果
+     */
+    private void setShowAnimation(View view, int duration, Animation.AnimationListener listener) {
+        if (null == view || duration < 0) {
+            return;
+        }
+        if (null != mShowAnimation) {
+            mShowAnimation.cancel();
+        }
+        mShowAnimation = new AlphaAnimation(0.0f, 1.0f);
+        mShowAnimation.setDuration(duration);
+        mShowAnimation.setFillAfter(true);
+        mHideAnimation.setAnimationListener(listener);
+        view.startAnimation(mShowAnimation);
+    }
+
 
     private void initData(){
         requestChannelList();

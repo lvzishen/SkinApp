@@ -74,6 +74,7 @@ public class CloudPropertyManager {
     public static final String PATH_CLIPBROAD = CloudPropertyManagerBridge.PATH_CLIPBROAD;
     public static final String PATH_SHARE = CloudPropertyManagerBridge.PATH_SHARE;
 
+    public static final String PATH_HOME_GREETING = CloudPropertyManagerBridge.PATH_HOME_GREETING;
 
     public static final String PATH_HOME_BACK_GUIDE_PROP = CloudPropertyManagerBridge.PATH_HOME_BACK_GUIDE_PROP;
     public static final String PATH_UNINSTALL_POP_DIALOG_PROP = CloudPropertyManagerBridge.PATH_UNINSTALL_POP_DIALOG_PRO;
