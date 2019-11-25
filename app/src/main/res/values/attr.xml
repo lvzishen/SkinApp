@@ -92,5 +92,9 @@
     <attr name="home_tab_my_daytime_press" format="reference"/>
     <attr name="selector_bg" format="reference"/>
     <attr name="status_color" format="color"/>
+    <attr name="text_item_bg" format="reference"/>
+    <attr name="title_bg" format="color"/>
+    <attr name="title_text_color" format="color"/>
+    <attr name="tablayout_bg" format="color"/>
 
 </resources>

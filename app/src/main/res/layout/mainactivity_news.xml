@@ -37,7 +37,6 @@
                 app:textColorNormal="?attr/tab_normal_color"
                 app:textColorSelected="?attr/tab_selected_color"
                 app:itemTextSize="11sp"
-                app:itemMarginTop="-5dp"
                 app:openTouchBg="true"
                 app:touchDrawable="?attr/selector_bg"/>
 
@@ -51,7 +50,6 @@
                 app:textColorNormal="?attr/tab_normal_color"
                 app:textColorSelected="?attr/tab_selected_color"
                 app:itemTextSize="11sp"
-                app:itemMarginTop="-5dp"
                 app:openTouchBg="true"
                 app:touchDrawable="?attr/selector_bg"/>
 

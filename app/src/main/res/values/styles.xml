@@ -32,6 +32,10 @@
         <item name="home_tab_my_daytime_press">@drawable/home_tab_my_daytime_press</item>
         <item name="selector_bg">@drawable/selector_bg</item>
         <item name="status_color">@color/white</item>
+        <item name="text_item_bg">@drawable/shape_text_item_bg</item>
+        <item name="title_bg">@color/white</item>
+        <item name="title_text_color">@color/black</item>
+        <item name="tablayout_bg">@color/white</item>
     </style>
 
     <style name="AppThemeNight" parent="Theme.AppCompat.DayNight">
@@ -53,7 +57,7 @@
         <item name="color_909090">#909090</item>
         <item name="color_ffd001">#ffd001</item>
         <item name="color_ffd001_alpha_80">#ccffd001</item>
-        <item name="color_B8B8B8">#FFB8B8B8</item>
+        <item name="color_B8B8B8">#9A9A9A</item>
         <item name="color_9D9D9D">#9D9D9D</item>
         <item name="color_bottom_bar">#FFffff00</item>
         <item name="color_EFEFEF">#EFEFEF</item>
@@ -63,7 +67,11 @@
         <item name="home_tab_my_daytime">@drawable/home_tab_my_night</item>
         <item name="home_tab_my_daytime_press">@drawable/home_tab_my_night_press</item>
         <item name="selector_bg">@drawable/selector_bottom_bg</item>
-        <item name="status_color">#372A40</item>
+        <item name="status_color">@color/color_372A40</item>
+        <item name="text_item_bg">@drawable/shape_text_item_night_bg</item>
+        <item name="title_bg">@color/color_1B0325</item>
+        <item name="title_text_color">@color/white</item>
+        <item name="tablayout_bg">@color/color_1B0325</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">

@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.ads.lib.util.PageUtil;
+
+import java.io.Serializable;
+
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 /**
@@ -11,6 +15,7 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
  */
 
 public class ActivityCtrl {
+    public static final String TRANSFER_DATA = "transfer_data";
     /**
      * 跳转到指定的 {@link Activity}。
      */
@@ -48,4 +53,9 @@ public class ActivityCtrl {
         context.startActivity(intent);
     }
 
+    public static void gotoOpenActivity(Context context, Class<? extends Activity> activityClass, Serializable obj){
+        Intent intent = new Intent(getApplicationContext(), activityClass);
+        intent.putExtra(TRANSFER_DATA,obj);
+        context.startActivity(intent);
+    }
 }

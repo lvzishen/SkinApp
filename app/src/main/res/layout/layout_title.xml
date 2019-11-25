@@ -6,12 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/qb_px_56"
         android:orientation="horizontal"
-        android:background="@color/white">
+        android:background="?attr/title_bg">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="?attr/title_text_color"
             android:textSize="19sp"
             android:id="@+id/tv_title"
             android:layout_gravity="center_vertical"

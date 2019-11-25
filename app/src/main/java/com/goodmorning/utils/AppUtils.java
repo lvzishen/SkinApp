@@ -38,7 +38,7 @@ public class AppUtils {
     public static int changeStatusColor(){
         boolean isSwitchTheme = SharedPref.getBoolean(getApplicationContext(),SharedPref.IS_SWITCH_THEME,false);
         if (isSwitchTheme){
-            return ResUtils.getColor(R.color.color_372A40);
+            return ResUtils.getColor(R.color.color_1B0325);
         }else {
             return ResUtils.getColor(R.color.white);
         }
