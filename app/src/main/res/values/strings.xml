@@ -86,5 +86,12 @@
     <string name="news_ui__save_successful">Saved in Album</string>
     <string name="news_ui__save_failure">Save unsuccessful, please try again later</string>
 
+    <string name="whatsapp">WhatsApp</string>
+    <string name="facebook">FaceBook</string>
+    <string name="instagram">Instagram</string>
+    <string name="message">Message</string>
+    <string name="copy">Copy</string>
+    <string name="more">More</string>
+    <string name="save">Save</string>
 
 </resources>

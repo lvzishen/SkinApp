@@ -13,6 +13,10 @@ import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.MainListAdapter;
 import com.goodmorning.bean.DataListItem;
+import com.goodmorning.ui.activity.PicDetailActivity;
+import com.goodmorning.ui.activity.TextDetailActivity;
+import com.goodmorning.ui.activity.VideoDetailActivity;
+import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.CommonRecyclerViewAdapter;
 import com.goodmorning.view.recyclerview.decoration.DiverItemDecoration;
@@ -89,7 +93,13 @@ public class TabFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 //调换到详情页
-//                ActivityCtrl.gotoOpenActivity(mActivity,详情activity,mainListAdapter.getDataItem(position));
+                if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_1) {
+                    ActivityCtrl.gotoOpenActivity(mActivity, TextDetailActivity.class, mainListAdapter.getDataItem(position));
+                } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_2) {
+                    ActivityCtrl.gotoOpenActivity(mActivity, PicDetailActivity.class, mainListAdapter.getDataItem(position));
+                } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_3) {
+                    ActivityCtrl.gotoOpenActivity(mActivity, VideoDetailActivity.class, mainListAdapter.getDataItem(position));
+                }
             }
         });
     }

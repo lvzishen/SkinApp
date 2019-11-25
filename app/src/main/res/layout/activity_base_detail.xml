@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/qb_px_56">
+
+        <FrameLayout
+            android:id="@+id/back"
+            android:layout_width="@dimen/qb_px_54"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_background">
+
+            <ImageView
+                android:layout_width="@dimen/qb_px_24"
+                android:layout_height="@dimen/qb_px_24"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/qb_px_15"
+                android:src="@drawable/ic_back" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/back"
+            android:layout_toRightOf="@+id/back"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/qb_sp_18" />
+
+        <FrameLayout
+            android:id="@+id/collect"
+            android:layout_width="54dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_background"
+            android:paddingLeft="@dimen/qb_px_15">
+
+            <ImageView
+                android:id="@+id/iscollect"
+                android:layout_width="@dimen/qb_px_24"
+                android:layout_height="@dimen/qb_px_24"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/selector_is_collect" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+
+        <TextView
+            android:id="@+id/text_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/qb_px_22"
+            android:layout_marginTop="@dimen/qb_px_18"
+            android:layout_marginRight="@dimen/qb_px_22"
+            android:layout_marginBottom="@dimen/qb_px_18"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/qb_sp_24"
+            android:visibility="gone" />
+
+        <com.goodmorning.view.image.RoundedImageView
+            android:id="@+id/image_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/qb_px_30"
+            android:layout_marginTop="@dimen/qb_px_10"
+            android:layout_marginRight="@dimen/qb_px_30"
+            android:layout_marginBottom="@dimen/qb_px_10"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:id="@+id/video_detail"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:visibility="visible">
+
+            <cn.jzvd.JzvdStd
+                android:id="@+id/jz_video"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <com.goodmorning.view.recyclerview.normal.CommonRecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.1" />
+
+
+</LinearLayout>
