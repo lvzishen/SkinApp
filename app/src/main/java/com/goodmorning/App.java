@@ -296,7 +296,7 @@ public class App extends Application {
 
                 @Override
                 public String getHost() {
-                    return "http://push.hotvideo360.com/v1/";
+                    return "http://push.luckmorning.com/v1/";
                 }
             }).build();
 
@@ -394,9 +394,9 @@ public class App extends Application {
             protected String onCreateCrashUrlHost() {
                 if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                     return CloudPropertyManager.getString(getApplicationContext(), "booster_profile.prop",
-                            "cloud.crash", "crash.hotvideo360.com");
+                            "cloud.crash", "crash.luckmorning.com");
                 }
-                return "crash.hotvideo360.com";
+                return "crash.luckmorning.com";
             }
         };
 
@@ -502,7 +502,7 @@ public class App extends Application {
             if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                 if (XalContext.getApplicationContext() != null) {
                     String adServerUrl = CloudPropertyManager.getString(XalContext.getApplicationContext(), "booster_profile.prop",
-                            "alex.ad", "https://sbiz.hotvideo360.com/v5/s/w");
+                            "alex.ad", "https://sbiz.luckmorning.com/v5/s/w");
                     if (DEBUG) {
                         Log.d(TAG, ": " + adServerUrl);
                     }
@@ -510,7 +510,7 @@ public class App extends Application {
                 }
 
             }
-            return "https://sbiz.hotvideo360.com/v5/s/w"; //上传广告打点的地址
+            return "https://sbiz.luckmorning.com/v5/s/w"; //上传广告打点的地址
         }
 
         @Override
@@ -518,14 +518,14 @@ public class App extends Application {
             if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                 if (XalContext.getApplicationContext() != null) {
                     String serverUrl = CloudPropertyManager.getString(XalContext.getApplicationContext(), "booster_profile.prop",
-                            "alex.server", "https://s.hotvideo360.com/v5/r/w");
+                            "alex.server", "https://s.luckmorning.com/v5/r/w");
                     if (DEBUG) {
                         Log.d(TAG, ": " + serverUrl);
                     }
                     return serverUrl;
                 }
             }
-            return "https://s.hotvideo360.com/v5/r/w";//上传产品打点的地址
+            return "https://s.luckmorning.com/v5/r/w";//上传产品打点的地址
         }
 
     }
@@ -556,18 +556,18 @@ public class App extends Application {
             public String getUserTagServerHost() {//用户标签的接口
                 if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                     return CloudPropertyManager.getString(getApplicationContext(), "booster_profile.prop",
-                            "cloud.user.tag", "http://u.hotvideo360.com");
+                            "cloud.user.tag", "http://u.luckmorning.com");
                 }
-                return "http://u.hotvideo360.com";//r.hotvideo360.com/v2/r/ra
+                return "http://u.luckmorning.com";//r.luckmorning.com/v2/r/ra
             }
 
             @Override
             public String getActivateServerHost() {//激活的接口
                 if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                     return CloudPropertyManager.getString(getApplicationContext(), "booster_profile.prop",
-                            "cloud.active", "http://r.hotvideo360.com");
+                            "cloud.active", "http://r.luckmorning.com");
                 }
-                return "http://r.hotvideo360.com";
+                return "http://r.luckmorning.com";
             }
         });
 
@@ -578,18 +578,18 @@ public class App extends Application {
             public String getAttributeSyncUrl() {
                 if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                     return CloudPropertyManager.getString(getApplicationContext(), "booster_profile.prop",
-                            "cloud.att.url", "http://u.hotvideo360.com/v6/c/u");
+                            "cloud.att.url", "http://u.luckmorning.com/v6/c/u");
                 }
-                return "http://u.hotvideo360.com/v6/c/u";
+                return "http://u.luckmorning.com/v6/c/u";
             }
 
             @Override
             public String getFileSyncUrl() {
                 if (DEBUG) {//"http://test.u2.api.apuscn.com/v6/c/u"
                     return CloudPropertyManager.getString(getApplicationContext(), "booster_profile.prop",
-                            "cloud.file.url", "http://u.hotvideo360.com/v6/f/u");
+                            "cloud.file.url", "http://u.luckmorning.com/v6/f/u");
                 }
-                return "http://u.hotvideo360.com/v6/f/u";
+                return "http://u.luckmorning.com/v6/f/u";
             }
         });
 

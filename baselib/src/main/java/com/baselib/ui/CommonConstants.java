@@ -7,8 +7,8 @@ package com.baselib.ui;
 public class CommonConstants {
 
 
-    public static final String USER_AGREEMENT_URL = "http://www.hotvideo360.com/policy/user_privacy.html";
-    public static final String PRIVACY_POLICY_URL = "http://www.hotvideo360.com/policy/privacy.html";
+    public static final String USER_AGREEMENT_URL = "http://www.luckmorning.com/policy/user_privacy.html";
+    public static final String PRIVACY_POLICY_URL = "http://www.luckmorning.com/policy/privacy.html";
 
     public static final String KEY_HAS_AGREEMENT_SPLASH = "key_has_agreement_splash";
     public static final String KEY_HAS_SHOWED_PRESS_AGREEMENT = "key_has_showed_press_agreement";
