@@ -96,5 +96,6 @@
     <attr name="title_bg" format="color"/>
     <attr name="title_text_color" format="color"/>
     <attr name="tablayout_bg" format="color"/>
+    <attr name="text_item_color" format="color"/>
 
 </resources>

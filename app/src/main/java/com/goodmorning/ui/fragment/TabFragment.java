@@ -1,7 +1,6 @@
 package com.goodmorning.ui.fragment;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.MainListAdapter;
 import com.goodmorning.bean.DataListItem;
-import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.CommonRecyclerViewAdapter;
 import com.goodmorning.view.recyclerview.decoration.DiverItemDecoration;
@@ -23,7 +20,6 @@ import com.goodmorning.view.recyclerview.interfaces.OnItemClickListener;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
-
 import org.thanos.netcore.bean.NewsItem;
 import org.thanos.netcore.bean.VideoItem;
 import org.thanos.netcore.MorningDataAPI;
@@ -31,10 +27,8 @@ import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ContentItem;
 import org.thanos.netcore.bean.ContentList;
 import org.thanos.netcore.internal.requestparam.ContentListRequestParam;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class TabFragment extends Fragment {

@@ -13,6 +13,7 @@
         android:maxLines="3"
         android:ellipsize="end"
         android:text="文本"
+        android:textColor="?attr/text_item_color"
         android:id="@+id/tv_txt"/>
 
 

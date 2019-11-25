@@ -1,10 +1,7 @@
 package com.goodmorning.utils;
-
 import android.app.Activity;
-
 import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
-
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class AppUtils {
@@ -14,7 +11,7 @@ public class AppUtils {
      */
     public static void changeTheme(Activity activity){
         boolean isSwitchTheme = SharedPref.getBoolean(getApplicationContext(),SharedPref.IS_SWITCH_THEME,false);
-        if (isSwitchTheme){
+        if (isSwitchTheme() || isSwitchTheme){
             activity.setTheme(R.style.AppThemeNight);
         }else {
             activity.setTheme(R.style.AppTheme);
@@ -37,7 +34,7 @@ public class AppUtils {
      */
     public static int changeStatusColor(){
         boolean isSwitchTheme = SharedPref.getBoolean(getApplicationContext(),SharedPref.IS_SWITCH_THEME,false);
-        if (isSwitchTheme){
+        if (isSwitchTheme() || isSwitchTheme){
             return ResUtils.getColor(R.color.color_1B0325);
         }else {
             return ResUtils.getColor(R.color.white);
@@ -50,10 +47,23 @@ public class AppUtils {
      */
     public static boolean isStatusLight(){
         boolean isSwitchTheme = SharedPref.getBoolean(getApplicationContext(),SharedPref.IS_SWITCH_THEME,false);
-        if (isSwitchTheme){
+        if (isSwitchTheme() || isSwitchTheme){
             return false;
         }else {
             return true;
+        }
+    }
+
+    /**
+     * 根据时间校验是否切换主题
+     * @return
+     */
+    public static boolean isSwitchTheme(){
+        int timeHour = TimeUtils.getHourTime();
+        if (timeHour >= 18 || timeHour <= 6){
+            return true;
+        }else {
+            return false;
         }
     }
 }

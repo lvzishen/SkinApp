@@ -2,13 +2,9 @@ package com.goodmorning.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.utils.ImageUtil;
