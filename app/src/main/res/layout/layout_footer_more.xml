@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
+            android:textColor="?attr/text_item_color"
             android:id="@+id/tv_more"/>
 
     </LinearLayout>
