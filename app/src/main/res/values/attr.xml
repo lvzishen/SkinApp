@@ -71,4 +71,26 @@
         <attr name="mask_color" format="color" />
     </declare-styleable>
 
+    <attr name="tab_gb" format="color"/>
+    <attr name="tab_normal_color" format="color"/>
+    <attr name="tab_selected_color" format="color"/>
+    <attr name="selector_grey" format="color"/>
+    <attr name="color_444444" format="color"/>
+    <attr name="color_444444_alpha_50" format="color"/>
+    <attr name="color_909090" format="color"/>
+    <attr name="color_ffd001" format="color"/>
+    <attr name="color_ffd001_alpha_80" format="color"/>
+    <attr name="color_B8B8B8" format="color"/>
+    <attr name="color_9D9D9D" format="color"/>
+    <attr name="color_bottom_bar" format="color"/>
+    <attr name="color_EFEFEF" format="color"/>
+    <attr name="color_999999" format="color"/>
+    <attr name="color_white" format="color"/>
+    <attr name="home_tab_daytime" format="reference"/>
+    <attr name="home_tab_daytime_press" format="reference"/>
+    <attr name="home_tab_my_daytime" format="reference"/>
+    <attr name="home_tab_my_daytime_press" format="reference"/>
+    <attr name="selector_bg" format="reference"/>
+    <attr name="status_color" format="color"/>
+
 </resources>

@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.config.GlobalConfig;
 
 
@@ -104,7 +105,7 @@ public class ImageUtil {
         if (width > 0 && heghit > 0 && !isGif) {
             drawableTypeRequest.override(width, heghit);//加载特定宽度高度的图片
         }
-        drawableTypeRequest.transform(new CenterCrop(context));
+        drawableTypeRequest.transform(new GlideRoundTransform(context, 6));
         drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/color_white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -26,35 +25,35 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_alignParentBottom="true"
-            android:background="@color/color_F7F7F7">
+            android:background="?attr/color_bottom_bar">
 
             <com.goodmorning.view.tab.BottomBarItem
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:iconNormal="@drawable/home_tab_daytime"
-                app:iconSelected="@drawable/home_tab_daytime_press"
+                app:iconNormal="?attr/home_tab_daytime"
+                app:iconSelected="?attr/home_tab_daytime_press"
                 app:itemText="@string/tab_greeting"
-                app:textColorNormal="@color/tab_normal_color"
-                app:textColorSelected="@color/tab_selected_color"
+                app:textColorNormal="?attr/tab_normal_color"
+                app:textColorSelected="?attr/tab_selected_color"
                 app:itemTextSize="11sp"
                 app:itemMarginTop="-5dp"
                 app:openTouchBg="true"
-                app:touchDrawable="@drawable/selector_bg"/>
+                app:touchDrawable="?attr/selector_bg"/>
 
             <com.goodmorning.view.tab.BottomBarItem
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:iconNormal="@drawable/home_tab_my_daytime"
-                app:iconSelected="@drawable/home_tab_my_daytime_press"
+                app:iconNormal="?attr/home_tab_my_daytime"
+                app:iconSelected="?attr/home_tab_my_daytime_press"
                 app:itemText="@string/tab_my"
-                app:textColorNormal="@color/tab_normal_color"
-                app:textColorSelected="@color/tab_selected_color"
+                app:textColorNormal="?attr/tab_normal_color"
+                app:textColorSelected="?attr/tab_selected_color"
                 app:itemTextSize="11sp"
                 app:itemMarginTop="-5dp"
                 app:openTouchBg="true"
-                app:touchDrawable="@drawable/selector_bg"/>
+                app:touchDrawable="?attr/selector_bg"/>
 
 
         </com.goodmorning.view.tab.BottomBarLayout>

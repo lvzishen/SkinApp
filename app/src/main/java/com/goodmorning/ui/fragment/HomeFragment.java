@@ -1,4 +1,5 @@
 package com.goodmorning.ui.fragment;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
     private TextView tvTitle;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
+    private Activity mActivity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData(){
+        mActivity = getActivity();
         requestChannelList();
     }
 
@@ -67,7 +70,10 @@ public class HomeFragment extends Fragment {
      * 添加数据
      */
     private void addData(){
-        getActivity().runOnUiThread(new Runnable() {
+        if (mActivity == null){
+            return;
+        }
+        mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
@@ -108,7 +114,10 @@ public class HomeFragment extends Fragment {
                 public void onLanguage(String languge) {
                     //切换语言重新请求接口
                     languageDialog.dismiss();
-                    ((MainActivity)HomeFragment.this.getActivity()).changeLanguage(languge);
+                    if (mActivity == null){
+                        return;
+                    }
+                    ((MainActivity)mActivity).changeLanguage(languge);
                 }
             });
         }
@@ -119,14 +128,17 @@ public class HomeFragment extends Fragment {
         MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(true, 0L), new ResultCallback<ChannelList>() {
             @Override
             public void onSuccess(ChannelList data) {
+                if (mActivity == null){
+                    return;
+                }
                 if (data != null){
                     if (CheckUtils.isShowLanguage()){
                         String json = JSON.toJSONString(data.languageItems);
                         SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE_TYPE,json);
-                        getActivity().runOnUiThread(new Runnable() {
+                        mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                languageDialog = new LanguageDialog(getActivity());
+                                languageDialog = new LanguageDialog(mActivity);
                                 languageDialog.show();
                                 setListener();
                             }

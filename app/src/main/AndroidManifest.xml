@@ -98,8 +98,7 @@
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode"
             android:label="@string/string_app_name"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"/>
 
         <service
             android:name="com.clean.binder.mgr.BinderService"

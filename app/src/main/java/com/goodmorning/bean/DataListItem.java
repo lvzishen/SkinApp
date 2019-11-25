@@ -10,8 +10,17 @@ public class DataListItem implements Serializable {
     private String videoThumbUrl;
     private int width;
     private int height;
+    /**
+     * 文本
+     */
     public static final int DATA_TYPE_1 = 1;
+    /**
+     * 图片
+     */
     public static final int DATA_TYPE_2 = 2;
+    /**
+     * 视频
+     */
     public static final int DATA_TYPE_3 = 3;
 
     public int getType() {

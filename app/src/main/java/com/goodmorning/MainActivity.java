@@ -3,6 +3,7 @@ package com.goodmorning;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
+import com.goodmorning.utils.AppUtils;
 import com.goodmorning.view.tab.BottomBarLayout;
 
 
@@ -31,19 +33,18 @@ public class MainActivity extends BaseActivity {
     private ViewPager mVpContent;
     private BottomBarLayout mBottomBarLayout;
     private List<Fragment> mFragmentList = new ArrayList<>();
-
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppUtils.changeTheme(this);
         AdLifecyclerManager.getInstance(getApplicationContext()).setFixedActivity(this);
         setContentView(R.layout.mainactivity_news);
-        setStatusBarColor(getResources().getColor(R.color.transparent));
-        setAndroidNativeLightStatusBar(true);
+        setStatusBarColor(AppUtils.changeStatusColor());
+        setAndroidNativeLightStatusBar(AppUtils.isStatusLight());
         initView();
         initData();
-
-
         //1
 //        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
 //        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {

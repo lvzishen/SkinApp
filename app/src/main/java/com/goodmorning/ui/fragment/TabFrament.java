@@ -1,4 +1,5 @@
 package com.goodmorning.ui.fragment;
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class TabFrament extends Fragment {
     private int sessionId;
     private int channelId;
     private boolean isLoadMore = false;
+    private Activity mActivity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,8 +62,9 @@ public class TabFrament extends Fragment {
     }
 
     private void initData(){
+        mActivity = getActivity();
         channelId = getArguments().getInt(MainActivity.CONTENT);
-        mainListAdapter = new MainListAdapter(getActivity());
+        mainListAdapter = new MainListAdapter(mActivity);
 //        mainListAdapter.addAll(addData());
         mRecyclerViewAdapter = new CommonRecyclerViewAdapter(mainListAdapter);
         CustomRefreshHeader customRefreshHeader = new CustomRefreshHeader(getContext());
@@ -111,7 +114,10 @@ public class TabFrament extends Fragment {
         MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
             @Override
             public void onSuccess(ContentList data) {
-                getActivity().runOnUiThread(new Runnable() {
+                if (mActivity == null){
+                    return;
+                }
+                mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         refreshUIData(data);
