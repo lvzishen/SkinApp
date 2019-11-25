@@ -1,6 +1,7 @@
 package com.goodmorning.ui.fragment;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.goodmorning.view.recyclerview.CommonRecyclerViewAdapter;
 import com.goodmorning.view.recyclerview.decoration.DiverItemDecoration;
 import com.goodmorning.view.recyclerview.interfaces.OnItemClickListener;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
+import com.goodmorning.view.recyclerview.interfaces.OnRefreshListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
 import org.thanos.netcore.bean.NewsItem;
@@ -66,7 +68,7 @@ public class TabFragment extends Fragment {
         mRecyclerViewAdapter = new CommonRecyclerViewAdapter(mainListAdapter);
         CustomRefreshHeader customRefreshHeader = new CustomRefreshHeader(getContext());
         mRecyclerView.setRefreshHeader(customRefreshHeader);
-        mRecyclerView.setPullRefreshEnabled(false);
+        mRecyclerView.setPullRefreshEnabled(true);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -85,6 +87,15 @@ public class TabFragment extends Fragment {
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                requestData();
+            }
+        });
+
+        mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                sessionId = Math.abs((int) System.currentTimeMillis());
+                mainListAdapter.clear();
                 requestData();
             }
         });
@@ -133,7 +144,6 @@ public class TabFragment extends Fragment {
             List<DataListItem> datas = new ArrayList<>();
             if (contentItems.size() == 0){
                 mRecyclerView.setNoMore(true);
-                return;
             }
             for (ContentItem contentItem : contentItems){
                 DataListItem dataItem = new DataListItem();
@@ -161,7 +171,7 @@ public class TabFragment extends Fragment {
                 datas.add(dataItem);
             }
             mainListAdapter.addAll(datas);
-            mRecyclerView.refreshComplete(20);
+            mRecyclerView.refreshComplete(0);
         }
     }
 

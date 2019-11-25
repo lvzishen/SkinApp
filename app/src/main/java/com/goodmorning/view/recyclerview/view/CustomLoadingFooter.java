@@ -2,6 +2,7 @@ package com.goodmorning.view.recyclerview.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,19 +65,22 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
             case Normal:
                 setOnClickListener(null);
                 mMoreContainer.setVisibility(GONE);
+                tvMore.setVisibility(INVISIBLE);
                 break;
             case Loading:
                 setOnClickListener(null);
-//                mMoreContainer.setVisibility(GONE);
+                mMoreContainer.setVisibility(GONE);
+                tvMore.setVisibility(INVISIBLE);
 //                tvMore.setText("正在加载...");
                 break;
             case NoMore:
                 setOnClickListener(null);
                 mMoreContainer.setVisibility(VISIBLE);
+                tvMore.setVisibility(VISIBLE);
                 tvMore.setText("已经到底了");
                 break;
             case NetWorkError:
-//                mMoreContainer.setVisibility(GONE);
+                mMoreContainer.setVisibility(GONE);
 //                llFooter.setVisibility(GONE);
 //                tvMore.setText("点击重新加载");
                 break;
