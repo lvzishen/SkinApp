@@ -94,4 +94,8 @@
     <string name="more">More</string>
     <string name="save">Save</string>
 
+    <string name="collect">Collect</string>
+    <string name="language">Language</string>
+    <string name="check_and_update">Check And Update</string>
+    <string name="settings">Settings</string>
 </resources>

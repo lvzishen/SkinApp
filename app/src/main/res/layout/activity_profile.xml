@@ -2,37 +2,181 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/selector_background">
 
         <ImageView
             android:id="@+id/account_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/cardview_dark_background"
-            android:scaleType="centerCrop" />
+            android:layout_width="@dimen/qb_px_72"
+            android:layout_height="@dimen/qb_px_72"
+            android:layout_margin="@dimen/qb_px_21"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_my_normal" />
 
         <TextView
             android:id="@+id/account_info"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
             android:padding="10dp" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/qb_px_10"
+            android:background="@drawable/ic_list_more" />
 
     </LinearLayout>
 
-<!--    <Button
-        android:id="@+id/login_out"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login Out"
-        />-->
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/selector_background">
+
+        <ImageView
+            android:layout_width="@dimen/qb_px_24"
+            android:layout_height="@dimen/qb_px_24"
+            android:layout_marginLeft="@dimen/qb_px_21"
+            android:layout_marginTop="@dimen/qb_px_21"
+            android:layout_marginBottom="@dimen/qb_px_21"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_my_collect" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:paddingLeft="18dp"
+            android:text="@string/collect"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/qb_px_21"
+        android:background="@color/color_block_gray"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/selector_background">
+
+        <ImageView
+            android:layout_width="@dimen/qb_px_24"
+            android:layout_height="@dimen/qb_px_24"
+            android:layout_marginLeft="@dimen/qb_px_21"
+            android:layout_marginTop="@dimen/qb_px_21"
+            android:layout_marginBottom="@dimen/qb_px_21"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_my_language" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:padding="18dp"
+            android:text="@string/language"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/qb_px_10"
+            android:background="@drawable/ic_list_more" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/qb_px_21"
+        android:background="@color/color_block_gray"/>
+    <LinearLayout
+        android:id="@+id/ll_check_and_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/selector_background">
+
+        <ImageView
+            android:layout_width="@dimen/qb_px_24"
+            android:layout_height="@dimen/qb_px_24"
+            android:layout_marginLeft="@dimen/qb_px_21"
+            android:layout_marginTop="@dimen/qb_px_21"
+            android:layout_marginBottom="@dimen/qb_px_21"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_my_update" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:padding="18dp"
+            android:text="@string/check_and_update"/>
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dimen_3dp"
+            android:textColor="@color/color_bbbbbb"
+            android:text="V"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/qb_px_10"
+            android:background="@drawable/ic_list_more" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/qb_px_21"
+        android:background="@color/color_block_gray"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/selector_background">
+
+        <ImageView
+            android:layout_width="@dimen/qb_px_24"
+            android:layout_height="@dimen/qb_px_24"
+            android:layout_marginLeft="@dimen/qb_px_21"
+            android:layout_marginTop="@dimen/qb_px_21"
+            android:layout_marginBottom="@dimen/qb_px_21"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_my_set" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:padding="18dp"
+            android:text="@string/settings"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/qb_px_21"
+        android:background="@color/color_block_gray"/>
+    <!--    <Button
+            android:id="@+id/login_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login Out"
+            />-->
 
 
 </LinearLayout>

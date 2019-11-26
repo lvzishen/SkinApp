@@ -27,4 +27,5 @@
     <color name="light_black">#1a000000</color>
     <color name="color_spread">#65ABFF</color>
     <color name="color_white_tran">#00ffffff</color>
+    <color name="color_bbbbbb">#bbbbbb</color>
 </resources>
