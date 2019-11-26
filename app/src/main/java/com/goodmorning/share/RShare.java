@@ -1,4 +1,4 @@
-package com.goodmorning.share.share;
+package com.goodmorning.share;
 
 public class RShare {
 

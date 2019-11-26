@@ -1,4 +1,4 @@
-package com.goodmorning.share.whatsapp;
+package com.goodmorning.share;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.goodmorning.share.share.RShare;
-import com.goodmorning.share.share.RSharePlatform;
 import com.goodmorning.share.util.RFileHelper;
 import com.goodmorning.share.util.RPlatformHelper;
 
@@ -77,7 +75,7 @@ final public class RWhatsAppManager extends RShare {
     }
 
 
-    private void shareLink(Context context) {
+    public void shareText(Context context,String text) {
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.WhatsApp)) {
             Toast.makeText(context, "请先安装WhatsApp...", Toast.LENGTH_SHORT).show();
             return;
@@ -85,7 +83,7 @@ final public class RWhatsAppManager extends RShare {
         String type = "text/*";
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType(type);
-        share.putExtra(Intent.EXTRA_TEXT, "分享链接：https://juejin.im/user/568e61dc60b2ad083a795554/activities");
+        share.putExtra(Intent.EXTRA_TEXT, text);
         share.setPackage(WHATSAPP_PACKAGE_NAME);
         context.startActivity(Intent.createChooser(share, "Share to"));
     }
@@ -108,7 +106,7 @@ final public class RWhatsAppManager extends RShare {
 //        startActivity(Intent.createChooser(share, "Share to"));
 //    }
 
-    private void shareVideo(Context context, String mediaPath) {
+    public void shareVideo(Context context, String mediaPath) {
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.WhatsApp)) {
             Toast.makeText(context, "请先安装WhatsApp...", Toast.LENGTH_SHORT).show();
             return;

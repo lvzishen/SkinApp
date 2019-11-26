@@ -1,15 +1,12 @@
-package com.goodmorning.share.instagram;
+package com.goodmorning.share;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 
-import com.goodmorning.share.share.RShare;
-import com.goodmorning.share.share.RSharePlatform;
 import com.goodmorning.share.util.RFileHelper;
 import com.goodmorning.share.util.RPlatformHelper;
 
@@ -17,7 +14,7 @@ import com.goodmorning.share.util.RPlatformHelper;
  * Instagram <a href=https://www.instagram.com/developer/mobile-sharing/android-intents/>Instagram
  * Android分享</a>
  */
-final public class RInstagramManager extends RShare {
+final public class RInstagramManager extends RShare implements ISaveImage {
 
     private final String TAG = "RInstagramManager===>";
 
@@ -52,47 +49,15 @@ final public class RInstagramManager extends RShare {
         context.startActivity(intent);
     }
 
-    public void shareImage(Context context, Bitmap image) {
 
+    @Override
+    public String saveImage(Context context, String picName, Bitmap bitmap) {
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.Instagram)) {
             Toast.makeText(context, "Instagram 未安装", Toast.LENGTH_SHORT).show();
-            return;
+            return null;
         }
         RFileHelper.deleteExternalShareDirectory(context);
-        RFileHelper.saveBitmapToExternalSharePath(context, image);
-//        /**
-//         *
-//         * 系统分享.
-//         * **/
-//        if (mode == Mode.System) {
-//
-//            Uri imageUri;
-//            /**
-//             *
-//             * Android 7.0 以后更改了获取文件的 Uri 策略, 使用 FileProvider 来获取文件的 Uri.
-//             * **/
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                String authority = context.getPackageName() + ".fileprovider";
-//                imageUri = FileProvider.getUriForFile(
-//                        context,
-//                        authority,
-//                        RFileHelper.getExternalSharePathFiles(context).get(0));
-//            } else {
-//
-//                /**
-//                 * Android 7.0 之前获取文件 Uri 的方法.
-//                 * **/
-//                imageUri = RFileHelper.getExternalSharePathFileUris(context).get(0);
-//            }
-//            Intent intent = new Intent(Intent.ACTION_SEND);
-//            intent.setType("image/jpeg");
-//            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//            intent.putExtra(Intent.EXTRA_STREAM, imageUri );
-//            context.startActivity(Intent.createChooser(intent, "分享"));
-//
-//
-//        } else {
-
+        RFileHelper.saveBitmapToExternalSharePath(context, bitmap);
         RFileHelper.detectFileUriExposure();
         /**
          *
@@ -105,6 +70,6 @@ final public class RInstagramManager extends RShare {
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         intent.setPackage("com.instagram.android");
         context.startActivity(intent);
-        // }
+        return null;
     }
 }
