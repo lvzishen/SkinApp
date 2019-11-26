@@ -259,6 +259,7 @@ public class App extends Application {
         try {
             AccountSDK.newBuilder(this)
                     .initConfiguration(new AccountConfig(this))  //账号基础配置
+                    .setCustomLoginLayoutId(R.layout.aty_new_login)
                     .setProfileScopes(AccountConfig.PROFILE_SCOPE)  //个人主页显示的条目控制
                     .setExceptionHandler(new AccountConfig.AccountExceptionHandler())  //账号系统异常的处理
                     .setIsV5Prop(true)

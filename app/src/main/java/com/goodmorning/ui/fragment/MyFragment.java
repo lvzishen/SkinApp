@@ -24,7 +24,10 @@ import com.nox.update.a;
 
 import org.n.account.core.api.NjordAccountManager;
 import org.n.account.core.model.Account;
+import org.n.account.core.net.HeaderStrategy;
 import org.n.account.core.ui.GlideCircleTransform;
+import org.n.account.net.HttpMethod;
+import org.n.account.net.NetClientFactory;
 import org.n.account.ui.view.AccountUIHelper;
 
 import java.util.List;
@@ -39,10 +42,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_profile, container, false);
-//        mTextView = new TextView(getActivity());
-//        mTextView.setGravity(Gravity.CENTER);
-//        String content = getArguments().getString(MainActivity.CONTENT);
-//        mTextView.setText(content);
 
         initViews(view);
         return view;
@@ -60,6 +59,16 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mVersion.setText("V"+getString(R.string.app_version));
         Account account = NjordAccountManager.getCurrentAccount(getActivity());
         showAccountInfo(account);
+
+//        NetClientFactory.provideClient(getContext()).newAssembler()
+//                .url(NetParamsProvider.Url.TASK_LIST(mContext))
+//                .method(HttpMethod.POST)
+//                .requestBody(NetParamsProvider.Request.buildTaskList(mContext))
+//                .addNetStrategy(new HeaderStrategy(getContext()))
+//                .addNetStrategy(new TaskNetStrategy(mContext))
+//                .parser(new TaskParser(mContext))
+//                .callback(callback)
+//                .build().execute();
     }
     private void showAccountInfo(Account account) {
         if (account != null) {
@@ -89,10 +98,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         } else if (v.getId() == R.id.ll_check_and_update) {
             onClickUpdate(v);
         }
-    }
-
-    public void onClickSetting(View v) {
-
     }
 
     public void onClickUpdate(View v) {

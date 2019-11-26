@@ -21,7 +21,10 @@ import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.utils.AppUtils;
 import com.goodmorning.view.tab.BottomBarLayout;
+import com.w.sdk.push.PushBindManager;
 
+
+import org.n.account.core.api.NjordAccountManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,10 @@ public class MainActivity extends BaseActivity {
         setAndroidNativeLightStatusBar(AppUtils.isStatusLight());
         initView();
         initData();
+
+        //匿名账号登录，按需初始化，一般会在主界面进行初始化
+        NjordAccountManager.registerGuest(this, null);
+
         //1
 //        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
 //        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
@@ -274,6 +281,11 @@ public class MainActivity extends BaseActivity {
         }
         SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE, language);
         this.recreate();
+
+        //更新push语言，重新绑定
+        Bundle bundle = new Bundle();
+        bundle.putString("ext_locale",language);
+        PushBindManager.getInstance().setExtParam(bundle);
     }
 
     @Override

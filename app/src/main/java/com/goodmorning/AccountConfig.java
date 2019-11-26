@@ -71,7 +71,7 @@ public class AccountConfig implements IConfiguration {
     @Override
     public int[] allowLoginType() {
         //按需，支持facebook、手机号、邮箱、匿名登录
-        return new int[]{Constant.LoginType.FACEBOOK};
+        return new int[]{Constant.LoginType.FACEBOOK, Constant.LoginType.GUEST};
     }
 
     @Override
