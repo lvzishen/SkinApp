@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import com.goodmorning.share.share.RSharePlatform;
+import com.goodmorning.share.RSharePlatform;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
