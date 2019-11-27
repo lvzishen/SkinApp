@@ -1,12 +1,14 @@
 package com.goodmorning.ui.fragment;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,7 @@ import com.goodmorning.manager.ImageLoader;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
 import com.goodmorning.utils.HomeGreetingHelper;
+import com.goodmorning.utils.ResUtils;
 import com.goodmorning.utils.TextUtils;
 import com.goodmorning.view.LanguageDialog;
 import com.google.android.material.tabs.TabLayout;
@@ -34,6 +37,7 @@ import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,6 +141,59 @@ public class HomeFragment extends Fragment {
 
     private void initData(){
         mActivity = getActivity();
+        tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D),ResUtils.getColor(R.color.black));
+        tabLayout.setSelectedTabIndicatorColor(ResUtils.getColor(R.color.black));
+        tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                // 获取 tab 组件
+                View view = tab.getCustomView();
+                if (null != view && view instanceof LinearLayout) {
+                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                        View childView = ((LinearLayout) view).getChildAt(i);
+                        if (null != childView && childView instanceof TextView){
+                            // 改变 tab 选择状态下的字体大小
+                            ((TextView) childView).setTextSize(14);
+                            // 改变 tab 选择状态下的字体颜色
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                if (null != view && view instanceof LinearLayout) {
+                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                        View childView = ((LinearLayout) view).getChildAt(i);
+                        if (null != childView && childView instanceof TextView){
+                            // 改变 tab 选择状态下的字体大小
+                            ((TextView) childView).setTextSize(13);
+                            // 改变 tab 选择状态下的字体颜色
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.color_9D9D9D));
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                if (null != view && view instanceof LinearLayout) {
+                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                        View childView = ((LinearLayout) view).getChildAt(i);
+                        if (null != childView && childView instanceof TextView){
+                            // 改变 tab 选择状态下的字体大小
+                            ((TextView) childView).setTextSize(14);
+                            // 改变 tab 选择状态下的字体颜色
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                        }
+                    }
+                }
+            }
+        });
         requestChannelList();
     }
 
@@ -151,6 +208,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
+                if (langCategoryInfo == null){
+                    return;
+                }
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 for (int i=0;i<categories.size();i++){
                     TabFragment tabFragment = new TabFragment();
@@ -175,6 +235,7 @@ public class HomeFragment extends Fragment {
                     }
                     tab.setCustomView(view);
                 }
+                tabLayout.getTabAt(0).select();
 
             }
         });
@@ -199,7 +260,7 @@ public class HomeFragment extends Fragment {
 
     private void requestChannelList(){
         long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
-        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(true, 0L), new ResultCallback<ChannelList>() {
+        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
             @Override
             public void onSuccess(ChannelList data) {
                 if (mActivity == null){

@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="@dimen/qb_px_50"
-    android:layout_marginLeft="@dimen/qb_px_50"
-    android:layout_marginRight="@dimen/qb_px_50"
-    android:background="@color/white"
-    android:gravity="center_vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="@dimen/qb_px_54"
     android:id="@+id/ll_language">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/qb_px_25"
+        android:layout_centerVertical="true"
+        android:textColor="@color/setting_txt_tag_color"
+        android:textSize="@dimen/qb_sp_15"
         android:id="@+id/tv_language"/>
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toast_select"
+        android:layout_marginRight="@dimen/qb_px_16"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/iv_select_lang"/>
+
+</RelativeLayout>

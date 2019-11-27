@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.decoration.DividerDecoration;
+import com.goodmorning.decoration.SpacesItemDecoration;
 import com.goodmorning.utils.ResUtils;
 
 import org.thanos.netcore.bean.ChannelList;
@@ -47,6 +49,12 @@ public class LanguageDialog extends Dialog {
         ArrayList<ChannelList.LanguageItem> languageItems = jsonHelper.getJsonObject(SharedPref.getString(getContext(), SharedPref.LANGUAGE_TYPE,""));
         languageAdapter.addAll(languageItems);
         rvLanguage.setAdapter(languageAdapter);
+        DividerDecoration divider = new DividerDecoration.Builder(getContext())
+                .setHeight(ResUtils.getDimension(R.dimen.qb_px_1)/2)
+                .setPadding(ResUtils.getDimension(R.dimen.qb_px_14))
+                .setColorResource(R.color.setting_line_color)
+                .build();
+        rvLanguage.addItemDecoration(divider);
         rvLanguage.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 

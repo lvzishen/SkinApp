@@ -6,6 +6,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/qb_px_58"
+        android:layout_marginRight="@dimen/qb_px_58"
+        android:background="@drawable/shape_tab_item"
         android:id="@+id/rv_language"/>
 
 </LinearLayout>

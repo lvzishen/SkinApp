@@ -58,4 +58,5 @@ public class ActivityCtrl {
         intent.putExtra(TRANSFER_DATA,obj);
         context.startActivity(intent);
     }
+
 }

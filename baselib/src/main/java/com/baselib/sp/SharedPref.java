@@ -227,7 +227,7 @@ public class SharedPref {
     /**
      * 语言切换
      */
-    public static final String LANGUAGE = "language";
+    public static final String LANGUAGE = "language_switch";
 
     /**
      * 是否首次启动

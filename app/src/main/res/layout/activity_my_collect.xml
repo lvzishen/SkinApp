@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.goodmorning.ui.activity.MyCollectActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/qb_px_56"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/mycollection_back"
+            android:layout_width="@dimen/qb_px_54"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_background">
+
+            <ImageView
+                android:layout_width="@dimen/qb_px_24"
+                android:layout_height="@dimen/qb_px_24"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/qb_px_15"
+                android:src="@drawable/ic_back" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@+id/back"
+            android:layout_toRightOf="@+id/back"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:text="@string/my_collect"/>
+    </LinearLayout>
+
+    <com.goodmorning.view.recyclerview.CommonRecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_collect_list"/>
+
+</LinearLayout>
