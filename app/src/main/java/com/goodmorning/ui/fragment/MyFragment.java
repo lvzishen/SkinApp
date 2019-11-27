@@ -35,13 +35,14 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView tvMyLang;
-    private ImageView mAccountHeaderImg,ivMyUpdate,ivMyTip;
-    private TextView mAccountHeaderText,mVersion;
+    private ImageView mAccountHeaderImg, ivMyUpdate, ivMyTip;
+    private TextView mAccountHeaderText, mVersion;
     private View mUser;
-    private RelativeLayout mUpdate,llLang,llSettings;
+    private RelativeLayout mUpdate, llLang, llSettings;
     private LinearLayout llCollect;
     private LanguageDialog languageDialog;
     private Activity mActivity;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         llLang.setOnClickListener(this);
         llSettings.setOnClickListener(this);
 
-        mVersion.setText("V"+getString(R.string.app_version));
+        mVersion.setText("V" + getString(R.string.app_version));
         if (NjordAccountManager.isLogined(getContext())) {
         } else {
             AccountUIHelper.startLogin(getActivity());
@@ -78,7 +79,27 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         Account account = NjordAccountManager.getCurrentAccount(getActivity());
         showAccountInfo(account);
 
-
+//        Account account = NjordAccountManager.getCurrentAccount(getActivity());
+//        if (null != account) {
+//            String psu = NjordIdHelper.getPSU(account);
+//            String key = NjordIdHelper.getKey(account);
+//            String random = NjordIdHelper.getRandom(account);
+//            try {
+//                String session = SessionHelper.composeCookieWithSession(
+//                        getActivity(),
+//                        key,
+//                        psu,
+//                        random,
+//                        "asd".getBytes());
+//                Log.i("BAASAS", "session=" + session);
+//                String str[] = session.split(";");
+//                String psu1 = str[0].substring(4);
+//                Log.i("BAASAS", "psu1=" + psu1);
+//                String pmc = str[1].substring(4);
+//                Log.i("BAASAS", "pmc=" + pmc);
+//            } catch (AuthFailureError ex) {
+//            }
+//        }
 //        NetClientFactory.provideClient(getContext()).newAssembler()
 //                .url(NetParamsProvider.Url.TASK_LIST(mContext))
 //                .method(HttpMethod.POST)
@@ -90,14 +111,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //                .build().execute();
     }
 
-    private void initData(){
+    private void initData() {
         mActivity = getActivity();
-        if (Nox.canUpdate(getApplicationContext())){
+        if (Nox.canUpdate(getApplicationContext())) {
             ivMyTip.setVisibility(View.VISIBLE);
             ivMyUpdate.setVisibility(View.VISIBLE);
             mUpdate.setClickable(true);
             mUpdate.setEnabled(true);
-        }else {
+        } else {
             ivMyTip.setVisibility(View.GONE);
             ivMyUpdate.setVisibility(View.GONE);
             mUpdate.setClickable(false);
@@ -106,15 +127,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyLang.setText(ContentManager.getInstance().getLang());
     }
 
-    private void setListener(){
+    private void setListener() {
         languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
             @Override
             public void onLanguage(String languge) {
                 languageDialog.dismiss();
-                if (mActivity == null){
+                if (mActivity == null) {
                     return;
                 }
-                ((MainActivity)mActivity).changeLanguage(languge);
+                ((MainActivity) mActivity).changeLanguage(languge);
             }
         });
     }
@@ -146,16 +167,16 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             }
         } else if (v.getId() == R.id.ll_check_and_update) {
 //            onClickUpdate(v);
-            AppUtils.launchAppDetail(getApplicationContext(),AppUtils.getPackageName(getApplicationContext()));
-        } else if (v.getId() == R.id.ll_my_collect){
+            AppUtils.launchAppDetail(getApplicationContext(), AppUtils.getPackageName(getApplicationContext()));
+        } else if (v.getId() == R.id.ll_my_collect) {
             //收藏列表
             ActivityCtrl.gotoActivityOpenSimple(getActivity(), MyCollectActivity.class);
-        } else if (v.getId() == R.id.ll_my_lang){
+        } else if (v.getId() == R.id.ll_my_lang) {
             //语言列表
             languageDialog = new LanguageDialog(mActivity);
             languageDialog.show();
             setListener();
-        } else if (v.getId() == R.id.ll_my_set){
+        } else if (v.getId() == R.id.ll_my_set) {
             //设置
             ActivityCtrl.gotoActivityOpenSimple(getActivity(), SettingActivity.class);
         }
