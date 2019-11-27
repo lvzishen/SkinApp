@@ -241,9 +241,10 @@ public class App extends Application {
 
         initThanos();
         // 只在常驻进程初始化PUSH
-        if (XalContext.isPersistProcess()) {
+//        if (XalContext.isPersistProcess()) {
+        if (matchProcess(FLAG_PROCESS_UI))
             initPush();
-        }
+//        }
         initAccountSDK();
     }
 
