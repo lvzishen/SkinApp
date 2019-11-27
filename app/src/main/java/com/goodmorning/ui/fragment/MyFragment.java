@@ -1,13 +1,13 @@
 package com.goodmorning.ui.fragment;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,39 +17,37 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
-import com.nox.ContextSafeAction;
+import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.manager.ContentManager;
+import com.goodmorning.ui.activity.MyCollectActivity;
+import com.goodmorning.ui.activity.SettingActivity;
+import com.goodmorning.utils.ActivityCtrl;
+import com.goodmorning.utils.AppUtils;
+import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
-import com.nox.NoxUpdateAction;
-import com.nox.data.NoxInfo;
-import com.nox.update.a;
 
 import org.n.account.core.api.NjordAccountManager;
-import org.n.account.core.exception.AuthFailureError;
 import org.n.account.core.model.Account;
-import org.n.account.core.net.HeaderStrategy;
 import org.n.account.core.ui.GlideCircleTransform;
-import org.n.account.core.utils.NjordIdHelper;
-import org.n.account.core.utils.SessionHelper;
-import org.n.account.net.HttpMethod;
-import org.n.account.net.NetClientFactory;
 import org.n.account.ui.view.AccountUIHelper;
 
-import java.util.List;
-
-import okhttp3.Request;
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
-    private TextView mTextView;
-    private ImageView mAccountHeaderImg;
-    private TextView mAccountHeaderText, mVersion;
-    private View mUser, mUpdate;
-
+    private TextView tvMyLang;
+    private ImageView mAccountHeaderImg,ivMyUpdate,ivMyTip;
+    private TextView mAccountHeaderText,mVersion;
+    private View mUser;
+    private RelativeLayout mUpdate,llLang,llSettings;
+    private LinearLayout llCollect;
+    private LanguageDialog languageDialog;
+    private Activity mActivity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_profile, container, false);
-
         initViews(view);
+        initData();
         return view;
     }
 
@@ -59,34 +57,26 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mUser = view.findViewById(R.id.ll_user);
         mUpdate = view.findViewById(R.id.ll_check_and_update);
         mVersion = view.findViewById(R.id.tv_version);
-        mUser.setOnClickListener(this);
+//        mUser.setOnClickListener(this);
         mUpdate.setOnClickListener(this);
 
-        mVersion.setText("V" + getString(R.string.app_version));
+        llCollect = view.findViewById(R.id.ll_my_collect);
+        llLang = view.findViewById(R.id.ll_my_lang);
+        llSettings = view.findViewById(R.id.ll_my_set);
+        tvMyLang = view.findViewById(R.id.tv_my_lang);
+        ivMyUpdate = view.findViewById(R.id.iv_my_update);
+        ivMyTip = view.findViewById(R.id.iv_my_tip);
+        llCollect.setOnClickListener(this);
+        llLang.setOnClickListener(this);
+        llSettings.setOnClickListener(this);
+
+        mVersion.setText("V"+getString(R.string.app_version));
+        if (NjordAccountManager.isLogined(getContext())) {
+        } else {
+            AccountUIHelper.startLogin(getActivity());
+        }
         Account account = NjordAccountManager.getCurrentAccount(getActivity());
         showAccountInfo(account);
-
-//        Account account = NjordAccountManager.getCurrentAccount(getActivity());
-//        if (null != account) {
-//            String psu = NjordIdHelper.getPSU(account);
-//            String key = NjordIdHelper.getKey(account);
-//            String random = NjordIdHelper.getRandom(account);
-//            try {
-//                String session = SessionHelper.composeCookieWithSession(
-//                        getActivity(),
-//                        key,
-//                        psu,
-//                        random,
-//                        "asd".getBytes());
-//                Log.i("BAASAS", "session=" + session);
-//                String str[] = session.split(";");
-//                String psu1 = str[0].substring(4);
-//                Log.i("BAASAS", "psu1=" + psu1);
-//                String pmc = str[1].substring(4);
-//                Log.i("BAASAS", "pmc=" + pmc);
-//            } catch (AuthFailureError ex) {
-//            }
-//        }
 
 
 //        NetClientFactory.provideClient(getContext()).newAssembler()
@@ -100,6 +90,34 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //                .build().execute();
     }
 
+    private void initData(){
+        mActivity = getActivity();
+        if (Nox.canUpdate(getApplicationContext())){
+            ivMyTip.setVisibility(View.VISIBLE);
+            ivMyUpdate.setVisibility(View.VISIBLE);
+            mUpdate.setClickable(true);
+            mUpdate.setEnabled(true);
+        }else {
+            ivMyTip.setVisibility(View.GONE);
+            ivMyUpdate.setVisibility(View.GONE);
+            mUpdate.setClickable(false);
+            mUpdate.setEnabled(false);
+        }
+        tvMyLang.setText(ContentManager.getInstance().getLang());
+    }
+
+    private void setListener(){
+        languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
+            @Override
+            public void onLanguage(String languge) {
+                languageDialog.dismiss();
+                if (mActivity == null){
+                    return;
+                }
+                ((MainActivity)mActivity).changeLanguage(languge);
+            }
+        });
+    }
 
     private void showAccountInfo(Account account) {
         if (account != null) {
@@ -122,21 +140,34 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.ll_user) {
             if (NjordAccountManager.isLogined(getContext())) {
-                AccountUIHelper.jumpProfileCenter(getActivity());
+//                AccountUIHelper.jumpProfileCenter(getActivity());
             } else {
                 AccountUIHelper.startLogin(getActivity());
             }
         } else if (v.getId() == R.id.ll_check_and_update) {
-            onClickUpdate(v);
+//            onClickUpdate(v);
+            AppUtils.launchAppDetail(getApplicationContext(),AppUtils.getPackageName(getApplicationContext()));
+        } else if (v.getId() == R.id.ll_my_collect){
+            //收藏列表
+            ActivityCtrl.gotoActivityOpenSimple(getActivity(), MyCollectActivity.class);
+        } else if (v.getId() == R.id.ll_my_lang){
+            //语言列表
+            languageDialog = new LanguageDialog(mActivity);
+            languageDialog.show();
+            setListener();
+        } else if (v.getId() == R.id.ll_my_set){
+            //设置
+            ActivityCtrl.gotoActivityOpenSimple(getActivity(), SettingActivity.class);
         }
     }
 
     public void onClickUpdate(View v) {
-        Nox.manualCheckUpdate(getContext());
+//        Nox.manualCheckUpdate(getContext());
+//        Log.e("MyFragment","isUpdate="+Nox.canUpdate(getActivity()));
 //        Nox.manualCheckUpdate(getContext(), getContext().getPackageName(), new NoxUpdateAction(getContext(), "") {
 //            @Override
 //            public void onUpdate(NoxInfo noxInfo) {
-//
+//                Log.e("MyFragment","isUpdate="+noxInfo.canUpdate());
 //            }
 //        }, new ContextSafeAction<List<a>>(getContext()){
 //

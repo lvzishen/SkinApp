@@ -1,12 +1,14 @@
 package com.goodmorning.ui.fragment;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,22 +19,29 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.JSON;
+import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.bean.DataListItem;
+import com.goodmorning.bean.DayPicture;
 import com.goodmorning.manager.ContentManager;
 import com.goodmorning.manager.ImageLoader;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
+import com.goodmorning.utils.CloudControlUtils;
 import com.goodmorning.utils.HomeGreetingHelper;
+import com.goodmorning.utils.ResUtils;
 import com.goodmorning.utils.TextUtils;
-import com.goodmorning.view.LanguageDialog;
+import com.goodmorning.view.dialog.LanguageDialog;
+import com.goodmorning.view.dialog.PicDialog;
 import com.google.android.material.tabs.TabLayout;
 
 import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ChannelList;
+import org.thanos.netcore.helper.JsonHelper;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
 
 import java.util.ArrayList;
@@ -49,7 +58,8 @@ public class HomeFragment extends Fragment {
     private Activity mActivity;
     private AlphaAnimation mHideAnimation	= null;
     private AlphaAnimation mShowAnimation	= null;
-
+    private Handler handler = new Handler();
+    DayPicture dayPicture;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,8 +73,6 @@ public class HomeFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayout);
         tabVpager = view.findViewById(R.id.tab_viewpager);
         tvTitle = view.findViewById(R.id.tv_title);
-
-//        SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE, language);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -137,6 +145,63 @@ public class HomeFragment extends Fragment {
 
     private void initData(){
         mActivity = getActivity();
+        String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC,"day_pic");
+        JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {
+        };
+        dayPicture = jsonHelper.getJsonObject(cloudData);
+        tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D),ResUtils.getColor(R.color.black));
+        tabLayout.setSelectedTabIndicatorColor(ResUtils.getColor(R.color.black));
+        tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                // 获取 tab 组件
+                View view = tab.getCustomView();
+                if (null != view && view instanceof LinearLayout) {
+                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                        View childView = ((LinearLayout) view).getChildAt(i);
+                        if (null != childView && childView instanceof TextView){
+                            // 改变 tab 选择状态下的字体大小
+                            ((TextView) childView).setTextSize(14);
+                            // 改变 tab 选择状态下的字体颜色
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                if (null != view && view instanceof LinearLayout) {
+                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                        View childView = ((LinearLayout) view).getChildAt(i);
+                        if (null != childView && childView instanceof TextView){
+                            // 改变 tab 选择状态下的字体大小
+                            ((TextView) childView).setTextSize(13);
+                            // 改变 tab 选择状态下的字体颜色
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.color_9D9D9D));
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                if (null != view && view instanceof LinearLayout) {
+                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                        View childView = ((LinearLayout) view).getChildAt(i);
+                        if (null != childView && childView instanceof TextView){
+                            // 改变 tab 选择状态下的字体大小
+                            ((TextView) childView).setTextSize(14);
+                            // 改变 tab 选择状态下的字体颜色
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                        }
+                    }
+                }
+            }
+        });
         requestChannelList();
     }
 
@@ -151,6 +216,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
+                if (langCategoryInfo == null){
+                    return;
+                }
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 for (int i=0;i<categories.size();i++){
                     TabFragment tabFragment = new TabFragment();
@@ -175,6 +243,7 @@ public class HomeFragment extends Fragment {
                     }
                     tab.setCustomView(view);
                 }
+                tabLayout.getTabAt(0).select();
 
             }
         });
@@ -199,7 +268,7 @@ public class HomeFragment extends Fragment {
 
     private void requestChannelList(){
         long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
-        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(true, 0L), new ResultCallback<ChannelList>() {
+        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
             @Override
             public void onSuccess(ChannelList data) {
                 if (mActivity == null){
@@ -217,6 +286,9 @@ public class HomeFragment extends Fragment {
                                 setListener();
                             }
                         });
+                        checkShowDayPic();
+                    }else {
+                        checkShowDayPic();
                     }
                     if (data.langCategoryInfos != null){
                         String json = JSON.toJSONString(data.langCategoryInfos);
@@ -234,6 +306,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFail(Exception e) {
                 addData();
+                checkShowDayPic();
             }
         });
     }
@@ -260,6 +333,42 @@ public class HomeFragment extends Fragment {
         super.onStop();
         if (languageDialog != null && languageDialog.isShowing()){
             languageDialog.dismiss();
+        }
+    }
+
+    /**
+     * 检查显示每日一图
+     */
+    private void checkShowDayPic(){
+        if (dayPicture == null){
+            return;
+        }
+        if (CheckUtils.isShowPic(dayPicture.getStartTime(),dayPicture.getEndTime())){
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if ((languageDialog != null && !languageDialog.isShowing()) || languageDialog == null){
+                        //显示每日一图,语言列表优先级高，当前正在显示语言列表，轮训检查是否关闭，关闭后展示每日一图
+                        handler.removeCallbacks(this);
+                        if (mActivity == null){
+                            return;
+                        }
+                        mActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                PicDialog picDialog = new PicDialog(mActivity);
+                                DataListItem dataListItem = new DataListItem();
+                                dataListItem.setType(DataListItem.DATA_TYPE_2);
+                                dataListItem.setPicUrl(dayPicture.getPicUrl());
+                                picDialog.setDataListItem(dataListItem);
+                                picDialog.show();
+                            }
+                        });
+                    }else {
+                        handler.postDelayed(this,1000);
+                    }
+                }
+            },1000);
         }
     }
 }

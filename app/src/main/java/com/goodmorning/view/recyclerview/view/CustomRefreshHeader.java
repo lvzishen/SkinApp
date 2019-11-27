@@ -10,6 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.view.recyclerview.WeakHandler;
 import com.goodmorning.view.recyclerview.interfaces.IRefreshHeader;
@@ -17,13 +23,12 @@ import com.goodmorning.view.recyclerview.interfaces.IRefreshHeader;
 public class CustomRefreshHeader extends LinearLayout implements IRefreshHeader {
 
     private LinearLayout mContainer;
-    private ImageView ivIcon;
-    private TextView tvRefresh;
+    private LottieAnimationView ivIcon;
+//    private TextView tvRefresh;
 
     public int mMeasuredHeight;
     private int mState = STATE_NORMAL;
     private WeakHandler mHandler = new WeakHandler();
-
     public CustomRefreshHeader(Context context) {
         super(context);
         initView();
@@ -46,7 +51,9 @@ public class CustomRefreshHeader extends LinearLayout implements IRefreshHeader 
         setGravity(Gravity.BOTTOM);
 
         ivIcon = findViewById(R.id.iv_icon);
-        tvRefresh = findViewById(R.id.tv_refresh);
+//        tvRefresh = findViewById(R.id.tv_refresh);
+//        Glide.with(getContext()).load(R.drawable.loading_icon).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(ivIcon);
+//        Glide.with(getContext()).load(R.drawable.loading_icon).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(new GlideDrawableImageViewTarget(ivIcon, 1));
 
         measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         mMeasuredHeight = getMeasuredHeight();
@@ -63,18 +70,19 @@ public class CustomRefreshHeader extends LinearLayout implements IRefreshHeader 
 
         switch (state){
             case STATE_NORMAL:
-                tvRefresh.setText("下拉刷新");
+//                tvRefresh.setText("下拉刷新");
+//                Glide.with(getContext()).load(R.drawable.loading_icon).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(ivIcon);
                 break;
             case STATE_RELEASE_TO_REFRESH:
                 if (mState != STATE_RELEASE_TO_REFRESH){
-                    tvRefresh.setText("释放刷新");
+//                    tvRefresh.setText("释放刷新");
                 }
                 break;
             case STATE_REFRESHING:
-                tvRefresh.setText("正在刷新");
+//                tvRefresh.setText("正在刷新");
                 break;
             case STATE_DONE:
-                tvRefresh.setText("刷新完成");
+//                tvRefresh.setText("刷新完成");
                 break;
         }
         mState = state;

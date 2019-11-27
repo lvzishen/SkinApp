@@ -1,6 +1,8 @@
 package com.goodmorning;
 
 
+import android.content.Intent;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,12 +17,16 @@ import com.ads.lib.commen.AdLifecyclerManager;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
 import com.baselib.ui.activity.BaseActivity;
+import com.goodmorning.bean.DataListItem;
+import com.goodmorning.manager.ContentManager;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.utils.AppUtils;
+import com.goodmorning.utils.ResUtils;
+import com.goodmorning.view.dialog.PicDialog;
 import com.goodmorning.view.tab.BottomBarLayout;
 import com.w.sdk.push.PushBindManager;
 
@@ -45,16 +51,15 @@ public class MainActivity extends BaseActivity {
     private ViewPager mVpContent;
     private BottomBarLayout mBottomBarLayout;
     private List<Fragment> mFragmentList = new ArrayList<>();
-    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppUtils.changeTheme(this);
+//        AppUtils.changeTheme(this);
         AdLifecyclerManager.getInstance(getApplicationContext()).setFixedActivity(this);
         setContentView(R.layout.mainactivity_news);
-        setStatusBarColor(AppUtils.changeStatusColor());
-        setAndroidNativeLightStatusBar(AppUtils.isStatusLight());
+        setStatusBarColor(ResUtils.getColor(R.color.white));
+        setAndroidNativeLightStatusBar(true);
         initView();
         initData();
 
@@ -372,7 +377,6 @@ public class MainActivity extends BaseActivity {
      * @param language
      */
     public void changeLanguage(String language) {
-        Log.e("changeLanguage", "language==" + language);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             LanguageUtil.changeAppLanguage(getApplicationContext(), language);
         }
@@ -380,9 +384,20 @@ public class MainActivity extends BaseActivity {
         this.recreate();
 
         //更新push语言，重新绑定
-        Bundle bundle = new Bundle();
-        bundle.putString("ext_locale", language);
-        PushBindManager.getInstance().setExtParam(bundle);
+        try{
+            Bundle bundle = new Bundle();
+            bundle.putString("ext_locale",language);
+            PushBindManager.getInstance().setExtParam(bundle);
+        }catch (Exception e){}
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
+        if (isRefresh){
+            AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
+        }
     }
 
     @Override

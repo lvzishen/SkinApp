@@ -1,5 +1,8 @@
 package com.goodmorning.manager;
 
+import android.util.Log;
+
+import com.baselib.language.LanguageType;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
 
@@ -13,8 +16,11 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class ContentManager {
     private JsonHelper<ArrayList<ChannelList.LangCategoryInfo>> jsonHelper;
+    private JsonHelper<ArrayList<ChannelList.LanguageItem> > jsonLangelper;
     private ContentManager(){
         jsonHelper = new JsonHelper<ArrayList<ChannelList.LangCategoryInfo>>() {
+        };
+        jsonLangelper = new JsonHelper<ArrayList<ChannelList.LanguageItem>>() {
         };
     }
 
@@ -34,6 +40,36 @@ public class ContentManager {
             }
         }
         return null;
+    }
+
+    public ArrayList<ChannelList.LanguageItem> getLanguageList(){
+        ArrayList<ChannelList.LanguageItem> languageItems = jsonLangelper.getJsonObject(SharedPref.getString(getApplicationContext(), SharedPref.LANGUAGE_TYPE,""));
+        return languageItems;
+    }
+
+    public String getLang(){
+        String language = SharedPref.getString(getApplicationContext(),SharedPref.LANGUAGE, LanguageType.ENGLISH.getLanguage());
+        ArrayList<ChannelList.LanguageItem> langs = getLanguageList();
+        if (langs == null){
+            return getLangText(language);
+        }
+        for (ChannelList.LanguageItem languageItem : langs){
+            if (language.equals(languageItem.lang)){
+                return languageItem.text;
+            }
+        }
+        return getLangText(language);
+    }
+
+    public String getLangText(String lang){
+        if (LanguageType.ENGLISH.getLanguage().equals(lang)){
+            return "English";
+        }else if (LanguageType.HINDI.getLanguage().equals(lang)){
+            return "हिन्दी";
+        }else if (LanguageType.TAMIL.getLanguage().equals(lang)){
+            return "தமிழ";
+        }
+        return "English";
     }
 
 }

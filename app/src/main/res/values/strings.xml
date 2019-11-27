@@ -97,4 +97,13 @@
     <string name="language">Language</string>
     <string name="check_and_update">Check And Update</string>
     <string name="settings">Settings</string>
+    <string name="setting_language">Language</string>
+    <string name="setting_update">Check the Update</string>
+    <string name="setting_user_agreement">User agreement</string>
+    <string name="setting_privacy">Privacy policy</string>
+    <string name="setting_quit">Quit</string>
+    <string name="setting">Set</string>
+    <string name="my_collect">My Collection</string>
+    <string name="share">Share</string>
+
 </resources>

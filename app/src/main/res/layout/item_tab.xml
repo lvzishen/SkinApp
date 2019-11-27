@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_item"
         android:textColor="?attr/color_9D9D9D"
+        android:textSize="@dimen/qb_sp_13"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

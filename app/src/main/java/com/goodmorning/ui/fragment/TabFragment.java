@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.baselib.bitmap.util.DeviceUtil;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.MainListAdapter;
@@ -20,6 +23,8 @@ import com.goodmorning.ui.activity.VideoDetailActivity;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.CommonRecyclerViewAdapter;
+import com.goodmorning.view.recyclerview.SwipeRecyclerView;
+import com.goodmorning.view.recyclerview.SwipeRecyclerViewAdapter;
 import com.goodmorning.view.recyclerview.decoration.DiverItemDecoration;
 import com.goodmorning.view.recyclerview.interfaces.OnItemClickListener;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;

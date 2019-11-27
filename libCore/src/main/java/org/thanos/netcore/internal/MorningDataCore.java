@@ -134,7 +134,7 @@ public class MorningDataCore {
 
                     @Override
                     public void onSuccess(ChannelList data) {
-                        processChannelList(data);
+//                        processChannelList(data);
                         callback.onSuccess(data);
                     }
 

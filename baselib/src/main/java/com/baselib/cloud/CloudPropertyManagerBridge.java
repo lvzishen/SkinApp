@@ -84,6 +84,8 @@ public class CloudPropertyManagerBridge {
     public static final String PATH_OUT_APP_JUMP_MAIN_PROP = "out_app_jump_main.prop";
     public static final String PATH_UNINSTALL_POP_DIALOG_PRO = "uninstall_pop_dialog.prop";
     public static final String PATH_HOME_GREETING = "home_greetings.prop";
+    public static final String PATH_CHECK_UPDATE = "check_update.prop";
+    public static final String PATH_EVERYDAY_PIC = "everyday_pic.prop";
     private static CloudPropertyImpl sCloudProperty = null;
 
     public static CloudPropertyImpl getCloudPropertyServiceStub(Context cxt) {
