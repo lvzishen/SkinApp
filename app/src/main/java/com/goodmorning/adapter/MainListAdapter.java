@@ -9,6 +9,7 @@ import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ScreenUtils;
+import com.rheia.PUUIDMgr;
 
 
 public class MainListAdapter extends ListBaseAdapter<DataListItem> {
@@ -81,5 +82,13 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
      */
     public DataListItem getDataItem(int position){
         return mDataList.get(position);
+    }
+
+    /**
+     * 获取列表内容数量
+     * @return
+     */
+    public int getDataSize(){
+        return mDataList.size();
     }
 }

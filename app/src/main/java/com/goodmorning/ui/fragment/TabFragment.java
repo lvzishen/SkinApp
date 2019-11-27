@@ -147,7 +147,7 @@ public class TabFragment extends Fragment {
         if (data != null){
             ArrayList<ContentItem> contentItems = data.items;
             List<DataListItem> datas = new ArrayList<>();
-            if (contentItems.size() == 0){
+            if (contentItems.size() == 0 && mainListAdapter.getDataSize() != 0){
                 mRecyclerView.setNoMore(true);
             }
             for (ContentItem contentItem : contentItems){

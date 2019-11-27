@@ -2,6 +2,7 @@ package com.goodmorning.ui.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.JSON;
@@ -220,6 +222,7 @@ public class HomeFragment extends Fragment {
                     return;
                 }
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
+                mFragmentList.clear();
                 for (int i=0;i<categories.size();i++){
                     TabFragment tabFragment = new TabFragment();
                     Bundle bundle1 = new Bundle();
@@ -275,7 +278,8 @@ public class HomeFragment extends Fragment {
                     return;
                 }
                 if (data != null){
-                    if (CheckUtils.isShowLanguage()){
+                    boolean isShowLang = CheckUtils.isShowLanguage();
+                    if (isShowLang){
                         String json = JSON.toJSONString(data.languageItems);
                         SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE_TYPE,json);
                         mActivity.runOnUiThread(new Runnable() {
@@ -312,9 +316,10 @@ public class HomeFragment extends Fragment {
     }
 
     class TabAdapter extends FragmentStatePagerAdapter{
-
+        private FragmentManager mFragmentManager;
         public TabAdapter(FragmentManager fm) {
             super(fm);
+            mFragmentManager = fm;
         }
 
         @Override
@@ -326,11 +331,46 @@ public class HomeFragment extends Fragment {
         public int getCount() {
             return mFragmentList.size();
         }
+
+        @Override
+        public int getItemPosition(Object object) {
+            if (!((Fragment) object).isAdded() || !mFragmentList.contains(object)) {
+                return PagerAdapter.POSITION_NONE;
+            }
+            return mFragmentList.indexOf(object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+
+            Fragment instantiateItem = ((Fragment) super.instantiateItem(container, position));
+            Fragment item = mFragmentList.get(position);
+            if (instantiateItem == item) {
+                return instantiateItem;
+            } else {
+                //如果集合中对应下标的fragment和fragmentManager中的对应下标的fragment对象不一致，那么就是新添加的，所以自己add进入；这里为什么不直接调用super方法呢，因为fragment的mIndex搞的鬼，以后有机会再补一补。
+                mFragmentManager.beginTransaction().add(container.getId(), item).commitNowAllowingStateLoss();
+                return item;
+            }
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            Fragment fragment = (Fragment) object;
+            //如果getItemPosition中的值为PagerAdapter.POSITION_NONE，就执行该方法。
+            if (mFragmentList.contains(fragment)) {
+                super.destroyItem(container, position, fragment);
+                return;
+            }
+            //自己执行移除。因为mFragments在删除的时候就把某个fragment对象移除了，所以一般都得自己移除在fragmentManager中的该对象。
+            mFragmentManager.beginTransaction().remove(fragment).commitNowAllowingStateLoss();
+
+        }
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         if (languageDialog != null && languageDialog.isShowing()){
             languageDialog.dismiss();
         }
