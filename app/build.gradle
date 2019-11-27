@@ -114,7 +114,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.alibaba:fastjson:1.2.62'
     implementation 'cn.jzvd:jiaozivideoplayer:7.0.5'
-
+    implementation 'com.airbnb.android:lottie:3.0.0'
 
     xalApi 'com.xal.publicrepository:apollo-downloader-wrapper:' + APOLLO_DOWNLOADER_WRAPPER_VERSION
 

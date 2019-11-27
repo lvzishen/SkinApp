@@ -1,4 +1,4 @@
-package com.goodmorning.view;
+package com.goodmorning.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

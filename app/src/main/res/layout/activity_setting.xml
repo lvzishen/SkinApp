@@ -77,7 +77,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/qb_px_54"
         android:id="@+id/rl_setting_update"
-        android:background="?android:attr/selectableItemBackground">
+        android:background="?android:attr/selectableItemBackground"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"

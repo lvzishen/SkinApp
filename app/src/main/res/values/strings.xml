@@ -104,5 +104,6 @@
     <string name="setting_quit">Quit</string>
     <string name="setting">Set</string>
     <string name="my_collect">My Collection</string>
+    <string name="share">Share</string>
 
 </resources>

@@ -81,4 +81,5 @@
     <color name="setting_txt_content_color">#BBBBBB</color>
     <color name="setting_line_color">#EEEEEE</color>
     <color name="lang_select_txt_color">#FFFE9A00</color>
+    <color name="share_txt_color">#EF7509</color>
 </resources>

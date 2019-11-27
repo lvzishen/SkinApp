@@ -1,7 +1,5 @@
 package com.goodmorning.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.baselib.language.LanguageUtil;
 import com.baselib.ui.CommonConstants;
 import com.baselib.ui.activity.BaseActivity;
 import com.creativeindia.goodmorning.R;
@@ -20,7 +17,7 @@ import com.goodmorning.manager.ContentManager;
 import com.goodmorning.splash.OpenUrlUtils;
 import com.goodmorning.utils.AppUtils;
 import com.goodmorning.utils.ResUtils;
-import com.goodmorning.view.LanguageDialog;
+import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
 
 import org.n.account.core.api.NjordAccountManager;
@@ -74,7 +71,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
             @Override
             public void onLanguage(String languge) {
-                Log.e("HomeFragment","languge==="+languge);
                 languageDialog.dismiss();
                 AppUtils.changeLanguage(SettingActivity.this,languge);
             }

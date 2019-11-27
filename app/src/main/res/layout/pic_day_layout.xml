@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/qb_px_39"
+        android:layout_marginRight="@dimen/qb_px_39"
+        android:layout_marginTop="127dp"
+        android:id="@+id/rl_pic">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_pic"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toast_btn"
+            android:layout_marginRight="@dimen/qb_px_31"
+            android:layout_marginLeft="@dimen/qb_px_31"
+            android:layout_alignBottom="@+id/iv_pic"
+            android:layout_marginBottom="@dimen/qb_px_15"
+            android:text="@string/share"
+            android:textColor="@color/share_txt_color"
+            android:id="@+id/btn_share"/>
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl_pic"
+        android:layout_marginTop="63dp"
+        android:background="@drawable/toast_close"
+        android:id="@+id/btn_close"/>
+
+</RelativeLayout>

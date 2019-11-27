@@ -1,10 +1,7 @@
 package com.goodmorning.ui.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,22 +23,13 @@ import com.goodmorning.ui.activity.MyCollectActivity;
 import com.goodmorning.ui.activity.SettingActivity;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.AppUtils;
-import com.goodmorning.view.LanguageDialog;
-import com.nox.ContextSafeAction;
+import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
-import com.nox.NoxUpdateAction;
-import com.nox.data.NoxInfo;
-import com.nox.update.a;
 
 import org.n.account.core.api.NjordAccountManager;
 import org.n.account.core.model.Account;
-import org.n.account.core.net.HeaderStrategy;
 import org.n.account.core.ui.GlideCircleTransform;
-import org.n.account.net.HttpMethod;
-import org.n.account.net.NetClientFactory;
 import org.n.account.ui.view.AccountUIHelper;
-
-import java.util.List;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
