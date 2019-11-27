@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
+import okhttp3.Request;
 import okio.BufferedSink;
 
 import static org.thanos.netcore.internal.MorningDataCore.DEBUG;
@@ -46,6 +47,7 @@ public class GoodMorningRequest extends AbstractZeusPostRequest {
     private BaseRequestParam baseRequestParam;
     private Context context;
     private String requestBodyString;
+
 
     public GoodMorningRequest(Context context, @NonNull BaseRequestParam baseRequestParam, String url) {
         this.context = context;
@@ -84,6 +86,7 @@ public class GoodMorningRequest extends AbstractZeusPostRequest {
         location.localZone = String.valueOf(TimeZoneUtil.getOffset(TimeUnit.MINUTES));
         return location;
     }
+
 
     private AppInfo createAppInfo(Context context) throws IllegalArgumentException {
         AppInfo appInfo = new AppInfo();

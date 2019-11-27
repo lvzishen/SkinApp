@@ -15,6 +15,7 @@ import com.ads.lib.commen.AdLifecyclerManager;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
 import com.baselib.ui.activity.BaseActivity;
+import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.fragment.HomeFragment;
@@ -25,6 +26,14 @@ import com.w.sdk.push.PushBindManager;
 
 
 import org.n.account.core.api.NjordAccountManager;
+import org.thanos.netcore.CollectStatus;
+import org.thanos.netcore.bean.CollectDetail;
+import org.thanos.netcore.MorningDataAPI;
+import org.thanos.netcore.ResultCallback;
+import org.thanos.netcore.bean.ContentList;
+import org.thanos.netcore.internal.requestparam.CollectListRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectStatusRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -214,7 +223,95 @@ public class MainActivity extends BaseActivity {
 //                        }
 //                    }
 //                });
+        //7
+//        MorningDataAPI.requestCollectUpLoad(getApplicationContext(),
+//                new CollectRequestParam(1,
+//                        false, false, 1), new ResultCallback<CollectDetail>() {
+//                    @Override
+//                    public void onSuccess(CollectDetail data) {
+//                        if (data != null && data.code == 0) {
+//                            if (GlobalConfig.DEBUG) {
+//                                Log.i(TAG, "用户收藏上报成功");
+//                            }
+//                        } else {
+//                            if (GlobalConfig.DEBUG) {
+//                                Log.i(TAG, "用户收藏上报失败");
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onLoadFromCache(CollectDetail data) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFail(Exception e) {
+//                        if (GlobalConfig.DEBUG) {
+//                            Log.d(TAG, "用户收藏上报失败, [" + e + "]");
+//                        }
+//                    }
+//                });
 
+        //8
+//        MorningDataAPI.requestCollectList(getApplicationContext(),
+//                new CollectListRequestParam(0,
+//                        1000, false, 1), new ResultCallback<ContentList>() {
+//                    @Override
+//                    public void onSuccess(ContentList data) {
+//                        if (data != null && data.code == 0) {
+//                            if (GlobalConfig.DEBUG) {
+//                                Log.i(TAG, "用户收藏上报成功");
+//                            }
+//                        } else {
+//                            if (GlobalConfig.DEBUG) {
+//                                Log.i(TAG, "用户收藏上报失败");
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onLoadFromCache(ContentList data) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFail(Exception e) {
+//                        if (GlobalConfig.DEBUG) {
+//                            Log.d(TAG, "用户收藏上报失败, [" + e + "]");
+//                        }
+//                    }
+//                });
+
+        //9
+//        MorningDataAPI.requestCollectStatus(getApplicationContext(),
+//                new CollectStatusRequestParam(0,
+//                        false, 1), new ResultCallback<CollectStatus>() {
+//                    @Override
+//                    public void onSuccess(CollectStatus data) {
+//                        if (data != null && data.code == 0) {
+//                            if (GlobalConfig.DEBUG) {
+//                                Log.i(TAG, "用户收藏状态");
+//                            }
+//                        } else {
+//                            if (GlobalConfig.DEBUG) {
+//                                Log.i(TAG, "用户收藏状态失败");
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onLoadFromCache(CollectStatus data) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFail(Exception e) {
+//                        if (GlobalConfig.DEBUG) {
+//                            Log.d(TAG, "用户收藏状态失败, [" + e + "]");
+//                        }
+//                    }
+//                });
     }
 
     private void initView() {
@@ -284,7 +381,7 @@ public class MainActivity extends BaseActivity {
 
         //更新push语言，重新绑定
         Bundle bundle = new Bundle();
-        bundle.putString("ext_locale",language);
+        bundle.putString("ext_locale", language);
         PushBindManager.getInstance().setExtParam(bundle);
     }
 

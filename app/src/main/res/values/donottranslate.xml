@@ -10,9 +10,10 @@
 
 
     <!--TODO 账号替换 AccountReplace-->
-<!--    <string name="app_id">143549955815480</string>-->
-<!--    <string name="provider_auth">com.facebook.app.FacebookContentProvider143549955815480</string>-->
-<!--    <string name="client_token">c4c1dd1026c9f14c2eafbd55035f050b</string>-->
+    <!--<string name="app_id">143549955815480</string>-->
+    <!--<string name="provider_auth">com.facebook.app.FacebookContentProvider143549955815480</string>-->
+    <!--<string name="client_token">c4c1dd1026c9f14c2eafbd55035f050b</string>-->
+
     <string name="app_id">721195035034582</string>
     <string name="provider_auth">com.facebook.app.FacebookContentProvider721195035034582</string>
     <string name="client_token">96ed7b03fb1e786e0f89451dcbfed86b</string>

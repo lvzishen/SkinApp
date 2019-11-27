@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/share_parent"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_background"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/qb_px_12"
-    android:paddingRight="@dimen/qb_px_12">
+    android:paddingTop="@dimen/dimen_6dp"
+    android:paddingBottom="@dimen/dimen_6dp">
 
     <ImageView
         android:id="@+id/share_image"
         android:layout_width="@dimen/qb_px_50"
-        android:layout_height="@dimen/qb_px_50"
-        android:src="@drawable/ic_share_whatsapp" />
+        android:layout_height="@dimen/qb_px_50" />
 
     <TextView
         android:id="@+id/share_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/qb_px_12"
-        android:text="文本"
         android:textColor="@color/color_9D9D9D"
         android:textSize="@dimen/qb_sp_13" />
 

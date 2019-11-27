@@ -76,20 +76,19 @@
         <com.goodmorning.view.image.RoundedImageView
             android:id="@+id/image_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/qb_px_30"
             android:layout_marginTop="@dimen/qb_px_10"
             android:layout_marginRight="@dimen/qb_px_30"
             android:layout_marginBottom="@dimen/qb_px_10"
-            android:scaleType="fitCenter" />
-
+            android:scaleType="fitStart" />
+        <!--// android:scaleType="fitCenter"-->
         <LinearLayout
             android:id="@+id/video_detail"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_gravity="center"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <cn.jzvd.JzvdStd
                 android:id="@+id/jz_video"
@@ -102,6 +101,8 @@
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/qb_px_20"
+        android:layout_marginRight="@dimen/qb_px_20"
         android:layout_weight="1.1" />
 
 

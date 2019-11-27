@@ -2,6 +2,7 @@ package com.goodmorning.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,19 +24,24 @@ import com.nox.data.NoxInfo;
 import com.nox.update.a;
 
 import org.n.account.core.api.NjordAccountManager;
+import org.n.account.core.exception.AuthFailureError;
 import org.n.account.core.model.Account;
 import org.n.account.core.net.HeaderStrategy;
 import org.n.account.core.ui.GlideCircleTransform;
+import org.n.account.core.utils.NjordIdHelper;
+import org.n.account.core.utils.SessionHelper;
 import org.n.account.net.HttpMethod;
 import org.n.account.net.NetClientFactory;
 import org.n.account.ui.view.AccountUIHelper;
 
 import java.util.List;
 
+import okhttp3.Request;
+
 public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView mTextView;
     private ImageView mAccountHeaderImg;
-    private TextView mAccountHeaderText,mVersion;
+    private TextView mAccountHeaderText, mVersion;
     private View mUser, mUpdate;
 
     @Nullable
@@ -56,9 +62,32 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mUser.setOnClickListener(this);
         mUpdate.setOnClickListener(this);
 
-        mVersion.setText("V"+getString(R.string.app_version));
+        mVersion.setText("V" + getString(R.string.app_version));
         Account account = NjordAccountManager.getCurrentAccount(getActivity());
         showAccountInfo(account);
+
+//        Account account = NjordAccountManager.getCurrentAccount(getActivity());
+//        if (null != account) {
+//            String psu = NjordIdHelper.getPSU(account);
+//            String key = NjordIdHelper.getKey(account);
+//            String random = NjordIdHelper.getRandom(account);
+//            try {
+//                String session = SessionHelper.composeCookieWithSession(
+//                        getActivity(),
+//                        key,
+//                        psu,
+//                        random,
+//                        "asd".getBytes());
+//                Log.i("BAASAS", "session=" + session);
+//                String str[] = session.split(";");
+//                String psu1 = str[0].substring(4);
+//                Log.i("BAASAS", "psu1=" + psu1);
+//                String pmc = str[1].substring(4);
+//                Log.i("BAASAS", "pmc=" + pmc);
+//            } catch (AuthFailureError ex) {
+//            }
+//        }
+
 
 //        NetClientFactory.provideClient(getContext()).newAssembler()
 //                .url(NetParamsProvider.Url.TASK_LIST(mContext))
@@ -70,6 +99,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //                .callback(callback)
 //                .build().execute();
     }
+
+
     private void showAccountInfo(Account account) {
         if (account != null) {
             Glide.with(getActivity()).load(account.mPictureUrl)

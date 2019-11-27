@@ -6,6 +6,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.Toast;
+
+import com.creativeindia.goodmorning.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,6 +48,7 @@ public class SaveImageImpl implements ISaveImage {
             Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
 
             context.sendBroadcast(localIntent);
+            Toast.makeText(context.getApplicationContext(), context.getString(R.string.news_ui__save_successful), Toast.LENGTH_SHORT).show();
             return file.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();

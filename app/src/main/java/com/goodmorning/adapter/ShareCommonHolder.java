@@ -36,6 +36,8 @@ public class ShareCommonHolder extends BaseViewHolder {
     public void bind(Object o) {
         if (o == null || !(o instanceof ShareItem))
             return;
+
+
         mItem = (ShareItem) o;
         mTitle.setText(mItem.text);
         mImage.setImageResource(mItem.imageResource);

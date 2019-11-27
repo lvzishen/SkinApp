@@ -29,6 +29,10 @@ dependencies {
 
     // SharedPref
     xalApi 'com.xal.publicrepository:coreserviceprovider:3.0.4'
+
+    //账号sdk，【必选】
+    xalApi 'org.njord.account:core:' + ACCOUNT_VERSION
+    xalApi 'org.njord.account:ui:' + ACCOUNT_UI_VERSION
 }
 xal {
     testPersistProcessName 'com.your.persist.process.name'

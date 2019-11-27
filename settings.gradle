@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':permission', ':servicemanager', ':binder', ':config',  ':adslib',':libCore'
+include ':app', ':baselib', ':permission', ':servicemanager', ':binder', ':config',  ':adslib',':libCore',':jiaozivideoplayer'

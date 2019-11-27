@@ -16,6 +16,8 @@ import org.interlaken.common.utils.StringCodeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.thanos.netcore.BuildConfig;
+import org.thanos.netcore.CollectStatus;
+import org.thanos.netcore.bean.CollectDetail;
 import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ChannelList;
@@ -24,8 +26,12 @@ import org.thanos.netcore.bean.ContentItem;
 import org.thanos.netcore.bean.ContentList;
 import org.thanos.netcore.bean.ResponseData;
 import org.thanos.netcore.data.GoodMorningBaseParser;
+import org.thanos.netcore.data.GoodMorningCollectRequest;
 import org.thanos.netcore.data.GoodMorningRequest;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectListRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectStatusRequestParam;
 import org.thanos.netcore.internal.requestparam.ContentDetailRequestParam;
 import org.thanos.netcore.internal.requestparam.ContentListRequestParam;
 import org.thanos.netcore.internal.requestparam.RecommendListRequestParam;
@@ -546,6 +552,90 @@ public class MorningDataCore {
         return XalContext.getCloudAttribute(cloudKey, String.format(urlPath, serverHost));
     }
 
+    public static void requestCollectUpLoad(final Context context, final CollectRequestParam newsListRequestParam, final ResultCallback<CollectDetail> callback) {
+        if (DEBUG) {
+            Log.d(TAG, "requestCollectUpLoad() called with: context = [" + context + "], newsListRequestParam = [" + newsListRequestParam + "]");
+        }
+        if (!checkHasInit()) {
+            callback.onFail(new IllegalStateException());
+            return;
+        }
+        Task.callInBackground(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                GoodMorningCollectRequest request = new GoodMorningCollectRequest(context, newsListRequestParam, getUrl(CoreCloudConstants.URL_USER_COLLECT_UPLOAD, UrlConfig.USER_COLLECT_ACT));
+                GoodMorningBaseParser<CollectDetail> goodMorningBaseParser = new GoodMorningBaseParser<>(CollectDetail.class);
+                DataRequest.request(context, request, goodMorningBaseParser, callback);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                Exception error = task.getError();
+                if (error != null) {
+                    callback.onFail(error);
+                }
+                return null;
+            }
+        });
+    }
+
+    public static void requestCollectList(final Context context, final CollectListRequestParam collectListRequestParam, final ResultCallback<ContentList> callback) {
+        if (DEBUG) {
+            Log.d(TAG, "requestCollectUpLoad() called with: context = [" + context + "], collectListRequestParam = [" + collectListRequestParam + "]");
+        }
+        if (!checkHasInit()) {
+            callback.onFail(new IllegalStateException());
+            return;
+        }
+        Task.callInBackground(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                GoodMorningCollectRequest request = new GoodMorningCollectRequest(context, collectListRequestParam, getUrl(CoreCloudConstants.URL_USER_GET_COLLECT_LIST, UrlConfig.USER_COLLECT_LIST));
+                GoodMorningBaseParser<ContentList> goodMorningBaseParser = new GoodMorningBaseParser<>(ContentList.class);
+                DataRequest.request(context, request, goodMorningBaseParser, callback);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                Exception error = task.getError();
+                if (error != null) {
+                    callback.onFail(error);
+                }
+                return null;
+            }
+        });
+    }
+
+    public static void requestCollectStatus(final Context context, final CollectStatusRequestParam collectStatusRequestParam, final ResultCallback<CollectStatus> callback) {
+        if (DEBUG) {
+            Log.d(TAG, "requestCollectUpLoad() called with: context = [" + context + "], collectStatusRequestParam = [" + collectStatusRequestParam + "]");
+        }
+        if (!checkHasInit()) {
+            callback.onFail(new IllegalStateException());
+            return;
+        }
+        Task.callInBackground(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                GoodMorningCollectRequest request = new GoodMorningCollectRequest(context, collectStatusRequestParam, getUrl(CoreCloudConstants.URL_USER_GET_COLLECT_STATUS, UrlConfig.USER_COLLECT_STATUS));
+                GoodMorningBaseParser<CollectStatus> goodMorningBaseParser = new GoodMorningBaseParser<>(CollectStatus.class);
+                DataRequest.request(context, request, goodMorningBaseParser, callback);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                Exception error = task.getError();
+                if (error != null) {
+                    callback.onFail(error);
+                }
+                return null;
+            }
+        });
+    }
+
     public static class UrlConfig {
         /**
          * APUS域名
@@ -579,6 +669,20 @@ public class MorningDataCore {
          * 用户反馈上报
          */
         static final String USER_FEEDBACK_UPLOAD = "%s/router?method=user.feedback";
+
+        /**
+         * 收藏与取消收藏
+         */
+        static final String USER_COLLECT_ACT = "%s/router?method=user.behavior2";
+        /**
+         * 收藏列表
+         */
+        static final String USER_COLLECT_LIST = "%s/router?method=user.behavior2.getByUser";
+
+        /**
+         * 收藏状态
+         */
+        static final String USER_COLLECT_STATUS = "%s/router?method=user.behavior2.getByUserAndRid";
     }
 
     private static class CoreCloudConstants {
@@ -606,5 +710,17 @@ public class MorningDataCore {
          * 用户反馈上报接口地址
          */
         static final String URL_USER_FEEDBACK_UPLOAD = "ZPemjhl";
+        /**
+         * 用户反馈上报接口地址
+         */
+        static final String URL_USER_COLLECT_UPLOAD = "CollectUpload";
+        /**
+         * 用户拉取收藏列表
+         */
+        static final String URL_USER_GET_COLLECT_LIST = "CollectList";
+        /**
+         * 获取收藏状态
+         */
+        static final String URL_USER_GET_COLLECT_STATUS = "CollectStatus";
     }
 }

@@ -5,11 +5,15 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thanos.netcore.bean.ChannelList;
+import org.thanos.netcore.bean.CollectDetail;
 import org.thanos.netcore.bean.ContentDetail;
 import org.thanos.netcore.bean.ContentList;
 import org.thanos.netcore.bean.ResponseData;
 import org.thanos.netcore.internal.MorningDataCore;
 import org.thanos.netcore.internal.requestparam.ChannelListRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectListRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectRequestParam;
+import org.thanos.netcore.internal.requestparam.CollectStatusRequestParam;
 import org.thanos.netcore.internal.requestparam.ContentDetailRequestParam;
 import org.thanos.netcore.internal.requestparam.ContentListRequestParam;
 import org.thanos.netcore.internal.requestparam.RecommendListRequestParam;
@@ -111,11 +115,35 @@ public class MorningDataAPI {
     }
 
     /**
+     * 上传或取消收藏状态
+     */
+    public static void requestCollectUpLoad(Context context, CollectRequestParam collectRequestParam, ResultCallback<CollectDetail> callback) {
+        MorningDataCore.requestCollectUpLoad(context, collectRequestParam, callback);
+    }
+
+    /**
+     * 获取收藏列表
+     */
+    public static void requestCollectList(Context context, CollectListRequestParam collectListRequestParam, ResultCallback<ContentList> callback) {
+        MorningDataCore.requestCollectList(context, collectListRequestParam, callback);
+    }
+
+
+    /**
+     * 获取收藏状态
+     */
+    public static void requestCollectStatus(Context context, CollectStatusRequestParam collectStatusRequestParam, ResultCallback<CollectStatus> callback) {
+        MorningDataCore.requestCollectStatus(context, collectStatusRequestParam, callback);
+    }
+
+
+    /**
      * 获取内容详情信息
      */
     public static void requestContentDetail(Context context, ContentDetailRequestParam contentDetailRequestParam, ResultCallback<ContentDetail> callback) {
         MorningDataCore.requestContentDetail(context, contentDetailRequestParam, callback);
     }
+
 
     /**
      * 获取推荐内容列表

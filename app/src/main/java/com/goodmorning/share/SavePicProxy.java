@@ -36,7 +36,7 @@ public class SavePicProxy {
     public static final String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     public static final int SAVE_TYPE = 1;
     public static final int INS_TYPE = 2;
-    public static final int SAVE_MORE = 3;
+    public static final int MORE_TYPE = 3;
 
     private ISaveImage saveImage;
 
@@ -48,7 +48,7 @@ public class SavePicProxy {
             case INS_TYPE:
                 saveImage = RInstagramManager.getInstance();
                 break;
-            case SAVE_MORE:
+            case MORE_TYPE:
                 saveImage = ShareManager.getInstance();
                 break;
         }

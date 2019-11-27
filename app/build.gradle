@@ -6,7 +6,6 @@ android {
     compileSdkVersion Integer.parseInt(CompileSdkVersion)
     buildToolsVersion BuildToolsVersion
     defaultConfig {
-//        applicationId "com.creativeindia.goodmorning"
         applicationId "com.creativeindia.goodmorning"
 //        applicationId "com.apusapps.launcher"
         minSdkVersion Integer.parseInt(MinSdkVersion)
@@ -105,15 +104,15 @@ dependencies {
     xalApi 'com.push:pushsdk:2.3.17.17.2-3rd'
     xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
 
-    //账号sdk，【必选】
-    xalImplementation 'org.njord.account:core:' + ACCOUNT_VERSION
-    xalImplementation 'org.njord.account:ui:' + ACCOUNT_UI_VERSION
+//    //账号sdk，【必选】
+//    xalImplementation 'org.njord.account:core:' + ACCOUNT_VERSION
+//    xalImplementation 'org.njord.account:ui:' + ACCOUNT_UI_VERSION
     //facebook
     implementation 'com.facebook.android:facebook-core:4.34.0'
     implementation 'com.facebook.android:facebook-login:4.34.0'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.alibaba:fastjson:1.2.62'
-    compile 'cn.jzvd:jiaozivideoplayer:7.0.5'
+    implementation project(':jiaozivideoplayer')
 
 
     xalApi 'com.xal.publicrepository:apollo-downloader-wrapper:' + APOLLO_DOWNLOADER_WRAPPER_VERSION

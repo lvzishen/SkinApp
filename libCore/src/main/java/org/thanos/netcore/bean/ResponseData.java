@@ -2,6 +2,7 @@ package org.thanos.netcore.bean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thanos.netcore.CollectStatus;
 
 /**
  * Created by zhaobingfeng on 2019-07-11.
@@ -26,7 +27,7 @@ public class ResponseData {
         }
     }
 
-    public boolean needCache(){
+    public boolean needCache() {
         return false;
     }
 
@@ -39,6 +40,10 @@ public class ResponseData {
             return (T) new ContentDetail(jsonObject);
         } else if (clazz == ResponseData.class) {
             return (T) new ResponseData(jsonObject);
+        } else if (clazz == CollectDetail.class) {
+            return (T) new CollectDetail(jsonObject);
+        } else if (clazz == CollectStatus.class) {
+            return (T) new CollectStatus(jsonObject);
         }
         return null;
     }
