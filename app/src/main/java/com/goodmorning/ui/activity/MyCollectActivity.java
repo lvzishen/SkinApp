@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.baselib.ui.activity.BaseActivity;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.MainListAdapter;
 import com.goodmorning.bean.DataListItem;
+import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.ResUtils;
 import com.goodmorning.view.recyclerview.CommonRecyclerView;
@@ -21,11 +24,18 @@ import com.goodmorning.view.recyclerview.interfaces.OnItemClickListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
 
+import org.thanos.netcore.MorningDataAPI;
+import org.thanos.netcore.ResultCallback;
+import org.thanos.netcore.bean.ContentList;
+import org.thanos.netcore.internal.requestparam.CollectListRequestParam;
+
 public class MyCollectActivity extends BaseActivity {
+    private static final String TAG = "MyCollectActivity";
     private CommonRecyclerView rvCollectList;
     private MainListAdapter mainListAdapter;
     private CommonRecyclerViewAdapter mRecyclerViewAdapter;
     private FrameLayout myCollectBack;
+    private LinearLayout llNoCollect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,7 @@ public class MyCollectActivity extends BaseActivity {
     private void initView(){
         rvCollectList = findViewById(R.id.rv_collect_list);
         myCollectBack = findViewById(R.id.mycollection_back);
+        llNoCollect = findViewById(R.id.ll_no_collect);
     }
 
     private void initData(){
@@ -80,5 +91,36 @@ public class MyCollectActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void requestCollect(){
+        MorningDataAPI.requestCollectList(getApplicationContext(),
+            new CollectListRequestParam(0,
+                    1000, false, 1), new ResultCallback<ContentList>() {
+                @Override
+                public void onSuccess(ContentList data) {
+                    if (data != null && data.code == 0) {
+                        if (GlobalConfig.DEBUG) {
+                            Log.i(TAG, "用户收藏上报成功");
+                        }
+                    } else {
+                        if (GlobalConfig.DEBUG) {
+                            Log.i(TAG, "用户收藏上报失败");
+                        }
+                    }
+                }
+
+                @Override
+                public void onLoadFromCache(ContentList data) {
+
+                }
+
+                @Override
+                public void onFail(Exception e) {
+                    if (GlobalConfig.DEBUG) {
+                        Log.d(TAG, "用户收藏上报失败, [" + e + "]");
+                    }
+                }
+            });
     }
 }

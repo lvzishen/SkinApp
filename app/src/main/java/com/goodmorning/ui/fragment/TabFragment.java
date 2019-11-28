@@ -5,6 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -45,6 +48,8 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 public class TabFragment extends Fragment {
 
     private CommonRecyclerView mRecyclerView;
+    private LinearLayout llListRetry;
+    private Button listRetryBtn;
     private MainListAdapter mainListAdapter;
     private CommonRecyclerViewAdapter mRecyclerViewAdapter;
     private int sessionId;
@@ -62,6 +67,8 @@ public class TabFragment extends Fragment {
 
     private void initView(View view){
         mRecyclerView = view.findViewById(R.id.rv_list);
+        llListRetry = view.findViewById(R.id.ll_list_retry);
+        listRetryBtn = view.findViewById(R.id.list_retry_btn);
     }
 
     private void initData(){
@@ -118,6 +125,15 @@ public class TabFragment extends Fragment {
                 }
             }
         });
+
+        listRetryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionId = Math.abs((int) System.currentTimeMillis());
+                mainListAdapter.clear();
+                requestData();
+            }
+        });
     }
 
     private void requestData(){
@@ -138,7 +154,7 @@ public class TabFragment extends Fragment {
 
             @Override
             public void onFail(Exception e) {
-
+                showEmpty();
             }
         });
     }
@@ -177,6 +193,18 @@ public class TabFragment extends Fragment {
             }
             mainListAdapter.addAll(datas);
             mRecyclerView.refreshComplete(0);
+        }
+        showEmpty();
+    }
+
+    /**
+     * 是否显示空页面
+     */
+    private void showEmpty(){
+        if (mainListAdapter.getDataSize() == 0){
+            llListRetry.setVisibility(View.VISIBLE);
+        }else {
+            llListRetry.setVisibility(View.GONE);
         }
     }
 

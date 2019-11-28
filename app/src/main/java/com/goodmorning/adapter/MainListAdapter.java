@@ -62,7 +62,7 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
         float scale = (itemWidth+0f)/dataListItem.getWidth();
         layoutParams.height = (int) (dataListItem.getHeight()*scale);
         imageView.setLayoutParams(layoutParams);
-        ImageUtil.displayImageView(mContext,imageView,dataListItem.getPicUrl(),layoutParams.width, layoutParams.height);
+        ImageUtil.displayImageView(mContext,imageView,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
     }
 
     @Override

@@ -95,9 +95,11 @@ public class ImageUtil {
     }
 
 
-    public static void displayImageView(Context context, ImageView imageView, String url, int width, int heghit) {
+    public static void displayImageView(Context context, ImageView imageView, String url, int placeHolderResId,int width, int heghit) {
         Glide.clear(imageView);
         DrawableTypeRequest<String> drawableTypeRequest = Glide.with(context).load(url);
+        drawableTypeRequest.placeholder(placeHolderResId);
+        drawableTypeRequest.error(placeHolderResId);
         boolean isGif = isGif(url);
         if (isGif) {
             drawableTypeRequest.asGif();

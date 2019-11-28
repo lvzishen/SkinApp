@@ -61,7 +61,7 @@ public class PicDialog extends Dialog implements View.OnClickListener {
 
     private void addData(){
         ViewGroup.LayoutParams layoutParams =  ivPic.getLayoutParams();
-        ImageUtil.displayImageView(getContext(),ivPic,dataListItem.getPicUrl(),layoutParams.width, layoutParams.height);
+        ImageUtil.displayImageView(getContext(),ivPic,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
     }
 
     public void setDataListItem(DataListItem dataListItem){

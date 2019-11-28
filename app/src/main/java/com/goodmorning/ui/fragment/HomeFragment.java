@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,6 +56,8 @@ public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager tabVpager;
     private TextView tvTitle;
+    private LinearLayout llChannelRetry;
+    private Button channelRetryBtn;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
     private Activity mActivity;
@@ -75,6 +78,8 @@ public class HomeFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayout);
         tabVpager = view.findViewById(R.id.tab_viewpager);
         tvTitle = view.findViewById(R.id.tv_title);
+        llChannelRetry = view.findViewById(R.id.ll_channel_retry);
+        channelRetryBtn = view.findViewById(R.id.channel_retry_btn);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -204,6 +209,13 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        channelRetryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestChannelList();
+            }
+        });
         requestChannelList();
     }
 
@@ -242,12 +254,15 @@ public class HomeFragment extends Fragment {
                     String[] txts = TextUtils.channelText(text);
                     tvTab.setText(txts[0]);
                     if (txts.length > 1){
-                        ImageLoader.displayImageByName(getContext(),txts[1],R.drawable.ic_launcher,R.drawable.ic_launcher,ivTab);
+                        ImageLoader.displayImageByName(getContext(),txts[1],R.drawable.shape_channel_item_default,R.drawable.shape_channel_item_default,ivTab);
                     }
                     tab.setCustomView(view);
                 }
                 tabLayout.getTabAt(0).select();
 
+                if (tabLayout.getTabCount() == 0){
+                    llChannelRetry.setVisibility(View.VISIBLE);
+                }
             }
         });
 

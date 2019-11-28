@@ -105,5 +105,8 @@
     <string name="setting">Set</string>
     <string name="my_collect">My Collection</string>
     <string name="share">Share</string>
+    <string name="mycollect_empty">You haven’t collected anything yet</string>
+    <string name="home_empty">There is nothing , please try again</string>
+    <string name="retry_txt">Retry</string>
 
 </resources>
