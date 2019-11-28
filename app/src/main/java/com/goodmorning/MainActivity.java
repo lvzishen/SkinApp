@@ -7,10 +7,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ads.lib.commen.AdLifecyclerManager;
@@ -22,6 +25,7 @@ import com.goodmorning.manager.ContentManager;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
+import com.goodmorning.ui.activity.SettingActivity;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.utils.AppUtils;
@@ -325,6 +329,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initData() {
+        mFragmentList.clear();
         HomeFragment homeFragment = new HomeFragment();
         Bundle bundle1 = new Bundle();
         bundle1.putString(CONTENT, getString(R.string.tab_greeting));
@@ -342,9 +347,10 @@ public class MainActivity extends BaseActivity {
     }
 
     class GoodAdapter extends FragmentStatePagerAdapter {
-
+//        private FragmentManager mFragmentManager;
         public GoodAdapter(FragmentManager fm) {
             super(fm);
+//            mFragmentManager = fm;
         }
 
         @Override
@@ -356,6 +362,44 @@ public class MainActivity extends BaseActivity {
         public int getCount() {
             return mFragmentList.size();
         }
+
+
+
+//        @Override
+//        public int getItemPosition(Object object) {
+//            if (!((Fragment) object).isAdded() || !mFragmentList.contains(object)) {
+//                return PagerAdapter.POSITION_NONE;
+//            }
+//            return mFragmentList.indexOf(object);
+//        }
+//
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//
+//            Fragment instantiateItem = ((Fragment) super.instantiateItem(container, position));
+//            Fragment item = mFragmentList.get(position);
+//            if (instantiateItem == item) {
+//                return instantiateItem;
+//            } else {
+//                //如果集合中对应下标的fragment和fragmentManager中的对应下标的fragment对象不一致，那么就是新添加的，所以自己add进入；这里为什么不直接调用super方法呢，因为fragment的mIndex搞的鬼，以后有机会再补一补。
+//                mFragmentManager.beginTransaction().remove(instantiateItem);
+//                mFragmentManager.beginTransaction().add(container.getId(), item).commitNowAllowingStateLoss();
+//                return item;
+//            }
+//        }
+//
+//        @Override
+//        public void destroyItem(ViewGroup container, int position, Object object) {
+//            Fragment fragment = (Fragment) object;
+//            //如果getItemPosition中的值为PagerAdapter.POSITION_NONE，就执行该方法。
+//            if (mFragmentList.contains(fragment)) {
+//                super.destroyItem(container, position, fragment);
+//                return;
+//            }
+//            //自己执行移除。因为mFragments在删除的时候就把某个fragment对象移除了，所以一般都得自己移除在fragmentManager中的该对象。
+//            mFragmentManager.beginTransaction().remove(fragment).commitNowAllowingStateLoss();
+//
+//        }
     }
 
     @Override
@@ -395,8 +439,19 @@ public class MainActivity extends BaseActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
+        boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA,false);
         if (isRefresh){
             AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
+        }
+        ContentManager.getInstance().setChangeLang(false);
+        if (isQuit && getSupportFragmentManager().getFragments().size() >=2){
+            for (Fragment fragment : getSupportFragmentManager().getFragments()){
+                if (fragment instanceof MyFragment){
+                    MyFragment myFragment = (MyFragment) fragment;
+                    myFragment.quitLogin();
+                }
+            }
+
         }
     }
 

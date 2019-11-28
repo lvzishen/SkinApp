@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.baselib.language.LanguageUtil;
 import com.baselib.ui.CommonConstants;
 import com.baselib.ui.activity.BaseActivity;
 import com.creativeindia.goodmorning.R;
@@ -15,12 +16,13 @@ import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
 import com.goodmorning.manager.ContentManager;
 import com.goodmorning.splash.OpenUrlUtils;
+import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.AppUtils;
 import com.goodmorning.utils.ResUtils;
+import com.goodmorning.view.dialog.CommonDialog;
+import com.goodmorning.view.dialog.CommonDialogClickListener;
 import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
-
-import org.n.account.core.api.NjordAccountManager;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.helper.JsonHelper;
 import java.util.ArrayList;
@@ -35,6 +37,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private TextView tvSetLanguage,tvSetVersion;
     private JsonHelper<ArrayList<ChannelList.LanguageItem>> jsonHelper;
     private LanguageDialog languageDialog;
+    private CommonDialog commonDialog;
+    public static final String KEY_QUIT_EXTRA = "key_quit_extra";
+    private boolean isLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +77,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onLanguage(String languge) {
                 languageDialog.dismiss();
-                AppUtils.changeLanguage(SettingActivity.this,languge);
+                if (languge.equals(LanguageUtil.getLanguage())){
+                    ContentManager.getInstance().setChangeLang(false);
+                }else {
+                    ContentManager.getInstance().setChangeLang(true);
+                    AppUtils.changeLanguage(SettingActivity.this,languge);
+                }
             }
         });
     }
@@ -92,8 +102,11 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         }
         tvSetLanguage.setText(ContentManager.getInstance().getLang());
         tvSetVersion.setText("V"+AppUtils.versionName(this));
-
-        if (NjordAccountManager.isLogined(this)){
+        Intent intent = getIntent();
+        if (intent != null){
+            isLogin = intent.getBooleanExtra(ActivityCtrl.KEY_LOGIN_EXTRA,false);
+        }
+        if (isLogin){
             rlSetQuit.setVisibility(View.VISIBLE);
         }else {
             rlSetQuit.setVisibility(View.GONE);
@@ -106,7 +119,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()){
             case R.id.iv_setting_back:
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);
-                intent.putExtra(MainActivity.CONTENT,true);
+                intent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
                 startActivity(intent);
                 finish();
                 break;
@@ -128,11 +141,30 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.rl_setting_quit:
                 //退出登录提示
-                NjordAccountManager.localLogout(SettingActivity.this);
-                Intent quitIntent = new Intent(SettingActivity.this,MainActivity.class);
-                quitIntent.putExtra(MainActivity.CONTENT,true);
-                startActivity(quitIntent);
-                finish();
+                if (commonDialog != null && commonDialog.isShowing()) {
+                    return;
+                }
+                commonDialog = new CommonDialog.Builder(this)
+                        .setTitle(ResUtils.getString(R.string.ask_exit))
+                        .setLeftBtnStr(ResUtils.getString(R.string.btn_cancel))
+                        .setRightBtnStr(ResUtils.getString(R.string.btn_confirm))
+                        .addClickListener(new CommonDialogClickListener() {
+                            @Override
+                            public void onClickLeft() {
+                                commonDialog.dismiss();
+                            }
+
+                            @Override
+                            public void onClickRight() {
+                                commonDialog.dismiss();
+                                Intent quitIntent = new Intent(SettingActivity.this,MainActivity.class);
+                                quitIntent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
+                                quitIntent.putExtra(SettingActivity.KEY_QUIT_EXTRA,true);
+                                startActivity(quitIntent);
+                                finish();
+                            }
+                        }).show();
+
                 break;
         }
     }
@@ -141,7 +173,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void onBackPressed() {
 //        super.onBackPressed();
         Intent intent = new Intent(SettingActivity.this,MainActivity.class);
-        intent.putExtra(MainActivity.CONTENT,true);
+        intent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
         startActivity(intent);
         finish();
     }

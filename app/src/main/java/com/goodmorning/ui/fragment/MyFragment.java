@@ -1,7 +1,9 @@
 package com.goodmorning.ui.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private LinearLayout llCollect;
     private LanguageDialog languageDialog;
     private Activity mActivity;
+    private boolean isLogin;
 
     @Nullable
     @Override
@@ -72,10 +75,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         llSettings.setOnClickListener(this);
 
         mVersion.setText("V" + getString(R.string.app_version));
-        if (NjordAccountManager.isLogined(getContext())) {
-        } else {
-            AccountUIHelper.startLogin(getActivity());
-        }
+//        if (NjordAccountManager.isLogined(getContext())) {
+//        } else {
+//            AccountUIHelper.startLogin(getActivity());
+//        }
         Account account = NjordAccountManager.getCurrentAccount(getActivity());
         showAccountInfo(account);
 
@@ -142,17 +145,19 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private void showAccountInfo(Account account) {
         if (account != null) {
-            Glide.with(getActivity()).load(account.mPictureUrl)
+            Glide.with(getApplicationContext()).load(account.mPictureUrl)
                     .placeholder(R.drawable.ic_account_header)
-                    .bitmapTransform(new GlideCircleTransform(getActivity()))
+                    .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
+            isLogin = true;
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
-            Glide.with(getActivity()).load(R.drawable.ic_account_header)
-                    .bitmapTransform(new GlideCircleTransform(getActivity()))
+            Glide.with(getApplicationContext()).load(R.drawable.ic_account_header)
+                    .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(R.string.sign_in_to);
+            isLogin = false;
         }
     }
 
@@ -178,8 +183,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             setListener();
         } else if (v.getId() == R.id.ll_my_set) {
             //设置
-            ActivityCtrl.gotoActivityOpenSimple(getActivity(), SettingActivity.class);
+            ActivityCtrl.gotoSettingAcitivity(getActivity(), SettingActivity.class,isLogin);
         }
+    }
+
+    public void quitLogin(){
+        NjordAccountManager.localLogout(getApplicationContext());
+        Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+        showAccountInfo(account);
     }
 
     public void onClickUpdate(View v) {
