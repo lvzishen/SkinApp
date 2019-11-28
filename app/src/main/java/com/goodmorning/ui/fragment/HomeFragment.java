@@ -58,13 +58,14 @@ public class HomeFragment extends Fragment {
     private TextView tvTitle;
     private LinearLayout llChannelRetry;
     private Button channelRetryBtn;
+    private ImageView ivDayPic;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
     private Activity mActivity;
     private AlphaAnimation mHideAnimation	= null;
     private AlphaAnimation mShowAnimation	= null;
     private Handler handler = new Handler();
-    DayPicture dayPicture;
+    private DayPicture dayPicture;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,17 +81,27 @@ public class HomeFragment extends Fragment {
         tvTitle = view.findViewById(R.id.tv_title);
         llChannelRetry = view.findViewById(R.id.ll_channel_retry);
         channelRetryBtn = view.findViewById(R.id.channel_retry_btn);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                hideTitleGreetings();
-            }
-        });
+        ivDayPic = view.findViewById(R.id.iv_time_change);
+        hideTitleGreetings();
 //        tvTitle.setText(getString(R.string.string_app_name));
     }
 
     private void hideTitleGreetings() {
         String text = HomeGreetingHelper.showText(getApplicationContext());
+        int status= HomeGreetingHelper.dayTimeStatus(getApplicationContext());
+        switch (status){
+            case 0:
+                break;
+            case 1:
+                ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_morning));
+                break;
+            case 2:
+                ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_morning));
+                break;
+            case 3:
+                ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_night));
+                break;
+        }
         if (android.text.TextUtils.isEmpty(text)) {
             tvTitle.setText(getString(R.string.string_app_name));
         } else {

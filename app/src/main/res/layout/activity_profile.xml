@@ -9,6 +9,7 @@
         android:id="@+id/ll_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/qb_px_24"
         android:orientation="horizontal"
         android:background="@drawable/selector_background">
 

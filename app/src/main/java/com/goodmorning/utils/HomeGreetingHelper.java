@@ -21,6 +21,9 @@ public class HomeGreetingHelper {
 
     private static final boolean DEBUG = GlobalConfig.DEBUG;
     private static final String TAG = "HomeGreetingHelper";
+    public static final int MORNING = 1;
+    public static final int AFTERNOON = 2;
+    public static final int NIGHT = 3;
 
     public static String showText(Context context) {
         String langSP = SharedPref.getString(context, SharedPref.LANGUAGE, "en");
@@ -59,5 +62,45 @@ public class HomeGreetingHelper {
             }
         }
         return null;
+    }
+
+    /**
+     * 获取每日时间状态
+     * @param context
+     * @return
+     */
+    public static int dayTimeStatus(Context context){
+        String langSP = SharedPref.getString(context, SharedPref.LANGUAGE, "en");
+        String dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
+                "h.h.t.g." + langSP, null);
+        if (TextUtils.isEmpty(dayRule) && !TextUtils.isEmpty(langSP) && !"en".equalsIgnoreCase(langSP)) {
+            dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
+                    "h.h.t.g.en", null);
+        }
+        if (TextUtils.isEmpty(dayRule)) {
+            return 0;
+        }
+        try {
+            JSONArray jsonArray = new JSONArray(dayRule);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.optJSONObject(i);
+                int from = jsonObject.optInt("from");
+                int to = jsonObject.optInt("to");
+                Calendar calendar = Calendar.getInstance();
+                int h = calendar.get(Calendar.HOUR_OF_DAY);
+                int m = calendar.get(Calendar.MINUTE);
+                int curr = h * 60 + m;
+
+
+                if ((curr >= from && curr <= to)) {
+                    return ++i;
+                }
+            }
+        } catch (JSONException e) {
+            if (DEBUG) {
+                Log.e(TAG, "isDayLimit: ", e);
+            }
+        }
+        return 0;
     }
 }

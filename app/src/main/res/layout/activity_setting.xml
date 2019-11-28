@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?attr/tablayout_bg"
+    android:fitsSystemWindows="true"
     tools:context="com.goodmorning.ui.activity.SettingActivity">
 
     <RelativeLayout

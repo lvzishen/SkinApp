@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity {
 //        AppUtils.changeTheme(this);
         AdLifecyclerManager.getInstance(getApplicationContext()).setFixedActivity(this);
         setContentView(R.layout.mainactivity_news);
-        setStatusBarColor(ResUtils.getColor(R.color.white));
+        setStatusBarColor(ResUtils.getColor(R.color.transparent));
         setAndroidNativeLightStatusBar(true);
         initView();
         initData();
