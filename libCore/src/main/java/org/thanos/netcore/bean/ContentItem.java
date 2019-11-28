@@ -60,6 +60,7 @@ public class ContentItem implements Serializable {
     public final String statsExtInfo;
     public final String source;
     public final String requestId;
+    public int status;
     /**
      * 显示样式
      */
@@ -82,11 +83,11 @@ public class ContentItem implements Serializable {
         int type = jsonObject.getInt("type");
         int show = jsonObject.optInt("show");
         String contentType = jsonObject.optString("content_type");
-        if ("NEWS".equals(contentType)){
+        if ("NEWS".equals(contentType)) {
             return new NewsItem(jsonObject, requestId);
-        }else if ("PHOTO".equals(contentType)){
+        } else if ("PHOTO".equals(contentType)) {
             return new VideoItem(jsonObject, requestId);
-        }else if ("VIDEO".equals(contentType)){
+        } else if ("VIDEO".equals(contentType)) {
             return new VideoItem(jsonObject, requestId);
         }
         if (DEBUG) {

@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.utils.ImageUtil;
+import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.utils.ScreenUtils;
-import com.rheia.PUUIDMgr;
 
 
 public class MainListAdapter extends ListBaseAdapter<DataListItem> {

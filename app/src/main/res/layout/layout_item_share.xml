@@ -6,8 +6,8 @@
     android:background="@drawable/selector_background"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingTop="@dimen/dimen_6dp"
-    android:paddingBottom="@dimen/dimen_6dp">
+    android:paddingTop="@dimen/qb_px_6"
+    android:paddingBottom="@dimen/qb_px_6">
 
     <ImageView
         android:id="@+id/share_image"

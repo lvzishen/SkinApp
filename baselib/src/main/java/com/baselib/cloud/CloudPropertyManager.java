@@ -73,6 +73,7 @@ public class CloudPropertyManager {
     public static final String PATH_HOME_AUTOU = CloudPropertyManagerBridge.PATH_HOME_AUTOU;
     public static final String PATH_CLIPBROAD = CloudPropertyManagerBridge.PATH_CLIPBROAD;
     public static final String PATH_SHARE = CloudPropertyManagerBridge.PATH_SHARE;
+    public static final String PATH_SHAREGUIDE_PROP = CloudPropertyManagerBridge.PATH_SHAREGUIDE_PROP;
 
     public static final String PATH_HOME_GREETING = CloudPropertyManagerBridge.PATH_HOME_GREETING;
 

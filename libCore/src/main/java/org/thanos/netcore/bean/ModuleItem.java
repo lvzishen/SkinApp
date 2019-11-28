@@ -29,6 +29,7 @@ public class ModuleItem extends ContentItem implements Serializable {
 
     ModuleItem(JSONObject jsonObject, String requestId) throws JSONException {
         super(jsonObject, requestId);
+        status = jsonObject.optInt("status");
         title = jsonObject.optString("title");
         iconUrl = jsonObject.optString("icon_url");
         jumpChannel = jsonObject.optInt("jump_channel");

@@ -22,9 +22,5 @@ public class TextDetailActivity extends BaseDetailActivity {
         return getResources().getString(R.string.string_app_name);
     }
 
-    @Override
-    protected void onClickCollect(View v) {
-
-    }
 
 }

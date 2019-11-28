@@ -123,6 +123,7 @@ public class NewsItem extends ContentItem implements Serializable {
         if (DEBUG) {
             Log.i(TAG, "NewsItem: 要解析的JSON串 " + jo.toString());
         }
+        status = jo.optInt("status");
         title = jo.optString("title");
         originUrl = jo.optString("ourl");
         shareUrl = jo.optString("surl");
@@ -198,7 +199,7 @@ public class NewsItem extends ContentItem implements Serializable {
                 ", type=" + type +
                 ", id=" + id +
                 ", category=" + category +
-                '}' :"";
+                '}' : "";
     }
 
     public static class ImageInfo implements Serializable {
@@ -215,11 +216,11 @@ public class NewsItem extends ContentItem implements Serializable {
 
         @Override
         public String toString() {
-            return DEBUG ?"ImageInfo{" +
+            return DEBUG ? "ImageInfo{" +
                     "height=" + height +
                     ", width=" + width +
                     ", url='" + url + '\'' +
-                    '}' :"";
+                    '}' : "";
         }
     }
 }

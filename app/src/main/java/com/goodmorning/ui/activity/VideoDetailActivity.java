@@ -24,10 +24,6 @@ public class VideoDetailActivity extends BaseDetailActivity {
         return getResources().getString(R.string.string_app_name);
     }
 
-    @Override
-    protected void onClickCollect(View v) {
-
-    }
 
     @Override
     protected void onPause() {

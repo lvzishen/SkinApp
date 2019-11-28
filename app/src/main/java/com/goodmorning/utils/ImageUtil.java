@@ -26,6 +26,7 @@ import com.goodmorning.config.GlobalConfig;
 public class ImageUtil {
     private static final String TAG = "ImageUtil";
     private static final boolean DEBUG = GlobalConfig.DEBUG;
+
     // scaleType
     public static void displayImage(Context context, ImageView imageView, String url, int placeHolderResId) {
         displayImage(context, imageView, url, placeHolderResId, new CenterCrop(context));
@@ -187,9 +188,6 @@ public class ImageUtil {
         }
         v.setVisibility(visibility);
     }
-
-
-
 
 
     private static boolean isGif(String url) {

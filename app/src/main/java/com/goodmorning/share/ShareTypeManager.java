@@ -20,6 +20,7 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import com.goodmorning.bean.DataListItem;
+import com.goodmorning.share.util.RPlatformHelper;
 
 /**
  * 创建日期：2019/11/26 on 13:58
@@ -105,6 +106,10 @@ public class ShareTypeManager {
             shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
         }
         if (mType == DataListItem.DATA_TYPE_2 && mBitmap != null) {
+            if (!RPlatformHelper.isInstalled(activity, RSharePlatform.Platform.Facebook)) {
+                Toast.makeText(activity, "请先安装FaceBook...", Toast.LENGTH_SHORT).show();
+                return;
+            }
             SharePhoto photo = new SharePhoto.Builder()
                     .setBitmap(mBitmap)
                     .build();
@@ -114,6 +119,10 @@ public class ShareTypeManager {
             shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
         }
         if (mType == DataListItem.DATA_TYPE_3) {
+            if (!RPlatformHelper.isInstalled(activity, RSharePlatform.Platform.Facebook)) {
+                Toast.makeText(activity, "请先安装FaceBook...", Toast.LENGTH_SHORT).show();
+                return;
+            }
             ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse(mDataItem.getVideoUrl())).build();
             shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
         }

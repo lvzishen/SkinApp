@@ -60,7 +60,7 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
         if (DEBUG) {
             Log.i(TAG, "VideoItem: 要解析的JSON串 " + jsonObject.toString());
         }
-
+        status = jsonObject.optInt("status");
         country = jsonObject.getString("country");
         lang = jsonObject.getString("lang");
         // categories 是老字段，不用管

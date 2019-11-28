@@ -61,7 +61,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label">
-        <activity android:name="com.goodmorning.ui.activity.MyCollectActivity"></activity>
+        <activity android:name="com.goodmorning.ui.activity.MyCollectActivity" />
         <activity
             android:name="com.goodmorning.ui.activity.WebviewActivity"
             android:screenOrientation="portrait" />
@@ -101,6 +101,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.goodmorning.ui.activity.PicDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.goodmorning.ui.activity.LoginGuideActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

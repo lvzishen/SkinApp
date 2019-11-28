@@ -19,6 +19,7 @@ import com.goodmorning.bean.DataListItem;
 import com.goodmorning.ui.activity.PicDetailActivity;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.ImageUtil;
+import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.utils.ResUtils;
 
 public class PicDialog extends Dialog implements View.OnClickListener {

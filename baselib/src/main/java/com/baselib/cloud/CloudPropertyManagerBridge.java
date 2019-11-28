@@ -86,6 +86,7 @@ public class CloudPropertyManagerBridge {
     public static final String PATH_HOME_GREETING = "home_greetings.prop";
     public static final String PATH_CHECK_UPDATE = "check_update.prop";
     public static final String PATH_EVERYDAY_PIC = "everyday_pic.prop";
+    public static final String PATH_SHAREGUIDE_PROP = "share_login.prop";
     private static CloudPropertyImpl sCloudProperty = null;
 
     public static CloudPropertyImpl getCloudPropertyServiceStub(Context cxt) {
