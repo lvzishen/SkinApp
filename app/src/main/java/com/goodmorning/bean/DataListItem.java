@@ -32,6 +32,14 @@ public class DataListItem implements Serializable {
       */
     private int height;
     /**
+     * 资源id
+     */
+    private long resourceId;
+    /**
+     * 资源id
+     */
+    private long id;
+    /**
      * 文本
      */
     public static final int DATA_TYPE_1 = 1;
@@ -98,5 +106,21 @@ public class DataListItem implements Serializable {
 
     public void setVideoThumbUrl(String videoThumbUrl) {
         this.videoThumbUrl = videoThumbUrl;
+    }
+
+    public long getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(long resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

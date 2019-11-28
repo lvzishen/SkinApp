@@ -43,6 +43,8 @@ public class ContentItem implements Serializable {
      * 资源ID
      */
     public final long id;
+
+    public long resourceId;
     /**
      * 一级分类ID
      */
@@ -66,6 +68,7 @@ public class ContentItem implements Serializable {
     ContentItem(JSONObject jsonObject, String requestId) throws JSONException {
         type = jsonObject.getInt("type");
         id = jsonObject.optLong("id");
+        resourceId = jsonObject.optLong("resource_id");
         show = jsonObject.optInt("show", -1);
         category = jsonObject.optInt("category");
         contentType = jsonObject.optString("content_type");

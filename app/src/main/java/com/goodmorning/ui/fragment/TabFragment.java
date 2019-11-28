@@ -175,6 +175,8 @@ public class TabFragment extends Fragment {
                 }else if ("VIDEO".equals(contentItem.contentType)){
                     dataItem.setType(DataListItem.DATA_TYPE_3);
                 }
+                dataItem.setResourceId(contentItem.resourceId);
+                dataItem.setId(contentItem.id);
                 if (contentItem instanceof VideoItem){
                     VideoItem videoItem = (VideoItem) contentItem;
                     dataItem.setVideoUrl(videoItem.sourceUrl);
