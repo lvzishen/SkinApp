@@ -203,11 +203,19 @@ public class TabFragment extends Fragment {
      * 是否显示空页面
      */
     private void showEmpty(){
-        if (mainListAdapter.getDataSize() == 0){
-            llListRetry.setVisibility(View.VISIBLE);
-        }else {
-            llListRetry.setVisibility(View.GONE);
+        if (mActivity == null){
+            return;
         }
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mainListAdapter.getDataSize() == 0){
+                    llListRetry.setVisibility(View.VISIBLE);
+                }else {
+                    llListRetry.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
 }
