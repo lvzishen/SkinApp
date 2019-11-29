@@ -54,9 +54,9 @@ public class GoodMorningCollectRequest extends GoodMorningRequest {
         String str[] = session.split(";");
         builder.addHeader("psu", str[0].substring(4));
         builder.addHeader("pmc", str[1].substring(4));
-//        Log.i("GoodMorningCollect", "session=" + session);
-//        Log.i("GoodMorningCollect", "psu=" + str[0].substring(4));
-//        Log.i("GoodMorningCollect", "pmc=" + str[1].substring(4));
+        Log.i("GoodMorningCollect", "session=" + session);
+        Log.i("GoodMorningCollect", "psu=" + str[0].substring(4));
+        Log.i("GoodMorningCollect", "pmc=" + str[1].substring(4));
     }
 
 }
