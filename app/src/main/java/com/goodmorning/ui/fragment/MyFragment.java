@@ -45,7 +45,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private LanguageDialog languageDialog;
     private Activity mActivity;
     private boolean isLogin;
-
+    private Account account;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         mUser = view.findViewById(R.id.ll_user);
         mUpdate = view.findViewById(R.id.ll_check_and_update);
         mVersion = view.findViewById(R.id.tv_version);
-//        mUser.setOnClickListener(this);
+        mUser.setOnClickListener(this);
         mUpdate.setOnClickListener(this);
 
         llCollect = view.findViewById(R.id.ll_my_collect);
@@ -79,7 +79,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //        } else {
 //            AccountUIHelper.startLogin(getActivity());
 //        }
-        Account account = NjordAccountManager.getCurrentAccount(getActivity());
+        account = NjordAccountManager.getCurrentAccount(getApplicationContext());
         showAccountInfo(account);
 
 //        Account account = NjordAccountManager.getCurrentAccount(getActivity());
@@ -167,6 +167,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.ll_user) {
             if (NjordAccountManager.isLogined(getContext())) {
 //                AccountUIHelper.jumpProfileCenter(getActivity());
+                if (account == null){
+                    AccountUIHelper.startLogin(getActivity());
+                }
             } else {
                 AccountUIHelper.startLogin(getActivity());
             }
@@ -183,13 +186,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             setListener();
         } else if (v.getId() == R.id.ll_my_set) {
             //设置
-            ActivityCtrl.gotoSettingAcitivity(getActivity(), SettingActivity.class,isLogin);
+            ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class,isLogin);
         }
     }
 
     public void quitLogin(){
         NjordAccountManager.localLogout(getApplicationContext());
-        Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+        account = NjordAccountManager.getCurrentAccount(getApplicationContext());
         showAccountInfo(account);
     }
 
