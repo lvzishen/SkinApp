@@ -8,11 +8,11 @@ import org.thanos.netcore.internal.MorningDataCore;
  * 推荐列表请求参数
  */
 public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.CollectRequestProtocol> {
-    private int resource_id;
+    private long resource_id;
     private boolean cancel;
 
 
-    public CollectRequestParam(int resource_id, boolean cancel, boolean acceptCache, int module) {
+    public CollectRequestParam(long resource_id, boolean cancel, boolean acceptCache, int module) {
         super("RL", acceptCache, false, module);
         this.resource_id = resource_id;
         this.cancel = cancel;
@@ -55,7 +55,7 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
     public static class CollectRequestProtocol extends BaseProtocol {
 
         public String app_id;
-        public int resource_id;
+        public long resource_id;
         public int type;
         public boolean cancel;
     }

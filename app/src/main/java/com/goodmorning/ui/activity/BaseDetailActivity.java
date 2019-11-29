@@ -166,7 +166,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                     return;
                 }
                 MorningDataAPI.requestCollectUpLoad(getApplicationContext(),
-                        new CollectRequestParam((int) mDataItem.getResourceId(),
+                        new CollectRequestParam(mDataItem.getResourceId(),
                                 isCollect, false, 1), new ResultCallback<CollectDetail>() {
                             @Override
                             public void onSuccess(CollectDetail data) {
@@ -174,8 +174,13 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                                     if (GlobalConfig.DEBUG) {
                                         Log.i(TAG, "用户收藏上报成功");
                                     }
-                                    isCollect = !isCollect;
-                                    mImageCollect.setSelected(isCollect);
+                                    mHandler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            isCollect = !isCollect;
+                                            mImageCollect.setSelected(isCollect);
+                                        }
+                                    });
                                 } else {
                                     if (GlobalConfig.DEBUG) {
                                         Log.i(TAG, "用户收藏上报失败");
@@ -274,17 +279,21 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     public void onClick(ShareItem shareItem) {
         this.mShareItem = shareItem;
         //引导登录
-        if (mType == DataListItem.DATA_TYPE_2 && !NjordAccountManager.isLogined(getApplicationContext()) && isShowLoginGuide()) {
-            Intent intent = new Intent(BaseDetailActivity.this, LoginGuideActivity.class);
-            intent.putExtra("picUrl", mDataItem.getPicUrl());
-            startActivity(intent);
-            isGoLogin = true;
-            return;
-        }
-        if (mType == DataListItem.DATA_TYPE_2 && NjordAccountManager.isLogined(getApplicationContext()) && !isNotHaveWaterMark) {
-            makeWaterMark();
-        } else {
-            mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
+        //获取已登录的账号
+        Account account = NjordAccountManager.getCurrentAccount(this);
+        if (account != null) {
+            if (mType == DataListItem.DATA_TYPE_2 && account.isGuest() && isShowLoginGuide()) {
+                Intent intent = new Intent(BaseDetailActivity.this, LoginGuideActivity.class);
+                intent.putExtra("picUrl", mDataItem.getPicUrl());
+                startActivity(intent);
+                isGoLogin = true;
+                return;
+            }//NjordAccountManager.isLogined(getApplicationContext())
+            if (mType == DataListItem.DATA_TYPE_2 && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext())) && !isNotHaveWaterMark) {
+                makeWaterMark();
+            } else {
+                mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
+            }
         }
     }
 
@@ -419,7 +428,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             Log.i(TAG, "用户ID" + mDataItem.getResourceId());
         }
         MorningDataAPI.requestCollectStatus(getApplicationContext(),
-                new CollectStatusRequestParam((int) mDataItem.getResourceId(),
+                new CollectStatusRequestParam(mDataItem.getResourceId(),
                         false, 1), new ResultCallback<CollectStatus>() {
                     @Override
                     public void onSuccess(CollectStatus data) {
@@ -428,8 +437,13 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                                 Log.i(TAG, "用户收藏状态" + data.item.collect);
                             }
                             if (data.item.collect == 1) {
-                                isCollect = true;
-                                mImageCollect.setSelected(true);
+                                mHandler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        isCollect = true;
+                                        mImageCollect.setSelected(true);
+                                    }
+                                });
                             }
                         } else {
                             if (GlobalConfig.DEBUG) {

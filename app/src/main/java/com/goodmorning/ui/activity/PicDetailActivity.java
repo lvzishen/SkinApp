@@ -6,6 +6,7 @@ import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 
 import org.n.account.core.api.NjordAccountManager;
+import org.n.account.core.model.Account;
 
 /**
  * 创建日期：2019/11/25 on 15:22
@@ -28,9 +29,12 @@ public class PicDetailActivity extends BaseDetailActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (isGoLogin && NjordAccountManager.isLogined(getApplicationContext())) {
-            isGoLogin = false;
-            onClick(mShareItem);
+        if (isGoLogin) {
+            Account account = NjordAccountManager.getCurrentAccount(this);
+            if (account != null && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext()))) {
+                isGoLogin = false;
+                onClick(mShareItem);
+            }
         }
     }
 }

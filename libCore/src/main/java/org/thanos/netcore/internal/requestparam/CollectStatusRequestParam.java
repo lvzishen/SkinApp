@@ -11,10 +11,10 @@ import org.thanos.netcore.internal.MorningDataCore;
  * "resource_ids": [1531816782958026],    ## 数组类型，数组中元素为int64类型，资源id
  */
 public class CollectStatusRequestParam extends BaseRequestParam<CollectStatusRequestParam.CollectStatusRequestProtocol> {
-    private int resource_ids;
+    private long resource_ids;
 
 
-    public CollectStatusRequestParam(int resource_ids, boolean acceptCache, int module) {
+    public CollectStatusRequestParam(long resource_ids, boolean acceptCache, int module) {
         super("RL", acceptCache, false, module);
         this.resource_ids = resource_ids;
         this.module = module;
@@ -52,6 +52,6 @@ public class CollectStatusRequestParam extends BaseRequestParam<CollectStatusReq
     public static class CollectStatusRequestProtocol extends BaseProtocol {
         public String app_id;
         public int type;
-        public int[] resource_ids = new int[1];
+        public long[] resource_ids = new long[1];
     }
 }
