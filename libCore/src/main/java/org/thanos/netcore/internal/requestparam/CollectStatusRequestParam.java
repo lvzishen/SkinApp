@@ -29,7 +29,7 @@ public class CollectStatusRequestParam extends BaseRequestParam<CollectStatusReq
         CollectStatusRequestProtocol collectRequestProtocol = new CollectStatusRequestProtocol();
         collectRequestProtocol.app_id = app_id;
         collectRequestProtocol.type = 1;
-        collectRequestProtocol.resource_ids = resource_ids;
+        collectRequestProtocol.resource_ids[0] = resource_ids;
         return collectRequestProtocol;
     }
 
@@ -54,6 +54,6 @@ public class CollectStatusRequestParam extends BaseRequestParam<CollectStatusReq
     public static class CollectStatusRequestProtocol extends BaseProtocol {
         public String app_id;
         public int type;
-        public int resource_ids;
+        public int[] resource_ids = new int[1];
     }
 }

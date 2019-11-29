@@ -91,7 +91,8 @@ public class App extends Application {
 
     private static final int FLAG_UNKNOWN = 0x10000000;
     private static int mFlag = FLAG_UNKNOWN;
-//luckmorning.com  TODO 域名
+
+    //luckmorning.com  TODO 域名
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
@@ -216,14 +217,14 @@ public class App extends Application {
             @Override
             public String getNewsCountry() {
                 if (DEBUG) {
-                    Properties testProp = ThanosDataCore.getTestProp();
-                    String newsCountry = testProp.getProperty("newsCountry", null);
-                    if (!TextUtils.isEmpty(newsCountry)) {
-                        if (DEBUG) {
-                            Log.i(TAG, "getNewsCountry: Use " + newsCountry + " for TEST");
-                        }
-                        return newsCountry;
-                    }
+//                    Properties testProp = ThanosDataCore.getTestProp();
+//                    String newsCountry = testProp.getProperty("newsCountry", null);
+//                    if (!TextUtils.isEmpty(newsCountry)) {
+//                        if (DEBUG) {
+//                            Log.i(TAG, "getNewsCountry: Use " + newsCountry + " for TEST");
+//                        }
+                    return "IN";
+//                    }
                 }
                 return Utils.getNewsCountry(XalContext.getContext());
             }
@@ -256,6 +257,7 @@ public class App extends Application {
             }
         }
     }
+
     private void initAccountSDK() {
         try {
             AccountSDK.newBuilder(this)
@@ -304,13 +306,13 @@ public class App extends Application {
 
             PushSdk.registerPushExtensions("245", new DefaultPushExtension() {
                 protected boolean intercept(Context context, PushMessage message, PushMessageBody messageBody) {
-                    if (ThanosSDK.isAllowShowNews(getApplicationContext())) {
-                        if (!ThanosPush.handlePushMessage(context, message)) {
-                            Log.i(TAG, "intercept: 产品自行处理PUSH消息");
-                        } else {
-                            Log.i(TAG, "intercept: 产品不需要处理PUSH消息");
-                        }
-                    }
+//                    if (ThanosSDK.isAllowShowNews(getApplicationContext())) {
+//                        if (!ThanosPush.handlePushMessage(context, message)) {
+//                            Log.i(TAG, "intercept: 产品自行处理PUSH消息");
+//                        } else {
+//                            Log.i(TAG, "intercept: 产品不需要处理PUSH消息");
+//                        }
+//                    }
                     return true;
                 }
             });
