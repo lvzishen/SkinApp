@@ -254,6 +254,7 @@ public class HomeFragment extends Fragment {
                     mFragmentList.add(tabFragment);
                 }
 
+                if (!isAdded()) return;
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
                 tabLayout.setupWithViewPager(tabVpager);

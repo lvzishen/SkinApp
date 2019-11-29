@@ -167,7 +167,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.ll_user) {
             if (NjordAccountManager.isLogined(getContext())) {
 //                AccountUIHelper.jumpProfileCenter(getActivity());
-                if (account == null){
+                if (account == null || account.isGuest()){
                     AccountUIHelper.startLogin(getActivity());
                 }
             } else {
