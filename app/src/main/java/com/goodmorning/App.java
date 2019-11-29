@@ -290,7 +290,7 @@ public class App extends Application {
             PushSdk.newBuilder(this).initConfiguration(new IConfiguration() {
                 @Override
                 public String getAppId() {
-                    return "100237";
+                    return "100243";
                 }
 
                 @Override
@@ -304,7 +304,7 @@ public class App extends Application {
                 }
             }).build();
 
-            PushSdk.registerPushExtensions("245", new DefaultPushExtension() {
+            PushSdk.registerPushExtensions("251", new DefaultPushExtension() {
                 protected boolean intercept(Context context, PushMessage message, PushMessageBody messageBody) {
 //                    if (ThanosSDK.isAllowShowNews(getApplicationContext())) {
 //                        if (!ThanosPush.handlePushMessage(context, message)) {
