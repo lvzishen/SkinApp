@@ -13,6 +13,8 @@ import org.n.account.core.utils.NjordIdHelper;
 import org.n.account.core.utils.SessionHelper;
 import org.thanos.netcore.internal.requestparam.BaseRequestParam;
 
+import java.net.URLDecoder;
+
 import okhttp3.Request;
 
 /**
@@ -21,8 +23,8 @@ import okhttp3.Request;
  * 作者: lvzishen
  */
 public class GoodMorningCollectRequest extends GoodMorningRequest {
-    public static final String APPID = "475293349776982";
-
+    public static final String APPID = "100410024";
+//    public static final String APPID = "1";
     public GoodMorningCollectRequest(Context context, @NonNull BaseRequestParam baseRequestParam, String url) {
         super(context, baseRequestParam, url);
     }
@@ -53,8 +55,8 @@ public class GoodMorningCollectRequest extends GoodMorningRequest {
         super.configRequest(context, builder);
         String session = createSession(context);
         String str[] = session.split(";");
-        builder.addHeader("psu", str[0].substring(4));
-        builder.addHeader("pmc", str[1].substring(4));
+        builder.addHeader("psu", URLDecoder.decode(str[0].substring(4)));
+        builder.addHeader("pmc", URLDecoder.decode(str[1].substring(4)));
         Log.i("GoodMorningCollect", "session=" + session);
         Log.i("GoodMorningCollect", "psu=" + str[0].substring(4));
         Log.i("GoodMorningCollect", "pmc=" + str[1].substring(4));
