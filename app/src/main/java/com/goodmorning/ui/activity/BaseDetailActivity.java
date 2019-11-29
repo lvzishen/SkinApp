@@ -365,15 +365,15 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         long firstShowTimes = SharedPref.getLong(getApplicationContext(), IS_SHOW_TIMES, 0);
         int day = CloudPropertyManager.getInt(getApplicationContext(), PATH_SHAREGUIDE_PROP, "show_day", 3);
         //已超过最大次数,超过三天，清空次数
-        if ((arriveTimes > showTimes) && (System.currentTimeMillis() - firstShowTimes > day * 1000 * 60 * 60 * 24)) {
+        if ((showTimes >= arriveTimes) && (System.currentTimeMillis() - firstShowTimes > day * 1000 * 60 * 60 * 24)) {
             SharedPref.setInt(getApplicationContext(), IS_SHOW_SHARE, 0);
             SharedPref.setLong(getApplicationContext(), IS_SHOW_TIMES, 0);
         }
         if (showTimes < arriveTimes) {
             //增加次数
-            SharedPref.setInt(getApplicationContext(), IS_SHOW_SHARE, showTimes++);
-            //到达次数，记录时间
-            if (showTimes == arriveTimes) {
+            SharedPref.setInt(getApplicationContext(), IS_SHOW_SHARE, showTimes + 1);
+//            //到达次数，记录时间
+            if (showTimes + 1 == arriveTimes) {
                 SharedPref.setLong(getApplicationContext(), IS_SHOW_TIMES, System.currentTimeMillis());
             }
             return true;

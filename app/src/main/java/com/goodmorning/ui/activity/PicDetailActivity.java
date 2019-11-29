@@ -1,6 +1,5 @@
 package com.goodmorning.ui.activity;
 
-import android.view.View;
 
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
@@ -30,9 +29,9 @@ public class PicDetailActivity extends BaseDetailActivity {
     protected void onResume() {
         super.onResume();
         if (isGoLogin) {
+            isGoLogin = false;
             Account account = NjordAccountManager.getCurrentAccount(this);
             if (account != null && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext()))) {
-                isGoLogin = false;
                 onClick(mShareItem);
             }
         }
