@@ -8,8 +8,8 @@
     <string name="facebook_app_id">721195035034582</string>
 
     <string name="sign_in_to">Sign in</string>
-    <string name="tab_greeting">Wish</string>
-    <string name="tab_my">my</string>
+    <string name="tab_greeting">Messages</string>
+    <string name="tab_my">Mine</string>
     <string name="share_message_title">Share via</string>
     <string name="content_offline">This content is offline</string>
     <string name="contents_ui__news_share" formatted="false">SHARE via </string>
@@ -93,23 +93,24 @@
     <string name="more">More</string>
     <string name="save">Save</string>
 
-    <string name="collect">Collect</string>
+    <string name="collect">My Collection</string>
     <string name="language">Language</string>
-    <string name="check_and_update">Check And Update</string>
-    <string name="settings">Settings</string>
+    <string name="check_and_update">Update</string>
+    <string name="settings">Setting</string>
     <string name="setting_language">Language</string>
-    <string name="setting_update">Check the Update</string>
-    <string name="setting_user_agreement">User agreement</string>
-    <string name="setting_privacy">Privacy policy</string>
-    <string name="setting_quit">Quit</string>
-    <string name="setting">Set</string>
+    <string name="setting_update">Update</string>
+    <string name="setting_user_agreement">Terms of Services</string>
+    <string name="setting_privacy">Privacy Policy</string>
+    <string name="setting_quit">Log out</string>
+    <string name="setting">Setting</string>
     <string name="my_collect">My Collection</string>
     <string name="share">Share</string>
     <string name="mycollect_empty">You haven’t collected anything yet</string>
-    <string name="home_empty">There is nothing , please try again</string>
+    <string name="home_empty">Ops, there is nothing to show. Please click on Retry!</string>
     <string name="retry_txt">Retry</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
-    <string name="ask_exit">Are you sure you want to exit the application?</string>
+    <string name="ask_exit">Are you sure to log out?</string>
+    <string name="load_more_bottom">Ohh, no more content...</string>
 
 </resources>

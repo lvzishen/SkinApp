@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.creativeindia.goodmorning.R;
+import com.goodmorning.utils.ResUtils;
 import com.goodmorning.view.recyclerview.interfaces.ILoadMoreFooter;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.interfaces.OnNetWorkErrorListener;
@@ -77,7 +78,7 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
                 setOnClickListener(null);
                 mMoreContainer.setVisibility(VISIBLE);
                 tvMore.setVisibility(VISIBLE);
-                tvMore.setText("已经到底了");
+                tvMore.setText(ResUtils.getString(R.string.load_more_bottom));
                 break;
             case NetWorkError:
                 mMoreContainer.setVisibility(GONE);
