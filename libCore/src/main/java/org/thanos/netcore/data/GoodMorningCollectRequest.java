@@ -21,15 +21,16 @@ import okhttp3.Request;
  * 作者: lvzishen
  */
 public class GoodMorningCollectRequest extends GoodMorningRequest {
-    public static final String APPID = "app_id=475293349776982";
+    public static final String APPID = "475293349776982";
 
     public GoodMorningCollectRequest(Context context, @NonNull BaseRequestParam baseRequestParam, String url) {
         super(context, baseRequestParam, url);
     }
 
-    private String createSession(Context context, String appid) {
+    private String createSession(Context context) {
         Account account = NjordAccountManager.getCurrentAccount(context);
         if (null != account) {
+            String appid = "app_id=" + APPID;
             String psu = NjordIdHelper.getPSU(account);
             String key = NjordIdHelper.getKey(account);
             String random = NjordIdHelper.getRandom(account);
@@ -50,7 +51,7 @@ public class GoodMorningCollectRequest extends GoodMorningRequest {
     @Override
     public void configRequest(Context context, Request.Builder builder) {
         super.configRequest(context, builder);
-        String session = createSession(context, APPID);
+        String session = createSession(context);
         String str[] = session.split(";");
         builder.addHeader("psu", str[0].substring(4));
         builder.addHeader("pmc", str[1].substring(4));
