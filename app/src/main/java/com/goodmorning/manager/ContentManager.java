@@ -17,6 +17,7 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 public class ContentManager {
     private JsonHelper<ArrayList<ChannelList.LangCategoryInfo>> jsonHelper;
     private JsonHelper<ArrayList<ChannelList.LanguageItem> > jsonLangelper;
+    private boolean changeLang = false;
     private ContentManager(){
         jsonHelper = new JsonHelper<ArrayList<ChannelList.LangCategoryInfo>>() {
         };
@@ -72,4 +73,11 @@ public class ContentManager {
         return "English";
     }
 
+    public boolean isChangeLang() {
+        return changeLang;
+    }
+
+    public void setChangeLang(boolean changeLang) {
+        this.changeLang = changeLang;
+    }
 }

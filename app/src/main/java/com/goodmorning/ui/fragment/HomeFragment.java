@@ -253,6 +253,7 @@ public class HomeFragment extends Fragment {
                     tabFragment.setArguments(bundle1);
                     mFragmentList.add(tabFragment);
                 }
+
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
                 tabLayout.setupWithViewPager(tabVpager);
@@ -375,7 +376,8 @@ public class HomeFragment extends Fragment {
                 return instantiateItem;
             } else {
                 //如果集合中对应下标的fragment和fragmentManager中的对应下标的fragment对象不一致，那么就是新添加的，所以自己add进入；这里为什么不直接调用super方法呢，因为fragment的mIndex搞的鬼，以后有机会再补一补。
-                mFragmentManager.beginTransaction().add(container.getId(), item).commitNowAllowingStateLoss();
+                mFragmentManager.beginTransaction().remove(instantiateItem);
+                mFragmentManager.beginTransaction().add(container.getId(), item).commitAllowingStateLoss();
                 return item;
             }
         }
