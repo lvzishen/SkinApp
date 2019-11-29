@@ -95,6 +95,8 @@ public class MyCollectActivity extends BaseActivity {
                     ActivityCtrl.gotoOpenActivity(MyCollectActivity.this, PicDetailActivity.class, mainListAdapter.getDataItem(position));
                 } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_3) {
                     ActivityCtrl.gotoOpenActivity(MyCollectActivity.this, VideoDetailActivity.class, mainListAdapter.getDataItem(position));
+                } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_4){
+                    ActivityCtrl.gotoOpenActivity(MyCollectActivity.this, PicDetailActivity.class, mainListAdapter.getDataItem(position));
                 }
             }
         });
