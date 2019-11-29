@@ -30,7 +30,7 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
     @Override
     public CollectListRequestProtocol createProtocol() {
         CollectListRequestProtocol collectRequestProtocol = new CollectListRequestProtocol();
-        collectRequestProtocol.app_id = Integer.valueOf(app_id);
+        collectRequestProtocol.app_id = app_id;
         collectRequestProtocol.limit = limit;
         collectRequestProtocol.type = 1;
         collectRequestProtocol.offset = offset;
@@ -60,7 +60,7 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
 
     public static class CollectListRequestProtocol extends BaseProtocol {
 
-        public int app_id;
+        public String app_id;
         public int offset;
         public int type;
         public int limit;

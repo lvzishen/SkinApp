@@ -193,6 +193,9 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         });
         initShareDatas();
         //获取收藏状态
+        if (GlobalConfig.DEBUG) {
+            Log.i(TAG, "用户ID" +mDataItem.getResourceId());
+        }
         MorningDataAPI.requestCollectStatus(getApplicationContext(),
                 new CollectStatusRequestParam((int) mDataItem.getResourceId(),
                         false, 1), new ResultCallback<CollectStatus>() {

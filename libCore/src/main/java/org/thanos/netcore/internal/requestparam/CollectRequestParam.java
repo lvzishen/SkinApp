@@ -26,7 +26,7 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
     @Override
     public CollectRequestProtocol createProtocol() {
         CollectRequestProtocol collectRequestProtocol = new CollectRequestProtocol();
-        collectRequestProtocol.app_id = Integer.valueOf(app_id);
+        collectRequestProtocol.app_id = app_id;
         collectRequestProtocol.resource_id = resource_id;
         collectRequestProtocol.type = 1;
         collectRequestProtocol.cancel = cancel;
@@ -56,7 +56,7 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
 
     public static class CollectRequestProtocol extends BaseProtocol {
 
-        public int app_id;
+        public String app_id;
         public int resource_id;
         public int type;
         public boolean cancel;
