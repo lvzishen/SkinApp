@@ -11,7 +11,7 @@
     <string name="tab_greeting">Wish</string>
     <string name="tab_my">my</string>
     <string name="share_message_title">Share via</string>
-
+    <string name="content_offline">This content is offline</string>
     <string name="contents_ui__news_share" formatted="false">SHARE via </string>
     <string name="contents_ui__news_update_tips">%d news recommending for you</string>
     <string name="is_copy">copy success</string>

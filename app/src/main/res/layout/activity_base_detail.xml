@@ -55,55 +55,86 @@
 
     </RelativeLayout>
 
-    <FrameLayout
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="center"
+        android:id="@+id/ll_no_collect"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/text_detail"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/qb_px_22"
-            android:layout_marginTop="@dimen/qb_px_18"
-            android:layout_marginRight="@dimen/qb_px_22"
-            android:layout_marginBottom="@dimen/qb_px_18"
-            android:textColor="@color/color_black"
-            android:textSize="@dimen/qb_sp_24"
-            android:visibility="gone" />
+            android:background="@drawable/collect_empty" />
 
-        <com.goodmorning.view.image.RoundedImageView
-            android:id="@+id/image_detail"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/qb_px_30"
-            android:layout_marginTop="@dimen/qb_px_10"
-            android:layout_marginRight="@dimen/qb_px_30"
-            android:layout_marginBottom="@dimen/qb_px_10"
-            android:scaleType="fitStart" />
-        <!--// android:scaleType="fitCenter"-->
-        <LinearLayout
-            android:id="@+id/video_detail"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
             android:layout_gravity="center"
-            android:visibility="gone">
+            android:layout_marginTop="@dimen/qb_px_14"
+            android:text="@string/mycollect_empty"
+            android:textColor="@color/setting_txt_content_color"
+            android:textSize="@dimen/qb_sp_14" />
 
-            <cn.jzvd.JzvdStd
-                android:id="@+id/jz_video"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
-        </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 
-    <com.goodmorning.view.recyclerview.normal.CommonRecyclerView
-        android:id="@+id/rv_list"
+    <LinearLayout
+        android:id="@+id/content_detail_ll"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/qb_px_20"
-        android:layout_marginRight="@dimen/qb_px_20"
-        android:layout_weight="1.1" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+      >
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4">
+
+
+            <TextView
+                android:id="@+id/text_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_22"
+                android:layout_marginTop="@dimen/qb_px_18"
+                android:layout_marginRight="@dimen/qb_px_22"
+                android:layout_marginBottom="@dimen/qb_px_18"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/qb_sp_24"
+                android:visibility="gone" />
+
+            <com.goodmorning.view.image.RoundedImageView
+                android:id="@+id/image_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/qb_px_30"
+                android:layout_marginTop="@dimen/qb_px_10"
+                android:layout_marginRight="@dimen/qb_px_30"
+                android:layout_marginBottom="@dimen/qb_px_10"
+                android:scaleType="fitStart" />
+            <!--// android:scaleType="fitCenter"-->
+            <LinearLayout
+                android:id="@+id/video_detail"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <cn.jzvd.JzvdStd
+                    android:id="@+id/jz_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <com.goodmorning.view.recyclerview.normal.CommonRecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/qb_px_20"
+            android:layout_marginRight="@dimen/qb_px_20"
+            android:layout_weight="1.1" />
+    </LinearLayout>
 
 </LinearLayout>

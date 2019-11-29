@@ -37,7 +37,6 @@ import com.w.sdk.push.PushBindManager;
 
 import org.n.account.core.api.NjordAccountManager;
 import org.thanos.netcore.CollectStatus;
-import org.thanos.netcore.bean.CollectDetail;
 import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ContentList;

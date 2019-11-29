@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -157,9 +158,16 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         misCollectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mDataItem.getStatus() == DataListItem.STATUS_TYPE_1 && !isCollect) {
+                    if (GlobalConfig.DEBUG) {
+                        Log.i(TAG, "内容失效不能取消收藏");
+                    }
+                    Toast.makeText(getApplicationContext(), getString(R.string.content_offline), Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 MorningDataAPI.requestCollectUpLoad(getApplicationContext(),
                         new CollectRequestParam((int) mDataItem.getResourceId(),
-                                !isCollect, false, 1), new ResultCallback<CollectDetail>() {
+                                isCollect, false, 1), new ResultCallback<CollectDetail>() {
                             @Override
                             public void onSuccess(CollectDetail data) {
                                 if (data != null && data.code == 0) {
@@ -192,43 +200,16 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             }
         });
         initShareDatas();
-        //获取收藏状态
-        if (GlobalConfig.DEBUG) {
-            Log.i(TAG, "用户ID" +mDataItem.getResourceId());
+        if (mDataItem.getStatus() == DataListItem.STATUS_TYPE_1) {
+            isCollect = true;
+            mImageCollect.setSelected(true);
+            findViewById(R.id.ll_no_collect).setVisibility(View.VISIBLE);
+            findViewById(R.id.content_detail_ll).setVisibility(View.GONE);
+        } else {
+            getCollectStatus();
         }
-        MorningDataAPI.requestCollectStatus(getApplicationContext(),
-                new CollectStatusRequestParam((int) mDataItem.getResourceId(),
-                        false, 1), new ResultCallback<CollectStatus>() {
-                    @Override
-                    public void onSuccess(CollectStatus data) {
-                        if (data != null && data.code == 0) {
-                            if (GlobalConfig.DEBUG) {
-                                Log.i(TAG, "用户收藏状态" + data.item.collect);
-                            }
-                            if (data.item.collect == 1) {
-                                isCollect = true;
-                                mImageCollect.setSelected(true);
-                            }
-                        } else {
-                            if (GlobalConfig.DEBUG) {
-                                Log.i(TAG, "用户收藏状态失败");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onLoadFromCache(CollectStatus data) {
-
-                    }
-
-                    @Override
-                    public void onFail(Exception e) {
-                        if (GlobalConfig.DEBUG) {
-                            Log.d(TAG, "用户收藏状态失败, [" + e + "]");
-                        }
-                    }
-                });
     }
+
 
     private CommonRecyclerView.Callback mCallBack = new CommonRecyclerView.Callback() {
         @Override
@@ -429,6 +410,46 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                 Glide.with(getApplicationContext()).load(mDataItem.getPicUrl()).asBitmap().into(mImageDetailView);
             }
         });
+    }
+
+
+    private void getCollectStatus() {
+        //获取收藏状态
+        if (GlobalConfig.DEBUG) {
+            Log.i(TAG, "用户ID" + mDataItem.getResourceId());
+        }
+        MorningDataAPI.requestCollectStatus(getApplicationContext(),
+                new CollectStatusRequestParam((int) mDataItem.getResourceId(),
+                        false, 1), new ResultCallback<CollectStatus>() {
+                    @Override
+                    public void onSuccess(CollectStatus data) {
+                        if (data != null && data.code == 0) {
+                            if (GlobalConfig.DEBUG) {
+                                Log.i(TAG, "用户收藏状态" + data.item.collect);
+                            }
+                            if (data.item.collect == 1) {
+                                isCollect = true;
+                                mImageCollect.setSelected(true);
+                            }
+                        } else {
+                            if (GlobalConfig.DEBUG) {
+                                Log.i(TAG, "用户收藏状态失败");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onLoadFromCache(CollectStatus data) {
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e) {
+                        if (GlobalConfig.DEBUG) {
+                            Log.d(TAG, "用户收藏状态失败, [" + e + "]");
+                        }
+                    }
+                });
     }
 
     protected abstract int getType();

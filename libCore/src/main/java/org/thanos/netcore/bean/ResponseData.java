@@ -40,10 +40,10 @@ public class ResponseData {
             return (T) new ContentDetail(jsonObject);
         } else if (clazz == ResponseData.class) {
             return (T) new ResponseData(jsonObject);
-        } else if (clazz == CollectDetail.class) {
-            return (T) new CollectDetail(jsonObject);
         } else if (clazz == CollectStatus.class) {
             return (T) new CollectStatus(jsonObject);
+        } else if (clazz == CollectDetail.class) {
+            return (T) new CollectDetail(jsonObject);
         }
         return null;
     }

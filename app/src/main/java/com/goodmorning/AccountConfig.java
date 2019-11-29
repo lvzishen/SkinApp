@@ -18,6 +18,7 @@ import org.n.account.core.contract.IConfiguration;
 import org.n.account.core.contract.IExceptionHandler;
 import org.n.account.net.NetCode;
 import org.n.account.ui.utils.ProfileScope;
+import org.thanos.netcore.data.GoodMorningCollectRequest;
 
 public class AccountConfig implements IConfiguration {
 
@@ -60,7 +61,7 @@ public class AccountConfig implements IConfiguration {
 
     @Override
     public String getAppId() {
-        return AppConfig.ACCOUNT_CONFIG_APP_ID;//OA申请
+        return GoodMorningCollectRequest.APPID;//OA申请
     }
 
     @Override

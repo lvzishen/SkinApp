@@ -16,7 +16,7 @@ import static org.thanos.netcore.internal.MorningDataCore.DEBUG;
  * Created by lvzishen on 2019-07-13.
  */
 public class CollectStatus extends ResponseData {
-    private static final String TAG = MorningDataCore.LOG_PREFIX + "CollectDetail";
+    private static final String TAG = MorningDataCore.LOG_PREFIX + "CollectStatus";
     public long _elapse_;
     public CollectItem item;
 
@@ -24,15 +24,17 @@ public class CollectStatus extends ResponseData {
     public CollectStatus(JSONObject jsonObject) throws JSONException {
         super(jsonObject);
         if (DEBUG) {
-            Log.i(TAG, "CollectDetail: " + jsonObject);
+            Log.i(TAG, "CollectStatus: " + jsonObject);
         }
         _elapse_ = jsonObject.getLong("_elapse_");
         JSONArray listArray = jsonObject.getJSONArray("data");
-        if (listArray.length() > 0) {
-            JSONObject obj = listArray.getJSONObject(0);
-            item = CollectItem.createFromJSONObject(obj, requestId);
-        } else {
-            item = null;
+        if (listArray != null) {
+            if (listArray.length() > 0) {
+                JSONObject obj = listArray.getJSONObject(0);
+                item = CollectItem.createFromJSONObject(obj, requestId);
+            } else {
+                item = null;
+            }
         }
     }
 
@@ -43,7 +45,7 @@ public class CollectStatus extends ResponseData {
 
     @Override
     public String toString() {
-        return "CollectDetail{" +
+        return "CollectStatus{" +
                 "rqstid='" + requestId + '\'' +
                 ", code=" + code +
                 ", message='" + message + '\'' +

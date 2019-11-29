@@ -12,14 +12,12 @@ import org.thanos.netcore.internal.MorningDataCore;
  * "limit": 10,    ## int类型，请求的数量，一次最多1000条
  */
 public class CollectListRequestParam extends BaseRequestParam<CollectListRequestParam.CollectListRequestProtocol> {
-    private String app_id;
     private int offset;
     private int limit;
 
 
     public CollectListRequestParam(int offset, int limit, boolean acceptCache, int module) {
         super("RL", acceptCache, false, module);
-        this.app_id = GoodMorningCollectRequest.APPID;
         this.offset = offset;
         this.limit = limit;
         this.module = module;
@@ -30,7 +28,7 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
     @Override
     public CollectListRequestProtocol createProtocol() {
         CollectListRequestProtocol collectRequestProtocol = new CollectListRequestProtocol();
-        collectRequestProtocol.app_id = app_id;
+        collectRequestProtocol.app_id = GoodMorningCollectRequest.APPID;
         collectRequestProtocol.limit = limit;
         collectRequestProtocol.type = 1;
         collectRequestProtocol.offset = offset;
@@ -44,13 +42,13 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
      */
     @Override
     public String getCacheKey() {
-        return String.valueOf(this.app_id) + this.offset + this.limit + this.module;
+        return GoodMorningCollectRequest.APPID + this.offset + this.limit + this.module;
     }
 
     @Override
     public String toString() {
         return MorningDataCore.DEBUG ? "CollectRequestParam{" +
-                "app_id=" + app_id +
+                "app_id=" + GoodMorningCollectRequest.APPID +
                 ", offset=" + offset +
                 ", limit=" + limit +
                 ", acceptCache=" + acceptCache +

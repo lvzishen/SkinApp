@@ -8,14 +8,12 @@ import org.thanos.netcore.internal.MorningDataCore;
  * 推荐列表请求参数
  */
 public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.CollectRequestProtocol> {
-    private String app_id;
     private int resource_id;
     private boolean cancel;
 
 
     public CollectRequestParam(int resource_id, boolean cancel, boolean acceptCache, int module) {
         super("RL", acceptCache, false, module);
-        this.app_id = GoodMorningCollectRequest.APPID;
         this.resource_id = resource_id;
         this.cancel = cancel;
         this.module = module;
@@ -26,7 +24,7 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
     @Override
     public CollectRequestProtocol createProtocol() {
         CollectRequestProtocol collectRequestProtocol = new CollectRequestProtocol();
-        collectRequestProtocol.app_id = app_id;
+        collectRequestProtocol.app_id = GoodMorningCollectRequest.APPID;
         collectRequestProtocol.resource_id = resource_id;
         collectRequestProtocol.type = 1;
         collectRequestProtocol.cancel = cancel;
@@ -40,13 +38,13 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
      */
     @Override
     public String getCacheKey() {
-        return String.valueOf(this.app_id) + this.resource_id + this.cancel + this.module;
+        return GoodMorningCollectRequest.APPID + this.resource_id + this.cancel + this.module;
     }
 
     @Override
     public String toString() {
         return MorningDataCore.DEBUG ? "CollectRequestParam{" +
-                "app_id=" + app_id +
+                "app_id=" + GoodMorningCollectRequest.APPID +
                 ", resource_id=" + resource_id +
                 ", cancel=" + cancel +
                 ", acceptCache=" + acceptCache +
