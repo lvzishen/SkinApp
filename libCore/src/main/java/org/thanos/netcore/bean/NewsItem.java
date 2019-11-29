@@ -124,6 +124,7 @@ public class NewsItem extends ContentItem implements Serializable {
             Log.i(TAG, "NewsItem: 要解析的JSON串 " + jo.toString());
         }
         status = jo.optInt("status");
+        url = jo.optString("url");
         title = jo.optString("title");
         originUrl = jo.optString("ourl");
         shareUrl = jo.optString("surl");
@@ -204,14 +205,16 @@ public class NewsItem extends ContentItem implements Serializable {
 
     public static class ImageInfo implements Serializable {
         private static final long serialVersionUID = 2125160013968003923L;
-        public final int height;
-        public final int width;
-        public final String url;
+        public  int height;
+        public  int width;
+        public  String url;
 
         ImageInfo(JSONObject jo) {
-            height = jo.has("height") ? jo.optInt("height") : jo.optInt("origin_height");
-            width = jo.has("width") ? jo.optInt("width") : jo.optInt("origin_width");
-            url = jo.has("url") ? jo.optString("url") : jo.optString("origin_url");
+            if (jo != null){
+                height = jo.has("height") ? jo.optInt("height") : jo.optInt("origin_height");
+                width = jo.has("width") ? jo.optInt("width") : jo.optInt("origin_width");
+                url = jo.has("url") ? jo.optString("url") : jo.optString("origin_url");
+            }
         }
 
         @Override

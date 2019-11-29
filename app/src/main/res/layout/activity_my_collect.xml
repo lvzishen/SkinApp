@@ -55,7 +55,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:id="@+id/ll_no_collect">
+        android:id="@+id/ll_no_collect"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"

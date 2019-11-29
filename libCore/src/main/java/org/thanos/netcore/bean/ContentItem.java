@@ -61,13 +61,14 @@ public class ContentItem implements Serializable {
     public final String source;
     public final String requestId;
     public int status;
+    public String url;
     /**
      * 显示样式
      */
     public int show;
 
     ContentItem(JSONObject jsonObject, String requestId) throws JSONException {
-        type = jsonObject.getInt("type");
+        type = jsonObject.optInt("type");
         id = jsonObject.optLong("id");
         resourceId = jsonObject.optLong("resource_id");
         show = jsonObject.optInt("show", -1);
@@ -80,7 +81,7 @@ public class ContentItem implements Serializable {
     }
 
     static ContentItem createFromJSONObject(JSONObject jsonObject, String requestId) throws JSONException {
-        int type = jsonObject.getInt("type");
+        int type = jsonObject.optInt("type");
         int show = jsonObject.optInt("show");
         String contentType = jsonObject.optString("content_type");
         if ("NEWS".equals(contentType)) {
@@ -175,14 +176,17 @@ public class ContentItem implements Serializable {
 
     public static class AuthorInfo implements Serializable {
         private static final long serialVersionUID = 2154331458263894432L;
-        public final String name;
-        public final String icon;
-        public final int id;
+        public  String name;
+        public  String icon;
+        public  int id;
 
         AuthorInfo(JSONObject jo) throws JSONException {
-            name = jo.optString("name");
-            icon = jo.optString("icon");
-            id = jo.optInt("id");
+            if (jo != null){
+                name = jo.optString("name");
+                icon = jo.optString("icon");
+                id = jo.optInt("id");
+            }
+
         }
 
         @Override

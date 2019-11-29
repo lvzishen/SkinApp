@@ -26,8 +26,14 @@ import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
 
 import org.thanos.netcore.MorningDataAPI;
 import org.thanos.netcore.ResultCallback;
+import org.thanos.netcore.bean.ContentItem;
 import org.thanos.netcore.bean.ContentList;
+import org.thanos.netcore.bean.NewsItem;
+import org.thanos.netcore.bean.VideoItem;
 import org.thanos.netcore.internal.requestparam.CollectListRequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyCollectActivity extends BaseActivity {
     private static final String TAG = "MyCollectActivity";
@@ -69,6 +75,7 @@ public class MyCollectActivity extends BaseActivity {
         rvCollectList.setLoadMoreEnabled(false);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(this);
         rvCollectList.setLoadMoreFooter(customLoadingFooter,true);
+        requestCollect();
     }
 
     private void setListener(){
@@ -103,10 +110,12 @@ public class MyCollectActivity extends BaseActivity {
                         if (GlobalConfig.DEBUG) {
                             Log.i(TAG, "用户收藏上报成功");
                         }
+                        refreshUIData(data);
                     } else {
                         if (GlobalConfig.DEBUG) {
                             Log.i(TAG, "用户收藏上报失败");
                         }
+                        showEmptyView();
                     }
                 }
 
@@ -120,7 +129,71 @@ public class MyCollectActivity extends BaseActivity {
                     if (GlobalConfig.DEBUG) {
                         Log.d(TAG, "用户收藏上报失败, [" + e + "]");
                     }
+                    showEmptyView();
                 }
             });
+    }
+
+    private void refreshUIData(ContentList data){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (data != null){
+                    ArrayList<ContentItem> contentItems = data.items;
+                    List<DataListItem> datas = new ArrayList<>();
+                    for (ContentItem contentItem : contentItems){
+                        DataListItem dataItem = new DataListItem();
+                        if (DataListItem.STATUS_TYPE_0 == contentItem.status){
+                            if ("NEWS".equals(contentItem.contentType)){
+                                dataItem.setType(DataListItem.DATA_TYPE_1);
+                            }else if ("PHOTO".equals(contentItem.contentType)){
+                                dataItem.setType(DataListItem.DATA_TYPE_2);
+                            }else if ("VIDEO".equals(contentItem.contentType)){
+                                dataItem.setType(DataListItem.DATA_TYPE_3);
+                            }
+                        }else {
+                            dataItem.setType(DataListItem.DATA_TYPE_4);
+                        }
+                        dataItem.setResourceId(contentItem.resourceId);
+                        dataItem.setId(contentItem.id);
+                        dataItem.setStatus(contentItem.status);
+                        if (contentItem instanceof VideoItem){
+                            VideoItem videoItem = (VideoItem) contentItem;
+                            dataItem.setVideoUrl(contentItem.url);
+                            if (videoItem.photoInfos.size() >= 1){
+                                dataItem.setPicUrl(videoItem.photoInfos.get(0).originUrl);
+                                dataItem.setVideoThumbUrl(videoItem.photoInfos.get(0).originUrl);
+                                dataItem.setWidth(videoItem.photoInfos.get(0).width);
+                                dataItem.setHeight(videoItem.photoInfos.get(0).height);
+                            }
+
+                        }else if (contentItem instanceof NewsItem){
+                            NewsItem newsItem = (NewsItem) contentItem;
+                            dataItem.setData(newsItem.title);
+                        }
+                        datas.add(dataItem);
+                    }
+                    mainListAdapter.addAll(datas);
+                    rvCollectList.refreshComplete(0);
+                }
+                showEmptyView();
+            }
+        });
+    }
+
+    /**
+     * 显示空视图
+     */
+    private void showEmptyView(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mainListAdapter.getDataSize() == 0){
+                    llNoCollect.setVisibility(View.VISIBLE);
+                }else {
+                    llNoCollect.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 }

@@ -39,6 +39,22 @@ public class DataListItem implements Serializable {
      * 资源id
      */
     private long id;
+
+    /**
+     * 内容状态：0：上线，1：下线
+     */
+    private int status;
+
+    /**
+     * 内容下线状态
+     */
+    public static final int STATUS_TYPE_1 = 1;
+
+    /**
+     * 内容上线状态
+     */
+    public static final int STATUS_TYPE_0 = 0;
+
     /**
      * 文本
      */
@@ -51,6 +67,11 @@ public class DataListItem implements Serializable {
      * 视频
      */
     public static final int DATA_TYPE_3 = 3;
+
+    /**
+     * 下线状态
+     */
+    public static final int DATA_TYPE_4 = 4;
 
     public int getType() {
         return type;
@@ -122,5 +143,13 @@ public class DataListItem implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -2,6 +2,7 @@ package com.goodmorning.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +34,10 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
             case DataListItem.DATA_TYPE_3:
                 layId = R.layout.layout_item_video;
                 break;
+            case DataListItem.DATA_TYPE_4:
+                layId = R.layout.layout_item_no_collect;
+                break;
+
         }
         return layId;
     }
@@ -52,6 +57,8 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
             //视频
             ImageView ivVideo = holder.getView(R.id.iv_video);
             refreshUI(ivVideo,mDataList.get(position));
+        }else if (DataListItem.DATA_TYPE_4 == mDataList.get(position).getType()){
+
         }
     }
 

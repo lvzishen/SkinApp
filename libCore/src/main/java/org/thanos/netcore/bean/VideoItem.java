@@ -61,37 +61,46 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
             Log.i(TAG, "VideoItem: 要解析的JSON串 " + jsonObject.toString());
         }
         status = jsonObject.optInt("status");
-        country = jsonObject.getString("country");
-        lang = jsonObject.getString("lang");
+        url = jsonObject.optString("url");
+        country = jsonObject.optString("country");
+        lang = jsonObject.optString("lang");
         // categories 是老字段，不用管
-        secondCategory = jsonObject.getInt("second_category");
-        thirdCategory = jsonObject.getInt("third_category");
-        keywords = jsonObject.getString("keywords");
-        ptime = jsonObject.getLong("ptime");
-        mark = jsonObject.getInt("mark");
-        sourceId = jsonObject.getLong("source_id");
-        originSourceUrl = jsonObject.getString("origin_source_url");
-        sourceUrl = jsonObject.getString("source_url");
-        shareUrl = jsonObject.getString("share_url");
-        text = jsonObject.getString("text");
-        articleTitle = jsonObject.getString("article_title");
-        JSONArray photoArray = jsonObject.getJSONArray("photos");
-        for (int i = 0, len = photoArray.length(); i < len; i++) {
-            photoInfos.add(new PhotoInfo(photoArray.getJSONObject(i)));
+        secondCategory = jsonObject.optInt("second_category");
+        thirdCategory = jsonObject.optInt("third_category");
+        keywords = jsonObject.optString("keywords");
+        ptime = jsonObject.optLong("ptime");
+        mark = jsonObject.optInt("mark");
+        sourceId = jsonObject.optLong("source_id");
+        originSourceUrl = jsonObject.optString("origin_source_url");
+        sourceUrl = jsonObject.optString("source_url");
+        shareUrl = jsonObject.optString("share_url");
+        text = jsonObject.optString("text");
+        articleTitle = jsonObject.optString("article_title");
+        JSONArray photoArray = jsonObject.optJSONArray("photos");
+        if (photoArray != null){
+            for (int i = 0, len = photoArray.length(); i < len; i++) {
+                photoInfos.add(new PhotoInfo(photoArray.optJSONObject(i)));
+            }
         }
-        showtime = jsonObject.getLong("showtime");
-        position = jsonObject.getLong("position");
-        userDownloads = jsonObject.getInt("user_downloads");
-        duration = jsonObject.getInt("duration");
-        JSONObject authorObj = jsonObject.getJSONObject("author");
+        JSONArray imageArray = jsonObject.optJSONArray("images");
+        if (imageArray != null){
+            for (int i = 0, len = imageArray.length(); i < len; i++) {
+                photoInfos.add(new PhotoInfo(imageArray.optJSONObject(i)));
+            }
+        }
+        showtime = jsonObject.optLong("showtime");
+        position = jsonObject.optLong("position");
+        userDownloads = jsonObject.optInt("user_downloads");
+        duration = jsonObject.optInt("duration");
+        JSONObject authorObj = jsonObject.optJSONObject("author");
         authorInfo = new AuthorInfo(authorObj);
-        userViews = jsonObject.getInt("user_views");
-        userLikes = jsonObject.getInt("user_likes");
-        userDislikes = jsonObject.getInt("user_dislikes");
-        userComments = jsonObject.getInt("user_comments");
-        userShares = jsonObject.getInt("user_shares");
-        userFavorites = jsonObject.getInt("user_favorites");
-        viewCount = jsonObject.getInt("viewCount");
+        userViews = jsonObject.optInt("user_views");
+        userLikes = jsonObject.optInt("user_likes");
+        userDislikes = jsonObject.optInt("user_dislikes");
+        userComments = jsonObject.optInt("user_comments");
+        userShares = jsonObject.optInt("user_shares");
+        userFavorites = jsonObject.optInt("user_favorites");
+        viewCount = jsonObject.optInt("viewCount");
 
         JSONArray resolutionArray = jsonObject.optJSONArray("resolutions");
         if (resolutionArray != null) {
@@ -166,20 +175,22 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
 
     public static class SpreadInfo implements Serializable {
         private static final long serialVersionUID = -7544554175789471003L;
-        public final boolean enable;
-        public final String icon;
-        public final String gp;
-        public final String name;
-        public final String description;
-        public final String packageName;
+        public  boolean enable;
+        public  String icon;
+        public  String gp;
+        public  String name;
+        public  String description;
+        public  String packageName;
 
         SpreadInfo(JSONObject jsonObject) {
-            enable = jsonObject.optBoolean("enable");
-            icon = jsonObject.optString("icon");
-            gp = jsonObject.optString("gp");
-            name = jsonObject.optString("name");
-            description = jsonObject.optString("description");
-            packageName = jsonObject.optString("package_name");
+            if (jsonObject != null){
+                enable = jsonObject.optBoolean("enable");
+                icon = jsonObject.optString("icon");
+                gp = jsonObject.optString("gp");
+                name = jsonObject.optString("name");
+                description = jsonObject.optString("description");
+                packageName = jsonObject.optString("package_name");
+            }
         }
 
         @Override
@@ -200,25 +211,27 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
         /**
          * 视频清晰度
          */
-        public final String resolution;
+        public  String resolution;
         /**
          * 视频格式
          */
-        public final String format;
+        public  String format;
         /**
          * 视频地址
          */
-        public final String url;
+        public  String url;
         /**
          * 视频大小
          */
-        public final int size;
+        public  int size;
 
         public VideoResolutionInfo(JSONObject jsonObject) {
-            resolution = jsonObject.optString("resolution");
-            format = jsonObject.optString("format");
-            url = jsonObject.optString("url");
-            size = jsonObject.optInt("size");
+            if (jsonObject != null){
+                resolution = jsonObject.optString("resolution");
+                format = jsonObject.optString("format");
+                url = jsonObject.optString("url");
+                size = jsonObject.optInt("size");
+            }
         }
 
         @Override
@@ -245,13 +258,13 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
 
         PhotoInfo(JSONObject jsonObject) throws JSONException {
             super(jsonObject);
-            photoTitle = jsonObject.getString("photo_title");
-            localUrl = jsonObject.getString("local_url");
-            originWidth = jsonObject.getString("origin_width");
-            originHeight = jsonObject.getString("origin_height");
-            originUrl = jsonObject.getString("origin_url");
+            photoTitle = jsonObject.optString("photo_title");
+            localUrl = jsonObject.optString("local_url");
+            originWidth = jsonObject.optString("origin_width");
+            originHeight = jsonObject.optString("origin_height");
+            originUrl = jsonObject.optString("origin_url");
 
-            JSONArray sizeArray = jsonObject.getJSONArray("sizes");
+            JSONArray sizeArray = jsonObject.optJSONArray("sizes");
             for (int i = 0, len = sizeArray.length(); i < len; i++) {
                 PhotoSizeInfo photoSizeInfo = new PhotoSizeInfo(sizeArray.getJSONObject(i));
                 if (DEBUG) {
@@ -289,11 +302,11 @@ public class VideoItem extends ContentItem implements Serializable, Cloneable {
 
 
         PhotoSizeInfo(JSONObject jsonObject) throws JSONException {
-            size = jsonObject.getInt("size");
-            width = jsonObject.getInt("width");
-            height = jsonObject.getInt("height");
-            url = jsonObject.getString("url");
-            imageType = jsonObject.getInt("image_type");
+            size = jsonObject.optInt("size");
+            width = jsonObject.optInt("width");
+            height = jsonObject.optInt("height");
+            url = jsonObject.optString("url");
+            imageType = jsonObject.optInt("image_type");
         }
 
         @Override
