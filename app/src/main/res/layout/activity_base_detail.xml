@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/qb_px_14"
-            android:text="@string/mycollect_empty"
+            android:text="@string/collect_deleted"
             android:textColor="@color/setting_txt_content_color"
             android:textSize="@dimen/qb_sp_14" />
 

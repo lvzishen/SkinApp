@@ -103,7 +103,7 @@ dependencies {
     xalApi 'com.xal.thanos:ui:1.0.24-push3rd'
     xalApi 'com.push:pushsdk:2.3.17.17.2-3rd'
     xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
-
+    xalApi 'com.push:pushsdk-parser:' + PUSH_PARSER_VERSION
 //    //账号sdk，【必选】
 //    xalImplementation 'org.njord.account:core:' + ACCOUNT_VERSION
 //    xalImplementation 'org.njord.account:ui:' + ACCOUNT_UI_VERSION

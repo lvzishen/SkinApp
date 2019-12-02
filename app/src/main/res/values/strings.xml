@@ -11,7 +11,7 @@
     <string name="tab_greeting">Messages</string>
     <string name="tab_my">Mine</string>
     <string name="share_message_title">Share via</string>
-    <string name="content_offline">This content is offline</string>
+    <string name="content_offline">This content has been deleted</string>
     <string name="contents_ui__news_share" formatted="false">SHARE via </string>
     <string name="contents_ui__news_update_tips">%d news recommending for you</string>
     <string name="is_copy">copy success</string>
@@ -92,7 +92,8 @@
     <string name="copy">Copy</string>
     <string name="more">More</string>
     <string name="save">Save</string>
-
+    <string name="login_guide">One-click to log in, create your own message!</string>
+    <string name="login_facebook">Login with Facebook</string>
     <string name="collect">My Collection</string>
     <string name="language">Language</string>
     <string name="check_and_update">Update</string>
@@ -104,6 +105,7 @@
     <string name="setting_quit">Log out</string>
     <string name="setting">Setting</string>
     <string name="my_collect">My Collection</string>
+    <string name="collect_deleted">Your collection has been deleted</string>
     <string name="share">Share</string>
     <string name="mycollect_empty">You haven’t collected anything yet</string>
     <string name="home_empty">Ops, there is nothing to show. Please click on Retry!</string>

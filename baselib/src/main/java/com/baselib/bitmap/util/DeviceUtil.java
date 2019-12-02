@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 
@@ -201,4 +202,10 @@ public class DeviceUtil {
         }
     }
 
+    public static boolean isAboveLollipop(boolean include) {
+        if (include)
+            return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+        else
+            return Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP;
+    }
 }

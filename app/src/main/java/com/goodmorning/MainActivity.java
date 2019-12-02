@@ -47,6 +47,8 @@ import org.thanos.netcore.internal.requestparam.CollectStatusRequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
+
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -63,12 +65,21 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.mainactivity_news);
         setStatusBarColor(ResUtils.getColor(R.color.transparent));
         setAndroidNativeLightStatusBar(true);
+        if (getIntent() != null) {
+            boolean isFromNoti = getIntent().getBooleanExtra("is_from_noti", false);
+            DataListItem dataListItem = (DataListItem) getIntent().getSerializableExtra(TRANSFER_DATA);
+            if (isFromNoti && dataListItem != null) {
+                PicDialog picDialog = new PicDialog(this);
+                picDialog.setDataListItem(dataListItem);
+                picDialog.show();
+            }
+        }
         initView();
         initData();
 
         //匿名账号登录，按需初始化，一般会在主界面进行初始化
         NjordAccountManager.registerGuest(this, null);
-
+        //处理通知栏点击逻辑
         //1
 //        long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
 //        MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
@@ -346,7 +357,7 @@ public class MainActivity extends BaseActivity {
     }
 
     class GoodAdapter extends FragmentStatePagerAdapter {
-//        private FragmentManager mFragmentManager;
+        //        private FragmentManager mFragmentManager;
         public GoodAdapter(FragmentManager fm) {
             super(fm);
 //            mFragmentManager = fm;
@@ -361,7 +372,6 @@ public class MainActivity extends BaseActivity {
         public int getCount() {
             return mFragmentList.size();
         }
-
 
 
 //        @Override
@@ -427,25 +437,26 @@ public class MainActivity extends BaseActivity {
         this.recreate();
 
         //更新push语言，重新绑定
-        try{
+        try {
             Bundle bundle = new Bundle();
-            bundle.putString("ext_locale",language);
+            bundle.putString("ext_locale", language);
             PushBindManager.getInstance().setExtParam(bundle);
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
-        boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA,false);
-        if (isRefresh){
+        boolean isRefresh = intent.getBooleanExtra(CONTENT, false);
+        boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA, false);
+        if (isRefresh) {
             AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
         }
         ContentManager.getInstance().setChangeLang(false);
-        if (isQuit && getSupportFragmentManager().getFragments().size() >=2){
-            for (Fragment fragment : getSupportFragmentManager().getFragments()){
-                if (fragment instanceof MyFragment){
+        if (isQuit && getSupportFragmentManager().getFragments().size() >= 2) {
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment instanceof MyFragment) {
                     MyFragment myFragment = (MyFragment) fragment;
                     myFragment.quitLogin();
                 }

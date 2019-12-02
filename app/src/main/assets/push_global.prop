@@ -1,0 +1,5 @@
+push_host1=http://push.luckmorning.com/v1/
+push_host2=http://push.luckmorning.com/v1/
+sender.id=753370558096
+msg.del.day=30
+bind.interval=8

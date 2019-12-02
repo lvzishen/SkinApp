@@ -28,6 +28,8 @@ import com.baselib.ui.CommonConstants;
 import com.baselib.utils.ModuleConfig;
 import com.clean.binder.mgr.BinderManager;
 import com.goodmorning.config.GlobalConfig;
+//import com.goodmorning.manager.MorningPushExtension;
+import com.goodmorning.manager.MorningPushExtension;
 import com.goodmorning.xal.NeptuneReporter;
 import com.goodmorning.xal.StatisticSettingCollectorForXAL;
 import com.creativeindia.goodmorning.BuildConfig;
@@ -43,11 +45,8 @@ import com.nox.Nox;
 import com.nox.update.NeptuneDownloader;
 import com.vision.lib.ScenesSdk;
 import com.vision.lib.common.logger.ILogger;
-import com.w.sdk.push.DefaultPushExtension;
 import com.w.sdk.push.IConfiguration;
 import com.w.sdk.push.PushSdk;
-import com.w.sdk.push.model.PushMessage;
-import com.w.sdk.push.model.PushMessageBody;
 
 import org.adoto.xrg.AdotoActivateConfigBuilder;
 import org.adoto.xrg.AdotoActivateSDK;
@@ -65,15 +64,12 @@ import org.interlaken.common.utils.ProcessUtil;
 import org.n.account.core.AccountSDK;
 import org.thanos.ThanosSDK;
 import org.thanos.netcore.MorningDataAPI;
-import org.thanos.core.internal.ThanosDataCore;
-import org.thanos.push.ThanosPush;
 import org.thanos.utils.Utils;
 import org.xal.config.NoxInitConfig;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -303,19 +299,20 @@ public class App extends Application {
                     return "http://push.luckmorning.com/v1/";
                 }
             }).build();
-
-            PushSdk.registerPushExtensions("251", new DefaultPushExtension() {
-                protected boolean intercept(Context context, PushMessage message, PushMessageBody messageBody) {
-//                    if (ThanosSDK.isAllowShowNews(getApplicationContext())) {
-//                        if (!ThanosPush.handlePushMessage(context, message)) {
-//                            Log.i(TAG, "intercept: 产品自行处理PUSH消息");
-//                        } else {
-//                            Log.i(TAG, "intercept: 产品不需要处理PUSH消息");
-//                        }
+            PushSdk.registerPushExtensions("251", new MorningPushExtension());
+//            PushSdk.registerPushExtensions("251", new DefaultPushExtension() {
+//                protected boolean intercept(Context context, PushMessage message, PushMessageBody messageBody) {
+//                    Log.i("MorningPush", "DefaultPushExtension GO");
+////                    if (ThanosSDK.isAllowShowNews(getApplicationContext())) {
+//                    if (!ThanosPush.handlePushMessage(context, message)) {
+//                        Log.i(TAG, "intercept: 产品自行处理PUSH消息");
+//                    } else {
+//                        Log.i(TAG, "intercept: 产品不需要处理PUSH消息");
 //                    }
-                    return true;
-                }
-            });
+////                    }
+//                    return true;
+//                }
+//            });
         } catch (Exception e) {
             Log.e(TAG, "initPush: ", e);
         }
