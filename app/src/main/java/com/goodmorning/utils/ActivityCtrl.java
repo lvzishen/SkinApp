@@ -63,6 +63,7 @@ public class ActivityCtrl {
     public static void gotoSettingAcitivity(Context context, Class<? extends Activity> activityClass, boolean isLogin){
         Intent intent = new Intent(getApplicationContext(), activityClass);
         intent.putExtra(KEY_LOGIN_EXTRA,isLogin);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
