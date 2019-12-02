@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "854383501780",
+    "firebase_url": "https://sunny-day-cc718.firebaseio.com",
+    "project_id": "sunny-day-cc718",
+    "storage_bucket": "sunny-day-cc718.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854383501780:android:880cd5b50fb671e478b641",
+        "android_client_info": {
+          "package_name": "com.creativeindia.goodmorning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854383501780-rec1iqu69t88j7j462qrrromppidijhj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACQ3o7-MhD4ALC6TcUId_qGi1mdtlxQ2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854383501780-rec1iqu69t88j7j462qrrromppidijhj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
