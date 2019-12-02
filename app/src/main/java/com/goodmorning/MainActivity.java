@@ -2,18 +2,12 @@ package com.goodmorning;
 
 
 import android.content.Intent;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ads.lib.commen.AdLifecyclerManager;
@@ -22,7 +16,6 @@ import com.baselib.sp.SharedPref;
 import com.baselib.ui.activity.BaseActivity;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.manager.ContentManager;
-import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.activity.SettingActivity;
@@ -36,13 +29,6 @@ import com.w.sdk.push.PushBindManager;
 
 
 import org.n.account.core.api.NjordAccountManager;
-import org.thanos.netcore.CollectStatus;
-import org.thanos.netcore.MorningDataAPI;
-import org.thanos.netcore.ResultCallback;
-import org.thanos.netcore.bean.ContentList;
-import org.thanos.netcore.internal.requestparam.CollectListRequestParam;
-import org.thanos.netcore.internal.requestparam.CollectRequestParam;
-import org.thanos.netcore.internal.requestparam.CollectStatusRequestParam;
 
 import java.util.ArrayList;
 import java.util.List;

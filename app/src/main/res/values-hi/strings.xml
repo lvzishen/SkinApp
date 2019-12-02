@@ -138,6 +138,12 @@
     <!-- Means didn't save photo successfully	-->
     <string name="news_ui__save_failure">सहेजना असफल, कृपया फिर से कोशिश करें</string>
 
-
-
+    <string name="collect_deleted">आपका संग्रह हटा दिया गया है</string>
+    <string name="share">शेयर</string>
+    <string name="content_offline">यह सामग्री हटा दी गई है</string>
+    <string name="copy">कॉपी</string>
+    <string name="more">अधिक</string>
+    <string name="save">सुरक्षित</string>
+    <string name="login_guide">एक क्लिक में लॉग-इन, खुद से लिखें संदेश</string>
+    <string name="login_facebook">फेसबुक के साथ लॉग-इन करें</string>
 </resources>

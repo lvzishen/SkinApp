@@ -28,6 +28,7 @@ public class CollectStatusRequestParam extends BaseRequestParam<CollectStatusReq
         collectRequestProtocol.app_id = GoodMorningCollectRequest.APPID;
         collectRequestProtocol.type = 1;
         collectRequestProtocol.resource_ids[0] = resource_ids;
+        collectRequestProtocol.business_type = 1;
         return collectRequestProtocol;
     }
 
@@ -53,5 +54,6 @@ public class CollectStatusRequestParam extends BaseRequestParam<CollectStatusReq
         public String app_id;
         public int type;
         public long[] resource_ids = new long[1];
+        public int business_type;
     }
 }

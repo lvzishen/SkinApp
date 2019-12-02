@@ -15,7 +15,6 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
     private int offset;
     private int limit;
 
-
     public CollectListRequestParam(int offset, int limit, boolean acceptCache, int module) {
         super("RL", acceptCache, false, module);
         this.offset = offset;
@@ -31,6 +30,7 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
         collectRequestProtocol.app_id = GoodMorningCollectRequest.APPID;
         collectRequestProtocol.limit = limit;
         collectRequestProtocol.type = 1;
+        collectRequestProtocol.business_type = 1;
         collectRequestProtocol.offset = offset;
         return collectRequestProtocol;
     }
@@ -57,7 +57,7 @@ public class CollectListRequestParam extends BaseRequestParam<CollectListRequest
     }
 
     public static class CollectListRequestProtocol extends BaseProtocol {
-
+        public int business_type;
         public String app_id;
         public int offset;
         public int type;

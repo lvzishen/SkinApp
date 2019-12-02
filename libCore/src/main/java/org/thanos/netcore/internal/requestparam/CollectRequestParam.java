@@ -28,6 +28,7 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
         collectRequestProtocol.resource_id = resource_id;
         collectRequestProtocol.type = 1;
         collectRequestProtocol.cancel = cancel;
+        collectRequestProtocol.business_type = 1;
         return collectRequestProtocol;
     }
 
@@ -58,5 +59,6 @@ public class CollectRequestParam extends BaseRequestParam<CollectRequestParam.Co
         public long resource_id;
         public int type;
         public boolean cancel;
+        public int business_type;
     }
 }

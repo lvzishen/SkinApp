@@ -86,9 +86,9 @@ public class MorningPushExtension extends IPushExtension {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "goodmorning_notification_channelid");
 
         //拼装DataListItem对象
+//        String cloudData = messageBody.getExtra();
         String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC, "day_pic");
-        JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {
-        };
+        JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {};
         DayPicture dayPicture = jsonHelper.getJsonObject(cloudData);
         DataListItem dataListItem = new DataListItem();
         dataListItem.setType(DataListItem.DATA_TYPE_2);
