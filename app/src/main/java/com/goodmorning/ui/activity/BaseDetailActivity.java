@@ -435,7 +435,8 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         mBitmap = resource;
-                        findViewById(R.id.image_shadow).setVisibility(View.VISIBLE);
+                        findViewById(R.id.image_shadowb).setVisibility(View.VISIBLE);
+                        findViewById(R.id.image_shadowt).setVisibility(View.VISIBLE);
                     }
                 });
                 ImageUtil.displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default, layoutParams.width, layoutParams.height);
