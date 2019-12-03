@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.creativeindia.goodmorning.R;
+import com.goodmorning.config.GlobalConfig;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,6 +28,9 @@ public class SaveImageImpl implements ISaveImage {
     @Override
     public String saveImage(Context context, String name, Bitmap bmp) {
         File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
+        if (GlobalConfig.DEBUG) {
+            Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
+        }
         if (!appDir.exists()) {
             appDir.mkdir();
         }
