@@ -78,12 +78,13 @@
     <color name="color_372A40">#372A40</color>
     <color name="color_1B0325">#1B0325</color>
     <color name="setting_txt_tag_color">#333333</color>
-    <color name="setting_txt_content_color">#BBBBBB</color>
+    <color name="setting_txt_content_color">#888888</color>
     <color name="setting_line_color">#EEEEEE</color>
     <color name="lang_select_txt_color">#FFFE9A00</color>
     <color name="share_txt_color">#EF7509</color>
     <color name="item_default_color">#E7E7E7</color>
     <color name="retry_btn_color">#FFD210</color>
     <color name="retry_btn_txt_color">#724500</color>
+    <color name="color_333333">#333333</color>
 
 </resources>

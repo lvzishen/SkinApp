@@ -3,7 +3,6 @@ package com.goodmorning.ui.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,24 +19,25 @@ import com.bumptech.glide.Glide;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.manager.ContentManager;
 import com.goodmorning.ui.activity.MyCollectActivity;
 import com.goodmorning.ui.activity.SettingActivity;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.AppUtils;
-import com.goodmorning.utils.SystemUtils;
 import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
 
 import org.n.account.core.api.NjordAccountManager;
 import org.n.account.core.model.Account;
 import org.n.account.core.ui.GlideCircleTransform;
-import org.n.account.ui.view.AccountUIHelper;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
     public static final String KEY_EXTRA_MY = "key_extra_my";
+    private static final boolean DEBUG = GlobalConfig.DEBUG;
+    private static final String TAG = "login.MyFrage";
     private TextView tvMyLang;
     private ImageView mAccountHeaderImg, ivMyUpdate, ivMyTip;
     private TextView mAccountHeaderText, mVersion;
@@ -48,6 +48,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private Activity mActivity;
     private boolean isLogin;
     private Account account;
+//    private LoginApi mLoginApi;
+//    protected LoadingDialog mLoadingDialog;
+//    private String mLoadingStr = "";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -144,20 +147,24 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 mActivity.finish();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("key_extra_ismine",true);
+                intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
                 getApplicationContext().startActivity(intent);
             }
         });
     }
 
-    private void showAccountInfo(Account account) {
+    public void showAccountInfo(Account account) {
         if (account != null) {
-            Glide.with(getApplicationContext()).load(R.drawable.ic_account_header)
+            Glide.with(getApplicationContext()).load(account.mPictureUrl)
                     .placeholder(R.drawable.ic_account_header)
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
-            isLogin = true;
+            if (account.isGuest()){
+                isLogin = false;
+            }else {
+                isLogin = true;
+            }
             ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
@@ -174,13 +181,18 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.ll_user) {
+            account = NjordAccountManager.getCurrentAccount(getApplicationContext());
             if (NjordAccountManager.isLogined(getContext())) {
 //                AccountUIHelper.jumpProfileCenter(getActivity());
                 if (account == null || account.isGuest()){
-                    AccountUIHelper.startLogin(getActivity());
+                    if (getActivity() instanceof MainActivity)
+                        ((MainActivity) getActivity()).startMyLogin(getActivity());
+//                    AccountUIHelper.startLogin(getActivity());
                 }
             } else {
-                AccountUIHelper.startLogin(getActivity());
+                if (getActivity() instanceof MainActivity)
+                    ((MainActivity) getActivity()).startMyLogin(getActivity());
+//                AccountUIHelper.startLogin(getActivity());
             }
         } else if (v.getId() == R.id.ll_check_and_update) {
 //            onClickUpdate(v);
@@ -196,6 +208,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         } else if (v.getId() == R.id.ll_my_set) {
             //设置
             ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class,isLogin);
+            mActivity.finish();
         }
     }
 

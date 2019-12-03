@@ -20,11 +20,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/home_unusual"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="@string/home_empty"
             android:textColor="@color/setting_txt_content_color"
             android:textSize="@dimen/qb_sp_14"/>
