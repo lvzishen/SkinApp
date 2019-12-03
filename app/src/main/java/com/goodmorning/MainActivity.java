@@ -32,6 +32,7 @@ import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     public static final String CONTENT = "content";
+    public static final String CHANNEL_NAME = "channel_name";
     private ViewPager mVpContent;
     private BottomBarLayout mBottomBarLayout;
     private List<Fragment> mFragmentList = new ArrayList<>();

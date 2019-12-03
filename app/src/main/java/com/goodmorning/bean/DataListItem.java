@@ -46,6 +46,11 @@ public class DataListItem implements Serializable {
     private int status;
 
     /**
+     * 频道名称
+     */
+    private String channelName;
+
+    /**
      * 内容下线状态
      */
     public static final int STATUS_TYPE_1 = 1;
@@ -151,5 +156,13 @@ public class DataListItem implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 }
