@@ -29,6 +29,7 @@ import org.n.account.core.model.Account;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.helper.JsonHelper;
 import java.util.ArrayList;
+import java.util.Set;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
@@ -111,8 +112,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         if (intent != null){
             isLogin = intent.getBooleanExtra(ActivityCtrl.KEY_LOGIN_EXTRA,false);
         }
-        Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
-        if (isLogin || account != null){
+
+        if (ContentManager.getInstance().isLogin()){
             rlSetQuit.setVisibility(View.VISIBLE);
         }else {
             rlSetQuit.setVisibility(View.GONE);
@@ -131,7 +132,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.rl_setting_language:
                 //切换到语言列表
-                languageDialog.show();
+//                languageDialog.show();
+                ActivityCtrl.gotoActivityOpenSimple(SettingActivity.this,LanguageActivity.class);
+                finish();
                 break;
             case R.id.rl_setting_update:
                 //跳转到GP页面

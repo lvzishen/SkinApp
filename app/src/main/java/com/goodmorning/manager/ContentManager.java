@@ -18,6 +18,7 @@ public class ContentManager {
     private JsonHelper<ArrayList<ChannelList.LangCategoryInfo>> jsonHelper;
     private JsonHelper<ArrayList<ChannelList.LanguageItem> > jsonLangelper;
     private boolean changeLang = false;
+    private boolean isLogin = false;
     private ContentManager(){
         jsonHelper = new JsonHelper<ArrayList<ChannelList.LangCategoryInfo>>() {
         };
@@ -79,5 +80,13 @@ public class ContentManager {
 
     public void setChangeLang(boolean changeLang) {
         this.changeLang = changeLang;
+    }
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
     }
 }

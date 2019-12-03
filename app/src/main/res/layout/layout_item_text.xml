@@ -14,7 +14,8 @@
         android:ellipsize="end"
         android:textColor="?attr/text_item_color"
         android:id="@+id/tv_txt"
-        android:padding="@dimen/qb_px_20"/>
+        android:gravity="center"
+        android:padding="@dimen/qb_px_15"/>
 
 
 </RelativeLayout>

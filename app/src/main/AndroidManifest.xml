@@ -61,7 +61,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label">
-        <activity android:name="com.goodmorning.ui.activity.MyCollectActivity" />
+        <activity android:name="com.goodmorning.ui.activity.LanguageActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name="com.goodmorning.ui.activity.MyCollectActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.goodmorning.ui.activity.WebviewActivity"
             android:screenOrientation="portrait" />
