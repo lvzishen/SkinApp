@@ -55,6 +55,7 @@ public class TabFragment extends Fragment {
     private CommonRecyclerViewAdapter mRecyclerViewAdapter;
     private int sessionId;
     private int channelId;
+    private String channelName;
     private Activity mActivity;
     private boolean isRefresh = false;
     @Nullable
@@ -77,6 +78,7 @@ public class TabFragment extends Fragment {
         mActivity = getActivity();
         if (getArguments() != null){
             channelId = getArguments().getInt(MainActivity.CONTENT);
+            channelName = getArguments().getString(MainActivity.CHANNEL_NAME);
         }
         mainListAdapter = new MainListAdapter(mActivity);
         mRecyclerViewAdapter = new CommonRecyclerViewAdapter(mainListAdapter);
@@ -90,7 +92,7 @@ public class TabFragment extends Fragment {
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(layoutManager);
 //        mRecyclerView.setPadding(15,10,15,10);
-        mRecyclerView.addItemDecoration(new DiverItemDecoration(30,2));
+        mRecyclerView.addItemDecoration(new DiverItemDecoration(25,2));
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
@@ -120,7 +122,6 @@ public class TabFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 //调换到详情页
-                Log.e("TabFragment","position="+position);
                 if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_1) {
                     ActivityCtrl.gotoOpenActivity(mActivity, TextDetailActivity.class, mainListAdapter.getDataItem(position));
                 } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_2) {
@@ -182,6 +183,7 @@ public class TabFragment extends Fragment {
                 }
                 dataItem.setResourceId(contentItem.resourceId);
                 dataItem.setId(contentItem.id);
+                dataItem.setChannelName(channelName);
                 if (contentItem instanceof VideoItem){
                     VideoItem videoItem = (VideoItem) contentItem;
                     dataItem.setVideoUrl(videoItem.sourceUrl);

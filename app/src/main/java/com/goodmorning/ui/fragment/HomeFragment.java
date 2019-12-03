@@ -248,19 +248,26 @@ public class HomeFragment extends Fragment {
             public void run() {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
                 if (langCategoryInfo == null){
+                    if (tabLayout.getTabCount() == 0){
+                        llChannelRetry.setVisibility(View.VISIBLE);
+                    }else {
+                        llChannelRetry.setVisibility(View.GONE);
+                    }
                     return;
                 }
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 mFragmentList.clear();
                 for (int i=0;i<categories.size();i++){
+                    String text = categories.get(i).text;
+                    String[] txts = TextUtils.channelText(text);
                     TabFragment tabFragment = new TabFragment();
                     Bundle bundle1 = new Bundle();
                     bundle1.putInt(MainActivity.CONTENT, categories.get(i).id);
+                    bundle1.putString(MainActivity.CHANNEL_NAME,txts[0]);
                     tabFragment.setArguments(bundle1);
                     mFragmentList.add(tabFragment);
                 }
 
-                if (!isAdded()) return;
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
                 tabLayout.setupWithViewPager(tabVpager);
@@ -281,6 +288,8 @@ public class HomeFragment extends Fragment {
 
                 if (tabLayout.getTabCount() == 0){
                     llChannelRetry.setVisibility(View.VISIBLE);
+                }else {
+                    llChannelRetry.setVisibility(View.GONE);
                 }
             }
         });

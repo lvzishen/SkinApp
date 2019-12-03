@@ -158,6 +158,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
             isLogin = true;
+            ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
             Glide.with(getApplicationContext()).load(R.drawable.ic_account_header)
@@ -165,6 +166,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(R.string.sign_in_to);
             isLogin = false;
+            ContentManager.getInstance().setLogin(isLogin);
         }
     }
 

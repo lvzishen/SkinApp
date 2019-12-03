@@ -39,9 +39,9 @@ public class DiverItemDecoration extends RecyclerView.ItemDecoration {
         if(lRecyclerViewAdapter.isHeader(itemPosition) || lRecyclerViewAdapter.isRefreshHeader(itemPosition) || lRecyclerViewAdapter.isFooter(itemPosition)) {
             outRect.top = 0;
         }else {
-            outRect.top = 10;
+            outRect.top = space;
         }
-        outRect.bottom = 10;
+//        outRect.bottom = 10;
         /**
          * 根据params.getSpanIndex()来判断左右边确定分割线
          * 第一列设置左边距为space，右边距为space/2  （第二列反之）

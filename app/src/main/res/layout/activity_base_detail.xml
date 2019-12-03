@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -56,12 +57,12 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:visibility="gone"
-        android:gravity="center"
         android:id="@+id/ll_no_collect"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -83,8 +84,7 @@
         android:id="@+id/content_detail_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-      >
+        android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -105,6 +105,17 @@
                 android:visibility="gone" />
 
             <com.goodmorning.view.image.RoundedImageView
+                android:id="@+id/image_detail1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/qb_px_25"
+                android:layout_marginTop="@dimen/qb_px_5"
+                android:layout_marginRight="@dimen/qb_px_25"
+                android:layout_marginBottom="@dimen/qb_px_5"
+                android:scaleType="fitXY"
+                android:src="@drawable/shadow" />
+
+            <com.goodmorning.view.image.RoundedImageView
                 android:id="@+id/image_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,7 +124,8 @@
                 android:layout_marginRight="@dimen/qb_px_30"
                 android:layout_marginBottom="@dimen/qb_px_10"
                 android:scaleType="fitStart" />
-            <!--// android:scaleType="fitCenter"-->
+            <!--</FrameLayout>-->
+
             <LinearLayout
                 android:id="@+id/video_detail"
                 android:layout_width="match_parent"

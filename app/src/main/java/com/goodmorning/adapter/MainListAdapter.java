@@ -43,6 +43,9 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
             case DataListItem.DATA_TYPE_4:
                 layId = R.layout.layout_item_no_collect;
                 break;
+            default:
+                layId = R.layout.layout_item_no_collect;
+                break;
 
         }
         return layId;
