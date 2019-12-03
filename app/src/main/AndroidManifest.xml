@@ -24,7 +24,7 @@
     <uses-feature
         android:name="android.hardware.bluetooth"
         android:required="false" /> <!-- 消息推送的权限 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="replace"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> <!-- 接入XAL场景化SDK所需权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- <uses-permission android:name="android.permission.BLUETOOTH" /> -->
     <!-- 如果不需要场景化SDK声明的权限可以通过下述方式去掉 -->

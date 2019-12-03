@@ -8,6 +8,7 @@ android {
     defaultConfig {
         applicationId "com.creativeindia.goodmorning"
 //        applicationId "com.apusapps.launcher"
+//        applicationId "com.typin.fcmtestapp"
         minSdkVersion Integer.parseInt(MinSdkVersion)
         targetSdkVersion Integer.parseInt(TargetSdkVersion)
         ndk {
@@ -101,7 +102,7 @@ dependencies {
 
     // Thanos
     xalApi 'com.xal.thanos:ui:1.0.24-push3rd'
-    xalApi 'com.push:pushsdk:2.3.17.17.2-3rd'
+    xalApi 'com.push:pushsdk:2.3.18-3rd'
     xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
     xalApi 'com.push:pushsdk-parser:' + PUSH_PARSER_VERSION
 //    //账号sdk，【必选】
@@ -119,6 +120,7 @@ dependencies {
 }
 
 // XAL Plugin
+apply plugin: 'com.google.gms.google-services'
 xal {
     xmlConfigVersion true
     persistProcessName 'com.creativeindia.goodmorning.background'
