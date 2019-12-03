@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +39,8 @@ import com.goodmorning.bean.ShareItem;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.share.ShareTypeManager;
 import com.goodmorning.utils.BitmapUtils;
+import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ImageUtilHandle;
-import com.goodmorning.utils.ScreenUtils;
 import com.goodmorning.view.image.RoundedImageView;
 import com.goodmorning.view.recyclerview.normal.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.normal.IItem;
@@ -82,7 +85,9 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     protected ImageView mImageCollect;
     protected RoundedImageView mImageDetailView;
     protected LinearLayout mVideoLayout;
+    //    protected FrameLayout mImageLayout;
     protected JzvdStd mVideoView;
+    protected RoundedImageView mShadowView;
     protected CommonRecyclerView mShareRv;
     private List<ShareItem> mDatas;
     protected int mType;
@@ -133,21 +138,31 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_detail);
         initIntent();
+//        mImageLayout = findViewById(R.id.image_detail_fl);
         mBackLayout = findViewById(R.id.back);
+
+        mShadowView = findViewById(R.id.image_detail1);
+        mShadowView.setCornerRadius(DeviceUtil.dip2px(getApplicationContext(), 4));
+
         mTitleView = findViewById(R.id.title);
         misCollectLayout = findViewById(R.id.collect);
         mTextDetailView = findViewById(R.id.text_detail);
         mImageCollect = findViewById(R.id.iscollect);
+
         mImageDetailView = findViewById(R.id.image_detail);
-        mImageDetailView.setCornerRadius(DeviceUtil.dip2px(getApplicationContext(), 6));
+        mImageDetailView.setCornerRadius(DeviceUtil.dip2px(getApplicationContext(), 4));
+
         mVideoLayout = findViewById(R.id.video_detail);
         mVideoView = findViewById(R.id.jz_video);
         mShareRv = findViewById(R.id.rv_list);
+//        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
+//        if (GlobalConfig.DEBUG) {
+//            Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
+//        }
         setType();
         mShareRv.setCallback(mCallBack);
         mLayoutManager = new GridLayoutManager(this, 4);
         mShareRv.setLayoutManager(mLayoutManager);
-        mTitleView.setText(getTextTitle());
         //设置页面类型
         mBackLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +220,11 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             }
         });
         initShareDatas();
+        if (!TextUtils.isEmpty(mDataItem.getChannelName())) {
+            mTitleView.setText(mDataItem.getChannelName());
+        } else {
+            mTitleView.setText(getTextTitle());
+        }
         if (mDataItem.getStatus() == DataListItem.STATUS_TYPE_1) {
             isCollect = true;
             mImageCollect.setSelected(true);
@@ -242,23 +262,23 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             case DataListItem.DATA_TYPE_1:
                 mDatas.add(new ShareItem(this, WHATSAPP));
                 mDatas.add(new ShareItem(this, FACEBOOK));
-                mDatas.add(new ShareItem(this, MESSAGE));
-                mDatas.add(new ShareItem(this, MORE));
+//                mDatas.add(new ShareItem(this, MESSAGE));
                 mDatas.add(new ShareItem(this, COPY));
+                mDatas.add(new ShareItem(this, MORE));
                 changeShareCount();
                 break;
             case DataListItem.DATA_TYPE_2:
                 mDatas.add(new ShareItem(this, WHATSAPP));
                 mDatas.add(new ShareItem(this, FACEBOOK));
-                mDatas.add(new ShareItem(this, MORE));
                 mDatas.add(new ShareItem(this, SAVE));
+                mDatas.add(new ShareItem(this, MORE));
                 break;
             case DataListItem.DATA_TYPE_3:
                 mDatas.add(new ShareItem(this, WHATSAPP));
                 mDatas.add(new ShareItem(this, FACEBOOK));
-                mDatas.add(new ShareItem(this, INSTAGRAM));
-                mDatas.add(new ShareItem(this, MORE));
+//                mDatas.add(new ShareItem(this, INSTAGRAM));
                 mDatas.add(new ShareItem(this, SAVE));
+                mDatas.add(new ShareItem(this, MORE));
                 changeShareCount();
                 break;
         }
@@ -266,12 +286,12 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     }
 
     private void changeShareCount() {
-        mLayoutManager = new GridLayoutManager(this, 5);
-        mShareRv.setLayoutManager(mLayoutManager);
-        LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) mShareRv.getLayoutParams();
-        layoutParams1.leftMargin = DeviceUtil.dip2px(getApplicationContext(), 10);
-        layoutParams1.rightMargin = DeviceUtil.dip2px(getApplicationContext(), 10);
-        mShareRv.setLayoutParams(layoutParams1);
+//        mLayoutManager = new GridLayoutManager(this, 5);
+//        mShareRv.setLayoutManager(mLayoutManager);
+//        LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) mShareRv.getLayoutParams();
+//        layoutParams1.leftMargin = DeviceUtil.dip2px(getApplicationContext(), 10);
+//        layoutParams1.rightMargin = DeviceUtil.dip2px(getApplicationContext(), 10);
+//        mShareRv.setLayoutParams(layoutParams1);
     }
 
 
@@ -338,18 +358,21 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             case DataListItem.DATA_TYPE_1:
                 mTextDetailView.setVisibility(View.VISIBLE);
                 refreshText();
+//                mImageLayout.setVisibility(View.GONE);
                 mImageDetailView.setVisibility(View.GONE);
                 mVideoLayout.setVisibility(View.GONE);
                 break;
             case DataListItem.DATA_TYPE_2:
                 mTextDetailView.setVisibility(View.GONE);
+//                mImageLayout.setVisibility(View.VISIBLE);
                 mImageDetailView.setVisibility(View.VISIBLE);
-                refreshImage();
                 mVideoLayout.setVisibility(View.GONE);
+                refreshImage();
                 break;
             case DataListItem.DATA_TYPE_3:
                 mTextDetailView.setVisibility(View.GONE);
                 mImageDetailView.setVisibility(View.GONE);
+//                mImageLayout.setVisibility(View.GONE);
                 mVideoLayout.setVisibility(View.VISIBLE);
                 refreshVideo();
                 break;
@@ -403,22 +426,31 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     private Bitmap mBitmap;
 
     private void refreshImage() {
-
-        Glide.with(this).load(mDataItem.getPicUrl()).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+        mImageDetailView.post(new Runnable() {
             @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                mBitmap = resource;
-                int imageWidth = resource.getWidth();
-                int imageHeight = resource.getHeight();
-                int height = ScreenUtils.screenActualPix(BaseDetailActivity.this)[1] * imageHeight / imageWidth;
-                ViewGroup.LayoutParams para = mImageDetailView.getLayoutParams();
-                if (para != null) {
-                    para.height = height;
-                    mImageDetailView.setLayoutParams(para);
-                }
-                Glide.with(getApplicationContext()).load(mDataItem.getPicUrl()).asBitmap().into(mImageDetailView);
+            public void run() {
+                ViewGroup.LayoutParams layoutParams = mImageDetailView.getLayoutParams();
+                float itemWidth = mImageDetailView.getWidth() - mImageDetailView.getPaddingLeft() - mImageDetailView.getPaddingRight();
+                layoutParams.width = (int) itemWidth;
+                float scale = (itemWidth + 0f) / mDataItem.getWidth();
+                layoutParams.height = (int) (mDataItem.getHeight() * scale);
+                mImageDetailView.setLayoutParams(layoutParams);
+
+                ViewGroup.LayoutParams vl = mShadowView.getLayoutParams();
+                vl.height = (int) (mDataItem.getHeight() * scale) + DeviceUtil.dip2px(getApplicationContext(), getResources().getDimension(R.dimen.qb_px_10));
+                mShadowView.setLayoutParams(vl);
+
+                Glide.with(BaseDetailActivity.this).load(mDataItem.getPicUrl()).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        mBitmap = resource;
+                    }
+                });
+
+                ImageUtil.displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default, layoutParams.width, layoutParams.height);
             }
         });
+
     }
 
 
