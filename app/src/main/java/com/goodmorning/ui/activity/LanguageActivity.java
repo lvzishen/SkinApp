@@ -51,7 +51,9 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         jsonHelper = new JsonHelper<ArrayList<ChannelList.LanguageItem>>() {
         };
         ArrayList<ChannelList.LanguageItem> languageItems = jsonHelper.getJsonObject(SharedPref.getString(getApplicationContext(), SharedPref.LANGUAGE_TYPE,""));
-        languageSetAdapter.addAll(languageItems);
+        if (languageItems != null){
+            languageSetAdapter.addAll(languageItems);
+        }
         rvSettingLanguage.setAdapter(languageSetAdapter);
         DividerDecoration divider = new DividerDecoration.Builder(getApplicationContext())
                 .setHeight(ResUtils.getDimension(R.dimen.qb_px_1)/2)

@@ -47,7 +47,9 @@ public class LanguageDialog extends Dialog {
         jsonHelper = new JsonHelper<ArrayList<ChannelList.LanguageItem>>() {
         };
         ArrayList<ChannelList.LanguageItem> languageItems = jsonHelper.getJsonObject(SharedPref.getString(getContext(), SharedPref.LANGUAGE_TYPE,""));
-        languageAdapter.addAll(languageItems);
+        if (languageItems != null){
+            languageAdapter.addAll(languageItems);
+        }
         rvLanguage.setAdapter(languageAdapter);
         DividerDecoration divider = new DividerDecoration.Builder(getContext())
                 .setHeight(ResUtils.getDimension(R.dimen.qb_px_1)/2)

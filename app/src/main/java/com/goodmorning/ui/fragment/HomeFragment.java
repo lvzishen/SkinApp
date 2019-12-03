@@ -248,6 +248,11 @@ public class HomeFragment extends Fragment {
             public void run() {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
                 if (langCategoryInfo == null){
+                    if (tabLayout.getTabCount() == 0){
+                        llChannelRetry.setVisibility(View.VISIBLE);
+                    }else {
+                        llChannelRetry.setVisibility(View.GONE);
+                    }
                     return;
                 }
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
@@ -281,6 +286,8 @@ public class HomeFragment extends Fragment {
 
                 if (tabLayout.getTabCount() == 0){
                     llChannelRetry.setVisibility(View.VISIBLE);
+                }else {
+                    llChannelRetry.setVisibility(View.GONE);
                 }
             }
         });

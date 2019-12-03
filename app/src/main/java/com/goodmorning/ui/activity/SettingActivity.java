@@ -42,7 +42,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout rlSetQuit;
     private TextView tvSetLanguage,tvSetVersion;
     private JsonHelper<ArrayList<ChannelList.LanguageItem>> jsonHelper;
-    private LanguageDialog languageDialog;
     private CommonDialog commonDialog;
     public static final String KEY_QUIT_EXTRA = "key_quit_extra";
     private boolean isLogin;
@@ -79,22 +78,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         rlSetPrivacy.setOnClickListener(this);
         rlSetQuit.setOnClickListener(this);
 
-        languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
-            @Override
-            public void onLanguage(String languge) {
-                languageDialog.dismiss();
-                if (languge.equals(LanguageUtil.getLanguage())){
-                    ContentManager.getInstance().setChangeLang(false);
-                }else {
-                    ContentManager.getInstance().setChangeLang(true);
-                    AppUtils.changeLanguage(SettingActivity.this,languge);
-                }
-            }
-        });
     }
 
     private void initData(){
-        languageDialog = new LanguageDialog(this);
         if (Nox.canUpdate(getApplicationContext())){//AppUtils.isUpdate(this)
             ivSetTip.setVisibility(View.VISIBLE);
             ivSetArrow.setVisibility(View.VISIBLE);
@@ -132,7 +118,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.rl_setting_language:
                 //切换到语言列表
-//                languageDialog.show();
                 ActivityCtrl.gotoActivityOpenSimple(SettingActivity.this,LanguageActivity.class);
                 finish();
                 break;
