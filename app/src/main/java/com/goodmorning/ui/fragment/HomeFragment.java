@@ -1,5 +1,7 @@
 package com.goodmorning.ui.fragment;
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -31,6 +33,7 @@ import com.goodmorning.bean.DataListItem;
 import com.goodmorning.bean.DayPicture;
 import com.goodmorning.manager.ContentManager;
 import com.goodmorning.manager.ImageLoader;
+import com.goodmorning.utils.AppUtils;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
 import com.goodmorning.utils.CloudControlUtils;
@@ -182,6 +185,7 @@ public class HomeFragment extends Fragment {
                             ((TextView) childView).setTextSize(14);
                             // 改变 tab 选择状态下的字体颜色
                             ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                            ((TextView) childView).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                         }
                     }
                 }
@@ -198,6 +202,7 @@ public class HomeFragment extends Fragment {
                             ((TextView) childView).setTextSize(13);
                             // 改变 tab 选择状态下的字体颜色
                             ((TextView) childView).setTextColor(ResUtils.getColor(R.color.color_9D9D9D));
+                            ((TextView) childView).setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                         }
                     }
 
@@ -215,6 +220,7 @@ public class HomeFragment extends Fragment {
                             ((TextView) childView).setTextSize(14);
                             // 改变 tab 选择状态下的字体颜色
                             ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                            ((TextView) childView).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                         }
                     }
                 }
@@ -291,7 +297,13 @@ public class HomeFragment extends Fragment {
                     if (mActivity == null){
                         return;
                     }
-                    ((MainActivity)mActivity).changeLanguage(languge);
+
+                    AppUtils.changeLanguage(mActivity,languge);
+                    mActivity.finish();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("key_extra_ismine",false);
+                    getApplicationContext().startActivity(intent);
                 }
             });
         }

@@ -12,10 +12,16 @@ import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.utils.ScreenUtils;
 
+import java.util.List;
+
 
 public class MainListAdapter extends ListBaseAdapter<DataListItem> {
     private int layId;
     private Activity mContext;
+    private int[] defaultDrawables = {R.drawable.shape_list_item_default_1,R.drawable.shape_list_item_default_2,
+            R.drawable.shape_list_item_default_3,R.drawable.shape_list_item_default_4,
+            R.drawable.shape_list_item_default_5,R.drawable.shape_list_item_default_6};
+    private int posid = 0;
 
     public MainListAdapter(Context context) {
         super(context);
@@ -69,7 +75,11 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
         float scale = (itemWidth+0f)/dataListItem.getWidth();
         layoutParams.height = (int) (dataListItem.getHeight()*scale);
         imageView.setLayoutParams(layoutParams);
-        ImageUtil.displayImageView(mContext,imageView,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
+        ImageUtil.displayImageView(mContext,imageView,dataListItem.getPicUrl(),defaultDrawables[posid],layoutParams.width, layoutParams.height);
+        posid++;
+        if (posid >= defaultDrawables.length){
+            posid = 0;
+        }
     }
 
     @Override
@@ -97,5 +107,10 @@ public class MainListAdapter extends ListBaseAdapter<DataListItem> {
      */
     public int getDataSize(){
         return mDataList.size();
+    }
+
+    public void refresh(List<DataListItem> dataListItems){
+        mDataList = dataListItems;
+        notifyDataSetChanged();
     }
 }

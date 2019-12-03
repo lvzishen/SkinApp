@@ -33,7 +33,7 @@ public class LanguageDialog extends Dialog {
     public LanguageDialog(@NonNull Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setCanceledOnTouchOutside(false);
+        setCanceledOnTouchOutside(true);
         setCancelable(true);
         View view = ResUtils.getInflater().inflate(R.layout.language_layout, null);
         setContentView(view);

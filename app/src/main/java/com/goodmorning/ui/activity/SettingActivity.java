@@ -23,9 +23,14 @@ import com.goodmorning.view.dialog.CommonDialog;
 import com.goodmorning.view.dialog.CommonDialogClickListener;
 import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
+
+import org.n.account.core.api.NjordAccountManager;
+import org.n.account.core.model.Account;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.helper.JsonHelper;
 import java.util.ArrayList;
+
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
     private ImageView ivSetBack,ivSetTip,ivSetArrow;
@@ -106,7 +111,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         if (intent != null){
             isLogin = intent.getBooleanExtra(ActivityCtrl.KEY_LOGIN_EXTRA,false);
         }
-        if (isLogin){
+        Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+        if (isLogin || account != null){
             rlSetQuit.setVisibility(View.VISIBLE);
         }else {
             rlSetQuit.setVisibility(View.GONE);
@@ -145,9 +151,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     return;
                 }
                 commonDialog = new CommonDialog.Builder(this)
-                        .setTitle(ResUtils.getString(R.string.ask_exit))
-                        .setLeftBtnStr(ResUtils.getString(R.string.btn_cancel))
-                        .setRightBtnStr(ResUtils.getString(R.string.btn_confirm))
+                        .setTitle(this.getString(R.string.ask_exit))
+                        .setLeftBtnStr(this.getString(R.string.btn_cancel))
+                        .setRightBtnStr(this.getString(R.string.btn_confirm))
                         .addClickListener(new CommonDialogClickListener() {
                             @Override
                             public void onClickLeft() {

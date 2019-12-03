@@ -16,7 +16,9 @@ import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
 import com.creativeindia.goodmorning.R;
+import com.goodmorning.MainActivity;
 import com.goodmorning.bean.CheckUpdate;
+import com.goodmorning.ui.activity.SettingActivity;
 import com.w.sdk.push.PushBindManager;
 
 import org.thanos.netcore.helper.JsonHelper;
@@ -153,7 +155,22 @@ public class AppUtils {
             LanguageUtil.changeAppLanguage(getApplicationContext(), language);
         }
         SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE, language);
-        activity.recreate();
+//        if ("VCE-AL00".equals(SystemUtils.getSystemModel())){
+            if (activity instanceof SettingActivity){
+                activity.finish();
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(intent);
+            }else if (activity instanceof MainActivity){
+//                activity.finish();
+//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("key_extra_ismine",true);
+//                getApplicationContext().startActivity(intent);
+            }
+//        }else {
+//            activity.recreate();
+//        }
         //更新push语言，重新绑定
         try{
             Bundle bundle = new Bundle();

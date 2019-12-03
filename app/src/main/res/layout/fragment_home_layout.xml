@@ -16,7 +16,9 @@
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/qb_px_80"
-            android:background="?attr/tablayout_bg"
+            android:layout_marginTop="-10dp"
+            app:tabBackground="@color/transparent"
+            app:tabRippleColor="@color/transparent"
             app:tabIndicatorColor="?attr/color_B8B8B8"
             app:tabSelectedTextColor="@color/orange"
             app:tabMode="fixed"
@@ -36,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="@dimen/qb_px_5"
             android:background="?attr/tablayout_bg"
             android:id="@+id/tab_viewpager"/>
 

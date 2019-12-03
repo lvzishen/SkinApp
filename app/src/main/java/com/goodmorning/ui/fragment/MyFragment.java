@@ -25,6 +25,7 @@ import com.goodmorning.ui.activity.MyCollectActivity;
 import com.goodmorning.ui.activity.SettingActivity;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.AppUtils;
+import com.goodmorning.utils.SystemUtils;
 import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
 
@@ -36,6 +37,7 @@ import org.n.account.ui.view.AccountUIHelper;
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
+    public static final String KEY_EXTRA_MY = "key_extra_my";
     private TextView tvMyLang;
     private ImageView mAccountHeaderImg, ivMyUpdate, ivMyTip;
     private TextView mAccountHeaderText, mVersion;
@@ -138,14 +140,19 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 if (mActivity == null) {
                     return;
                 }
-                ((MainActivity) mActivity).changeLanguage(languge);
+                AppUtils.changeLanguage(mActivity,languge);
+                mActivity.finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("key_extra_ismine",true);
+                getApplicationContext().startActivity(intent);
             }
         });
     }
 
     private void showAccountInfo(Account account) {
         if (account != null) {
-            Glide.with(getApplicationContext()).load(account.mPictureUrl)
+            Glide.with(getApplicationContext()).load(R.drawable.ic_account_header)
                     .placeholder(R.drawable.ic_account_header)
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);

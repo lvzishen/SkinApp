@@ -108,7 +108,7 @@ public class ImageUtil {
         if (width > 0 && heghit > 0 && !isGif) {
             drawableTypeRequest.override(width, heghit);//加载特定宽度高度的图片
         }
-        drawableTypeRequest.transform(new GlideRoundTransform(context, 6));
+        drawableTypeRequest.transform(new GlideRoundTransform(context, 7));
         drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);
