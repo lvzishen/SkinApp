@@ -36,6 +36,9 @@ public class ContentManager {
 
     public ChannelList.LangCategoryInfo getChannelContent(){
         ArrayList<ChannelList.LangCategoryInfo> channellist = jsonHelper.getJsonObject(SharedPref.getString(getApplicationContext(), SharedPref.CHANNEL_CONTENT,""));
+        if (channellist == null){
+            return null;
+        }
         for (ChannelList.LangCategoryInfo langCategoryInfo : channellist){
             if (LanguageUtil.getLanguage().equals(langCategoryInfo.lang)){
                 return langCategoryInfo;
