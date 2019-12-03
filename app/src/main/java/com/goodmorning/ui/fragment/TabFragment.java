@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -55,6 +56,7 @@ public class TabFragment extends Fragment {
     private int sessionId;
     private int channelId;
     private Activity mActivity;
+    private boolean isRefresh = false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,7 +89,8 @@ public class TabFragment extends Fragment {
         //防止item位置互换
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(new DiverItemDecoration(20,2));
+//        mRecyclerView.setPadding(15,10,15,10);
+        mRecyclerView.addItemDecoration(new DiverItemDecoration(25,2));
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
@@ -106,6 +109,7 @@ public class TabFragment extends Fragment {
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
+                isRefresh = true;
                 sessionId = Math.abs((int) System.currentTimeMillis());
                 mainListAdapter.clear();
                 requestData();
@@ -116,6 +120,7 @@ public class TabFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 //调换到详情页
+                Log.e("TabFragment","position="+position);
                 if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_1) {
                     ActivityCtrl.gotoOpenActivity(mActivity, TextDetailActivity.class, mainListAdapter.getDataItem(position));
                 } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_2) {
@@ -186,14 +191,23 @@ public class TabFragment extends Fragment {
                         dataItem.setWidth(videoItem.photoInfos.get(0).width);
                         dataItem.setHeight(videoItem.photoInfos.get(0).height);
                     }
-
+                    if (dataItem.getWidth() != 0 && dataItem.getHeight() != 0){
+                        datas.add(dataItem);
+                    }
                 }else if (contentItem instanceof NewsItem){
                     NewsItem newsItem = (NewsItem) contentItem;
                     dataItem.setData(newsItem.title);
+                    datas.add(dataItem);
                 }
-                datas.add(dataItem);
+
             }
-            mainListAdapter.addAll(datas);
+            if (isRefresh){
+                isRefresh = false;
+                mainListAdapter.refresh(datas);
+            }else {
+                mainListAdapter.addAll(datas);
+            }
+
             mRecyclerView.refreshComplete(0);
         }
         showEmpty();

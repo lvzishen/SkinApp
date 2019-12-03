@@ -1,6 +1,7 @@
 package com.goodmorning.view.recyclerview.decoration;
 
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +30,7 @@ public class DiverItemDecoration extends RecyclerView.ItemDecoration {
         if (adapter instanceof CommonRecyclerViewAdapter) {
             lRecyclerViewAdapter = (CommonRecyclerViewAdapter) adapter;
         } else {
-            throw new RuntimeException("the adapter must be LRecyclerViewAdapter");
+            throw new RuntimeException("the adapter must be CommonRecyclerViewAdapter");
         }
 //        outRect.top = space;
         //瀑布流专属分割线
@@ -40,15 +41,16 @@ public class DiverItemDecoration extends RecyclerView.ItemDecoration {
         }else {
             outRect.top = space;
         }
+//        outRect.bottom = 10;
         /**
          * 根据params.getSpanIndex()来判断左右边确定分割线
          * 第一列设置左边距为space，右边距为space/2  （第二列反之）
          */
         if (params.getSpanIndex() % 2 == 0) {
             outRect.left = space;
-            outRect.right = space / 2;
+            outRect.right = space/2 ;
         } else {
-            outRect.left = space / 2;
+            outRect.left = space/2 ;
             outRect.right = space;
         }
     }

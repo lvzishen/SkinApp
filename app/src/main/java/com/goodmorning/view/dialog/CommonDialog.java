@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ public class CommonDialog extends Dialog {
     TextView content;
     TextView leftBtn;
     TextView rightBtn;
+    ImageView ivDialogClose;
 
     public CommonDialog(@NonNull Context context) {
         super(context);
@@ -28,7 +30,7 @@ public class CommonDialog extends Dialog {
         View view = ResUtils.getInflater().inflate(R.layout.dialog_common, null);
         setContentView(view);
         setCanceledOnTouchOutside(false);
-        setCancelable(false);
+        setCancelable(true);
         initView(view);
     }
 
@@ -37,6 +39,7 @@ public class CommonDialog extends Dialog {
         content = view.findViewById(R.id.content);
         leftBtn = view.findViewById(R.id.left_btn);
         rightBtn = view.findViewById(R.id.right_btn);
+        ivDialogClose = view.findViewById(R.id.iv_dialog_close);
     }
 
 
@@ -55,6 +58,13 @@ public class CommonDialog extends Dialog {
                 if (params.commonDialogListener != null) {
                     params.commonDialogListener.onClickLeft();
                 }
+            }
+        });
+
+        ivDialogClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
             }
         });
 

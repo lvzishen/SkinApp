@@ -85,4 +85,5 @@
     <color name="item_default_color">#E7E7E7</color>
     <color name="retry_btn_color">#FFD210</color>
     <color name="retry_btn_txt_color">#724500</color>
+
 </resources>

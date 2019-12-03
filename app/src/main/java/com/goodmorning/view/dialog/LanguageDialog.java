@@ -33,7 +33,7 @@ public class LanguageDialog extends Dialog {
     public LanguageDialog(@NonNull Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setCanceledOnTouchOutside(false);
+        setCanceledOnTouchOutside(true);
         setCancelable(true);
         View view = ResUtils.getInflater().inflate(R.layout.language_layout, null);
         setContentView(view);
@@ -47,7 +47,9 @@ public class LanguageDialog extends Dialog {
         jsonHelper = new JsonHelper<ArrayList<ChannelList.LanguageItem>>() {
         };
         ArrayList<ChannelList.LanguageItem> languageItems = jsonHelper.getJsonObject(SharedPref.getString(getContext(), SharedPref.LANGUAGE_TYPE,""));
-        languageAdapter.addAll(languageItems);
+        if (languageItems != null){
+            languageAdapter.addAll(languageItems);
+        }
         rvLanguage.setAdapter(languageAdapter);
         DividerDecoration divider = new DividerDecoration.Builder(getContext())
                 .setHeight(ResUtils.getDimension(R.dimen.qb_px_1)/2)

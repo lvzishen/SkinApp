@@ -146,4 +146,27 @@
     <string name="save">सुरक्षित</string>
     <string name="login_guide">एक क्लिक में लॉग-इन, खुद से लिखें संदेश</string>
     <string name="login_facebook">फेसबुक के साथ लॉग-इन करें</string>
+
+    <string name="tab_greeting">संदेश</string>
+    <string name="tab_my">मेरा</string>
+    <string name="sign_in_to">फेसबुक के साथ लॉग-इन करें</string>
+
+    <string name="collect">मेरा संग्रह</string>
+    <string name="language">भाषा</string>
+    <string name="check_and_update">अप्डेट</string>
+    <string name="settings">सेटिंग</string>
+    <string name="setting_language">भाषा</string>
+    <string name="setting_update">अप्डेट</string>
+    <string name="setting_user_agreement">सेवाओं की शर्तें</string>
+    <string name="setting_privacy">गोपनीयता नीति</string>
+    <string name="setting_quit">लॉग आउट</string>
+    <string name="setting">सेटिंग</string>
+    <string name="my_collect">मेरा संग्रह</string>
+    <string name="mycollect_empty">अभी तक आपने कुछ भी संग्रह नहीं किया है</string>
+    <string name="home_empty">ओह! आगे कुछ नहीं है, कृपया दोबारा प्रयास करें!</string>
+    <string name="retry_txt">दोबारा प्रयास करें!</string>
+    <string name="btn_cancel">रद्द करें</string>
+    <string name="btn_confirm">पुष्टि करें</string>
+    <string name="ask_exit">क्या आप लॉग आउट करना चाहते हैं</string>
+    <string name="load_more_bottom">ओह, आगे कोई सामग्री नहीं है...</string>
 </resources>
