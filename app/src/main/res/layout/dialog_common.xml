@@ -37,7 +37,7 @@
                 android:layout_marginBottom="@dimen/qb_px_33"
                 android:gravity="center"
                 android:textColor="#444444"
-                android:textSize="@dimen/qb_px_17"
+                android:textSize="@dimen/qb_sp_16"
                 android:visibility="visible"/>
 
             <TextView
@@ -81,7 +81,7 @@
                 android:textColor="#8a8a8a"
                 android:background="@drawable/shape_dialog_left"
                 android:layout_marginLeft="@dimen/qb_px_16"
-                android:textSize="@dimen/qb_px_15"/>
+                android:textSize="@dimen/qb_sp_15"/>
 
             <TextView
                 android:id="@+id/right_btn"
@@ -93,7 +93,7 @@
                 android:gravity="center"
                 android:background="@drawable/shape_dialog_right"
                 android:textColor="#724500"
-                android:textSize="@dimen/qb_px_15"/>
+                android:textSize="@dimen/qb_sp_15"/>
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

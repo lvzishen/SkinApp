@@ -54,6 +54,7 @@ public class MainActivity extends BaseActivity {
     private static final boolean DEBUG = GlobalConfig.DEBUG;
     public static final String CONTENT = "content";
     public static final String CHANNEL_NAME = "channel_name";
+    public static final String KEY_EXTRA_ISMINE = "key_extra_ismine";
     private ViewPager mVpContent;
     private BottomBarLayout mBottomBarLayout;
     private List<Fragment> mFragmentList = new ArrayList<>();
@@ -113,11 +114,12 @@ public class MainActivity extends BaseActivity {
 
         Intent intent = getIntent();
         if (intent != null){
-            boolean isMine = intent.getBooleanExtra("key_extra_ismine",false);
+            boolean isMine = intent.getBooleanExtra(KEY_EXTRA_ISMINE,false);
             if (isMine){
                 mVpContent.setCurrentItem(1);
             }
         }
+        updateData(intent);
 
     }
 
@@ -151,15 +153,14 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        updateData(intent);
+    }
+
+    private void updateData(Intent intent){
         boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
         boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA,false);
         if (isRefresh){
             AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
-            this.finish();
-            Intent refreshIntent = new Intent(getApplicationContext(), MainActivity.class);
-            refreshIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            refreshIntent.putExtra("key_extra_ismine",true);
-            getApplicationContext().startActivity(refreshIntent);
         }
 
         ContentManager.getInstance().setChangeLang(false);

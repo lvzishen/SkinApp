@@ -147,7 +147,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 mActivity.finish();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("key_extra_ismine",true);
+                intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
                 getApplicationContext().startActivity(intent);
             }
         });
@@ -160,7 +160,11 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
-            isLogin = true;
+            if (account.isGuest()){
+                isLogin = false;
+            }else {
+                isLogin = true;
+            }
             ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
@@ -204,6 +208,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         } else if (v.getId() == R.id.ll_my_set) {
             //设置
             ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class,isLogin);
+            mActivity.finish();
         }
     }
 
