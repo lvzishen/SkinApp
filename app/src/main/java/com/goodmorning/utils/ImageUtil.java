@@ -190,7 +190,7 @@ public class ImageUtil {
     }
 
 
-    private static boolean isGif(String url) {
+    public static boolean isGif(String url) {
         return getFileExt(url).equals(".gif");
     }
 

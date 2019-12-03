@@ -130,14 +130,14 @@
                     android:layout_marginRight="@dimen/qb_px_6"
                     android:scaleType="fitXY"
                     android:src="@drawable/shadow_top"
-                    android:visibility="gone" />
+                    android:visibility="invisible" />
 
                 <com.goodmorning.view.image.RoundedImageView
                     android:id="@+id/image_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/image_shadowt"
-                    android:scaleType="fitStart" />
+                    android:scaleType="fitXY" />
 
                 <com.goodmorning.view.image.RoundedImageView
                     android:id="@+id/image_shadowb"
@@ -148,7 +148,7 @@
                     android:layout_marginRight="@dimen/qb_px_6"
                     android:scaleType="fitXY"
                     android:src="@drawable/shadow"
-                    android:visibility="gone" />
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <LinearLayout

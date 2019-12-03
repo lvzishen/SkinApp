@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
+import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -38,6 +39,7 @@ import com.goodmorning.bean.ShareItem;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.share.ShareTypeManager;
 import com.goodmorning.utils.BitmapUtils;
+import com.goodmorning.utils.GlideRoundTransform;
 import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.view.image.RoundedImageView;
@@ -431,20 +433,33 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                 float scale = (itemWidth + 0f) / mDataItem.getWidth();
                 layoutParams.height = (int) (mDataItem.getHeight() * scale);
                 mImageDetailView.setLayoutParams(layoutParams);
-                Glide.with(BaseDetailActivity.this).load(mDataItem.getPicUrl()).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        mBitmap = resource;
-                        findViewById(R.id.image_shadowb).setVisibility(View.VISIBLE);
-                        findViewById(R.id.image_shadowt).setVisibility(View.VISIBLE);
-                    }
-                });
-                ImageUtil.displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default, layoutParams.width, layoutParams.height);
+                displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default, layoutParams.width, layoutParams.height);
             }
         });
 
     }
 
+    public void displayImageView(Context context, ImageView imageView, String url, int placeHolderResId, int width, int heghit) {
+        Glide.clear(imageView);
+        Glide.with(context)
+                .load(url)
+                .asBitmap()
+                .placeholder(placeHolderResId)
+                .error(placeHolderResId)
+                .override(width, heghit)
+                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        mBitmap = resource;
+                        mImageDetailView.setImageBitmap(resource);
+                        findViewById(R.id.image_shadowb).setVisibility(View.VISIBLE);
+                        findViewById(R.id.image_shadowt).setVisibility(View.VISIBLE);
+                    }
+                });
+        if (GlobalConfig.DEBUG) {
+            Log.i(TAG, "displayImage: " + url);
+        }
+    }
 
     private void getCollectStatus() {
         //获取收藏状态
