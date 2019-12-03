@@ -162,11 +162,6 @@ public class AppUtils {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplicationContext().startActivity(intent);
             }else if (activity instanceof MainActivity){
-//                activity.finish();
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("key_extra_ismine",true);
-//                getApplicationContext().startActivity(intent);
             }
 //        }else {
 //            activity.recreate();

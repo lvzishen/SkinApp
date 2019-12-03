@@ -144,7 +144,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 mActivity.finish();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("key_extra_ismine",true);
+                intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
                 getApplicationContext().startActivity(intent);
             }
         });

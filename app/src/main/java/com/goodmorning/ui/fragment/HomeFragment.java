@@ -320,7 +320,7 @@ public class HomeFragment extends Fragment {
                     mActivity.finish();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("key_extra_ismine",false);
+                    intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,false);
                     getApplicationContext().startActivity(intent);
                 }
             });

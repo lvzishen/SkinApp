@@ -113,7 +113,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.iv_setting_back:
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);
                 intent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
-                intent.putExtra("key_extra_ismine",true);
+                intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -156,7 +156,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                                 Intent quitIntent = new Intent(SettingActivity.this,MainActivity.class);
                                 quitIntent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
                                 quitIntent.putExtra(SettingActivity.KEY_QUIT_EXTRA,true);
-                                quitIntent.putExtra("key_extra_ismine",true);
+                                quitIntent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
                                 quitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(quitIntent);
                                 finish();
@@ -172,7 +172,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 //        super.onBackPressed();
         Intent intent = new Intent(SettingActivity.this,MainActivity.class);
         intent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
-        intent.putExtra("key_extra_ismine",true);
+        intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
