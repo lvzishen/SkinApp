@@ -157,7 +157,11 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
-            isLogin = true;
+            if (account.isGuest()){
+                isLogin = false;
+            }else {
+                isLogin = true;
+            }
             ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
@@ -196,6 +200,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         } else if (v.getId() == R.id.ll_my_set) {
             //设置
             ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class,isLogin);
+            mActivity.finish();
         }
     }
 

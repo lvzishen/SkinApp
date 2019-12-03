@@ -97,7 +97,7 @@ public class TabFragment extends Fragment {
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
         sessionId = Math.abs((int) System.currentTimeMillis());
-        requestData();
+//        requestData();
     }
 
     private void setListener(){
@@ -140,6 +140,8 @@ public class TabFragment extends Fragment {
                 requestData();
             }
         });
+        mRecyclerView.refreshComplete(0);
+        mRecyclerView.forceToRefresh();
     }
 
     private void requestData(){

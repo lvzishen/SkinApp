@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.alibaba.fastjson.JSON;
 import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout llChannelRetry;
     private Button channelRetryBtn;
     private ImageView ivDayPic;
+    private LottieAnimationView lottieAnimationView;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
     private Activity mActivity;
@@ -85,6 +87,9 @@ public class HomeFragment extends Fragment {
         llChannelRetry = view.findViewById(R.id.ll_channel_retry);
         channelRetryBtn = view.findViewById(R.id.channel_retry_btn);
         ivDayPic = view.findViewById(R.id.iv_time_change);
+        lottieAnimationView = view.findViewById(R.id.iv_home_load_icon);
+        tvTitle.setTypeface(Typeface.DEFAULT_BOLD);
+        showLoading(true);
         hideTitleGreetings();
 //        tvTitle.setText(getString(R.string.string_app_name));
     }
@@ -170,8 +175,8 @@ public class HomeFragment extends Fragment {
         JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {
         };
         dayPicture = jsonHelper.getJsonObject(cloudData);
-        tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D),ResUtils.getColor(R.color.black));
-        tabLayout.setSelectedTabIndicatorColor(ResUtils.getColor(R.color.black));
+        tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D),ResUtils.getColor(R.color.color_444444));
+        tabLayout.setSelectedTabIndicatorColor(ResUtils.getColor(R.color.setting_txt_tag_color));
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -184,8 +189,8 @@ public class HomeFragment extends Fragment {
                             // 改变 tab 选择状态下的字体大小
                             ((TextView) childView).setTextSize(14);
                             // 改变 tab 选择状态下的字体颜色
-                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
-                            ((TextView) childView).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.color_444444));
+                            ((TextView) childView).setTypeface(Typeface.DEFAULT_BOLD);
                         }
                     }
                 }
@@ -219,7 +224,7 @@ public class HomeFragment extends Fragment {
                             // 改变 tab 选择状态下的字体大小
                             ((TextView) childView).setTextSize(14);
                             // 改变 tab 选择状态下的字体颜色
-                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.black));
+                            ((TextView) childView).setTextColor(ResUtils.getColor(R.color.color_444444));
                             ((TextView) childView).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                         }
                     }
@@ -249,8 +254,10 @@ public class HomeFragment extends Fragment {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
                 if (langCategoryInfo == null){
                     if (tabLayout.getTabCount() == 0){
+                        showLoading(false);
                         llChannelRetry.setVisibility(View.VISIBLE);
                     }else {
+                        showLoading(false);
                         llChannelRetry.setVisibility(View.GONE);
                     }
                     return;
@@ -287,8 +294,10 @@ public class HomeFragment extends Fragment {
                 tabLayout.getTabAt(0).select();
 
                 if (tabLayout.getTabCount() == 0){
+                    showLoading(false);
                     llChannelRetry.setVisibility(View.VISIBLE);
                 }else {
+                    showLoading(false);
                     llChannelRetry.setVisibility(View.GONE);
                 }
             }
@@ -459,6 +468,14 @@ public class HomeFragment extends Fragment {
                     }
                 }
             },1000);
+        }
+    }
+
+    private void showLoading(boolean isShow){
+        if (isShow){
+            lottieAnimationView.setVisibility(View.VISIBLE);
+        }else {
+            lottieAnimationView.setVisibility(View.GONE);
         }
     }
 }

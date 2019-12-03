@@ -28,14 +28,15 @@
             android:textColor="@color/black"
             android:layout_centerInParent="true"
             android:textSize="19sp"
-            android:text="@string/settings"/>
+            android:text="@string/settings"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/qb_px_54"
+        android:layout_height="@dimen/qb_px_60"
         android:id="@+id/rl_setting_language"
         android:background="?android:attr/selectableItemBackground">
 
@@ -128,36 +129,36 @@
         android:background="@color/setting_line_color"/>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/qb_px_54"
-        android:gravity="center_vertical"
         android:id="@+id/rl_setting_agreement"
-        android:background="?android:attr/selectableItemBackground">
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/qb_px_18"
+            android:text="@string/setting_user_agreement"
             android:textColor="@color/setting_txt_tag_color"
-            android:textSize="@dimen/qb_sp_15"
-            android:text="@string/setting_user_agreement"/>
+            android:textSize="@dimen/qb_sp_15" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/qb_px_8"
-            android:background="@drawable/ic_list_more"/>
+            android:background="@drawable/ic_list_more" />
 
         <TextView
+            android:id="@+id/setting_tv_agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:textColor="@color/setting_txt_content_color"
-            android:textSize="@dimen/qb_sp_12"
             android:layout_marginRight="@dimen/qb_px_35"
-            android:id="@+id/setting_tv_agreement"/>
+            android:textColor="@color/setting_txt_content_color"
+            android:textSize="@dimen/qb_sp_12" />
 
     </RelativeLayout>
 
@@ -169,7 +170,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/qb_px_54"
+        android:layout_height="@dimen/qb_px_60"
         android:gravity="center_vertical"
         android:id="@+id/rl_setting_privacy"
         android:background="?android:attr/selectableItemBackground">
@@ -209,7 +210,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/qb_px_54"
+        android:layout_height="@dimen/qb_px_60"
         android:gravity="center_vertical"
         android:id="@+id/rl_setting_quit"
         android:background="?android:attr/selectableItemBackground">

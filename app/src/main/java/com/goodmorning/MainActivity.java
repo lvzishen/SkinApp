@@ -94,6 +94,7 @@ public class MainActivity extends BaseActivity {
                 mVpContent.setCurrentItem(1);
             }
         }
+        updateData(intent);
 
     }
 
@@ -127,15 +128,40 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        updateData(intent);
+//        boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
+//        boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA,false);
+//        if (isRefresh){
+//            AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
+//            this.finish();
+//            Intent refreshIntent = new Intent(getApplicationContext(), MainActivity.class);
+//            refreshIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            refreshIntent.putExtra("key_extra_ismine",true);
+//            getApplicationContext().startActivity(refreshIntent);
+//        }
+//
+//        ContentManager.getInstance().setChangeLang(false);
+//        if (isQuit && getSupportFragmentManager().getFragments().size() >= 2) {
+//            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+//                if (fragment instanceof MyFragment) {
+//                    MyFragment myFragment = (MyFragment) fragment;
+//                    myFragment.quitLogin();
+//                }
+//            }
+//
+//        }
+    }
+
+    private void updateData(Intent intent){
         boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
         boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA,false);
         if (isRefresh){
             AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
-            this.finish();
-            Intent refreshIntent = new Intent(getApplicationContext(), MainActivity.class);
-            refreshIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            refreshIntent.putExtra("key_extra_ismine",true);
-            getApplicationContext().startActivity(refreshIntent);
+//            this.finish();
+//            Intent refreshIntent = new Intent(getApplicationContext(), MainActivity.class);
+//            refreshIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            refreshIntent.putExtra("key_extra_ismine",true);
+//            getApplicationContext().startActivity(refreshIntent);
         }
 
         ContentManager.getInstance().setChangeLang(false);

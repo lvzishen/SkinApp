@@ -28,6 +28,7 @@
             android:textColor="@color/black"
             android:layout_centerInParent="true"
             android:textSize="19sp"
+            android:textStyle="bold"
             android:text="@string/language"/>
 
     </RelativeLayout>
