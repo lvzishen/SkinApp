@@ -90,7 +90,7 @@ public class TabFragment extends Fragment {
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(layoutManager);
 //        mRecyclerView.setPadding(15,10,15,10);
-        mRecyclerView.addItemDecoration(new DiverItemDecoration(30,2));
+        mRecyclerView.addItemDecoration(new DiverItemDecoration(20,2));
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
