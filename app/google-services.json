@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "854383501780-otgk24lo93johfiuudb4jjvfn2pudq8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.creativeindia.goodmorning",
+            "certificate_hash": "6e35ac6f750497fb2675526cd5f565307baadca0"
+          }
+        },
+        {
+          "client_id": "854383501780-jsipvnqhfonsb05quot8vh5duf5u96df.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.creativeindia.goodmorning",
+            "certificate_hash": "40b90c9a45692bf19841ceb59b07573b82890527"
+          }
+        },
+        {
           "client_id": "854383501780-rec1iqu69t88j7j462qrrromppidijhj.apps.googleusercontent.com",
           "client_type": 3
         }
