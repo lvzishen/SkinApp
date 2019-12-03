@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -17,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,7 +86,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     protected LinearLayout mVideoLayout;
     //    protected FrameLayout mImageLayout;
     protected JzvdStd mVideoView;
-    protected RoundedImageView mShadowView;
+    protected RelativeLayout mImageLayout;
     protected CommonRecyclerView mShareRv;
     private List<ShareItem> mDatas;
     protected int mType;
@@ -140,10 +139,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         initIntent();
 //        mImageLayout = findViewById(R.id.image_detail_fl);
         mBackLayout = findViewById(R.id.back);
-
-        mShadowView = findViewById(R.id.image_detail1);
-        mShadowView.setCornerRadius(DeviceUtil.dip2px(getApplicationContext(), 4));
-
+        mImageLayout = findViewById(R.id.image_rl);
         mTitleView = findViewById(R.id.title);
         misCollectLayout = findViewById(R.id.collect);
         mTextDetailView = findViewById(R.id.text_detail);
@@ -358,13 +354,13 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             case DataListItem.DATA_TYPE_1:
                 mTextDetailView.setVisibility(View.VISIBLE);
                 refreshText();
-//                mImageLayout.setVisibility(View.GONE);
+                mImageLayout.setVisibility(View.GONE);
                 mImageDetailView.setVisibility(View.GONE);
                 mVideoLayout.setVisibility(View.GONE);
                 break;
             case DataListItem.DATA_TYPE_2:
                 mTextDetailView.setVisibility(View.GONE);
-//                mImageLayout.setVisibility(View.VISIBLE);
+                mImageLayout.setVisibility(View.VISIBLE);
                 mImageDetailView.setVisibility(View.VISIBLE);
                 mVideoLayout.setVisibility(View.GONE);
                 refreshImage();
@@ -372,7 +368,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             case DataListItem.DATA_TYPE_3:
                 mTextDetailView.setVisibility(View.GONE);
                 mImageDetailView.setVisibility(View.GONE);
-//                mImageLayout.setVisibility(View.GONE);
+                mImageLayout.setVisibility(View.GONE);
                 mVideoLayout.setVisibility(View.VISIBLE);
                 refreshVideo();
                 break;
@@ -435,18 +431,13 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                 float scale = (itemWidth + 0f) / mDataItem.getWidth();
                 layoutParams.height = (int) (mDataItem.getHeight() * scale);
                 mImageDetailView.setLayoutParams(layoutParams);
-
-                ViewGroup.LayoutParams vl = mShadowView.getLayoutParams();
-                vl.height = (int) (mDataItem.getHeight() * scale) + DeviceUtil.dip2px(getApplicationContext(), getResources().getDimension(R.dimen.qb_px_10));
-                mShadowView.setLayoutParams(vl);
-
                 Glide.with(BaseDetailActivity.this).load(mDataItem.getPicUrl()).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         mBitmap = resource;
+                        findViewById(R.id.image_shadow).setVisibility(View.VISIBLE);
                     }
                 });
-
                 ImageUtil.displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default, layoutParams.width, layoutParams.height);
             }
         });
