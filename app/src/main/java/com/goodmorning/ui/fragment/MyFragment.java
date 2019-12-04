@@ -29,8 +29,11 @@ import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
 
 import org.n.account.core.api.NjordAccountManager;
+import org.n.account.core.contract.ILoginCallback;
 import org.n.account.core.model.Account;
 import org.n.account.core.ui.GlideCircleTransform;
+import org.n.account.net.impl.INetCallback;
+import org.n.account.ui.view.ProfileCenterActivity;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
@@ -213,9 +216,49 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     public void quitLogin(){
-        NjordAccountManager.localLogout(getApplicationContext());
-        account = NjordAccountManager.getCurrentAccount(getApplicationContext());
-        showAccountInfo(account);
+//        NjordAccountManager.localLogout(getApplicationContext());
+        NjordAccountManager.logout(getApplicationContext(), new INetCallback<String>() {
+            public void onStart() {
+            }
+
+            public void onFinish() {
+            }
+
+            public void onSuccess(String result) {
+                NjordAccountManager.registerGuest(getApplicationContext(), new ILoginCallback() {
+                    @Override
+                    public void onPrePrepare(int i) {
+
+                    }
+
+                    @Override
+                    public void onPrepareFinish() {
+
+                    }
+
+                    @Override
+                    public void onPreLogin(int i) {
+
+                    }
+
+                    @Override
+                    public void onLoginSuccess(Account account) {
+                        account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+                        showAccountInfo(account);
+                    }
+
+                    @Override
+                    public void onLoginFailed(int i, String s) {
+
+                    }
+                });
+            }
+
+            public void onFailure(int errorCode, String msg) {
+            }
+        });
+//        ProfileCenterActivity.this.finish();
+
     }
 
     public void onClickUpdate(View v) {

@@ -29,6 +29,8 @@ dependencies {
     api 'org.greenrobot:eventbus:3.0.0'
     api 'com.google.android.play:core:1.6.0'
 
+    xalApi 'org.njord.account:core:' + ACCOUNT_VERSION
+
     // 消息推送的依赖
     api "com.google.android.gms:play-services-gcm:${GOOGLE_VERSION}"
     api 'androidx.multidex:multidex:2.0.0'
