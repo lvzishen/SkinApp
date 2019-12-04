@@ -46,7 +46,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private JsonHelper<ArrayList<ChannelList.LanguageItem>> jsonHelper;
     private CommonDialog commonDialog;
     public static final String KEY_QUIT_EXTRA = "key_quit_extra";
-    private boolean isLogin;
+//    private boolean isLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +97,11 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         tvSetLanguage.setText(ContentManager.getInstance().getLang());
         tvSetVersion.setText("V"+AppUtils.versionName(this));
         Intent intent = getIntent();
-        if (intent != null){
-            isLogin = intent.getBooleanExtra(ActivityCtrl.KEY_LOGIN_EXTRA,false);
-        }
-
-        if (ContentManager.getInstance().isLogin()){
+//        if (intent != null){
+//            isLogin = intent.getBooleanExtra(ActivityCtrl.KEY_LOGIN_EXTRA,false);
+//        }
+        Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+        if (account != null && !account.isGuest()){
             rlSetQuit.setVisibility(View.VISIBLE);
         }else {
             rlSetQuit.setVisibility(View.GONE);

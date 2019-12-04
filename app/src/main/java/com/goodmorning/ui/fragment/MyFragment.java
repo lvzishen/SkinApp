@@ -51,7 +51,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private LinearLayout llCollect;
     private LanguageDialog languageDialog;
     private Activity mActivity;
-    private boolean isLogin;
+//    private boolean isLogin;
     private Account account;
 //    private LoginApi mLoginApi;
 //    protected LoadingDialog mLoadingDialog;
@@ -161,26 +161,27 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     public void showAccountInfo(Account account) {
-        if (account != null) {
+        if (account != null && !account.isGuest()) {
+//            if (account.isGuest()){
+//                isLogin = false;
+//            }else {
+//                isLogin = true;
+//            }
             Glide.with(getApplicationContext()).load(account.mPictureUrl)
                     .placeholder(R.drawable.ic_account_header)
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
-            if (account.isGuest()){
-                isLogin = false;
-            }else {
-                isLogin = true;
-            }
-            ContentManager.getInstance().setLogin(isLogin);
+
+//            ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
             Glide.with(getApplicationContext()).load(R.drawable.ic_account_header)
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(R.string.sign_in_to);
-            isLogin = false;
-            ContentManager.getInstance().setLogin(isLogin);
+//            isLogin = false;
+//            ContentManager.getInstance().setLogin(isLogin);
         }
     }
 
@@ -214,7 +215,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             setListener();
         } else if (v.getId() == R.id.ll_my_set) {
             //设置
-            ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class,isLogin);
+            ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class);
             mActivity.finish();
         } else if (v.getId() == R.id.ll_my_share){
             ShareDialog shareDialog = new ShareDialog(mActivity);
@@ -250,7 +251,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onLoginSuccess(Account account) {
-                        account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+//                        account = NjordAccountManager.getCurrentAccount(getApplicationContext());
                         showAccountInfo(account);
                     }
 

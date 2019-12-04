@@ -16,7 +16,7 @@ import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class ActivityCtrl {
     public static final String TRANSFER_DATA = "transfer_data";
-    public static final String KEY_LOGIN_EXTRA = "key_login_extra";
+//    public static final String KEY_LOGIN_EXTRA = "key_login_extra";
     /**
      * 跳转到指定的 {@link Activity}。
      */
@@ -60,9 +60,9 @@ public class ActivityCtrl {
         context.startActivity(intent);
     }
 
-    public static void gotoSettingAcitivity(Context context, Class<? extends Activity> activityClass, boolean isLogin){
+    public static void gotoSettingAcitivity(Context context, Class<? extends Activity> activityClass){
         Intent intent = new Intent(getApplicationContext(), activityClass);
-        intent.putExtra(KEY_LOGIN_EXTRA,isLogin);
+//        intent.putExtra(KEY_LOGIN_EXTRA,isLogin);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

@@ -85,11 +85,11 @@ public class ContentManager {
         this.changeLang = changeLang;
     }
 
-    public boolean isLogin() {
-        return isLogin;
-    }
+//    public boolean isLogin() {
+//        return isLogin;
+//    }
 
-    public void setLogin(boolean login) {
-        isLogin = login;
-    }
+//    public void setLogin(boolean login) {
+//        isLogin = login;
+//    }
 }
