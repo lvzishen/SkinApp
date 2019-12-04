@@ -102,7 +102,7 @@ public class ShareTypeManager {
         ShareDialog shareDialog = new ShareDialog(activity);
         shareDialog.registerCallback(callbackManager, callback);
         if (mType == DataListItem.DATA_TYPE_1) {
-            ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
+            ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).setQuote(mDataItem.getData()).build();
             shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
         }
         if (mType == DataListItem.DATA_TYPE_2 && mBitmap != null) {
