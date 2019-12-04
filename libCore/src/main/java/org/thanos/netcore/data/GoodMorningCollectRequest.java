@@ -23,8 +23,9 @@ import okhttp3.Request;
  * 作者: lvzishen
  */
 public class GoodMorningCollectRequest extends GoodMorningRequest {
-    public static final String APPID = "100410024";
-//    public static final String APPID = "1";
+        public static final String APPID = "100410024";
+//    public static final String APPID = "100010000"; //Lanucher的APPID
+
     public GoodMorningCollectRequest(Context context, @NonNull BaseRequestParam baseRequestParam, String url) {
         super(context, baseRequestParam, url);
     }
