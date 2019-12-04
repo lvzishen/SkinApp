@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/rl_share_dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/qb_px_150"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_share_dialog_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_share_whatsapp"
+            android:drawablePadding="@dimen/qb_px_15"
+            android:gravity="center_horizontal"
+            android:text="@string/whatsapp"
+            android:textColor="@color/color_9D9D9D"
+            android:textSize="@dimen/qb_sp_13"
+            android:id="@+id/tv_share_whatsapp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_share_facebook"
+            android:layout_marginLeft="@dimen/qb_px_50"
+            android:drawablePadding="@dimen/qb_px_15"
+            android:gravity="center_horizontal"
+            android:text="@string/facebook"
+            android:textColor="@color/color_9D9D9D"
+            android:textSize="@dimen/qb_sp_13"
+            android:id="@+id/tv_share_facebook"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_share_copy"
+            android:layout_marginLeft="@dimen/qb_px_50"
+            android:drawablePadding="@dimen/qb_px_15"
+            android:gravity="center_horizontal"
+            android:text="@string/copy"
+            android:textColor="@color/color_9D9D9D"
+            android:textSize="@dimen/qb_sp_13"
+            android:id="@+id/tv_share_copy"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

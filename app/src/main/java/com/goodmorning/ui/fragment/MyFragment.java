@@ -26,6 +26,7 @@ import com.goodmorning.ui.activity.SettingActivity;
 import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.AppUtils;
 import com.goodmorning.view.dialog.LanguageDialog;
+import com.goodmorning.view.dialog.ShareDialog;
 import com.nox.Nox;
 
 import org.n.account.core.api.NjordAccountManager;
@@ -46,6 +47,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView mAccountHeaderText, mVersion;
     private View mUser;
     private RelativeLayout mUpdate, llLang, llSettings;
+    private RelativeLayout rlShare;
     private LinearLayout llCollect;
     private LanguageDialog languageDialog;
     private Activity mActivity;
@@ -78,6 +80,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyLang = view.findViewById(R.id.tv_my_lang);
         ivMyUpdate = view.findViewById(R.id.iv_my_update);
         ivMyTip = view.findViewById(R.id.iv_my_tip);
+        rlShare = view.findViewById(R.id.ll_my_share);
+        rlShare.setOnClickListener(this);
         llCollect.setOnClickListener(this);
         llLang.setOnClickListener(this);
         llSettings.setOnClickListener(this);
@@ -212,6 +216,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             //设置
             ActivityCtrl.gotoSettingAcitivity(getApplicationContext(), SettingActivity.class,isLogin);
             mActivity.finish();
+        } else if (v.getId() == R.id.ll_my_share){
+            ShareDialog shareDialog = new ShareDialog(mActivity);
+            shareDialog.show();
         }
     }
 
