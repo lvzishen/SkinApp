@@ -60,7 +60,6 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> mFragmentList = new ArrayList<>();
     private GoodAdapter goodAdapter;
     private LoginApi mLoginApi;
-    protected LoadingDialog mLoadingDialog;
     private String mLoadingStr = "";
     MyFragment myFragment;
     @Override
@@ -292,37 +291,6 @@ public class MainActivity extends BaseActivity {
     public void onDestroy() {
         if(mLoginApi != null)mLoginApi.onDestroy();
         super.onDestroy();
-    }
-    public void dismissLoading() {
-        DialogUtils.dismissDialog(mLoadingDialog);
-        mLoadingDialog = null;
-    }
-
-    public void showLoading(String msg) {
-        showLoading(msg,false);
-    }
-
-    public void showLoading(String msg,boolean cancelable) {
-        if (mLoadingDialog == null) {
-            mLoadingDialog = new LoadingDialog(this, true);
-        }
-        mLoadingDialog.setMsg(msg);
-        mLoadingDialog.setCancelable(cancelable);
-        if(cancelable){
-            mLoadingDialog.setOnKeyListener(null);
-        }else {
-            mLoadingDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK
-                            && event.getAction() == KeyEvent.ACTION_UP) {
-                        return true;
-                    }
-                    return false;
-                }
-            });
-        }
-        DialogUtils.showDialog(mLoadingDialog);
     }
 
 }

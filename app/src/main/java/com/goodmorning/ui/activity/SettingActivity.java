@@ -25,7 +25,9 @@ import com.goodmorning.view.dialog.LanguageDialog;
 import com.nox.Nox;
 
 import org.n.account.core.api.NjordAccountManager;
+import org.n.account.core.contract.ILoginCallback;
 import org.n.account.core.model.Account;
+import org.n.account.net.impl.INetCallback;
 import org.thanos.netcore.bean.ChannelList;
 import org.thanos.netcore.helper.JsonHelper;
 import java.util.ArrayList;
@@ -153,13 +155,58 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                             @Override
                             public void onClickRight() {
                                 commonDialog.dismiss();
-                                Intent quitIntent = new Intent(SettingActivity.this,MainActivity.class);
-                                quitIntent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
-                                quitIntent.putExtra(SettingActivity.KEY_QUIT_EXTRA,true);
-                                quitIntent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
-                                quitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(quitIntent);
-                                finish();
+//                                Intent quitIntent = new Intent(SettingActivity.this,MainActivity.class);
+//                                quitIntent.putExtra(MainActivity.CONTENT,ContentManager.getInstance().isChangeLang());
+//                                quitIntent.putExtra(SettingActivity.KEY_QUIT_EXTRA,true);
+//                                quitIntent.putExtra(MainActivity.KEY_EXTRA_ISMINE,true);
+//                                quitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                startActivity(quitIntent);
+                                NjordAccountManager.logout(getApplicationContext(), new INetCallback<String>() {
+                                    public void onStart() {
+                                        showLoading("");
+                                    }
+
+                                    public void onFinish() {
+                                        dismissLoading();
+                                    }
+
+                                    public void onSuccess(String result) {
+                                        NjordAccountManager.registerGuest(getApplicationContext(), new ILoginCallback() {
+                                            @Override
+                                            public void onPrePrepare(int i) {
+                                                showLoading("");
+                                            }
+
+                                            @Override
+                                            public void onPrepareFinish() {
+
+                                            }
+
+                                            @Override
+                                            public void onPreLogin(int i) {
+
+                                            }
+
+                                            @Override
+                                            public void onLoginSuccess(Account account) {
+                                                dismissLoading();
+//                                                account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+//                                                showAccountInfo(account);
+//                                                finish();
+                                                onBackPressed();
+                                            }
+
+                                            @Override
+                                            public void onLoginFailed(int i, String s) {
+                                                dismissLoading();
+                                            }
+                                        });
+                                    }
+
+                                    public void onFailure(int errorCode, String msg) {
+                                    }
+                                });
+//                                finish();
                             }
                         }).show();
 

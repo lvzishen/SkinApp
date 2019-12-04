@@ -1,9 +1,11 @@
 package com.baselib.ui.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.baselib.LocaleUtils;
@@ -14,9 +16,12 @@ import com.creativeindia.goodmorning.baselib.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.n.account.core.ui.LoadingDialog;
+import org.n.account.core.utils.DialogUtils;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
-
+    protected LoadingDialog mLoadingDialog;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -91,5 +96,37 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void reCreateActivity(){
         this.recreate();
+    }
+
+    public void dismissLoading() {
+        DialogUtils.dismissDialog(mLoadingDialog);
+        mLoadingDialog = null;
+    }
+
+    public void showLoading(String msg) {
+        showLoading(msg,false);
+    }
+
+    public void showLoading(String msg,boolean cancelable) {
+        if (mLoadingDialog == null) {
+            mLoadingDialog = new LoadingDialog(this, true);
+        }
+        mLoadingDialog.setMsg(msg);
+        mLoadingDialog.setCancelable(cancelable);
+        if(cancelable){
+            mLoadingDialog.setOnKeyListener(null);
+        }else {
+            mLoadingDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK
+                            && event.getAction() == KeyEvent.ACTION_UP) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+        DialogUtils.showDialog(mLoadingDialog);
     }
 }
