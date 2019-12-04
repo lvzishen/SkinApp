@@ -57,7 +57,7 @@ final public class RInstagramManager extends RShare implements ISaveImage {
             return null;
         }
         RFileHelper.deleteExternalShareDirectory(context);
-        RFileHelper.saveBitmapToExternalSharePath(context, bitmap);
+        String path = RFileHelper.saveBitmapToExternalSharePath(context, bitmap);
         RFileHelper.detectFileUriExposure();
         /**
          *
@@ -66,7 +66,7 @@ final public class RInstagramManager extends RShare implements ISaveImage {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("image/*");
 
-        Uri uri = RFileHelper.getExternalSharePathFileUris(context).get(0);
+        Uri uri = RFileHelper.getExternalSharePathFileUris(context, path).get(0);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         intent.setPackage("com.instagram.android");
         context.startActivity(intent);
