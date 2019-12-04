@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.text.TextUtils;
@@ -17,22 +18,24 @@ import androidx.core.app.NotificationCompat;
 
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.cloud.CloudPropertyManager;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.bean.DayPicture;
+import com.goodmorning.bean.PushBean;
 import com.goodmorning.config.GlobalConfig;
-import com.goodmorning.ui.activity.MyCollectActivity;
 import com.goodmorning.ui.activity.PicDetailActivity;
-import com.goodmorning.utils.ActivityCtrl;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudControlUtils;
 import com.w.sdk.push.api.IPushExtension;
 import com.w.sdk.push.api.PushManager;
 import com.w.sdk.push.model.PushMessage;
 
-import org.njord.push.sdk.extdefault.PushMessageBody;
-import org.njord.push.sdk.extdefault.PushMessageParser;
+import org.n.account.core.model.User;
 import org.thanos.netcore.helper.JsonHelper;
 
 import java.text.SimpleDateFormat;
@@ -41,7 +44,6 @@ import java.util.Locale;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
-import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 /**
  * 创建日期：2019/11/29 on 20:30
@@ -71,57 +73,64 @@ public class MorningPushExtension extends IPushExtension {
     }
 
     private void dispatchMessage(PushMessage pushMessage, Context context) {
-        PushMessageBody messageBody = PushMessageParser.getMessageBody(pushMessage.mMessageBody);
-        if (messageBody == null) {
+        JsonHelper<PushBean> jsonHelper = new JsonHelper<PushBean>() {
+        };
+        PushBean pushBean = jsonHelper.getJsonObject(pushMessage.mMessageBody);
+        if (pushBean == null) {
             return;
         }
-        showNotification(messageBody, context);
+        showNotification(pushBean, context);
     }
 
-    private void showNotification(PushMessageBody messageBody, Context context) {
+    private void showNotification(PushBean pushBean, Context context) {
         NotificationManager nm = getNotificationManager(context);
         if (nm == null)
             return;
+        if (DEBUG) {
+            Log.i(TAG, pushBean.toString());
+        }
         bindNotificationChannel(context, nm);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "goodmorning_notification_channelid");
 
-        //拼装DataListItem对象
-//        String cloudData = messageBody.getExtra();
-        String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC, "day_pic");
-        JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {};
-        DayPicture dayPicture = jsonHelper.getJsonObject(cloudData);
         DataListItem dataListItem = new DataListItem();
         dataListItem.setType(DataListItem.DATA_TYPE_2);
-        dataListItem.setPicUrl(dayPicture.getPicUrl());
-        dataListItem.setResourceId(dayPicture.getId());
+        dataListItem.setPicUrl(pushBean.extra.getPicUrl());
+        dataListItem.setResourceId(pushBean.extra.getId());
+        dataListItem.setHeight(pushBean.extra.getHeight());
+        dataListItem.setWidth(pushBean.extra.getWidth());
 
         Intent intent = null;
-        if (CheckUtils.isShowPic(dayPicture.getStartTime(), dayPicture.getEndTime())) {
+        if (CheckUtils.isShowPic(pushBean.extra.getStartTime(), pushBean.extra.getEndTime())) {
             //展示弹窗 跳首页
             intent = new Intent(context, MainActivity.class);
             intent.putExtra("is_from_noti", true);
             intent.putExtra(TRANSFER_DATA, dataListItem);
-            context.startActivity(intent);
         } else {
             //跳详情页
             intent = new Intent(context, PicDetailActivity.class);
             intent.putExtra(TRANSFER_DATA, dataListItem);
-            context.startActivity(intent);
         }
-
-
         PendingIntent pendingIntent = PendingIntent.getActivity(context, NOTIFICATION_REQUEST_PIC_BROADCAST, intent, FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent1 = PendingIntent.getActivity(context, NOTIFICATION_REQUEST_PIC_BROADCAST,// requestCode是0的时候三星手机点击通知栏通知不起作用
                 new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
         RemoteViews mRemoteViews = new RemoteViews(context.getPackageName(), R.layout.layout_pic_notification);
         //设置大标题
-        mRemoteViews.setTextViewText(R.id.title, messageBody.getTitle());
-        mRemoteViews.setTextViewText(R.id.desc, messageBody.getDescription());
+        mRemoteViews.setTextViewText(R.id.title, pushBean.title);
+        mRemoteViews.setTextViewText(R.id.desc, pushBean.description);
         mRemoteViews.setBoolean(R.id.title, "setSingleLine", false);
         mRemoteViews.setInt(R.id.title, "setMaxLines", 2);
-        //设置小标题
-        mRemoteViews.setViewVisibility(R.id.desc, View.GONE);
         //设置图像
+//        Glide.with(context)
+//                .load(pushBean.extra.getPicUrl())
+//                .asBitmap()
+//                .placeholder(R.drawable.ic_launcher1)
+//                .error(R.drawable.ic_launcher1)
+//                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+//                    @Override
+//                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                        mRemoteViews.setImageViewBitmap(R.id.notify_big_image, resource);
+//                    }
+//                });
         mRemoteViews.setImageViewBitmap(R.id.notify_big_image, BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher1));
         mBuilder.setContent(mRemoteViews)
                 .setContentIntent(pendingIntent)

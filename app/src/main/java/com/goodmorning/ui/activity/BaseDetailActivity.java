@@ -157,7 +157,6 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
 //        if (GlobalConfig.DEBUG) {
 //            Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
 //        }
-        setType();
         mShareRv.setCallback(mCallBack);
         mLayoutManager = new GridLayoutManager(this, 4);
         mShareRv.setLayoutManager(mLayoutManager);
@@ -217,7 +216,6 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
 
             }
         });
-        initShareDatas();
         if (!TextUtils.isEmpty(mDataItem.getChannelName())) {
             mTitleView.setText(mDataItem.getChannelName());
         } else {
@@ -230,6 +228,8 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             findViewById(R.id.content_detail_ll).setVisibility(View.GONE);
         } else {
             getCollectStatus();
+            setType();
+            initShareDatas();
         }
     }
 
@@ -433,20 +433,18 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                 float scale = (itemWidth + 0f) / mDataItem.getWidth();
                 layoutParams.height = (int) (mDataItem.getHeight() * scale);
                 mImageDetailView.setLayoutParams(layoutParams);
-                displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default, layoutParams.width, layoutParams.height);
+                displayImageView(BaseDetailActivity.this, mImageDetailView, mDataItem.getPicUrl(), R.drawable.shape_list_item_default);
             }
         });
 
     }
 
-    public void displayImageView(Context context, ImageView imageView, String url, int placeHolderResId, int width, int heghit) {
-        Glide.clear(imageView);
+    public void displayImageView(Context context, ImageView imageView, String url, int placeHolderResId) {
         Glide.with(context)
                 .load(url)
                 .asBitmap()
                 .placeholder(placeHolderResId)
                 .error(placeHolderResId)
-                .override(width, heghit)
                 .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {

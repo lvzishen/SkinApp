@@ -6,6 +6,38 @@ public class DayPicture implements Serializable {
     private long startTime;
     private long endTime;
     private String picUrl;
+    private int width;
+    private int height;
+
+    @Override
+    public String toString() {
+        return "DayPicture{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", picUrl='" + picUrl + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                ", id=" + id +
+                '}';
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
 
     public long getId() {
         return id;
