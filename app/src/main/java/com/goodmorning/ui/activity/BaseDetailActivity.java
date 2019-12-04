@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -334,25 +335,35 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                 if (mBitmap == null) {
                     return;
                 }
-                //增加产品水印
-                Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
-                Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
-                //增加头像水印
-                Bitmap circleBitmap = BitmapUtils.createCircleBitmap(resource);
-                Bitmap avatarBitmap = BitmapUtils.getbitmap(circleBitmap, DeviceUtil.dip2px(getApplicationContext(), 36), DeviceUtil.dip2px(getApplicationContext(), 36));
-                watermarkBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, avatarBitmap, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
-                //增加文字水印
-                TextView textView = new TextView(BaseDetailActivity.this);
-                textView.setTextColor(getResources().getColor(R.color.white));
-                textView.setText("Wish you Babe");
-                textView.setTextSize(18f);
-                Bitmap textBitmap = ImageUtilHandle.viewToBitmap(textView);
-                mBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, textBitmap, DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth()) + (int) getResources().getDimension(R.dimen.qb_px_4), DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth() - textView.getHeight()) / 2 + (int) getResources().getDimension(R.dimen.qb_px_2));
-//                    mImageDetailView.setImageBitmap(watermarkBitmap);
-                isNotHaveWaterMark = true;
-                mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
+                createWaterMark(resource);
+            }
+
+            @Override
+            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                super.onLoadFailed(e, errorDrawable);
+                createWaterMark(BitmapFactory.decodeResource(getResources(), R.drawable.ic_avatar));
             }
         });
+    }
+
+    private void createWaterMark(Bitmap bitmapResource) {
+        //增加产品水印
+        Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
+        Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+        //增加头像水印
+        Bitmap circleBitmap = BitmapUtils.createCircleBitmap(bitmapResource);
+        Bitmap avatarBitmap = BitmapUtils.getbitmap(circleBitmap, DeviceUtil.dip2px(getApplicationContext(), 36), DeviceUtil.dip2px(getApplicationContext(), 36));
+        watermarkBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, avatarBitmap, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+        //增加文字水印
+        TextView textView = new TextView(BaseDetailActivity.this);
+        textView.setTextColor(getResources().getColor(R.color.white));
+        textView.setText("Wish you Babe");
+        textView.setTextSize(18f);
+        Bitmap textBitmap = ImageUtilHandle.viewToBitmap(textView);
+        mBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, textBitmap, DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth()) + (int) getResources().getDimension(R.dimen.qb_px_4), DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth() - textView.getHeight()) / 2 + (int) getResources().getDimension(R.dimen.qb_px_2));
+//                    mImageDetailView.setImageBitmap(watermarkBitmap);
+        isNotHaveWaterMark = true;
+        mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
     }
 
 
