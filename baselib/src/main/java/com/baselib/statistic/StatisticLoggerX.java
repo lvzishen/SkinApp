@@ -332,6 +332,18 @@ public class StatisticLoggerX {
         }
     }
 
+    public static void logClickType(String name, String container, String from_source, String type) {
+        Bundle bundle = new Bundle();
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_NAME_STRING, name);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_CONTAINER_STRING, container);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_FROM_SOURCE_STRING, from_source);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_TYPE_STRING, type);
+        StatisticLogger.getLogger().logEvent(AlexEventsConstant.XALEX_CLICK, bundle);
+        if (DEBUG) {
+            Log.v(TAG, "[click]" + from_source + "->" + name + " in " + container + " to " + type);
+        }
+    }
+
     public static void logClick(String name, String container, String from_source, String type, int positionX, int positionY) {
         Bundle bundle = new Bundle();
         addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_NAME_STRING, name);
@@ -352,7 +364,7 @@ public class StatisticLoggerX {
      * @param container
      * @param type
      */
-    public static void logClickType(String name, String container, String from_source, String type) {
+    public static void logClickType1(String name, String container, String from_source, String type) {
         Bundle bundle = new Bundle();
         addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_NAME_STRING, name);
         addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_CONTAINER_STRING, container);

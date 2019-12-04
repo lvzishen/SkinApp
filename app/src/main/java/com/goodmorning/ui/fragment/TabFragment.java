@@ -1,4 +1,5 @@
 package com.goodmorning.ui.fragment;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.baselib.bitmap.util.DeviceUtil;
+import com.baselib.statistic.StatisticConstants;
+import com.baselib.statistic.StatisticLoggerX;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.MainListAdapter;
@@ -35,6 +38,7 @@ import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
 import com.goodmorning.view.recyclerview.interfaces.OnRefreshListener;
 import com.goodmorning.view.recyclerview.view.CustomLoadingFooter;
 import com.goodmorning.view.recyclerview.view.CustomRefreshHeader;
+
 import org.thanos.netcore.bean.NewsItem;
 import org.thanos.netcore.bean.VideoItem;
 import org.thanos.netcore.MorningDataAPI;
@@ -42,8 +46,10 @@ import org.thanos.netcore.ResultCallback;
 import org.thanos.netcore.bean.ContentItem;
 import org.thanos.netcore.bean.ContentList;
 import org.thanos.netcore.internal.requestparam.ContentListRequestParam;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class TabFragment extends Fragment {
@@ -58,6 +64,7 @@ public class TabFragment extends Fragment {
     private String channelName;
     private Activity mActivity;
     private boolean isRefresh = false;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,15 +75,15 @@ public class TabFragment extends Fragment {
         return view;
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         mRecyclerView = view.findViewById(R.id.rv_list);
         llListRetry = view.findViewById(R.id.ll_list_retry);
         listRetryBtn = view.findViewById(R.id.list_retry_btn);
     }
 
-    private void initData(){
+    private void initData() {
         mActivity = getActivity();
-        if (getArguments() != null){
+        if (getArguments() != null) {
             channelId = getArguments().getInt(MainActivity.CONTENT);
             channelName = getArguments().getString(MainActivity.CHANNEL_NAME);
         }
@@ -86,21 +93,21 @@ public class TabFragment extends Fragment {
         mRecyclerView.setRefreshHeader(customRefreshHeader);
         mRecyclerView.setPullRefreshEnabled(true);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         //防止item位置互换
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(layoutManager);
 //        mRecyclerView.setPadding(15,10,15,10);
-        mRecyclerView.addItemDecoration(new DiverItemDecoration(25,2));
+        mRecyclerView.addItemDecoration(new DiverItemDecoration(25, 2));
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
-        mRecyclerView.setLoadMoreFooter(customLoadingFooter,true);
+        mRecyclerView.setLoadMoreFooter(customLoadingFooter, true);
         sessionId = Math.abs((int) System.currentTimeMillis());
 //        requestData();
     }
 
-    private void setListener(){
+    private void setListener() {
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -123,10 +130,13 @@ public class TabFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 //调换到详情页
                 if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_1) {
+                    StatisticLoggerX.logClickType1("homepage", "wishes", channelId + "", "text");
                     ActivityCtrl.gotoOpenActivity(mActivity, TextDetailActivity.class, mainListAdapter.getDataItem(position));
                 } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_2) {
+                    StatisticLoggerX.logClickType1("homepage", "wishes", channelId + "", "pic");
                     ActivityCtrl.gotoOpenActivity(mActivity, PicDetailActivity.class, mainListAdapter.getDataItem(position));
                 } else if (mainListAdapter.getDataItem(position).getType() == DataListItem.DATA_TYPE_3) {
+                    StatisticLoggerX.logClickType1("homepage", "wishes", channelId + "", "video");
                     ActivityCtrl.gotoOpenActivity(mActivity, VideoDetailActivity.class, mainListAdapter.getDataItem(position));
                 }
             }
@@ -144,12 +154,12 @@ public class TabFragment extends Fragment {
         mRecyclerView.forceToRefresh();
     }
 
-    private void requestData(){
+    private void requestData() {
         ContentListRequestParam newsListRequestParam = new ContentListRequestParam(sessionId, channelId, false, false, false);
         MorningDataAPI.requestContentList(getApplicationContext(), newsListRequestParam, new ResultCallback<ContentList>() {
             @Override
             public void onSuccess(ContentList data) {
-                if (mActivity == null){
+                if (mActivity == null) {
                     return;
                 }
                 mActivity.runOnUiThread(() -> refreshUIData(data));
@@ -167,48 +177,48 @@ public class TabFragment extends Fragment {
         });
     }
 
-    private void refreshUIData(ContentList data){
-        if (data != null){
+    private void refreshUIData(ContentList data) {
+        if (data != null) {
             ArrayList<ContentItem> contentItems = data.items;
             List<DataListItem> datas = new ArrayList<>();
-            if (contentItems.size() == 0 && mainListAdapter.getDataSize() != 0){
+            if (contentItems.size() == 0 && mainListAdapter.getDataSize() != 0) {
                 mRecyclerView.setNoMore(true);
             }
-            for (ContentItem contentItem : contentItems){
+            for (ContentItem contentItem : contentItems) {
                 DataListItem dataItem = new DataListItem();
-                if ("NEWS".equals(contentItem.contentType)){
+                if ("NEWS".equals(contentItem.contentType)) {
                     dataItem.setType(DataListItem.DATA_TYPE_1);
-                }else if ("PHOTO".equals(contentItem.contentType)){
+                } else if ("PHOTO".equals(contentItem.contentType)) {
                     dataItem.setType(DataListItem.DATA_TYPE_2);
-                }else if ("VIDEO".equals(contentItem.contentType)){
+                } else if ("VIDEO".equals(contentItem.contentType)) {
                     dataItem.setType(DataListItem.DATA_TYPE_3);
                 }
                 dataItem.setResourceId(contentItem.resourceId);
                 dataItem.setId(contentItem.id);
                 dataItem.setChannelName(channelName);
-                if (contentItem instanceof VideoItem){
+                if (contentItem instanceof VideoItem) {
                     VideoItem videoItem = (VideoItem) contentItem;
                     dataItem.setVideoUrl(videoItem.sourceUrl);
-                    if (videoItem.photoInfos.size() >= 1){
+                    if (videoItem.photoInfos.size() >= 1) {
                         dataItem.setPicUrl(videoItem.photoInfos.get(0).originUrl);
                         dataItem.setVideoThumbUrl(videoItem.photoInfos.get(0).originUrl);
                         dataItem.setWidth(videoItem.photoInfos.get(0).width);
                         dataItem.setHeight(videoItem.photoInfos.get(0).height);
                     }
-                    if (dataItem.getWidth() != 0 && dataItem.getHeight() != 0){
+                    if (dataItem.getWidth() != 0 && dataItem.getHeight() != 0) {
                         datas.add(dataItem);
                     }
-                }else if (contentItem instanceof NewsItem){
+                } else if (contentItem instanceof NewsItem) {
                     NewsItem newsItem = (NewsItem) contentItem;
                     dataItem.setData(newsItem.title);
                     datas.add(dataItem);
                 }
 
             }
-            if (isRefresh){
+            if (isRefresh) {
                 isRefresh = false;
                 mainListAdapter.refresh(datas);
-            }else {
+            } else {
                 mainListAdapter.addAll(datas);
             }
 
@@ -220,16 +230,16 @@ public class TabFragment extends Fragment {
     /**
      * 是否显示空页面
      */
-    private void showEmpty(){
-        if (mActivity == null){
+    private void showEmpty() {
+        if (mActivity == null) {
             return;
         }
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (mainListAdapter.getDataSize() == 0){
+                if (mainListAdapter.getDataSize() == 0) {
                     llListRetry.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     llListRetry.setVisibility(View.GONE);
                 }
             }

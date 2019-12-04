@@ -458,6 +458,7 @@ public class HomeFragment extends Fragment {
                                 PicDialog picDialog = new PicDialog(mActivity);
                                 DataListItem dataListItem = new DataListItem();
                                 dataListItem.setType(DataListItem.DATA_TYPE_2);
+                                dataListItem.setChannelName("pic popup");
                                 dataListItem.setPicUrl(dayPicture.getPicUrl());
                                 picDialog.setDataListItem(dataListItem);
                                 picDialog.show();

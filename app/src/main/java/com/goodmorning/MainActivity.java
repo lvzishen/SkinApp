@@ -14,9 +14,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import com.ads.lib.commen.AdLifecyclerManager;
 import com.baselib.language.LanguageUtil;
 import com.baselib.sp.SharedPref;
+import com.baselib.statistic.StatisticConstants;
+import com.baselib.statistic.StatisticLoggerX;
 import com.baselib.ui.activity.BaseActivity;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.config.GlobalConfig;
@@ -45,6 +48,7 @@ import org.n.account.net.NetCode;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
@@ -62,6 +66,7 @@ public class MainActivity extends BaseActivity {
     private LoginApi mLoginApi;
     private String mLoadingStr = "";
     MyFragment myFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +79,7 @@ public class MainActivity extends BaseActivity {
             boolean isFromNoti = getIntent().getBooleanExtra("is_from_noti", false);
             DataListItem dataListItem = (DataListItem) getIntent().getSerializableExtra(TRANSFER_DATA);
             if (isFromNoti && dataListItem != null) {
+                StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
                 PicDialog picDialog = new PicDialog(this);
                 picDialog.setDataListItem(dataListItem);
                 picDialog.show();
@@ -112,9 +118,9 @@ public class MainActivity extends BaseActivity {
         mBottomBarLayout.setViewPager(mVpContent);
 
         Intent intent = getIntent();
-        if (intent != null){
-            boolean isMine = intent.getBooleanExtra(KEY_EXTRA_ISMINE,false);
-            if (isMine){
+        if (intent != null) {
+            boolean isMine = intent.getBooleanExtra(KEY_EXTRA_ISMINE, false);
+            if (isMine) {
                 mVpContent.setCurrentItem(1);
             }
         }
@@ -155,10 +161,10 @@ public class MainActivity extends BaseActivity {
         updateData(intent);
     }
 
-    private void updateData(Intent intent){
-        boolean isRefresh = intent.getBooleanExtra(CONTENT,false);
-        boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA,false);
-        if (isRefresh){
+    private void updateData(Intent intent) {
+        boolean isRefresh = intent.getBooleanExtra(CONTENT, false);
+        boolean isQuit = intent.getBooleanExtra(SettingActivity.KEY_QUIT_EXTRA, false);
+        if (isRefresh) {
             AppUtils.changeLanguage(this, LanguageUtil.getLanguage());
         }
 
@@ -183,7 +189,7 @@ public class MainActivity extends BaseActivity {
         try {
             mLoginApi = LoginApi.Factory.create(activity, Constant.LoginType.FACEBOOK);
         } catch (NotAllowLoginException e) {
-            if(GlobalConfig.DEBUG){
+            if (GlobalConfig.DEBUG) {
                 throw new IllegalArgumentException(e);
             }
 //                        finish();
@@ -277,19 +283,22 @@ public class MainActivity extends BaseActivity {
 //            finish();
         }
     };
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(mLoginApi != null)mLoginApi.onActivityResult(requestCode,resultCode,data);
+        if (mLoginApi != null) mLoginApi.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 64206 && resultCode == 0) {
 //            finish();//Facebook取消
         }
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(mLoginApi != null)mLoginApi.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (mLoginApi != null)
+            mLoginApi.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
     @Override
     public void onDestroy() {
-        if(mLoginApi != null)mLoginApi.onDestroy();
+        if (mLoginApi != null) mLoginApi.onDestroy();
         super.onDestroy();
     }
 

@@ -156,6 +156,7 @@ public class MyCollectActivity extends BaseActivity {
                         }else {
                             dataItem.setType(DataListItem.DATA_TYPE_4);
                         }
+                        dataItem.setChannelName("collection");
                         dataItem.setResourceId(contentItem.resourceId);
                         dataItem.setId(contentItem.id);
                         dataItem.setStatus(contentItem.status);

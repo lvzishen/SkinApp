@@ -27,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
+import com.baselib.statistic.StatisticConstants;
+import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -103,31 +105,40 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            String type = "";
             switch (msg.what) {
                 case MESSAGE_TO_SHARE:
                     switch (mShareItem.type) {
                         case WHATSAPP:
+                            type = "whatsapp";
                             ShareTypeManager.shareWithWhatsapp(mType, BaseDetailActivity.this, mDataItem, mBitmap);
                             break;
                         case FACEBOOK:
+                            type = "facebook";
                             ShareTypeManager.shareWithFaceBook(mType, BaseDetailActivity.this, mDataItem, mBitmap, TAG);
                             break;
                         case INSTAGRAM:
+                            type = "ins";
                             ShareTypeManager.shareWithInstagam(BaseDetailActivity.this, mBitmap);
                             break;
                         case MESSAGE:
+                            type = "message";
                             ShareTypeManager.shareWithMessage(BaseDetailActivity.this, mDataItem.getData());
                             break;
                         case MORE:
+                            type = "more";
                             ShareTypeManager.shareWithMore(mType, BaseDetailActivity.this, mDataItem.getData(), mBitmap, mDataItem.getVideoUrl());
                             break;
                         case COPY:
+                            type = "copy";
                             ShareTypeManager.shareWithCopy(BaseDetailActivity.this, mDataItem.getData());
                             break;
                         case SAVE:
+                            type = "save";
                             ShareTypeManager.shareWithImage(mType, BaseDetailActivity.this, mBitmap);
                             break;
                     }
+                    StatisticLoggerX.logClickType1("share", type, "detail", mDataItem.getChannelName());
                     break;
             }
         }
@@ -218,7 +229,8 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
 
             }
         });
-        if (!TextUtils.isEmpty(mDataItem.getChannelName())) {
+        //后续判断为了分享点击打点
+        if (!TextUtils.isEmpty(mDataItem.getChannelName()) && !mDataItem.getChannelName().equals("push") && !mDataItem.getChannelName().equals("collection") && !mDataItem.getChannelName().equals("pic popup")) {
             mTitleView.setText(mDataItem.getChannelName());
         } else {
             mTitleView.setText(getTextTitle());
@@ -250,6 +262,10 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
 
     private void initIntent() {
         if (getIntent() != null && getIntent().getSerializableExtra(TRANSFER_DATA) != null) {
+            boolean isFromNoti = getIntent().getBooleanExtra("is_from_noti", false);
+            if (isFromNoti) {
+                StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
+            }
             mDataItem = (DataListItem) getIntent().getSerializableExtra(TRANSFER_DATA);
         } else {
             onBackPressed();

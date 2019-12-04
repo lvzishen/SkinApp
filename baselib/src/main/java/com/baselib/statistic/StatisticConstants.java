@@ -476,7 +476,7 @@ public final class StatisticConstants {
     public static final String ANTIVIRUS_RESULT_PAGE = "AntiVirusScanResultPage";
     public static final String POWER_SAVE_PAGE = "PowerSavePage";
     public static final String ONE_TAP_BOOST_ADREQUEST = "Ads Native One Tap Boost Request";
-    public static final String NOTIFICATION_BROWSER_CLOUDURL = "NotiBrowserCloudControlURL";
+    public static final String NOTIFICATION_BROWSER_CLOUDURL = "push show";
     public static final String NOTIFICATION_APP_SAFETY = "NotiAppSafetyInspection";
     public static final String NOTIFICATION_ANTIVIRUS = "NotiAntivirus";
     public static final String NOTIFICATION_ANTIVIRUS_DATABASE = "DatabaseUpdateSuccess";
