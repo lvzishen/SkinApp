@@ -840,4 +840,25 @@ public class StatisticLoggerX {
     public static void logAD(String pageName, String positionId, String requestType, String action, String adType, String adPlacementId) {
         logNewAdOperation(pageName, positionId, action, null, adType, action, adPlacementId, 0, requestType, null, null, null);
     }
+
+    public static void logShowUpload(String fromSource,String name,String container,String text,String type){
+        Bundle bundle = new Bundle();
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_SHOW_NAME_STRING, name);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_SHOW_CONTAINER_STRING, container);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_SHOW_FROM_SOURCE_STRING, fromSource);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_SHOW_TYPE_STRING, type);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_SHOW_TEXT_STRING, text);
+        StatisticLogger.getLogger().logEvent(AlexEventsConstant.XALEX_SHOW, bundle);
+    }
+
+    public static void logClickUpload(String fromSource,String name,String container,String text,String type){
+        Bundle bundle = new Bundle();
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_NAME_STRING, name);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_CONTAINER_STRING, container);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_FROM_SOURCE_STRING, fromSource);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_TYPE_STRING, type);
+        addIfNotEmpty(bundle, AlexEventsConstant.XALEX_CLICK_TEXT_STRING, text);
+        StatisticLogger.getLogger().logEvent(AlexEventsConstant.XALEX_CLICK, bundle);
+    }
+
 }

@@ -91,7 +91,7 @@ public class TabFragment extends Fragment {
         mRecyclerViewAdapter = new CommonRecyclerViewAdapter(mainListAdapter);
         CustomRefreshHeader customRefreshHeader = new CustomRefreshHeader(getContext());
         mRecyclerView.setRefreshHeader(customRefreshHeader);
-        mRecyclerView.setPullRefreshEnabled(true);
+        mRecyclerView.setPullRefreshEnabled(false);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -104,7 +104,7 @@ public class TabFragment extends Fragment {
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter, true);
         sessionId = Math.abs((int) System.currentTimeMillis());
-//        requestData();
+        requestData();
     }
 
     private void setListener() {
@@ -150,8 +150,8 @@ public class TabFragment extends Fragment {
                 requestData();
             }
         });
-        mRecyclerView.refreshComplete(0);
-        mRecyclerView.forceToRefresh();
+//        mRecyclerView.refreshComplete(0);
+//        mRecyclerView.forceToRefresh();
     }
 
     private void requestData() {

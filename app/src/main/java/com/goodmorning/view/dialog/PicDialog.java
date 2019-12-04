@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.Glide;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
@@ -70,6 +71,7 @@ public class PicDialog extends Dialog implements View.OnClickListener {
 //                .transform(new GlideRoundTransform(getContext(), 6))
 //                .into(ivPic);
         ImageUtil.displayImageView(getContext(),ivPic,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
+        StatisticLoggerX.logShowUpload("","pic popup","","","");
     }
 
     public void setDataListItem(DataListItem dataListItem){
@@ -81,9 +83,11 @@ public class PicDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_close:
+                StatisticLoggerX.logClickUpload("","pic popup","close","","");
                 dismiss();
                 break;
             case R.id.btn_share:
+                StatisticLoggerX.logClickUpload("","pic popup","share","","");
                 if (dataListItem == null){
                     dataListItem = new DataListItem();
                 }

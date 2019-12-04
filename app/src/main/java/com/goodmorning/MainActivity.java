@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity {
     private GoodAdapter goodAdapter;
     private LoginApi mLoginApi;
     private String mLoadingStr = "";
+    private long mExitTime;
     MyFragment myFragment;
 
     @Override
@@ -126,6 +128,25 @@ public class MainActivity extends BaseActivity {
         }
         updateData(intent);
 
+        mVpContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 1){
+                    StatisticLoggerX.logShowUpload("","mine","","","");
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        StatisticLoggerX.logShowUpload("","lang", LanguageUtil.getLanguage(),"","");
     }
 
     class GoodAdapter extends FragmentStatePagerAdapter {
@@ -302,4 +323,17 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Toast.makeText(getApplicationContext(),"再按一次退出",Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+                return true;
+            } else {
+                finish();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

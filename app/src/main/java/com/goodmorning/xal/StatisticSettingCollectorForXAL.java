@@ -3,6 +3,10 @@ package com.goodmorning.xal;
 import android.content.Context;
 import android.os.Bundle;
 
+import org.n.account.core.api.NjordAccountManager;
+import org.n.account.core.model.Account;
+
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 
 /**
@@ -24,5 +28,11 @@ public class StatisticSettingCollectorForXAL {
 //                parameters.putString("android.permission.PACKAGE_USAGE_STATS_s", "0");
 //            }
 //        }
+        Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+        if (account != null && !account.isGuest()){
+            parameters.putString("login_s", "login");
+        }else {
+            parameters.putString("login_s", "logout");
+        }
     }
 }
