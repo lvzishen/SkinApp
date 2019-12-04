@@ -119,18 +119,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/qb_px_30"
-                android:layout_marginTop="@dimen/qb_px_10"
                 android:layout_marginRight="@dimen/qb_px_30"
                 android:layout_marginBottom="@dimen/qb_px_10">
+                <!--android:layout_marginTop="@dimen/qb_px_10"-->
+                <com.goodmorning.view.image.RoundedImageView
+                    android:id="@+id/image_shadowt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_12dp"
+                    android:layout_marginLeft="@dimen/qb_px_6"
+                    android:layout_marginRight="@dimen/qb_px_6"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/shadow_top"
+                    android:visibility="invisible" />
 
                 <com.goodmorning.view.image.RoundedImageView
                     android:id="@+id/image_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitStart" />
+                    android:layout_below="@+id/image_shadowt"
+                    android:scaleType="fitXY" />
 
                 <com.goodmorning.view.image.RoundedImageView
-                    android:id="@+id/image_shadow"
+                    android:id="@+id/image_shadowb"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_12dp"
                     android:layout_below="@+id/image_detail"
@@ -138,7 +148,7 @@
                     android:layout_marginRight="@dimen/qb_px_6"
                     android:scaleType="fitXY"
                     android:src="@drawable/shadow"
-                    android:visibility="gone" />
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <LinearLayout

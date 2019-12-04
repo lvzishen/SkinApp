@@ -337,9 +337,9 @@ public class HomeFragment extends Fragment {
                 }
                 if (data != null){
                     boolean isShowLang = CheckUtils.isShowLanguage();
+                    String languageJson = JSON.toJSONString(data.languageItems);
+                    SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE_TYPE,languageJson);
                     if (isShowLang){
-                        String json = JSON.toJSONString(data.languageItems);
-                        SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE_TYPE,json);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
