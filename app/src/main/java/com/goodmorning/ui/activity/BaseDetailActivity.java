@@ -97,6 +97,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     protected ShareItem mShareItem;
     protected boolean isGoLogin;
     private boolean isNotHaveWaterMark;
+    private boolean isNotHaveWaterMarkUnLogin;
     private boolean isCollect;
     private Handler mHandler = new Handler() {
         @Override
@@ -310,6 +311,15 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
             if (mType == DataListItem.DATA_TYPE_2 && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext())) && !isNotHaveWaterMark) {
                 makeWaterMark();
             } else {
+                if (mType == DataListItem.DATA_TYPE_2 && !isNotHaveWaterMarkUnLogin) {
+                    if (mBitmap == null) {
+                        return;
+                    }
+                    //增加产品水印
+                    Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
+                    mBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+                    isNotHaveWaterMarkUnLogin = true;
+                }
                 mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
             }
         }
@@ -321,6 +331,9 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         Glide.with(this).load(account.mPictureUrl).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                if (mBitmap == null) {
+                    return;
+                }
                 //增加产品水印
                 Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
                 Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));

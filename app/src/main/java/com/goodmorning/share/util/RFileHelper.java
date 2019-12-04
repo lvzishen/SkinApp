@@ -26,10 +26,11 @@ final public class RFileHelper {
 
     /**
      * 存储文件到外部 cache + share_tmp 文件夹下.
+     *
      * @param context
      * @param bitmap
      */
-    public static void saveBitmapToExternalSharePath(Context context, Bitmap bitmap) {
+    public static String saveBitmapToExternalSharePath(Context context, Bitmap bitmap) {
 
 
         String dir = context.getExternalCacheDir()
@@ -54,6 +55,7 @@ final public class RFileHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return file.getAbsolutePath();
     }
 
 
@@ -62,7 +64,7 @@ final public class RFileHelper {
      * @return 返回外部 cache + share_tmp 文件夹下所有文件的 Uri,
      * 对应存储接口{@link #saveBitmapToExternalSharePath(Context, Bitmap)}.
      */
-    public static ArrayList<Uri> getExternalSharePathFileUris(Context context) {
+    public static ArrayList<Uri> getExternalSharePathFileUris(Context context, String path) {
 
         String dir = context.getExternalCacheDir()
                 .getAbsolutePath() + "/share_tmp/";
@@ -74,8 +76,8 @@ final public class RFileHelper {
         ArrayList<Uri> uris = new ArrayList<Uri>();
 
         File[] files = dirFile.listFiles();
-        for (int i = 0; i < files.length; i ++) {
-            if (files[i].isFile()) {
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isFile() && files[i].getAbsolutePath().equals(path)) {
                 Log.v(TAG, files[i].getAbsolutePath());
                 uris.add(Uri.fromFile(files[i]));
             }
@@ -100,7 +102,7 @@ final public class RFileHelper {
         ArrayList<File> files = new ArrayList<File>();
 
         File[] fs = dirFile.listFiles();
-        for (int i = 0; i < fs.length; i ++) {
+        for (int i = 0; i < fs.length; i++) {
             if (fs[i].isFile()) {
                 Log.v(TAG, fs[i].getAbsolutePath());
                 files.add(fs[i]);
@@ -126,10 +128,10 @@ final public class RFileHelper {
         ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
 
         File[] fs = dirFile.listFiles();
-        for (int i = 0; i < fs.length; i ++) {
+        for (int i = 0; i < fs.length; i++) {
             if (fs[i].isFile()) {
                 Log.e(TAG, fs[i].getAbsolutePath());
-                Bitmap bitmap=BitmapFactory.decodeFile(fs[i].getAbsolutePath());
+                Bitmap bitmap = BitmapFactory.decodeFile(fs[i].getAbsolutePath());
 
                 bitmaps.add(bitmap);
             }
@@ -138,21 +140,19 @@ final public class RFileHelper {
     }
 
 
-    /**
-     * @param context
-     * @return 返回外部 cache + share_tmp 文件夹下所有文件的 Path,
-     * 对应存储接口{@link #saveBitmapToExternalSharePath(Context, Bitmap)}.
-     */
-    public static ArrayList<String> getExternalSharePathFilePaths(Context context) {
-        ArrayList<String> paths = new ArrayList<String>();
-        ArrayList<Uri> uris = getExternalSharePathFileUris(context);
-        for (int i = 0; i < uris.size(); i ++) {
-            paths.add(getPath(context, uris.get(i)));
-        }
-        return paths;
-    }
-
-
+//    /**
+//     * @param context
+//     * @return 返回外部 cache + share_tmp 文件夹下所有文件的 Path,
+//     * 对应存储接口{@link #saveBitmapToExternalSharePath(Context, Bitmap)}.
+//     */
+//    public static ArrayList<String> getExternalSharePathFilePaths(Context context) {
+//        ArrayList<String> paths = new ArrayList<String>();
+//        ArrayList<Uri> uris = getExternalSharePathFileUris(context);
+//        for (int i = 0; i < uris.size(); i++) {
+//            paths.add(getPath(context, uris.get(i)));
+//        }
+//        return paths;
+//    }
 
 
     /**
@@ -168,7 +168,7 @@ final public class RFileHelper {
         }
         boolean flag = true;
         File[] files = dirFile.listFiles();
-        for (int i = 0; i < files.length; i ++) {
+        for (int i = 0; i < files.length; i++) {
             if (files[i].isFile()) {
                 flag = RFileHelper.deleteFile(files[i].getAbsolutePath());
                 if (!flag) break;
@@ -218,7 +218,7 @@ final public class RFileHelper {
 
                 if (!id.isEmpty()) {
                     if (id.startsWith("raw:")) {
-                        return id.replaceFirst("raw:","");
+                        return id.replaceFirst("raw:", "");
                     }
                     try {
                         final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),
@@ -228,7 +228,6 @@ final public class RFileHelper {
                         return null;
                     }
                 }
-
 
 
             }
@@ -248,7 +247,7 @@ final public class RFileHelper {
                 }
 
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] { split[1] };
+                final String[] selectionArgs = new String[]{split[1]};
 
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
@@ -300,22 +299,18 @@ final public class RFileHelper {
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param context
-     *            The context.
-     * @param uri
-     *            The Uri to query.
-     * @param selection
-     *            (Optional) Filter used in the query.
-     * @param selectionArgs
-     *            (Optional) Selection arguments used in the query.
-     *            [url=home.php?mod=space&uid=7300]@return[/url] The value of
-     *            the _data column, which is typically a file path.
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     *                      [url=home.php?mod=space&uid=7300]@return[/url] The value of
+     *                      the _data column, which is typically a file path.
      */
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = "_data";
-        final String[] projection = { column };
+        final String[] projection = {column};
 
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
@@ -331,8 +326,7 @@ final public class RFileHelper {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      */
     public static boolean isExternalStorageDocument(Uri uri) {
@@ -340,8 +334,7 @@ final public class RFileHelper {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
     public static boolean isDownloadsDocument(Uri uri) {
@@ -349,8 +342,7 @@ final public class RFileHelper {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
     public static boolean isMediaDocument(Uri uri) {
@@ -358,8 +350,7 @@ final public class RFileHelper {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is Google Photos.
      */
     public static boolean isGooglePhotosUri(Uri uri) {
@@ -367,7 +358,7 @@ final public class RFileHelper {
     }
 
 
-    public static void detectFileUriExposure(){
+    public static void detectFileUriExposure() {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();

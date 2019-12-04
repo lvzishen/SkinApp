@@ -14,6 +14,7 @@ import com.goodmorning.share.util.RFileHelper;
 import com.goodmorning.share.util.RPlatformHelper;
 
 import java.io.File;
+import java.util.ArrayList;
 
 
 final public class RWhatsAppManager extends RShare {
@@ -66,8 +67,8 @@ final public class RWhatsAppManager extends RShare {
         }
 
         if (image != null) {
-            RFileHelper.saveBitmapToExternalSharePath(context, image);
-            intent.putExtra(Intent.EXTRA_STREAM, RFileHelper.getExternalSharePathFileUris(context).get(0));
+            String path = RFileHelper.saveBitmapToExternalSharePath(context, image);
+            intent.putExtra(Intent.EXTRA_STREAM, RFileHelper.getExternalSharePathFileUris(context, path).get(0));
             intent.setType("image/jpeg");
         }
         intent.setPackage(WHATSAPP_PACKAGE_NAME);
@@ -75,7 +76,7 @@ final public class RWhatsAppManager extends RShare {
     }
 
 
-    public void shareText(Context context,String text) {
+    public void shareText(Context context, String text) {
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.WhatsApp)) {
             Toast.makeText(context, "请先安装WhatsApp...", Toast.LENGTH_SHORT).show();
             return;
