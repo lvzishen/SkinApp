@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baselib.language.LanguageUtil;
+import com.baselib.statistic.StatisticLoggerX;
 import com.baselib.ui.CommonConstants;
 import com.baselib.ui.activity.BaseActivity;
 import com.creativeindia.goodmorning.R;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
+import com.baselib.statistic.StatisticConstants;
+import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -102,31 +105,40 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            String type = "";
             switch (msg.what) {
                 case MESSAGE_TO_SHARE:
                     switch (mShareItem.type) {
                         case WHATSAPP:
+                            type = "whatsapp";
                             ShareTypeManager.shareWithWhatsapp(mType, BaseDetailActivity.this, mDataItem, mBitmap);
                             break;
                         case FACEBOOK:
+                            type = "facebook";
                             ShareTypeManager.shareWithFaceBook(mType, BaseDetailActivity.this, mDataItem, mBitmap, TAG);
                             break;
                         case INSTAGRAM:
+                            type = "ins";
                             ShareTypeManager.shareWithInstagam(BaseDetailActivity.this, mBitmap);
                             break;
                         case MESSAGE:
+                            type = "message";
                             ShareTypeManager.shareWithMessage(BaseDetailActivity.this, mDataItem.getData());
                             break;
                         case MORE:
+                            type = "more";
                             ShareTypeManager.shareWithMore(mType, BaseDetailActivity.this, mDataItem.getData(), mBitmap, mDataItem.getVideoUrl());
                             break;
                         case COPY:
+                            type = "copy";
                             ShareTypeManager.shareWithCopy(BaseDetailActivity.this, mDataItem.getData());
                             break;
                         case SAVE:
+                            type = "save";
                             ShareTypeManager.shareWithImage(mType, BaseDetailActivity.this, mBitmap);
                             break;
                     }
+                    StatisticLoggerX.logClickType1("share", type, "detail", mDataItem.getChannelName());
                     break;
             }
         }
@@ -178,6 +190,11 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                     Toast.makeText(getApplicationContext(), getString(R.string.content_offline), Toast.LENGTH_SHORT).show();
                     return;
                 }
+//                mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                    }
+//                });
                 MorningDataAPI.requestCollectUpLoad(getApplicationContext(),
                         new CollectRequestParam(mDataItem.getResourceId(),
                                 isCollect, false, 1), new ResultCallback<CollectDetail>() {
@@ -187,13 +204,6 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                                     if (GlobalConfig.DEBUG) {
                                         Log.i(TAG, "用户收藏上报成功");
                                     }
-                                    mHandler.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            isCollect = !isCollect;
-                                            mImageCollect.setSelected(isCollect);
-                                        }
-                                    });
                                 } else {
                                     if (GlobalConfig.DEBUG) {
                                         Log.i(TAG, "用户收藏上报失败");
@@ -213,11 +223,13 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                                 }
                             }
                         });
-
+                isCollect = !isCollect;
+                mImageCollect.setSelected(isCollect);
 
             }
         });
-        if (!TextUtils.isEmpty(mDataItem.getChannelName())) {
+        //后续判断为了分享点击打点
+        if (!TextUtils.isEmpty(mDataItem.getChannelName()) && !mDataItem.getChannelName().equals("push") && !mDataItem.getChannelName().equals("collection") && !mDataItem.getChannelName().equals("pic popup")) {
             mTitleView.setText(mDataItem.getChannelName());
         } else {
             mTitleView.setText(getTextTitle());
@@ -249,6 +261,10 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
 
     private void initIntent() {
         if (getIntent() != null && getIntent().getSerializableExtra(TRANSFER_DATA) != null) {
+            boolean isFromNoti = getIntent().getBooleanExtra("is_from_noti", false);
+            if (isFromNoti) {
+                StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
+            }
             mDataItem = (DataListItem) getIntent().getSerializableExtra(TRANSFER_DATA);
         } else {
             onBackPressed();
@@ -334,25 +350,35 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                 if (mBitmap == null) {
                     return;
                 }
-                //增加产品水印
-                Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
-                Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
-                //增加头像水印
-                Bitmap circleBitmap = BitmapUtils.createCircleBitmap(resource);
-                Bitmap avatarBitmap = BitmapUtils.getbitmap(circleBitmap, DeviceUtil.dip2px(getApplicationContext(), 36), DeviceUtil.dip2px(getApplicationContext(), 36));
-                watermarkBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, avatarBitmap, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
-                //增加文字水印
-                TextView textView = new TextView(BaseDetailActivity.this);
-                textView.setTextColor(getResources().getColor(R.color.white));
-                textView.setText("Wish you Babe");
-                textView.setTextSize(18f);
-                Bitmap textBitmap = ImageUtilHandle.viewToBitmap(textView);
-                mBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, textBitmap, DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth()) + (int) getResources().getDimension(R.dimen.qb_px_4), DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth() - textView.getHeight()) / 2 + (int) getResources().getDimension(R.dimen.qb_px_2));
-//                    mImageDetailView.setImageBitmap(watermarkBitmap);
-                isNotHaveWaterMark = true;
-                mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
+                createWaterMark(resource);
+            }
+
+            @Override
+            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                super.onLoadFailed(e, errorDrawable);
+                createWaterMark(BitmapFactory.decodeResource(getResources(), R.drawable.ic_avatar));
             }
         });
+    }
+
+    private void createWaterMark(Bitmap bitmapResource) {
+        //增加产品水印
+        Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
+        Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+        //增加头像水印
+        Bitmap circleBitmap = BitmapUtils.createCircleBitmap(bitmapResource);
+        Bitmap avatarBitmap = BitmapUtils.getbitmap(circleBitmap, DeviceUtil.dip2px(getApplicationContext(), 36), DeviceUtil.dip2px(getApplicationContext(), 36));
+        watermarkBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, avatarBitmap, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+        //增加文字水印
+        TextView textView = new TextView(BaseDetailActivity.this);
+        textView.setTextColor(getResources().getColor(R.color.white));
+        textView.setText("Wish you Babe");
+        textView.setTextSize(18f);
+        Bitmap textBitmap = ImageUtilHandle.viewToBitmap(textView);
+        mBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, textBitmap, DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth()) + (int) getResources().getDimension(R.dimen.qb_px_4), DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth() - textView.getHeight()) / 2 + (int) getResources().getDimension(R.dimen.qb_px_2));
+//                    mImageDetailView.setImageBitmap(watermarkBitmap);
+        isNotHaveWaterMark = true;
+        mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
     }
 
 
@@ -402,6 +428,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         if ((showTimes >= arriveTimes) && (System.currentTimeMillis() - firstShowTimes > day * 1000 * 60 * 60 * 24)) {
             SharedPref.setInt(getApplicationContext(), IS_SHOW_SHARE, 0);
             SharedPref.setLong(getApplicationContext(), IS_SHOW_TIMES, 0);
+            showTimes = 0;
         }
         if (showTimes < arriveTimes) {
             //增加次数

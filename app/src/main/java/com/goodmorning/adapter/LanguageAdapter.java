@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.baselib.statistic.StatisticLoggerX;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.manager.ContentManager;
 import com.goodmorning.utils.ResUtils;
@@ -35,6 +36,8 @@ public class LanguageAdapter extends ListBaseAdapter<ChannelList.LanguageItem> {
         if (lang .equals(mDataList.get(position).text)){
             ivSelect.setVisibility(View.VISIBLE);
             tvLanguage.setTextColor(ResUtils.getColor(R.color.lang_select_txt_color));
+            StatisticLoggerX.logShowUpload("","lang popup",mDataList.get(position).lang,"","");
+
         }else {
             ivSelect.setVisibility(View.GONE);
             tvLanguage.setTextColor(ResUtils.getColor(R.color.setting_txt_tag_color));
@@ -47,6 +50,7 @@ public class LanguageAdapter extends ListBaseAdapter<ChannelList.LanguageItem> {
                     lang = mDataList.get(position).lang;
                     onSwitchLanguage.onLanguage(lang);
                     notifyDataSetChanged();
+                    StatisticLoggerX.logClickUpload("","lang popup",lang,"","");
                 }
             }
         });

@@ -186,11 +186,13 @@ public class AppUtils {
             intent.setData(Uri.parse("market://details?id=" + appPkg));
             intent.setPackage(GOOGLE_PLAY);//这里对应的是谷歌商店，跳转别的商店改成对应的即可
             if (intent.resolveActivity(context.getPackageManager()) != null) {
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             } else {//没有应用市场，通过浏览器跳转到Google Play
                 Intent intent2 = new Intent(Intent.ACTION_VIEW);
                 intent2.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + appPkg));
                 if (intent2.resolveActivity(context.getPackageManager()) != null) {
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent2);
                 } else {
                     //没有Google Play 也没有浏览器

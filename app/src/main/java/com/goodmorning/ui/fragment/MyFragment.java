@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.Glide;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
@@ -173,7 +174,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
-
 //            ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);

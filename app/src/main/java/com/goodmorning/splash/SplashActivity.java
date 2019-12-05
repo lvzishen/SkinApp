@@ -96,6 +96,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 //                if (showPressAgree && (!isShowedPressAgree())) {
 //                    gotoPressAgreeActivity();
 //                } else {
+                SharedPref.setBoolean(getApplicationContext(), CommonConstants.KEY_HAS_AGREEMENT_SPLASH, true);
                 gotoHomeActivity();
 //                }
                 StatisticLoggerX.logShowResult(StatisticConstants.Splash_Page_Guide, StatisticConstants.POPUP_WINDOW, StatisticConstants.FROM_SPLASH, 0, 0);
@@ -108,6 +109,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 //                if (showPressAgree && (!isShowedPressAgree())) {
 //                    gotoPressAgreeActivity();
 //                } else {
+                SharedPref.setBoolean(getApplicationContext(), CommonConstants.KEY_HAS_AGREEMENT_SPLASH, true);
                 gotoHomeActivity();
 //                }
             }
@@ -159,7 +161,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
                     Toast.makeText(getApplicationContext(), getString(R.string.please_agreement), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                doStart();
+//                doStart();
+                allowStorgePermissions();
                 break;
         }
     }

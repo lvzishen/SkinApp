@@ -18,6 +18,8 @@ import androidx.core.app.NotificationCompat;
 
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.cloud.CloudPropertyManager;
+import com.baselib.statistic.StatisticConstants;
+import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -98,7 +100,7 @@ public class MorningPushExtension extends IPushExtension {
         dataListItem.setResourceId(pushBean.extra.getId());
         dataListItem.setHeight(pushBean.extra.getHeight());
         dataListItem.setWidth(pushBean.extra.getWidth());
-
+        dataListItem.setChannelName("push");
         Intent intent = null;
         if (CheckUtils.isShowPic(pushBean.extra.getStartTime(), pushBean.extra.getEndTime())) {
             //展示弹窗 跳首页
@@ -144,7 +146,7 @@ public class MorningPushExtension extends IPushExtension {
             mBuilder.setFullScreenIntent(pendingIntent1, true);// 横幅
         }
         Notification notify = mBuilder.build();
-//        StatisticLoggerX.logShow(StatisticConstants.NOTIFICATION_BROWSER_CLOUDURL, StatisticConstants.FROM_NOTIFICATION, StatisticConstants.FROM_NOTIFICATION);
+        StatisticLoggerX.logShow(StatisticConstants.NOTIFICATION_BROWSER_CLOUDURL, StatisticConstants.FROM_NOTIFICATION, StatisticConstants.FROM_NOTIFICATION);
         nm.notify(NOTIFICATION_PIC_DETAIL, notify);
     }
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.baselib.statistic.StatisticLoggerX;
 import com.baselib.ui.activity.BaseActivity;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.MainListAdapter;
@@ -57,6 +58,7 @@ public class MyCollectActivity extends BaseActivity {
         rvCollectList = findViewById(R.id.rv_collect_list);
         myCollectBack = findViewById(R.id.mycollection_back);
         llNoCollect = findViewById(R.id.ll_no_collect);
+        StatisticLoggerX.logShowUpload("mine","collection","","","");
     }
 
     private void initData(){
@@ -156,6 +158,7 @@ public class MyCollectActivity extends BaseActivity {
                         }else {
                             dataItem.setType(DataListItem.DATA_TYPE_4);
                         }
+                        dataItem.setChannelName("collection");
                         dataItem.setResourceId(contentItem.resourceId);
                         dataItem.setId(contentItem.id);
                         dataItem.setStatus(contentItem.status);

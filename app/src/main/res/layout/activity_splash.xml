@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/qb_px_2"
-                    android:text="@string/string_privacy_policy"
+                    android:text="@string/setting_privacy"
                     android:textColor="#80333333"
                     android:textSize="10sp" />
 
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
-                    android:text="@string/string_user_agreement"
+                    android:text="@string/setting_user_agreement"
                     android:textColor="#80333333"
                     android:textSize="10sp" />
 

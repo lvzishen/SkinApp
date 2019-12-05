@@ -27,6 +27,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.alibaba.fastjson.JSON;
 import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
+import com.baselib.statistic.StatisticLoggerX;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
@@ -71,6 +72,7 @@ public class HomeFragment extends Fragment {
     private AlphaAnimation mShowAnimation	= null;
     private Handler handler = new Handler();
     private DayPicture dayPicture;
+    private List<String> channelIds;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -171,6 +173,7 @@ public class HomeFragment extends Fragment {
 
     private void initData(){
         mActivity = getActivity();
+        channelIds = new ArrayList<>();
         String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC,"day_pic");
         JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {
         };
@@ -238,6 +241,23 @@ public class HomeFragment extends Fragment {
                 requestChannelList();
             }
         });
+
+        tabVpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                StatisticLoggerX.logShowUpload("homepage","hometab",channelIds.get(position),"","");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         requestChannelList();
     }
 
@@ -264,6 +284,7 @@ public class HomeFragment extends Fragment {
                 }
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 mFragmentList.clear();
+                channelIds.clear();
                 for (int i=0;i<categories.size();i++){
                     String text = categories.get(i).text;
                     String[] txts = TextUtils.channelText(text);
@@ -273,6 +294,7 @@ public class HomeFragment extends Fragment {
                     bundle1.putString(MainActivity.CHANNEL_NAME,txts[0]);
                     tabFragment.setArguments(bundle1);
                     mFragmentList.add(tabFragment);
+                    channelIds.add(String.valueOf(categories.get(i).id));
                 }
 
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -291,8 +313,12 @@ public class HomeFragment extends Fragment {
                     }
                     tab.setCustomView(view);
                 }
-                tabLayout.getTabAt(0).select();
-
+                if (tabLayout.getTabAt(0) != null){
+                    tabLayout.getTabAt(0).select();
+                }
+                if (channelIds.size() > 0){
+                    StatisticLoggerX.logShowUpload("homepage","hometab",channelIds.get(0),"","");
+                }
                 if (tabLayout.getTabCount() == 0){
                     showLoading(false);
                     llChannelRetry.setVisibility(View.VISIBLE);
@@ -458,7 +484,11 @@ public class HomeFragment extends Fragment {
                                 PicDialog picDialog = new PicDialog(mActivity);
                                 DataListItem dataListItem = new DataListItem();
                                 dataListItem.setType(DataListItem.DATA_TYPE_2);
+                                dataListItem.setChannelName("pic popup");
                                 dataListItem.setPicUrl(dayPicture.getPicUrl());
+                                dataListItem.setResourceId(dayPicture.getId());
+                                dataListItem.setHeight(dayPicture.getHeight());
+                                dataListItem.setWidth(dayPicture.getWidth());
                                 picDialog.setDataListItem(dataListItem);
                                 picDialog.show();
                             }
