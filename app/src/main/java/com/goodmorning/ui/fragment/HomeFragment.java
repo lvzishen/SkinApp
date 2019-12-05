@@ -313,8 +313,12 @@ public class HomeFragment extends Fragment {
                     }
                     tab.setCustomView(view);
                 }
-                tabLayout.getTabAt(0).select();
-                StatisticLoggerX.logShowUpload("homepage","hometab",channelIds.get(0),"","");
+                if (tabLayout.getTabAt(0) != null){
+                    tabLayout.getTabAt(0).select();
+                }
+                if (channelIds.size() > 0){
+                    StatisticLoggerX.logShowUpload("homepage","hometab",channelIds.get(0),"","");
+                }
                 if (tabLayout.getTabCount() == 0){
                     showLoading(false);
                     llChannelRetry.setVisibility(View.VISIBLE);
