@@ -37,6 +37,7 @@ import org.n.account.core.api.NjordAccountManager;
 import org.n.account.core.constant.Constant;
 import org.n.account.core.contract.ILoginCallback;
 import org.n.account.core.contract.LoginApi;
+import org.n.account.core.data.NjordAccountReceiver;
 import org.n.account.core.exception.NotAllowLoginException;
 import org.n.account.core.model.Account;
 import org.n.account.core.ui.LoadingDialog;
@@ -84,7 +85,7 @@ public class MainActivity extends BaseActivity {
 
         //匿名账号登录，按需初始化，一般会在主界面进行初始化
         NjordAccountManager.registerGuest(this, null);
-
+        NjordAccountReceiver.register(this,mAccountReceiver);
     }
 
     private void initView() {
@@ -291,6 +292,21 @@ public class MainActivity extends BaseActivity {
     public void onDestroy() {
         if(mLoginApi != null)mLoginApi.onDestroy();
         super.onDestroy();
-    }
 
+        NjordAccountReceiver.unRegister(this, mAccountReceiver);
+    }
+    private NjordAccountReceiver mAccountReceiver = new NjordAccountReceiver(){
+        @Override
+        protected void onLogin() {
+            if (myFragment != null) {
+                Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
+                myFragment.showAccountInfo(account);
+            }
+        }
+
+        @Override
+        protected void onLogout() {
+            super.onLogout();
+        }
+    };
 }

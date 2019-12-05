@@ -31,6 +31,7 @@ import com.nox.Nox;
 
 import org.n.account.core.api.NjordAccountManager;
 import org.n.account.core.contract.ILoginCallback;
+import org.n.account.core.data.NjordAccountReceiver;
 import org.n.account.core.model.Account;
 import org.n.account.core.ui.GlideCircleTransform;
 import org.n.account.net.impl.INetCallback;
