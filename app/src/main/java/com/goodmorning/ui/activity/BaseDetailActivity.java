@@ -190,6 +190,11 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                     Toast.makeText(getApplicationContext(), getString(R.string.content_offline), Toast.LENGTH_SHORT).show();
                     return;
                 }
+//                mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                    }
+//                });
                 MorningDataAPI.requestCollectUpLoad(getApplicationContext(),
                         new CollectRequestParam(mDataItem.getResourceId(),
                                 isCollect, false, 1), new ResultCallback<CollectDetail>() {
@@ -199,13 +204,6 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                                     if (GlobalConfig.DEBUG) {
                                         Log.i(TAG, "用户收藏上报成功");
                                     }
-                                    mHandler.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            isCollect = !isCollect;
-                                            mImageCollect.setSelected(isCollect);
-                                        }
-                                    });
                                 } else {
                                     if (GlobalConfig.DEBUG) {
                                         Log.i(TAG, "用户收藏上报失败");
@@ -225,7 +223,8 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
                                 }
                             }
                         });
-
+                isCollect = !isCollect;
+                mImageCollect.setSelected(isCollect);
 
             }
         });
