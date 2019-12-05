@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="110dp"
     android:gravity="center"
     android:background="?attr/text_item_bg">
 
@@ -15,7 +15,7 @@
         android:textColor="?attr/text_item_color"
         android:id="@+id/tv_txt"
         android:gravity="center"
-        android:padding="@dimen/qb_px_15"/>
+        android:padding="@dimen/qb_px_10"/>
 
 
 </RelativeLayout>
