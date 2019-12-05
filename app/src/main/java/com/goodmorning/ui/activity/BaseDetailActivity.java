@@ -428,6 +428,7 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
         if ((showTimes >= arriveTimes) && (System.currentTimeMillis() - firstShowTimes > day * 1000 * 60 * 60 * 24)) {
             SharedPref.setInt(getApplicationContext(), IS_SHOW_SHARE, 0);
             SharedPref.setLong(getApplicationContext(), IS_SHOW_TIMES, 0);
+            showTimes = 0;
         }
         if (showTimes < arriveTimes) {
             //增加次数
