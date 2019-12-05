@@ -486,6 +486,9 @@ public class HomeFragment extends Fragment {
                                 dataListItem.setType(DataListItem.DATA_TYPE_2);
                                 dataListItem.setChannelName("pic popup");
                                 dataListItem.setPicUrl(dayPicture.getPicUrl());
+                                dataListItem.setResourceId(dayPicture.getId());
+                                dataListItem.setHeight(dayPicture.getHeight());
+                                dataListItem.setWidth(dayPicture.getWidth());
                                 picDialog.setDataListItem(dataListItem);
                                 picDialog.show();
                             }
