@@ -84,6 +84,47 @@
         android:layout_marginLeft="@dimen/qb_px_21"
         android:background="@color/setting_line_color"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/qb_px_60"
+        android:orientation="horizontal"
+        android:background="@drawable/selector_background"
+        android:id="@+id/ll_my_share">
+
+        <ImageView
+            android:layout_width="@dimen/qb_px_24"
+            android:layout_height="@dimen/qb_px_24"
+            android:layout_marginLeft="@dimen/qb_px_21"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/my_share"
+            android:id="@+id/iv_my_share_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_my_share_icon"
+            android:layout_marginLeft="18dp"
+            android:textColor="@color/setting_txt_tag_color"
+            android:textSize="@dimen/qb_sp_15"
+            android:text="@string/share"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/qb_px_10"
+            android:background="@drawable/ic_list_more"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/qb_px_21"
+        android:background="@color/setting_line_color"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -235,47 +276,7 @@
         android:layout_marginLeft="@dimen/qb_px_21"
         android:background="@color/setting_line_color"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/qb_px_60"
-        android:orientation="horizontal"
-        android:background="@drawable/selector_background"
-        android:id="@+id/ll_my_share">
 
-        <ImageView
-            android:layout_width="@dimen/qb_px_24"
-            android:layout_height="@dimen/qb_px_24"
-            android:layout_marginLeft="@dimen/qb_px_21"
-            android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/my_share"
-            android:id="@+id/iv_my_share_icon"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_my_share_icon"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/setting_txt_tag_color"
-            android:textSize="@dimen/qb_sp_15"
-            android:text="@string/share"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/qb_px_10"
-            android:background="@drawable/ic_list_more"
-            android:visibility="gone"/>
-
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="@dimen/qb_px_21"
-        android:background="@color/setting_line_color"/>
     <!--    <Button
             android:id="@+id/login_out"
             android:layout_width="match_parent"

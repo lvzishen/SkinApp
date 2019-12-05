@@ -69,7 +69,7 @@
         <Button
             android:layout_width="117dp"
             android:layout_height="@dimen/qb_px_36"
-            android:background="@color/retry_btn_color"
+            android:background="@drawable/shape_retry_btn_bg"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/qb_px_22"
             android:textColor="@color/retry_btn_txt_color"
