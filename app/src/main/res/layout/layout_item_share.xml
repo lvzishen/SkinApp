@@ -3,12 +3,11 @@
     android:id="@+id/share_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_background"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingTop="@dimen/qb_px_6"
     android:paddingBottom="@dimen/qb_px_6">
-
+    <!--  android:background="@drawable/selector_background"-->
     <ImageView
         android:id="@+id/share_image"
         android:layout_width="@dimen/qb_px_50"
