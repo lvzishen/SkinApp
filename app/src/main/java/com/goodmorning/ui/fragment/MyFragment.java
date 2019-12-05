@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
@@ -38,6 +39,7 @@ import org.n.account.core.ui.GlideCircleTransform;
 import org.n.account.net.impl.INetCallback;
 import org.n.account.ui.view.ProfileCenterActivity;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
@@ -171,14 +173,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //            }
             Glide.with(getApplicationContext()).load(account.mPictureUrl)
                     .placeholder(R.drawable.ic_account_header)
-                    .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
+                    .apply(bitmapTransform(new CircleCrop()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(account.mNickName);
 //            ContentManager.getInstance().setLogin(isLogin);
         } else {
 //            mAccountNameTv.setText(R.string.sign_in_to);
             Glide.with(getApplicationContext()).load(R.drawable.ic_account_header)
-                    .bitmapTransform(new GlideCircleTransform(getApplicationContext()))
+                    .apply(bitmapTransform(new CircleCrop()))
                     .into(mAccountHeaderImg);
             mAccountHeaderText.setText(R.string.sign_in_to);
 //            isLogin = false;

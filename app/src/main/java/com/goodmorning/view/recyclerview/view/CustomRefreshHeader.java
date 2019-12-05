@@ -15,7 +15,6 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.view.recyclerview.WeakHandler;
 import com.goodmorning.view.recyclerview.interfaces.IRefreshHeader;

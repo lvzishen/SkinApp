@@ -39,8 +39,8 @@ dependencies {
     //XAL 激活云控升级
     xalApi 'com.xal.publicrepository:register:' + ADOTO_REGISTER_VERSION
     api 'com.adjust.sdk:adjust-android:4.17.0'
-    api 'com.github.bumptech.glide:glide:3.7.0'
-
+    api 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     debugApi('org.alex:monitor:' + ALEX_MONITOR_VERSION + '-debug') {
         exclude(group: 'com.android.support', module: 'support-compat')
     }

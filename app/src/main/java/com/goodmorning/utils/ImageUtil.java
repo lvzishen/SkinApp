@@ -9,14 +9,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 
-import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.creativeindia.goodmorning.R;
@@ -29,7 +30,7 @@ public class ImageUtil {
 
     // scaleType
     public static void displayImage(Context context, ImageView imageView, String url, int placeHolderResId) {
-        displayImage(context, imageView, url, placeHolderResId, new CenterCrop(context));
+//        displayImage(context, imageView, url, placeHolderResId, new CenterCrop(context));
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);
         }
@@ -52,7 +53,7 @@ public class ImageUtil {
         private int outHeight;
 
         PortraitCoverBitmapCenterCrop(Context context, int outWidth, int outHeight) {
-            super(context);
+//            super(context);
             this.outWidth = outWidth;
             this.outHeight = outHeight;
         }
@@ -65,13 +66,13 @@ public class ImageUtil {
 
 
     public static void displayImage(Context context, ImageView imageView, String url, int placeHolderResId, BitmapTransformation... transformations) {
-        DrawableTypeRequest<String> drawableTypeRequest = Glide.with(context).load(url);
-        drawableTypeRequest.placeholder(placeHolderResId);
-        drawableTypeRequest.transform(transformations);
-        drawableTypeRequest.dontAnimate();
-        drawableTypeRequest.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
-        drawableTypeRequest.diskCacheStrategy(DiskCacheStrategy.SOURCE);
-        drawableTypeRequest.into(imageView);
+//        DrawableTypeRequest<String> drawableTypeRequest = Glide.with(context).load(url);
+//        drawableTypeRequest.placeholder(placeHolderResId);
+//        drawableTypeRequest.transform(transformations);
+//        drawableTypeRequest.dontAnimate();
+//        drawableTypeRequest.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
+//        drawableTypeRequest.diskCacheStrategy(DiskCacheStrategy.SOURCE);
+//        drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);
         }
@@ -84,12 +85,12 @@ public class ImageUtil {
 
 
     private static void healthDisplayImage(Context context, ImageView imageView, String url, int placeHolderResId, int outWidth, int outHeight) {
-        DrawableTypeRequest<String> drawableTypeRequest = Glide.with(context).load(url);
-        drawableTypeRequest.placeholder(placeHolderResId);
-        drawableTypeRequest.diskCacheStrategy(DiskCacheStrategy.SOURCE);
-        drawableTypeRequest.transform(new PortraitCoverBitmapCenterCrop(context, outWidth, outHeight), new GlideRoundTransform(context, 10));
-        drawableTypeRequest.dontAnimate();
-        drawableTypeRequest.into(imageView);
+//        DrawableTypeRequest<String> drawableTypeRequest = Glide.with(context).load(url);
+//        drawableTypeRequest.placeholder(placeHolderResId);
+//        drawableTypeRequest.diskCacheStrategy(DiskCacheStrategy.SOURCE);
+//        drawableTypeRequest.transform(new PortraitCoverBitmapCenterCrop(context, outWidth, outHeight), new GlideRoundTransform(context, 10));
+//        drawableTypeRequest.dontAnimate();
+//        drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "healthDisplayImage: " + url);
         }
@@ -97,41 +98,42 @@ public class ImageUtil {
 
 
     public static void displayImageView(Context context, ImageView imageView, String url, int placeHolderResId,int width, int heghit) {
-        Glide.clear(imageView);
-        DrawableTypeRequest<String> drawableTypeRequest = Glide.with(context).load(url);
+        RequestManager requestManager = Glide.with(context);
+        requestManager.clear(imageView);
+        RequestBuilder<Drawable> drawableTypeRequest = requestManager.load(url);
         drawableTypeRequest.placeholder(placeHolderResId);
         drawableTypeRequest.error(placeHolderResId);
         boolean isGif = isGif(url);
         if (isGif) {
-            drawableTypeRequest.asGif();
+            requestManager.asGif();
         }
         if (width > 0 && heghit > 0 && !isGif) {
             drawableTypeRequest.override(width, heghit);//加载特定宽度高度的图片
         }
-        drawableTypeRequest.transform(new GlideRoundTransform(context, 10));
+        drawableTypeRequest.apply(RequestOptions.bitmapTransform(new RoundedCorners( 20)));
         drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);
         }
     }
 
-    public static SimpleTarget<GlideDrawable> getImageDrawable(Context context, String url, final OnImageLoadListener<Drawable> listener) {
-        return Glide.with(context).load(url).into(new SimpleTarget<GlideDrawable>() {
-            @Override
-            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                if (listener != null) {
-                    listener.loadSuccess(resource);
-                }
-            }
-
-            @Override
-            public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                if (listener != null) {
-                    listener.loadFail();
-                }
-            }
-        });
-    }
+//    public static SimpleTarget<GlideDrawable> getImageDrawable(Context context, String url, final OnImageLoadListener<Drawable> listener) {
+////        return Glide.with(context).load(url).into(new SimpleTarget<GlideDrawable>() {
+////            @Override
+////            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+////                if (listener != null) {
+////                    listener.loadSuccess(resource);
+////                }
+////            }
+////
+////            @Override
+////            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+////                if (listener != null) {
+////                    listener.loadFail();
+////                }
+////            }
+////        });
+////    }
 
 //    public static void loadUrlCenterCrop(Context context, String url, int placeHolder, RecognitionCenterImageView imageView, int corner) {
 //        try {

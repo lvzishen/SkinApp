@@ -13,14 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.ui.activity.BaseActivity;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.utils.ScreenUtils;
@@ -56,9 +57,9 @@ public class LoginGuideActivity extends BaseActivity {
         mImageBg.setImageResource(R.drawable.share_shadow);
         mImageBg.setCornerRadius(DeviceUtil.dip2px(getApplicationContext(), 6), DeviceUtil.dip2px(getApplicationContext(), 6), 0, 0);
         String picUrl = getIntent().getStringExtra("picUrl");
-        Glide.with(this).load(picUrl).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+        Glide.with(this).asBitmap().load(picUrl).into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
             @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 int imageWidth = resource.getWidth();
                 int imageHeight = resource.getHeight();
                 int height = ScreenUtils.screenActualPix(LoginGuideActivity.this)[1] * imageHeight / imageWidth;
@@ -67,7 +68,7 @@ public class LoginGuideActivity extends BaseActivity {
                     para.height = height;
                     mImageDetailView.setLayoutParams(para);
                 }
-                Glide.with(getApplicationContext()).load(picUrl).asBitmap().into(mImageDetailView);
+                Glide.with(getApplicationContext()).asBitmap().load(picUrl).into(mImageDetailView);
             }
         });
         mLoginView.setOnClickListener(new View.OnClickListener() {

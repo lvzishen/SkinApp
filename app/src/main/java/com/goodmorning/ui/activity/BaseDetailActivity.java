@@ -20,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,11 +31,10 @@ import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
-import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.adapter.ShareCommonFactory;
 import com.goodmorning.adapter.ShareCommonHolder;
@@ -42,8 +43,6 @@ import com.goodmorning.bean.ShareItem;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.share.ShareTypeManager;
 import com.goodmorning.utils.BitmapUtils;
-import com.goodmorning.utils.GlideRoundTransform;
-import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.view.image.RoundedImageView;
 import com.goodmorning.view.recyclerview.normal.CommonRecyclerView;
@@ -344,18 +343,17 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
     private void makeWaterMark() {
         //生成水印
         Account account = NjordAccountManager.getCurrentAccount(getApplicationContext());
-        Glide.with(this).load(account.mPictureUrl).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+        Glide.with(this).asBitmap().load(account.mPictureUrl).into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
             @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 if (mBitmap == null) {
                     return;
                 }
                 createWaterMark(resource);
             }
-
             @Override
-            public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                super.onLoadFailed(e, errorDrawable);
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                super.onLoadFailed(errorDrawable);
                 createWaterMark(BitmapFactory.decodeResource(getResources(), R.drawable.ic_avatar));
             }
         });
@@ -481,13 +479,13 @@ public abstract class BaseDetailActivity extends AppCompatActivity implements Sh
 
     public void displayImageView(Context context, ImageView imageView, String url, int placeHolderResId) {
         Glide.with(context)
-                .load(url)
                 .asBitmap()
+                .load(url)
                 .placeholder(placeHolderResId)
                 .error(placeHolderResId)
                 .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
                     @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         mBitmap = resource;
                         mImageDetailView.setImageBitmap(resource);
                         findViewById(R.id.image_shadowb).setVisibility(View.VISIBLE);

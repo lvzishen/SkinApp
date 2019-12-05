@@ -101,9 +101,13 @@ dependencies {
 
 
     // Thanos
-    xalApi 'com.xal.thanos:ui:1.0.24-push3rd'
+    xalApi ('com.xal.thanos:ui:1.0.24-push3rd'){
+        exclude(group: 'com.github.bumptech.glide', module: 'okhttp3-integration')
+    }
     xalApi 'com.push:pushsdk:2.3.18-3rd'
-    xalApi 'com.push:pushsdk-ui:1.0.10.3-3rd'
+    xalApi ('com.push:pushsdk-ui:1.0.10.3-3rd'){
+        exclude(group: 'com.github.bumptech.glide', module: 'okhttp3-integration')
+    }
 //    //账号sdk，【必选】
 //    xalImplementation 'org.njord.account:core:' + ACCOUNT_VERSION
 //    xalImplementation 'org.njord.account:ui:' + ACCOUNT_UI_VERSION
@@ -114,6 +118,7 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.62'
     implementation 'com.airbnb.android:lottie:3.0.0'
     implementation project(':jiaozivideoplayer')
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.9.0"
     xalApi 'com.xal.publicrepository:apollo-downloader-wrapper:' + APOLLO_DOWNLOADER_WRAPPER_VERSION
 }
 
