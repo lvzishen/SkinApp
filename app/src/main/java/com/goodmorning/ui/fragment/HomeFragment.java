@@ -282,6 +282,11 @@ public class HomeFragment extends Fragment {
                     }
                     return;
                 }
+
+                if (!isAdded()) {
+                    return;
+                }
+
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 mFragmentList.clear();
                 channelIds.clear();

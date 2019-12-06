@@ -22,47 +22,49 @@ public class ChannelList extends ResponseData {
     /**
      * 服务端下发的新闻国家
      */
-    public final String newsCountry;
+    public String newsCountry;
     /**
      * 服务端下发的新闻语言
      */
-    public final String lang;
+    public String lang;
     /**
      * menu字段的变化时间，时间戳（秒）
      */
-    public final int menuUtime;
-    public final ArrayList<LangCategoryInfo> langCategoryInfos = new ArrayList<>();
-    public final ArrayList<LanguageItem> languageItems = new ArrayList<>();
+    public int menuUtime;
+    public ArrayList<LangCategoryInfo> langCategoryInfos = new ArrayList<>();
+    public ArrayList<LanguageItem> languageItems = new ArrayList<>();
 
     public ChannelList(JSONObject jo) throws JSONException {
         super(jo);
-        JSONObject dataObj = jo.getJSONObject("data");
-        newsCountry = dataObj.getString("newsCountry");
-        lang = dataObj.getString("lang");
-        menuUtime = dataObj.getInt("menuUtime");
-        JSONArray channels = dataObj.getJSONArray("channels");
-        for (int i = 0, len = channels.length(); i < len; i++) {
-            LangCategoryInfo langCategoryInfo = new LangCategoryInfo(channels.getJSONObject(i));
-            if (DEBUG) {
-                Log.i(TAG, "ChannelList: " + i + ", " + langCategoryInfo);
+        JSONObject dataObj = jo.optJSONObject("data");
+        if (dataObj != null){
+            newsCountry = dataObj.optString("newsCountry");
+            lang = dataObj.optString("lang");
+            menuUtime = dataObj.optInt("menuUtime");
+            JSONArray channels = dataObj.optJSONArray("channels");
+            for (int i = 0, len = channels.length(); i < len; i++) {
+                LangCategoryInfo langCategoryInfo = new LangCategoryInfo(channels.optJSONObject(i));
+                if (DEBUG) {
+                    Log.i(TAG, "ChannelList: " + i + ", " + langCategoryInfo);
+                }
+                langCategoryInfos.add(langCategoryInfo);
             }
-            langCategoryInfos.add(langCategoryInfo);
-        }
-        JSONArray menuArray = dataObj.getJSONArray("menu");
-        for (int i = 0, len = menuArray.length(); i < len; i++) {
-            JSONObject menuObj = menuArray.getJSONObject(i);
-            LanguageItem languageItem = new LanguageItem(menuObj);
-            if (DEBUG) {
-                Log.i(TAG, "ChannelList: " + i + ", " + languageItem);
+            JSONArray menuArray = dataObj.optJSONArray("menu");
+            for (int i = 0, len = menuArray.length(); i < len; i++) {
+                JSONObject menuObj = menuArray.optJSONObject(i);
+                LanguageItem languageItem = new LanguageItem(menuObj);
+                if (DEBUG) {
+                    Log.i(TAG, "ChannelList: " + i + ", " + languageItem);
+                }
+                languageItems.add(languageItem);
             }
-            languageItems.add(languageItem);
         }
     }
 
     static ArrayList<LangCategoryInfo> createLangCategoryInfos(JSONArray langCategoryInfoArray) throws JSONException {
         ArrayList<LangCategoryInfo> langCategoryInfos = new ArrayList<>();
         for (int i = 0, len = langCategoryInfoArray.length(); i < len; i++) {
-            LangCategoryInfo langCategoryInfo = new LangCategoryInfo(langCategoryInfoArray.getJSONObject(i));
+            LangCategoryInfo langCategoryInfo = new LangCategoryInfo(langCategoryInfoArray.optJSONObject(i));
             if (DEBUG) {
                 Log.i(TAG, "createLangCategoryInfos: " + i + ", " + langCategoryInfo);
             }
@@ -114,27 +116,27 @@ public class ChannelList extends ResponseData {
         /**
          * 语言代码，比如en
          */
-        public final String lang;
+        public String lang;
         /**
          * 语言名称，比如English
          */
-        public final String text;
+        public String text;
         /**
          * 是否默认
          */
-        public final int isDefault;
+        public int isDefault;
         /**
          * 客户端是否可以搜索，0不可以，1可以
          */
-        public final int search;
+        public int search;
         /**
          * 语言风格，1 从左向右读，2 从右向左读
          */
-        public final int langStyle;
+        public int langStyle;
         /**
          * cates 或者 text字段变化的时间，时间戳（秒）
          */
-        public final int catesTextUtime;
+        public int catesTextUtime;
         /**
          * 普通频道列表
          */
@@ -145,24 +147,26 @@ public class ChannelList extends ResponseData {
         public final ArrayList<Category> videoCategoryList = new ArrayList<>();
 
         LangCategoryInfo(JSONObject jo) throws JSONException {
-            lang = jo.optString("lang");
-            text = jo.optString("text");
-            isDefault = jo.optInt("isDefault");
-            search = jo.optInt("search");
-            langStyle = jo.optInt("langStyle");
-            catesTextUtime = jo.optInt("catesTextUtime");
+            if (jo != null){
+                lang = jo.optString("lang");
+                text = jo.optString("text");
+                isDefault = jo.optInt("isDefault");
+                search = jo.optInt("search");
+                langStyle = jo.optInt("langStyle");
+                catesTextUtime = jo.optInt("catesTextUtime");
 
-            // 新闻频道列表
-            parseCateList(jo.optJSONArray("cates"), categoryList);
-            // 视频频道列表
-            parseCateList(jo.optJSONArray("videocates"), videoCategoryList);
-            // 返回数据里还有photocates/buzzcates这些数据，目前没用
+                // 新闻频道列表
+                parseCateList(jo.optJSONArray("cates"), categoryList);
+                // 视频频道列表
+                parseCateList(jo.optJSONArray("videocates"), videoCategoryList);
+                // 返回数据里还有photocates/buzzcates这些数据，目前没用
+            }
         }
 
         private static void parseCateList(JSONArray array, ArrayList<Category> categories) throws JSONException {
             if (array != null) {
                 for (int i = 0, len = array.length(); i < len; i++) {
-                    Category category = new Category(array.getJSONObject(i));
+                    Category category = new Category(array.optJSONObject(i));
                     if (DEBUG) {
                         Log.i(TAG, "parseCateList: " + i + ", " + category);
                     }
@@ -194,39 +198,41 @@ public class ChannelList extends ResponseData {
         /**
          * 分类ID
          */
-        public final int id;
+        public int id;
         /**
          * 展示文本
          */
-        public final String text;
+        public String text;
         /**
          * 分类图标
          */
-        public final String icon;
+        public String icon;
         /**
          * 分类Banner
          */
-        public final String image;
+        public String image;
         /**
          * 是否订阅.1是，0否
          */
-        public final int isSubscribe;
+        public int isSubscribe;
         public final ArrayList<CategorySubClass> categorySubClassList = new ArrayList<>();
 
         Category(JSONObject jo) throws JSONException {
-            id = jo.getInt("id");
-            text = jo.optString("text");
-            icon = jo.optString("icon");
-            image = jo.optString("image");
-            isSubscribe = jo.optInt("isSubscribe");
-            JSONArray subclassArray = jo.optJSONArray("subclass");
-            if (subclassArray != null) {
-                for (int i = 0, len = subclassArray.length(); i < len; i++) {
-                    CategorySubClass categorySubClass = new CategorySubClass(subclassArray.getJSONObject(i));
-                    if (DEBUG) {
-                        Log.i(TAG, "Category: " + i + ", " + categorySubClass);
+            if (jo != null){
+                id = jo.getInt("id");
+                text = jo.optString("text");
+                icon = jo.optString("icon");
+                image = jo.optString("image");
+                isSubscribe = jo.optInt("isSubscribe");
+                JSONArray subclassArray = jo.optJSONArray("subclass");
+                if (subclassArray != null) {
+                    for (int i = 0, len = subclassArray.length(); i < len; i++) {
+                        CategorySubClass categorySubClass = new CategorySubClass(subclassArray.getJSONObject(i));
+                        if (DEBUG) {
+                            Log.i(TAG, "Category: " + i + ", " + categorySubClass);
+                        }
+                        categorySubClassList.add(categorySubClass);
                     }
-                    categorySubClassList.add(categorySubClass);
                 }
             }
         }
@@ -248,14 +254,16 @@ public class ChannelList extends ResponseData {
      * 二级分类信息
      */
     public static class CategorySubClass {
-        private final int id;
-        private final String text;
-        private final int checked;
+        private int id;
+        private String text;
+        private int checked;
 
         CategorySubClass(JSONObject jo) throws JSONException {
-            id = jo.optInt("id");
-            text = jo.optString("text");
-            checked = jo.optInt("checked");
+            if (jo != null){
+                id = jo.optInt("id");
+                text = jo.optString("text");
+                checked = jo.optInt("checked");
+            }
         }
 
         @Override
@@ -269,10 +277,10 @@ public class ChannelList extends ResponseData {
     }
 
     public static class LanguageItem {
-        public final int priority;
-        public final String country;
-        public final String lang;
-        public final String text;
+        public int priority;
+        public String country;
+        public String lang;
+        public String text;
 
 
         public LanguageItem(String country, String lang) {
@@ -283,10 +291,12 @@ public class ChannelList extends ResponseData {
         }
 
         LanguageItem(JSONObject jo) throws JSONException {
-            priority = jo.optInt("priority");
-            country = jo.optString("country");
-            lang = jo.optString("lang");
-            text = jo.optString("text");
+            if (jo != null){
+                priority = jo.optInt("priority");
+                country = jo.optString("country");
+                lang = jo.optString("lang");
+                text = jo.optString("text");
+            }
         }
 
         @Override
