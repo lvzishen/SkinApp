@@ -71,8 +71,9 @@ public class HomeFragment extends Fragment {
     private AlphaAnimation mHideAnimation	= null;
     private AlphaAnimation mShowAnimation	= null;
     private Handler handler = new Handler();
-    private DayPicture dayPicture;
+    private List<DayPicture> dayPicture;
     private List<String> channelIds;
+    private DayPicture finalDayPicture;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -175,7 +176,7 @@ public class HomeFragment extends Fragment {
         mActivity = getActivity();
         channelIds = new ArrayList<>();
         String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC,"day_pic");
-        JsonHelper<DayPicture> jsonHelper = new JsonHelper<DayPicture>() {
+        JsonHelper<List<DayPicture>> jsonHelper = new JsonHelper<List<DayPicture>>() {
         };
         dayPicture = jsonHelper.getJsonObject(cloudData);
         tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D),ResUtils.getColor(R.color.color_444444));
@@ -473,7 +474,14 @@ public class HomeFragment extends Fragment {
         if (dayPicture == null){
             return;
         }
-        if (CheckUtils.isShowPic(dayPicture.getStartTime(),dayPicture.getEndTime())){
+        finalDayPicture = null;
+        for (DayPicture dayPicture : dayPicture){
+            if (CheckUtils.isShowPic(dayPicture.getStartTime(),dayPicture.getEndTime())){
+                finalDayPicture = dayPicture;
+            }
+        }
+
+        if (finalDayPicture != null){
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -490,10 +498,10 @@ public class HomeFragment extends Fragment {
                                 DataListItem dataListItem = new DataListItem();
                                 dataListItem.setType(DataListItem.DATA_TYPE_2);
                                 dataListItem.setChannelName("pic popup");
-                                dataListItem.setPicUrl(dayPicture.getPicUrl());
-                                dataListItem.setResourceId(dayPicture.getId());
-                                dataListItem.setHeight(dayPicture.getHeight());
-                                dataListItem.setWidth(dayPicture.getWidth());
+                                dataListItem.setPicUrl(finalDayPicture.getPicUrl());
+                                dataListItem.setResourceId(finalDayPicture.getId());
+                                dataListItem.setHeight(finalDayPicture.getHeight());
+                                dataListItem.setWidth(finalDayPicture.getWidth());
                                 picDialog.setDataListItem(dataListItem);
                                 picDialog.show();
                             }

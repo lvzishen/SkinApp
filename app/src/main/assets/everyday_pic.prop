@@ -1,3 +1,3 @@
 #每日一图云控文件
 #startTime:开始时间（单位毫秒） endTime:结束时间（单位毫秒）
-day_pic={"width":720,"height":720,"startTime":1575432978,"endTime":1575519378,"id":1575356447053320,"picUrl":"http://cdn.luckmorning.com/sunnyday/Good-Morning-Enlish-139.jpg"}
+day_pic=[{"width":720,"height":720,"startTime":1575432978,"endTime":1575519378,"id":1575356447053320,"picUrl":"http://cdn.luckmorning.com/sunnyday/Good-Morning-Enlish-139.jpg"},{"width":720,"height":720,"startTime":1575432978,"endTime":1575519378,"id":1575356447053320,"picUrl":"http://cdn.luckmorning.com/sunnyday/Good-Morning-Enlish-139.jpg"}]
