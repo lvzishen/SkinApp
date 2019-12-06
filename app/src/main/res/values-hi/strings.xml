@@ -146,7 +146,7 @@
     <string name="save">सुरक्षित</string>
     <string name="login_guide">एक क्लिक में लॉग-इन, खुद से लिखें संदेश</string>
     <string name="login_facebook">फेसबुक के साथ लॉग-इन करें</string>
-
+    <string name="whatsapp">WhatsApp</string>
     <string name="tab_greeting">संदेश</string>
     <string name="tab_my">मेरा</string>
     <string name="sign_in_to">फेसबुक के साथ लॉग-इन करें</string>

@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +30,7 @@ import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
+import com.baselib.ui.activity.BaseActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
@@ -77,7 +77,7 @@ import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
  * 描述:
  * 作者: lvzishen
  */
-public abstract class BaseDetailActivity extends AppCompatActivity implements ShareCommonHolder.OnClickListener {
+public abstract class BaseDetailActivity extends BaseActivity implements ShareCommonHolder.OnClickListener {
 
     private static final String TAG = "BaseDetailActivity";
     private static final int MESSAGE_TO_SHARE = 1;
