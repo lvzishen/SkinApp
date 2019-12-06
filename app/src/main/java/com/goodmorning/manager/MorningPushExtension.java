@@ -56,6 +56,7 @@ public class MorningPushExtension extends IPushExtension {
     private static final boolean DEBUG = GlobalConfig.DEBUG;
     private static final int NOTIFICATION_REQUEST_PIC_BROADCAST = 10000;
     private static final int NOTIFICATION_PIC_DETAIL = 1001;
+    public static DataListItem pushDataListItem = null;
 
     @Override
     public boolean handleMessage(PushMessage message, Context context) throws Exception {
@@ -88,24 +89,30 @@ public class MorningPushExtension extends IPushExtension {
         if (nm == null)
             return;
         if (DEBUG) {
-            Log.i(TAG, pushBean.toString());
+            Log.i(TAG, "pushBean:---->" + pushBean.toString());
         }
         bindNotificationChannel(context, nm);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "goodmorning_notification_channelid");
 
         DataListItem dataListItem = new DataListItem();
         dataListItem.setType(DataListItem.DATA_TYPE_2);
-        dataListItem.setPicUrl(pushBean.extra.getPicUrl());
-        dataListItem.setResourceId(pushBean.extra.getId());
-        dataListItem.setHeight(pushBean.extra.getHeight());
-        dataListItem.setWidth(pushBean.extra.getWidth());
+        dataListItem.setPicUrl(pushBean.icon);
+        String str[] = pushBean.action_main.split(",");
+        dataListItem.setResourceId(Long.valueOf(str[0]));
+        dataListItem.setWidth(Integer.valueOf(str[1]));
+        dataListItem.setHeight(Integer.valueOf(str[2]));
         dataListItem.setChannelName("push");
+        if (DEBUG) {
+            Log.i(TAG, "dataListItem:---->" + dataListItem.toString());
+        }
         Intent intent = null;
-        if (CheckUtils.isShowPic(pushBean.extra.getStartTime(), pushBean.extra.getEndTime())) {
+        if (CheckUtils.isShowPic(Long.valueOf(pushBean.start_time), Long.valueOf(pushBean.end_time))) {
             //展示弹窗 跳首页
             intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("is_from_noti", true);
-            intent.putExtra(TRANSFER_DATA, dataListItem);
+//            intent.putExtra(TRANSFER_DATA, dataListItem);
+            pushDataListItem = dataListItem;
         } else {
             //跳详情页
             intent = new Intent(context, PicDetailActivity.class);

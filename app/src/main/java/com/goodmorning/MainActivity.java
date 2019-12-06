@@ -25,6 +25,7 @@ import com.baselib.ui.activity.BaseActivity;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.manager.ContentManager;
+import com.goodmorning.manager.MorningPushExtension;
 import com.goodmorning.splash.SplashLifeMonitor;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.ui.activity.SettingActivity;
@@ -79,21 +80,14 @@ public class MainActivity extends BaseActivity {
         setStatusBarColor(ResUtils.getColor(R.color.transparent));
         setAndroidNativeLightStatusBar(true);
         if (getIntent() != null) {
-            boolean isFromNoti = getIntent().getBooleanExtra("is_from_noti", false);
-            DataListItem dataListItem = (DataListItem) getIntent().getSerializableExtra(TRANSFER_DATA);
-            if (isFromNoti && dataListItem != null) {
-                StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
-                PicDialog picDialog = new PicDialog(this);
-                picDialog.setDataListItem(dataListItem);
-                picDialog.show();
-            }
+            handlePicNoti(getIntent());
         }
         initView();
         initData();
 
         //匿名账号登录，按需初始化，一般会在主界面进行初始化
         NjordAccountManager.registerGuest(this, null);
-        NjordAccountReceiver.register(this,mAccountReceiver);
+        NjordAccountReceiver.register(this, mAccountReceiver);
     }
 
     private void initView() {
@@ -137,8 +131,8 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 1){
-                    StatisticLoggerX.logShowUpload("","mine","","","");
+                if (position == 1) {
+                    StatisticLoggerX.logShowUpload("", "mine", "", "", "");
                 }
             }
 
@@ -147,7 +141,7 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        StatisticLoggerX.logShowUpload("","lang", LanguageUtil.getLanguage(),"","");
+        StatisticLoggerX.logShowUpload("", "lang", LanguageUtil.getLanguage(), "", "");
     }
 
     class GoodAdapter extends FragmentStatePagerAdapter {
@@ -180,7 +174,28 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        if (DEBUG) {
+            Log.i("MorningPushExtension", "onnewintent");
+        }
+        handlePicNoti(intent);
         updateData(intent);
+    }
+
+    private void handlePicNoti(Intent intent) {
+        boolean isFromNoti = intent.getBooleanExtra("is_from_noti", false);
+        if (DEBUG) {
+            Log.i("MorningPushExtension", "onnewintent isFromNoti" + isFromNoti);
+        }
+        DataListItem dataListItem = MorningPushExtension.pushDataListItem;
+        if (isFromNoti && dataListItem != null) {
+            if (DEBUG) {
+                Log.i("MorningPushExtension", "onnewintent dataListItem" + dataListItem.toString());
+            }
+            StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
+            PicDialog picDialog = new PicDialog(this);
+            picDialog.setDataListItem(dataListItem);
+            picDialog.show();
+        }
     }
 
     private void updateData(Intent intent) {
@@ -325,7 +340,8 @@ public class MainActivity extends BaseActivity {
 
         NjordAccountReceiver.unRegister(this, mAccountReceiver);
     }
-    private NjordAccountReceiver mAccountReceiver = new NjordAccountReceiver(){
+
+    private NjordAccountReceiver mAccountReceiver = new NjordAccountReceiver() {
         @Override
         protected void onLogin() {
             if (myFragment != null) {
@@ -344,7 +360,7 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                Toast.makeText(getApplicationContext(),"再按一次退出",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
                 return true;
             } else {

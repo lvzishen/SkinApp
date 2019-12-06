@@ -165,4 +165,21 @@ public class DataListItem implements Serializable {
     public void setChannelName(String channelName) {
         this.channelName = channelName;
     }
+
+    @Override
+    public String toString() {
+        return "DataListItem{" +
+                "type=" + type +
+                ", data='" + data + '\'' +
+                ", videoUrl='" + videoUrl + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", videoThumbUrl='" + videoThumbUrl + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                ", resourceId=" + resourceId +
+                ", id=" + id +
+                ", status=" + status +
+                ", channelName='" + channelName + '\'' +
+                '}';
+    }
 }

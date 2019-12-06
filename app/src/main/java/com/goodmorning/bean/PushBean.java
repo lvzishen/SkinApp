@@ -23,6 +23,7 @@ public class PushBean {
      * big_image :
      * tag :
      * id :
+     * content_id
      */
 
     public String action_main;
@@ -40,6 +41,9 @@ public class PushBean {
     public String big_image;
     public String tag;
     public String id;
+    public String content_id;
+    public String start_time;
+    public String end_time;
 
     @Override
     public String toString() {
@@ -55,10 +59,13 @@ public class PushBean {
                 ", button='" + button + '\'' +
                 ", card_style='" + card_style + '\'' +
                 ", replace_old='" + replace_old + '\'' +
-                ", extra=" + extra.toString() +
+                ", extra=" + extra +
                 ", big_image='" + big_image + '\'' +
                 ", tag='" + tag + '\'' +
                 ", id='" + id + '\'' +
+                ", content_id='" + content_id + '\'' +
+                ", start_time='" + start_time + '\'' +
+                ", end_time='" + end_time + '\'' +
                 '}';
     }
 }
