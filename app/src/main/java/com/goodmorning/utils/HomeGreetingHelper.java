@@ -26,13 +26,7 @@ public class HomeGreetingHelper {
     public static final int NIGHT = 3;
 
     public static String showText(Context context) {
-        String langSP = SharedPref.getString(context, SharedPref.LANGUAGE, "en");
-        String dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
-                "h.h.t.g." + langSP, null);
-        if (TextUtils.isEmpty(dayRule) && !TextUtils.isEmpty(langSP) && !"en".equalsIgnoreCase(langSP)) {
-            dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
-                    "h.h.t.g.en", null);
-        }
+        String dayRule = getGreetingInfo(context);
         if (TextUtils.isEmpty(dayRule)) {
             return null;
         }
@@ -70,13 +64,7 @@ public class HomeGreetingHelper {
      * @return
      */
     public static int dayTimeStatus(Context context){
-        String langSP = SharedPref.getString(context, SharedPref.LANGUAGE, "en");
-        String dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
-                "h.h.t.g." + langSP, null);
-        if (TextUtils.isEmpty(dayRule) && !TextUtils.isEmpty(langSP) && !"en".equalsIgnoreCase(langSP)) {
-            dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
-                    "h.h.t.g.en", null);
-        }
+        String dayRule = getGreetingInfo(context);
         if (TextUtils.isEmpty(dayRule)) {
             return 0;
         }
@@ -102,5 +90,16 @@ public class HomeGreetingHelper {
             }
         }
         return 0;
+    }
+
+    private static String getGreetingInfo(Context context) {
+        String langSP = SharedPref.getString(context, SharedPref.LANGUAGE, "en");
+        String dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
+                "h.h.t.g." + langSP, null);
+        if (TextUtils.isEmpty(dayRule) && !TextUtils.isEmpty(langSP) && !"en".equalsIgnoreCase(langSP)) {
+            dayRule = CloudPropertyManager.getString(context, CloudPropertyManager.PATH_HOME_GREETING,
+                    "h.h.t.g.en", null);
+        }
+        return dayRule;
     }
 }

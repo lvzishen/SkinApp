@@ -117,24 +117,25 @@ public class HomeFragment extends Fragment {
             tvTitle.setText(getString(R.string.string_app_name));
         } else {
             tvTitle.setText(text);
+            setHideAnimation(tvTitle, 2000, new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    tvTitle.setText(getString(R.string.string_app_name));
+                    setShowAnimation(tvTitle, 1000, null);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
         }
-        setHideAnimation(tvTitle, 2000, new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                tvTitle.setText(getString(R.string.string_app_name));
-                setShowAnimation(tvTitle, 1000, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
     }
 
     /**
