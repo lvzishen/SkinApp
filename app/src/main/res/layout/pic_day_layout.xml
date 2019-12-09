@@ -59,6 +59,9 @@
             android:textColor="@color/share_txt_color"
             android:textAllCaps="false"
             android:textSize="19sp"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/qb_px_8"
+            android:textStyle="bold"
             android:id="@+id/btn_share"/>
 
     </LinearLayout>
