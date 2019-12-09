@@ -135,10 +135,10 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
                             break;
                         case SAVE:
                             type = "save";
-                            ShareTypeManager.shareWithImage(mType, BaseDetailActivity.this, mBitmap);
+                            ShareTypeManager.shareWithImage(mType, BaseDetailActivity.this, mBitmap, mDataItem.getVideoUrl());
                             break;
                     }
-                    StatisticLoggerX.logClickType1("share", type, "detail", mDataItem.getChannelName());
+                    StatisticLoggerX.logClickType2("share", type, "detail", mDataItem.getChannelName(), mDataItem.getResourceId() + "");
                     break;
             }
         }
@@ -171,7 +171,7 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
 //            Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
 //        }
         mShareRv.setCallback(mCallBack);
-        mLayoutManager = new GridLayoutManager(this, 4);
+        mLayoutManager = new GridLayoutManager(this, 3);
         mShareRv.setLayoutManager(mLayoutManager);
         //设置页面类型
         mBackLayout.setOnClickListener(new View.OnClickListener() {
@@ -277,7 +277,7 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
         switch (mType) {
             case DataListItem.DATA_TYPE_1:
                 mDatas.add(new ShareItem(this, WHATSAPP));
-                mDatas.add(new ShareItem(this, FACEBOOK));
+//                mDatas.add(new ShareItem(this, FACEBOOK));
 //                mDatas.add(new ShareItem(this, MESSAGE));
                 mDatas.add(new ShareItem(this, COPY));
                 mDatas.add(new ShareItem(this, MORE));
@@ -285,13 +285,13 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
                 break;
             case DataListItem.DATA_TYPE_2:
                 mDatas.add(new ShareItem(this, WHATSAPP));
-                mDatas.add(new ShareItem(this, FACEBOOK));
+//                mDatas.add(new ShareItem(this, FACEBOOK));
                 mDatas.add(new ShareItem(this, SAVE));
                 mDatas.add(new ShareItem(this, MORE));
                 break;
             case DataListItem.DATA_TYPE_3:
                 mDatas.add(new ShareItem(this, WHATSAPP));
-                mDatas.add(new ShareItem(this, FACEBOOK));
+//                mDatas.add(new ShareItem(this, FACEBOOK));
 //                mDatas.add(new ShareItem(this, INSTAGRAM));
                 mDatas.add(new ShareItem(this, SAVE));
                 mDatas.add(new ShareItem(this, MORE));
@@ -316,32 +316,32 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
         this.mShareItem = shareItem;
         //引导登录
         //获取已登录的账号
-        Account account = NjordAccountManager.getCurrentAccount(this);
-        if (account != null) {
-            if (mType == DataListItem.DATA_TYPE_2 && account.isGuest() && mShareItem.type != SAVE && mShareItem.type != COPY) {
-                if (isShowLoginGuide()) {
-                    Intent intent = new Intent(BaseDetailActivity.this, LoginGuideActivity.class);
-                    intent.putExtra("picUrl", mDataItem.getPicUrl());
-                    startActivity(intent);
-                    isGoLogin = true;
-                    return;
-                }
+//        Account account = NjordAccountManager.getCurrentAccount(this);
+//        if (account != null) {
+//            if (mType == DataListItem.DATA_TYPE_2 && account.isGuest() && mShareItem.type != SAVE && mShareItem.type != COPY) {
+//                if (isShowLoginGuide()) {
+//                    Intent intent = new Intent(BaseDetailActivity.this, LoginGuideActivity.class);
+//                    intent.putExtra("picUrl", mDataItem.getPicUrl());
+//                    startActivity(intent);
+//                    isGoLogin = true;
+//                    return;
+//                }
+//            }
+//            if (mType == DataListItem.DATA_TYPE_2 && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext())) && !isNotHaveWaterMark) {
+//                makeWaterMark();
+//            } else {
+        if (mType == DataListItem.DATA_TYPE_2 && !isNotHaveWaterMarkUnLogin) {
+            if (mBitmap == null) {
+                return;
             }
-            if (mType == DataListItem.DATA_TYPE_2 && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext())) && !isNotHaveWaterMark) {
-                makeWaterMark();
-            } else {
-                if (mType == DataListItem.DATA_TYPE_2 && !isNotHaveWaterMarkUnLogin) {
-                    if (mBitmap == null) {
-                        return;
-                    }
-                    //增加产品水印
-                    Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
-                    mBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
-                    isNotHaveWaterMarkUnLogin = true;
-                }
-                mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
-            }
+            //增加产品水印
+            Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
+            mBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+            isNotHaveWaterMarkUnLogin = true;
         }
+        mHandler.sendEmptyMessage(MESSAGE_TO_SHARE);
+//            }
+//        }
     }
 
     private void makeWaterMark() {
