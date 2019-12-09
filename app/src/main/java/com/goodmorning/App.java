@@ -232,7 +232,7 @@ public class App extends Application {
 
             @Override
             public String getServerUrlHost() {
-                return "http://feed.apusapps.com";
+                return "http://feed.subcdn.com";
             }
         });
 
@@ -354,7 +354,7 @@ public class App extends Application {
 
             @Override
             public String getServerUrlHost() {
-                return "http://feed.apusapps.com";
+                return "http://feed.subcdn.com";
             }
         });
     }

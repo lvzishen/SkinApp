@@ -14,16 +14,20 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.Glide;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.ui.activity.PicDetailActivity;
 import com.goodmorning.utils.ActivityCtrl;
+import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.GlideRoundTransform;
 import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.utils.ResUtils;
+
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class PicDialog extends Dialog implements View.OnClickListener {
     private ImageView ivPic;
@@ -72,6 +76,7 @@ public class PicDialog extends Dialog implements View.OnClickListener {
 //                .into(ivPic);
         ImageUtil.displayImageView(getContext(),ivPic,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
         StatisticLoggerX.logShowUpload("","pic popup","","","");
+        SharedPref.setBoolean(getApplicationContext(), CheckUtils.keyStartTime,true);
     }
 
     public void setDataListItem(DataListItem dataListItem){

@@ -34,8 +34,8 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
     private TextView tvShareCope;
     private RelativeLayout llShareDialog;
     private Activity mActivity;
-    private String shareMsg = "https://developers.facebook.com";
-    private String ShareUrl = "https://developers.facebook.com";
+    private String shareMsg = "Sunny Day： Kahe apno ko Namaste!\n" +"https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
+    private String ShareUrl = "https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
     public ShareDialog(@NonNull Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
