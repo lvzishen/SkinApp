@@ -1,0 +1,2 @@
+#home header title greetings  lang
+h.h.t.g.en=[{"content":"Good Morning","from":6,"to":10},{"content":"Good Afternoon","from":13,"to":19},{"content":"Good Evening","from":19,"to":24}]
