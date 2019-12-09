@@ -33,10 +33,10 @@ public class SaveImageImpl implements ISaveImage {
 
     @Override
     public String saveImage(Context context, String name, Bitmap bmp) {
-        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
-        if (Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor")) {
-            appDir = new File(Environment.getExternalStorageDirectory() + File.separator + "Pictures" + File.separator + "SunnyDay" + File.separator);
-        }
+//        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
+//        if (Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor")) {
+        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + "Pictures" + File.separator + "SunnyDay" + File.separator);
+//        }
         if (GlobalConfig.DEBUG) {
             Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
         }
@@ -60,23 +60,23 @@ public class SaveImageImpl implements ISaveImage {
                 fos.flush();
                 fos.close();
             }
-            if (!(Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor"))) {
-                if (GlobalConfig.DEBUG) {
-                    Log.i("SaveImageImpl", "Not huawei");
-                }
-                try {
-                    MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                            file.getAbsolutePath(), fileName, null);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                // 最后通知图库更新
-                Uri localUri = Uri.fromFile(file);
-
-                Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
-
-                context.sendBroadcast(localIntent);
-            }
+//            if (!(Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor"))) {
+//                if (GlobalConfig.DEBUG) {
+//                    Log.i("SaveImageImpl", "Not huawei");
+//                }
+//                try {
+//                    MediaStore.Images.Media.insertImage(context.getContentResolver(),
+//                            file.getAbsolutePath(), fileName, null);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                // 最后通知图库更新
+//                Uri localUri = Uri.fromFile(file);
+//
+//                Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
+//
+//                context.sendBroadcast(localIntent);
+//            }
             Toast.makeText(context.getApplicationContext(), context.getString(R.string.save_to_album), Toast.LENGTH_SHORT).show();
             return file.getAbsolutePath();
         } catch (IOException e) {
