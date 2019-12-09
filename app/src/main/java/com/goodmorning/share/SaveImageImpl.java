@@ -8,12 +8,15 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.config.GlobalConfig;
+import com.goodmorning.share.util.DownloadUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,10 +36,7 @@ public class SaveImageImpl implements ISaveImage {
 
     @Override
     public String saveImage(Context context, String name, Bitmap bmp) {
-//        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
-//        if (Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor")) {
         File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + "Pictures" + File.separator + "SunnyDay" + File.separator);
-//        }
         if (GlobalConfig.DEBUG) {
             Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
         }
@@ -60,23 +60,6 @@ public class SaveImageImpl implements ISaveImage {
                 fos.flush();
                 fos.close();
             }
-//            if (!(Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor"))) {
-//                if (GlobalConfig.DEBUG) {
-//                    Log.i("SaveImageImpl", "Not huawei");
-//                }
-//                try {
-//                    MediaStore.Images.Media.insertImage(context.getContentResolver(),
-//                            file.getAbsolutePath(), fileName, null);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//                // 最后通知图库更新
-//                Uri localUri = Uri.fromFile(file);
-//
-//                Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
-//
-//                context.sendBroadcast(localIntent);
-//            }
             Toast.makeText(context.getApplicationContext(), context.getString(R.string.save_to_album), Toast.LENGTH_SHORT).show();
             return file.getAbsolutePath();
         } catch (IOException e) {
@@ -85,83 +68,65 @@ public class SaveImageImpl implements ISaveImage {
         return "";
     }
 
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     public String saveVideo(Context context, String videoName, String videoUrl) {
-        File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
+        String saveDir = Environment.getExternalStorageDirectory() + File.separator + "Pictures" + File.separator + "SunnyDay" + File.separator;
         if (GlobalConfig.DEBUG) {
-            Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
+            Log.i("SaveImageImpl", "saveDir :" + saveDir);
         }
-        if (!appDir.exists()) {
-            appDir.mkdir();
-        }
-        int mediaLength;
-        FileOutputStream fos = null;
-        InputStream is = null;
-        String fileName = videoName + ".mp4";
-        File file = new File(appDir, fileName);
-        long readSize = file.length();
-        try {
-            fos = new FileOutputStream(file);
-
-            URL url = new URL(videoName);
-            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
-            httpConnection.setRequestProperty("User-Agent", "NetFox");
-            httpConnection.setRequestProperty("RANGE", "bytes=" + readSize + "-");
-
-            is = httpConnection.getInputStream();
-
-            mediaLength = httpConnection.getContentLength();
-            if (mediaLength == -1) {
-                return "";
+        DownloadUtil.get().download(videoUrl, saveDir, new DownloadUtil.OnDownloadListener() {
+            @Override
+            public void onDownloadSuccess(File file) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (GlobalConfig.DEBUG) {
+                            Log.i("SaveImageImpl", "下载完成");
+                        }
+                        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getAbsolutePath())));
+                        ContentResolver localContentResolver = context.getContentResolver();
+                        ContentValues localContentValues = getVideoContentValues(context, file, System.currentTimeMillis());
+                        Uri localUri = localContentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, localContentValues);
+                    }
+                });
             }
-            byte buf[] = new byte[4 * 1024];
-            int size = 0;
-            while ((size = is.read(buf)) != -1) {   //
-                try {
-                    fos.write(buf, 0, size);   // 把网络视频文件写入SD卡中
-                    readSize += size;
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+            @Override
+            public void onDownloading(int progress) {
+//                progressBar.setProgress(progress);
+            }
+
+            @Override
+            public void onDownloadFailed() {
+                if (GlobalConfig.DEBUG) {
+                    Log.i("SaveImageImpl", "下载失败");
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                }
-            }
-
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-
-        try {
-            fos.flush();
-            fos.close();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                    file.getAbsolutePath(), fileName, null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        // 最后通知图库更新
-        Uri localUri = Uri.fromFile(file);
-
-        Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
-
-        context.sendBroadcast(localIntent);
-        Toast.makeText(context.getApplicationContext(), context.getString(R.string.save_to_album), Toast.LENGTH_SHORT).show();
-        return file.getAbsolutePath();
+        });
+        return "";
     }
+
+    /**
+     * 视频存在本地
+     *
+     * @param paramContext
+     * @param paramFile
+     * @param paramLong
+     * @return
+     */
+    public static ContentValues getVideoContentValues(Context paramContext, File paramFile, long paramLong) {
+        ContentValues localContentValues = new ContentValues();
+        localContentValues.put("title", paramFile.getName());
+        localContentValues.put("_display_name", paramFile.getName());
+        localContentValues.put("mime_type", "video/3gp");
+        localContentValues.put("datetaken", Long.valueOf(paramLong));
+        localContentValues.put("date_modified", Long.valueOf(paramLong));
+        localContentValues.put("date_added", Long.valueOf(paramLong));
+        localContentValues.put("_data", paramFile.getAbsolutePath());
+        localContentValues.put("_size", Long.valueOf(paramFile.length()));
+        return localContentValues;
+    }
+
 }
