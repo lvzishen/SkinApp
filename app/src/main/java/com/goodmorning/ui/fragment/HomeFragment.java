@@ -1,4 +1,5 @@
 package com.goodmorning.ui.fragment;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -35,6 +36,7 @@ import com.goodmorning.bean.DataListItem;
 import com.goodmorning.bean.DayPicture;
 import com.goodmorning.manager.ContentManager;
 import com.goodmorning.manager.ImageLoader;
+import com.goodmorning.manager.MorningPushExtension;
 import com.goodmorning.utils.AppUtils;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.CloudConstants;
@@ -68,12 +70,13 @@ public class HomeFragment extends Fragment {
     private List<Fragment> mFragmentList = new ArrayList<>();
     private LanguageDialog languageDialog;
     private Activity mActivity;
-    private AlphaAnimation mHideAnimation	= null;
-    private AlphaAnimation mShowAnimation	= null;
+    private AlphaAnimation mHideAnimation = null;
+    private AlphaAnimation mShowAnimation = null;
     private Handler handler = new Handler();
     private List<DayPicture> dayPicture;
     private List<String> channelIds;
     private DayPicture finalDayPicture;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,7 +86,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         tabLayout = view.findViewById(R.id.tablayout);
         tabVpager = view.findViewById(R.id.tab_viewpager);
         tvTitle = view.findViewById(R.id.tv_title);
@@ -99,8 +102,8 @@ public class HomeFragment extends Fragment {
 
     private void hideTitleGreetings() {
         String text = HomeGreetingHelper.showText(getApplicationContext());
-        int status= HomeGreetingHelper.dayTimeStatus(getApplicationContext());
-        switch (status){
+        int status = HomeGreetingHelper.dayTimeStatus(getApplicationContext());
+        switch (status) {
             case 0:
                 break;
             case 1:
@@ -173,14 +176,14 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private void initData(){
+    private void initData() {
         mActivity = getActivity();
         channelIds = new ArrayList<>();
-        String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC,"day_pic");
+        String cloudData = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_EVERYDAY_PIC, "day_pic");
         JsonHelper<List<DayPicture>> jsonHelper = new JsonHelper<List<DayPicture>>() {
         };
         dayPicture = jsonHelper.getJsonObject(cloudData);
-        tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D),ResUtils.getColor(R.color.color_444444));
+        tabLayout.setTabTextColors(ResUtils.getColor(R.color.color_9D9D9D), ResUtils.getColor(R.color.color_444444));
         tabLayout.setSelectedTabIndicatorColor(ResUtils.getColor(R.color.setting_txt_tag_color));
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
@@ -188,9 +191,9 @@ public class HomeFragment extends Fragment {
                 // 获取 tab 组件
                 View view = tab.getCustomView();
                 if (null != view && view instanceof LinearLayout) {
-                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                    for (int i = 0; i < ((LinearLayout) view).getChildCount(); i++) {
                         View childView = ((LinearLayout) view).getChildAt(i);
-                        if (null != childView && childView instanceof TextView){
+                        if (null != childView && childView instanceof TextView) {
                             // 改变 tab 选择状态下的字体大小
                             ((TextView) childView).setTextSize(14);
                             // 改变 tab 选择状态下的字体颜色
@@ -205,9 +208,9 @@ public class HomeFragment extends Fragment {
             public void onTabUnselected(TabLayout.Tab tab) {
                 View view = tab.getCustomView();
                 if (null != view && view instanceof LinearLayout) {
-                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                    for (int i = 0; i < ((LinearLayout) view).getChildCount(); i++) {
                         View childView = ((LinearLayout) view).getChildAt(i);
-                        if (null != childView && childView instanceof TextView){
+                        if (null != childView && childView instanceof TextView) {
                             // 改变 tab 选择状态下的字体大小
                             ((TextView) childView).setTextSize(13);
                             // 改变 tab 选择状态下的字体颜色
@@ -223,9 +226,9 @@ public class HomeFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
                 View view = tab.getCustomView();
                 if (null != view && view instanceof LinearLayout) {
-                    for (int i=0;i<((LinearLayout) view).getChildCount();i++){
+                    for (int i = 0; i < ((LinearLayout) view).getChildCount(); i++) {
                         View childView = ((LinearLayout) view).getChildAt(i);
-                        if (null != childView && childView instanceof TextView){
+                        if (null != childView && childView instanceof TextView) {
                             // 改变 tab 选择状态下的字体大小
                             ((TextView) childView).setTextSize(14);
                             // 改变 tab 选择状态下的字体颜色
@@ -252,7 +255,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                StatisticLoggerX.logShowUpload("homepage","hometab",channelIds.get(position),"","");
+                StatisticLoggerX.logShowUpload("homepage", "hometab", channelIds.get(position), "", "");
             }
 
             @Override
@@ -266,19 +269,19 @@ public class HomeFragment extends Fragment {
     /**
      * 添加数据
      */
-    private void addData(){
-        if (mActivity == null){
+    private void addData() {
+        if (mActivity == null) {
             return;
         }
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 ChannelList.LangCategoryInfo langCategoryInfo = ContentManager.getInstance().getChannelContent();
-                if (langCategoryInfo == null){
-                    if (tabLayout.getTabCount() == 0){
+                if (langCategoryInfo == null) {
+                    if (tabLayout.getTabCount() == 0) {
                         showLoading(false);
                         llChannelRetry.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         showLoading(false);
                         llChannelRetry.setVisibility(View.GONE);
                     }
@@ -292,13 +295,13 @@ public class HomeFragment extends Fragment {
                 ArrayList<ChannelList.Category> categories = langCategoryInfo.categoryList;
                 mFragmentList.clear();
                 channelIds.clear();
-                for (int i=0;i<categories.size();i++){
+                for (int i = 0; i < categories.size(); i++) {
                     String text = categories.get(i).text;
                     String[] txts = TextUtils.channelText(text);
                     TabFragment tabFragment = new TabFragment();
                     Bundle bundle1 = new Bundle();
                     bundle1.putInt(MainActivity.CONTENT, categories.get(i).id);
-                    bundle1.putString(MainActivity.CHANNEL_NAME,txts[0]);
+                    bundle1.putString(MainActivity.CHANNEL_NAME, txts[0]);
                     tabFragment.setArguments(bundle1);
                     mFragmentList.add(tabFragment);
                     channelIds.add(String.valueOf(categories.get(i).id));
@@ -307,29 +310,29 @@ public class HomeFragment extends Fragment {
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 tabVpager.setAdapter(new TabAdapter(getChildFragmentManager()));
                 tabLayout.setupWithViewPager(tabVpager);
-                for (int i=0;i<categories.size();i++){
+                for (int i = 0; i < categories.size(); i++) {
                     TabLayout.Tab tab = tabLayout.getTabAt(i);
-                    View view = LayoutInflater.from(getContext()).inflate(R.layout.item_tab,null);
+                    View view = LayoutInflater.from(getContext()).inflate(R.layout.item_tab, null);
                     TextView tvTab = view.findViewById(R.id.tv_item);
                     ImageView ivTab = view.findViewById(R.id.iv_tab);
                     String text = categories.get(i).text;
                     String[] txts = TextUtils.channelText(text);
                     tvTab.setText(txts[0]);
-                    if (txts.length > 1){
-                        ImageLoader.displayImageByName(getContext(),txts[1],R.drawable.shape_channel_item_default,R.drawable.shape_channel_item_default,ivTab);
+                    if (txts.length > 1) {
+                        ImageLoader.displayImageByName(getContext(), txts[1], R.drawable.shape_channel_item_default, R.drawable.shape_channel_item_default, ivTab);
                     }
                     tab.setCustomView(view);
                 }
-                if (tabLayout.getTabAt(0) != null){
+                if (tabLayout.getTabAt(0) != null) {
                     tabLayout.getTabAt(0).select();
                 }
-                if (channelIds.size() > 0){
-                    StatisticLoggerX.logShowUpload("homepage","hometab",channelIds.get(0),"","");
+                if (channelIds.size() > 0) {
+                    StatisticLoggerX.logShowUpload("homepage", "hometab", channelIds.get(0), "", "");
                 }
-                if (tabLayout.getTabCount() == 0){
+                if (tabLayout.getTabCount() == 0) {
                     showLoading(false);
                     llChannelRetry.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     showLoading(false);
                     llChannelRetry.setVisibility(View.GONE);
                 }
@@ -338,41 +341,41 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void setListener(){
-        if (languageDialog != null){
+    private void setListener() {
+        if (languageDialog != null) {
             languageDialog.setOnSwitchLanguage(new LanguageAdapter.OnSwitchLanguage() {
                 @Override
                 public void onLanguage(String languge) {
                     //切换语言重新请求接口
                     languageDialog.dismiss();
-                    if (mActivity == null){
+                    if (mActivity == null) {
                         return;
                     }
 
-                    AppUtils.changeLanguage(mActivity,languge);
+                    AppUtils.changeLanguage(mActivity, languge);
                     mActivity.finish();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(MainActivity.KEY_EXTRA_ISMINE,false);
+                    intent.putExtra(MainActivity.KEY_EXTRA_ISMINE, false);
                     getApplicationContext().startActivity(intent);
                 }
             });
         }
     }
 
-    private void requestChannelList(){
+    private void requestChannelList() {
         long cacheTime = CloudConstants.getChannelCacheTimeInSeconds();
         MorningDataAPI.requestChannelList(getApplicationContext(), new ChannelListRequestParam(false, 0L), new ResultCallback<ChannelList>() {
             @Override
             public void onSuccess(ChannelList data) {
-                if (mActivity == null){
+                if (mActivity == null) {
                     return;
                 }
-                if (data != null){
+                if (data != null) {
                     boolean isShowLang = CheckUtils.isShowLanguage();
                     String languageJson = JSON.toJSONString(data.languageItems);
-                    SharedPref.setString(getApplicationContext(),SharedPref.LANGUAGE_TYPE,languageJson);
-                    if (isShowLang){
+                    SharedPref.setString(getApplicationContext(), SharedPref.LANGUAGE_TYPE, languageJson);
+                    if (isShowLang) {
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -382,12 +385,12 @@ public class HomeFragment extends Fragment {
                             }
                         });
                         checkShowDayPic();
-                    }else {
+                    } else {
                         checkShowDayPic();
                     }
-                    if (data.langCategoryInfos != null){
+                    if (data.langCategoryInfos != null) {
                         String json = JSON.toJSONString(data.langCategoryInfos);
-                        SharedPref.setString(getApplicationContext(),SharedPref.CHANNEL_CONTENT,json);
+                        SharedPref.setString(getApplicationContext(), SharedPref.CHANNEL_CONTENT, json);
                     }
                 }
                 addData();
@@ -406,8 +409,9 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    class TabAdapter extends FragmentStatePagerAdapter{
+    class TabAdapter extends FragmentStatePagerAdapter {
         private FragmentManager mFragmentManager;
+
         public TabAdapter(FragmentManager fm) {
             super(fm);
             mFragmentManager = fm;
@@ -463,7 +467,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (languageDialog != null && languageDialog.isShowing()){
+        if (languageDialog != null && languageDialog.isShowing()) {
             languageDialog.dismiss();
         }
     }
@@ -471,31 +475,30 @@ public class HomeFragment extends Fragment {
     /**
      * 检查显示每日一图
      */
-    private void checkShowDayPic(){
-        if (dayPicture == null){
+    private void checkShowDayPic() {
+        if (dayPicture == null) {
             return;
         }
         finalDayPicture = null;
-        for (DayPicture dayPicture : dayPicture){
-            if (CheckUtils.isShowPic(dayPicture.getStartTime(),dayPicture.getEndTime())){
+        for (DayPicture dayPicture : dayPicture) {
+            if (CheckUtils.isShowPic(dayPicture.getStartTime(), dayPicture.getEndTime())) {
                 finalDayPicture = dayPicture;
             }
         }
-
-        if (finalDayPicture != null){
+        if (finalDayPicture != null) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if ((languageDialog != null && !languageDialog.isShowing()) || languageDialog == null){
+                    if ((languageDialog != null && !languageDialog.isShowing()) || languageDialog == null) {
                         //显示每日一图,语言列表优先级高，当前正在显示语言列表，轮训检查是否关闭，关闭后展示每日一图
                         handler.removeCallbacks(this);
-                        if (mActivity == null){
+                        if (mActivity == null) {
                             return;
                         }
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                SharedPref.setString(getApplicationContext(),SharedPref.KEY_PROP_STARTTIME,String.valueOf(finalDayPicture.getStartTime()));
+                                SharedPref.setString(getApplicationContext(), SharedPref.KEY_PROP_STARTTIME, String.valueOf(finalDayPicture.getStartTime()));
                                 PicDialog picDialog = new PicDialog(mActivity);
                                 DataListItem dataListItem = new DataListItem();
                                 dataListItem.setType(DataListItem.DATA_TYPE_2);
@@ -506,21 +509,25 @@ public class HomeFragment extends Fragment {
                                 dataListItem.setWidth(finalDayPicture.getWidth());
                                 picDialog.setDataListItem(dataListItem);
                                 picDialog.show();
-                                SharedPref.setBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(),SharedPref.KEY_PROP_STARTTIME,"0"),true);
+                                SharedPref.setBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(), SharedPref.KEY_PROP_STARTTIME, "0"), true);
+                                if (MorningPushExtension.mPushBean != null) {
+                                    //当前有通知栏
+                                    MorningPushExtension.showNotification(MorningPushExtension.mPushBean, mActivity);
+                                }
                             }
                         });
-                    }else {
-                        handler.postDelayed(this,1000);
+                    } else {
+                        handler.postDelayed(this, 1000);
                     }
                 }
-            },1000);
+            }, 1000);
         }
     }
 
-    private void showLoading(boolean isShow){
-        if (isShow){
+    private void showLoading(boolean isShow) {
+        if (isShow) {
             lottieAnimationView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             lottieAnimationView.setVisibility(View.GONE);
         }
     }

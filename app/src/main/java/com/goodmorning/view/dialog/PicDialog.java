@@ -84,10 +84,12 @@ public class PicDialog extends Dialog implements View.OnClickListener {
     }
 
     private void addData(){
+        ViewGroup.LayoutParams layoutParams =  ivPic.getLayoutParams();
         Glide.with(getContext())
-                .load(dataListItem.getPicUrl())
+                .load(dataListItem.getPicUrl())//dataListItem.getPicUrl()
                 .placeholder(R.drawable.shape_list_item_default)
                 .error(R.drawable.shape_list_item_default)
+                .override(720, 900)
                 .apply(RequestOptions.bitmapTransform(new GranularRoundedCorners(25,25,0,0)))
                 .into(ivPic);
         StatisticLoggerX.logShowUpload("","pic popup","","","");

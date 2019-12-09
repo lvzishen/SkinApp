@@ -2,7 +2,6 @@ package com.goodmorning;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -36,7 +35,6 @@ import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.ResUtils;
 import com.goodmorning.view.dialog.PicDialog;
 import com.goodmorning.view.tab.BottomBarLayout;
-import com.w.sdk.push.PushBindManager;
 
 import org.n.account.core.AccountSDK;
 import org.n.account.core.api.NjordAccountManager;
@@ -46,15 +44,11 @@ import org.n.account.core.contract.LoginApi;
 import org.n.account.core.data.NjordAccountReceiver;
 import org.n.account.core.exception.NotAllowLoginException;
 import org.n.account.core.model.Account;
-import org.n.account.core.ui.LoadingDialog;
-import org.n.account.core.utils.DialogUtils;
 import org.n.account.net.NetCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
-import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 
 public class MainActivity extends BaseActivity {
@@ -89,6 +83,7 @@ public class MainActivity extends BaseActivity {
         //匿名账号登录，按需初始化，一般会在主界面进行初始化
         NjordAccountManager.registerGuest(this, null);
         NjordAccountReceiver.register(this, mAccountReceiver);
+
     }
 
     private void initView() {
@@ -188,15 +183,16 @@ public class MainActivity extends BaseActivity {
             Log.i("MorningPushExtension", "onnewintent isFromNoti" + isFromNoti);
         }
         DataListItem dataListItem = MorningPushExtension.pushDataListItem;
-        if (isFromNoti && dataListItem != null && CheckUtils.isShowPic(SharedPref.getString(getApplicationContext(),SharedPref.KEY_PUSH_STARTTIME,"0"))) {
+        if (isFromNoti && dataListItem != null && CheckUtils.isShowPic(SharedPref.getString(getApplicationContext(), SharedPref.KEY_PUSH_STARTTIME, "0"))) {
             if (DEBUG) {
                 Log.i("MorningPushExtension", "onnewintent dataListItem" + dataListItem.toString());
             }
+            MorningPushExtension.mPushBean = null;
             StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
             PicDialog picDialog = new PicDialog(this);
             picDialog.setDataListItem(dataListItem);
             picDialog.show();
-            SharedPref.setBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(),SharedPref.KEY_PUSH_STARTTIME,"0"),true);
+            SharedPref.setBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(), SharedPref.KEY_PUSH_STARTTIME, "0"), true);
         }
     }
 
