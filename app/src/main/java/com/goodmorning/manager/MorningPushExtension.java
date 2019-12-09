@@ -17,26 +17,19 @@ import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 
 import com.baselib.bitmap.util.DeviceUtil;
-import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.bean.DataListItem;
-import com.goodmorning.bean.DayPicture;
 import com.goodmorning.bean.PushBean;
 import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.ui.activity.PicDetailActivity;
 import com.goodmorning.utils.CheckUtils;
-import com.goodmorning.utils.CloudControlUtils;
 import com.w.sdk.push.api.IPushExtension;
 import com.w.sdk.push.api.PushManager;
 import com.w.sdk.push.model.PushMessage;
 
-import org.n.account.core.model.User;
 import org.thanos.netcore.helper.JsonHelper;
 
 import java.text.SimpleDateFormat;
@@ -96,7 +89,7 @@ public class MorningPushExtension extends IPushExtension {
 
         DataListItem dataListItem = new DataListItem();
         dataListItem.setType(DataListItem.DATA_TYPE_2);
-        dataListItem.setPicUrl(pushBean.icon);
+        dataListItem.setPicUrl(pushBean.big_image);
         String str[] = pushBean.action_main.split(",");
         dataListItem.setResourceId(Long.valueOf(str[0]));
         dataListItem.setWidth(Integer.valueOf(str[1]));
