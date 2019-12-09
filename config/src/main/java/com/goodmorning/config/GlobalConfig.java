@@ -8,7 +8,7 @@ import android.os.Build;
  * 全局配置
  */
 public class GlobalConfig {
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     /**
      * 先将特殊应用的过滤逻辑去掉
