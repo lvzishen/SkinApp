@@ -232,7 +232,7 @@ public class App extends Application {
 
             @Override
             public String getServerUrlHost() {
-                return "http://feed.subcdn.com";
+                return "http://feed.luckmorning.com";
             }
         });
 
