@@ -89,7 +89,8 @@ public class AccountConfig implements IConfiguration {
     public String getHost() {
         //TODO 账号替换 AccountReplace
 //        return "http://account.picku.cloud/v2/";//正式
-        return "http://test-account.apuscn.com/v2/";//测试
+        return "http://account.luckmorning.com/v2/";//正式
+//        return "http://test-account.apuscn.com/v2/";//测试
     }
 
     public static class AccountExceptionHandler implements IExceptionHandler {

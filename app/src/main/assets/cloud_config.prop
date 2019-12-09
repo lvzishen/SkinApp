@@ -1,0 +1,17 @@
+# Channel List
+EHqPLp3=http://feed.luckmorning.com/router?method=channel.list
+# Content List
+bG7pxSB=http://feed.luckmorning.com/router?method=news.list
+# Content Details
+QaCnuTa=http://feed.luckmorning.com/mercury/news/detail
+# Recommend List
+DPNRiHw=http://feed.luckmorning.com/router?method=video.recommend.list
+# User Behavior Upload
+k7ND78=http://feed.luckmorning.com/router?method=user.behavior
+# User Feedback Upload
+ZPemjhl=http://feed.luckmorning.com/router?method=user.feedback
+
+# User Collect Upload
+CollectUpload=http://feed.luckmorning.com/router?method=user.behavior2
+CollectList=http://feed.luckmorning.com/router?method=user.behavior2.getByUser
+CollectStatus=http://feed.luckmorning.com/router?method=user.behavior2.getByUserAndRid

@@ -88,8 +88,7 @@
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|uiMode"
             android:label="@string/string_app_name"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/windowShowPreviewNoAnimTheme">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

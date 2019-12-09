@@ -43,7 +43,7 @@ public class HomeGreetingHelper {
 //                int curr = h * 60 + m;
 
 
-                if ((h >= from && h < to)) {
+                if ((h >= from && h < to)) {// || (to < from && (h < to || h >= from))
                     if (DEBUG) {
                         Log.i(TAG, "showText: "+jsonObject.toString());
                     }

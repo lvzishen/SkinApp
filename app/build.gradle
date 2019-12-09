@@ -74,6 +74,14 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
+    packagingOptions {
+        doNotStrip "*/arm64-v8a/libdu.so"
+        doNotStrip "*/armeabi/libdu.so"
+        doNotStrip "*/armeabi-v7a/libdu.so"
+        doNotStrip "*/x86/libdu.so"
+        doNotStrip "*/x86_64/libdu.so"
+    }
 }
 
 
@@ -86,7 +94,7 @@ dependencies {
     implementation project(':adslib')
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    xalApi 'com.lachesis:daemon:2.3.1-clean'
+    xalApi 'com.lachesis:daemon:2.3.14'
     debugCompileOnly("org.trade.adsmodule:splash-module:$TRADE_SPLASH-debug") {
         exclude(group: 'com.squareup.okhttp3', module: 'okhttp')
     }
@@ -126,7 +134,7 @@ dependencies {
 apply plugin: 'com.google.gms.google-services'
 xal {
     xmlConfigVersion true
-    persistProcessName 'com.creativeindia.goodmorning.background'
+    persistProcessName 'com.creativeindia.goodmorning'
     setVersionXmlFile("src/main/res/values/donottranslate.xml")
 
 }
