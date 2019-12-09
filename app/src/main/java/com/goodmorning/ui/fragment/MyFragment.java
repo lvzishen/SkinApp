@@ -132,7 +132,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private void initData() {
         mActivity = getActivity();
-        if (Nox.canUpdate(getApplicationContext())) {
+        if (AppUtils.isUpdate(mActivity)) {
             ivMyTip.setVisibility(View.VISIBLE);
             ivMyUpdate.setVisibility(View.VISIBLE);
             mUpdate.setClickable(true);

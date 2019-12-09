@@ -149,7 +149,7 @@
     <string name="whatsapp">WhatsApp</string>
     <string name="tab_greeting">संदेश</string>
     <string name="tab_my">मेरा</string>
-    <string name="sign_in_to">फेसबुक के साथ लॉग-इन करें</string>
+    <string name="sign_in_to">लॉगिन करें</string>
 
     <string name="collect">मेरा संग्रह</string>
     <string name="language">भाषा</string>
@@ -170,4 +170,6 @@
     <string name="ask_exit">क्या आप लॉग आउट करना चाहते हैं</string>
     <string name="load_more_bottom">ओह, आगे कोई सामग्री नहीं है...</string>
     <string name="user_terms_n_privacy_link_text">लॉगिन का मतलब है कि आप सेवा की शर्तों और गोपनीयता नीति से सहमत हैं</string>
+    <string name="press_again_exit">बाहर जानें के लिए दोबारा दबाएं</string>
+    <string name="share_copy">कॉपी हो गय</string>
 </resources>

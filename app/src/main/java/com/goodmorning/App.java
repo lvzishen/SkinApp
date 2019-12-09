@@ -186,7 +186,7 @@ public class App extends Application {
 
         initAdSDK(mContext);
 
-        initXALApkUpdate();
+//        initXALApkUpdate();
 
         if (matchProcess(FLAG_PROCESS_BACKGROUND)) {
             new Thread() {
@@ -598,7 +598,7 @@ public class App extends Application {
         Task.delay(500).onSuccess(new Continuation<Void, Void>() {
             @Override
             public Void then(Task<Void> task) {
-                initXALApkUpdate();
+//                initXALApkUpdate();
                 return null;
             }
         }, Task.BACKGROUND_EXECUTOR);

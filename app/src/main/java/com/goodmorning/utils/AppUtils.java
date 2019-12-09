@@ -135,7 +135,7 @@ public class AppUtils {
         JsonHelper<CheckUpdate> jsonHelper = new JsonHelper<CheckUpdate>() {
         };
         CheckUpdate checkUpdate = jsonHelper.getJsonObject(cloudData);
-        if (checkUpdate.getVersionCode() !=0 && !TextUtils.isEmpty(checkUpdate.getVersionName())){
+        if (checkUpdate != null && checkUpdate.getVersionCode() !=0 && !TextUtils.isEmpty(checkUpdate.getVersionName())){
             if (checkUpdate.getVersionCode() > versionCode || !checkUpdate.getVersionName().equals(versionName)){
                 return true;
             }

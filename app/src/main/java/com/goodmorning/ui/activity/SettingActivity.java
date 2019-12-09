@@ -84,7 +84,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initData(){
-        if (Nox.canUpdate(getApplicationContext())){//AppUtils.isUpdate(this)
+        if (AppUtils.isUpdate(getApplicationContext())){//AppUtils.isUpdate(this)
             ivSetTip.setVisibility(View.VISIBLE);
             ivSetArrow.setVisibility(View.VISIBLE);
             rlSetUpdate.setClickable(true);

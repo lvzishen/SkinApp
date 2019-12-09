@@ -70,7 +70,7 @@ public class ShareTypeManager {
         ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("simple text", data);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.is_copy), Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.share_copy), Toast.LENGTH_SHORT).show();
     }
 
     public static void shareWithImage(int mType, Activity activity, Bitmap mBitmap) {
