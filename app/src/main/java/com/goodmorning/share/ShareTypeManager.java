@@ -107,7 +107,7 @@ public class ShareTypeManager {
         }
         if (mType == DataListItem.DATA_TYPE_2 && mBitmap != null) {
             if (!RPlatformHelper.isInstalled(activity, RSharePlatform.Platform.Facebook)) {
-                Toast.makeText(activity, "请先安装FaceBook...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getResources().getString(R.string.please_install_facebook), Toast.LENGTH_SHORT).show();
                 return;
             }
             SharePhoto photo = new SharePhoto.Builder()
@@ -120,7 +120,7 @@ public class ShareTypeManager {
         }
         if (mType == DataListItem.DATA_TYPE_3) {
             if (!RPlatformHelper.isInstalled(activity, RSharePlatform.Platform.Facebook)) {
-                Toast.makeText(activity, "请先安装FaceBook...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getResources().getString(R.string.please_install_facebook), Toast.LENGTH_SHORT).show();
                 return;
             }
             ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse(mDataItem.getVideoUrl())).build();

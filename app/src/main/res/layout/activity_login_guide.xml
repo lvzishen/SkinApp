@@ -63,8 +63,8 @@
                 android:layout_width="@dimen/qb_px_36"
                 android:layout_height="@dimen/qb_px_36"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/qb_px_16"
-                android:src="@drawable/ic_avatar" />
+                android:layout_marginLeft="@dimen/qb_px_14"
+                android:src="@drawable/share_default" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/qb_px_14"
                 android:layout_toRightOf="@+id/image_avatar"
-                android:text="Good Morning"
+                android:text="@string/nicknamethis"
                 android:textColor="@color/white"
                 android:textSize="19sp" />
         </RelativeLayout>

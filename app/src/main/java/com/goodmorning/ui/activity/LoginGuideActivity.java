@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.config.GlobalConfig;
+import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.utils.ScreenUtils;
 import com.goodmorning.view.image.RoundedImageView;
 
@@ -57,6 +59,8 @@ public class LoginGuideActivity extends BaseActivity {
         mImageBg.setImageResource(R.drawable.share_shadow);
         mImageBg.setCornerRadius(DeviceUtil.dip2px(getApplicationContext(), 6), DeviceUtil.dip2px(getApplicationContext(), 6), 0, 0);
         String picUrl = getIntent().getStringExtra("picUrl");
+
+
         Glide.with(this).asBitmap().load(picUrl).into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -68,7 +72,11 @@ public class LoginGuideActivity extends BaseActivity {
                     para.height = height;
                     mImageDetailView.setLayoutParams(para);
                 }
-                Glide.with(getApplicationContext()).asBitmap().load(picUrl).into(mImageDetailView);
+                //增加产品水印
+                Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
+                Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(resource, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
+                mImageDetailView.setImageBitmap(watermarkBitmap);
+//                Glide.with(getApplicationContext()).asBitmap().load(picUrl).into(mImageDetailView);
             }
         });
         mLoginView.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +98,7 @@ public class LoginGuideActivity extends BaseActivity {
         try {
             mLoginApi = LoginApi.Factory.create(activity, Constant.LoginType.FACEBOOK);
         } catch (NotAllowLoginException e) {
-            if(GlobalConfig.DEBUG){
+            if (GlobalConfig.DEBUG) {
                 throw new IllegalArgumentException(e);
             }
 //                        finish();
@@ -184,19 +192,22 @@ public class LoginGuideActivity extends BaseActivity {
 //            finish();
         }
     };
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(mLoginApi != null)mLoginApi.onActivityResult(requestCode,resultCode,data);
+        if (mLoginApi != null) mLoginApi.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 64206 && resultCode == 0) {
 //            finish();//Facebook取消
         }
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(mLoginApi != null)mLoginApi.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (mLoginApi != null)
+            mLoginApi.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
     @Override
     public void onDestroy() {
-        if(mLoginApi != null)mLoginApi.onDestroy();
+        if (mLoginApi != null) mLoginApi.onDestroy();
         super.onDestroy();
     }
 }

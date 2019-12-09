@@ -149,6 +149,11 @@
     <string name="whatsapp">WhatsApp</string>
     <string name="tab_greeting">संदेश</string>
     <string name="tab_my">मेरा</string>
+    <string name="please_install_facebook">कृपया फेसबुक पहले स्थापित करें</string>
+    <string name="please_install_whatsapp">कृपया पहले व्हाट्सएप इंस्टॉल करें</string>
+    <string name="sign_in_to">फेसबुक के साथ लॉग-इन करें</string>
+    <string name="is_copy">कॉपी हो गय</string>
+    <string name="save_to_album">अपने ऐलबाम में कंटेंट सेव करें</string>
     <string name="sign_in_to">लॉगिन करें</string>
 
     <string name="collect">मेरा संग्रह</string>

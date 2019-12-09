@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.creativeindia.goodmorning.R;
 import com.goodmorning.share.util.RFileHelper;
 import com.goodmorning.share.util.RPlatformHelper;
 
@@ -50,7 +51,7 @@ final public class RWhatsAppManager extends RShare {
                                   @Nullable String description) {
 
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.WhatsApp)) {
-            Toast.makeText(context, "请先安装WhatsApp...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.please_install_whatsapp), Toast.LENGTH_SHORT).show();
             return;
         }
         if (image == null && description == null) {
@@ -78,7 +79,7 @@ final public class RWhatsAppManager extends RShare {
 
     public void shareText(Context context, String text) {
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.WhatsApp)) {
-            Toast.makeText(context, "请先安装WhatsApp...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,  context.getResources().getString(R.string.please_install_whatsapp), Toast.LENGTH_SHORT).show();
             return;
         }
         String type = "text/*";
@@ -109,7 +110,7 @@ final public class RWhatsAppManager extends RShare {
 
     public void shareVideo(Context context, String mediaPath) {
         if (!RPlatformHelper.isInstalled(context, RSharePlatform.Platform.WhatsApp)) {
-            Toast.makeText(context, "请先安装WhatsApp...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,  context.getResources().getString(R.string.please_install_whatsapp), Toast.LENGTH_SHORT).show();
             return;
         }
         String type = "video/*";

@@ -10,12 +10,15 @@
     <string name="sign_in_to">Login Now</string>
     <string name="tab_greeting">Messages</string>
     <string name="tab_my">Mine</string>
+    <string name="nicknamethis">this is your nickname</string>
     <string name="share_message_title">Share via</string>
     <string name="content_offline">This content has been deleted</string>
     <string name="contents_ui__news_share" formatted="false">SHARE via </string>
     <string name="contents_ui__news_update_tips">%d news recommending for you</string>
-    <string name="is_copy">copy success</string>
-
+    <string name="is_copy">Copied</string>
+    <string name="save_to_album">Content saved to your album</string>
+    <string name="please_install_facebook">Please install FaceBook first</string>
+    <string name="please_install_whatsapp">Please install WhatsApp first</string>
     <!-- 无网络页面 -->
     <string name="news_ui__text_ooops">Ooops!</string>
     <string name="news_ui__text_network_unavailable_hint">Poor Internet connection, please check your connection.</string>

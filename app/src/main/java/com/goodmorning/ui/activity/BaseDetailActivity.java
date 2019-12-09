@@ -316,13 +316,15 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
         //获取已登录的账号
         Account account = NjordAccountManager.getCurrentAccount(this);
         if (account != null) {
-            if (mType == DataListItem.DATA_TYPE_2 && account.isGuest() && isShowLoginGuide()) {
-                Intent intent = new Intent(BaseDetailActivity.this, LoginGuideActivity.class);
-                intent.putExtra("picUrl", mDataItem.getPicUrl());
-                startActivity(intent);
-                isGoLogin = true;
-                return;
-            }//NjordAccountManager.isLogined(getApplicationContext())
+            if (mType == DataListItem.DATA_TYPE_2 && account.isGuest() && mShareItem.type != SAVE && mShareItem.type != COPY) {
+                if (isShowLoginGuide()) {
+                    Intent intent = new Intent(BaseDetailActivity.this, LoginGuideActivity.class);
+                    intent.putExtra("picUrl", mDataItem.getPicUrl());
+                    startActivity(intent);
+                    isGoLogin = true;
+                    return;
+                }
+            }
             if (mType == DataListItem.DATA_TYPE_2 && (!account.isGuest() && NjordAccountManager.isLogined(getApplicationContext())) && !isNotHaveWaterMark) {
                 makeWaterMark();
             } else {
@@ -349,17 +351,18 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
                 if (mBitmap == null) {
                     return;
                 }
-                createWaterMark(resource);
+                createWaterMark(account, resource);
             }
+
             @Override
             public void onLoadFailed(@Nullable Drawable errorDrawable) {
                 super.onLoadFailed(errorDrawable);
-                createWaterMark(BitmapFactory.decodeResource(getResources(), R.drawable.ic_avatar));
+                createWaterMark(account, BitmapFactory.decodeResource(getResources(), R.drawable.share_default));
             }
         });
     }
 
-    private void createWaterMark(Bitmap bitmapResource) {
+    private void createWaterMark(Account account, Bitmap bitmapResource) {
         //增加产品水印
         Bitmap bitmapWater = BitmapFactory.decodeResource(getResources(), R.drawable.share_watermark);
         Bitmap watermarkBitmap = ImageUtilHandle.createWaterMaskRightBottom(mBitmap, bitmapWater, (int) getResources().getDimension(R.dimen.qb_px_2), (int) getResources().getDimension(R.dimen.qb_px_2));
@@ -370,7 +373,7 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
         //增加文字水印
         TextView textView = new TextView(BaseDetailActivity.this);
         textView.setTextColor(getResources().getColor(R.color.white));
-        textView.setText("Wish you Babe");
+        textView.setText(account.mNickName);
         textView.setTextSize(18f);
         Bitmap textBitmap = ImageUtilHandle.viewToBitmap(textView);
         mBitmap = ImageUtilHandle.createWaterMaskLeftTop(watermarkBitmap, textBitmap, DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth()) + (int) getResources().getDimension(R.dimen.qb_px_4), DeviceUtil.px2dip(getApplicationContext(), avatarBitmap.getWidth() - textView.getHeight()) / 2 + (int) getResources().getDimension(R.dimen.qb_px_2));

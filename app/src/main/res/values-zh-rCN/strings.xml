@@ -10,15 +10,18 @@
 
     <!-- 无内容页面 -->
     <string name="news_ui__text_no_data_hint">获取数据失败,请稍后重试</string>
-
+    <string name="is_copy">已复制</string>
     <!-- Quick View -->
     <!--guide the user to open the quick view mode when user enter news detail page-->
     <!--The user successfully opens the quick view mode prompt-->
     <string name="quick_view_mode_opened_toast">快速阅读模式已开启</string>
     <!--The user successfully closes the quick view mode prompt-->
     <string name="quick_view_mode_closed_toast">快速阅读模式已关闭</string>
+    <string name="save_to_album">已保存至手机相册</string>
+    <string name="please_install_facebook">请先安装FaceBook</string>
+    <string name="please_install_whatsapp">请先安装WhatsApp</string>
+    <string name="nicknamethis">这是你的昵称</string>
     <!-- 设置页面-->
-
     <string name="news_ui__text_retry">点击刷新</string>
 
     <!-- Means photo saved in Album	-->
