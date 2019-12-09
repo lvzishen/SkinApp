@@ -34,9 +34,7 @@ import com.goodmorning.xal.NeptuneReporter;
 import com.goodmorning.xal.StatisticSettingCollectorForXAL;
 import com.creativeindia.goodmorning.BuildConfig;
 import com.creativeindia.goodmorning.R;
-import com.lachesis.common.AlexListener;
 import com.lachesis.common.LachesisBuilder;
-import com.lachesis.common.RemoteConfigSupplier;
 import com.lachesis.daemon.LachesisDaemonSDK;
 import com.lachesis.gcm.daemon.GcmDaemon;
 import com.lachesis.model.AccountLachesisDaemon;
@@ -160,7 +158,9 @@ public class App extends Application {
         initCrash();
         initAlex();
         initNeptunePlus();
-        initLachesis(mCurrProcessName);
+        if (matchProcess(FLAG_PROCESS_UI)) {
+            initLachesis(mCurrProcessName);
+        }
         BinderManager.bindBinderServiceIfNecessary(mContext);
         //todo
         //Statistics.setSettingCollector(new StatisticSettingCollector());
@@ -637,33 +637,33 @@ public class App extends Application {
     private void initLachesis(String processName) {
 
 //        if (processName != null && processName.equals(getPackageName())) {
-        LachesisDaemonSDK.setMainProcessName(processName);
+//        LachesisDaemonSDK.setMainProcessName(processName);
 
-        LachesisDaemonSDK.setAlexListener(new AlexListener() {
-            @Override
-            public void log(int i, Bundle bundle) {
-                StatisticLogger.getLogger().logEvent(i, bundle);
-            }
-        });
-        LachesisDaemonSDK.setRemoteConfigSupplier(new RemoteConfigSupplier.SimpleSupplier() {
-            @Override
-            public boolean isLogEnabled(String key) {
-
-                int value = CloudPropertyManager.getInt(mContext, CloudPropertyManager.PATH_RUBBISH, "daemon.enable", 1);
-                //NeptuneRemoteConfig.getInt(key, 1);
-                if (DEBUG) {
-                    Log.d(TAG, "isLogEnabled: " + value);
-                }
-                return value == 1;
-            }
-        });
-        LachesisBuilder builder = new LachesisBuilder()
-//                .addKeepLiveService(BackgroundService.class.getName())
-//                .addKeepLiveService(MainService.class.getName())
-                .addDaemon(new JobSchedulerDaemon.Builder())
-                .addDaemon(new AccountLachesisDaemon.Builder())
-                .addDaemon(new GcmDaemon.Builder());
-        LachesisDaemonSDK.startLachesisDaemon(this, builder);
+//        LachesisDaemonSDK.setAlexListener(new AlexListener() {
+//            @Override
+//            public void log(int i, Bundle bundle) {
+//                StatisticLogger.getLogger().logEvent(i, bundle);
+//            }
+//        });
+//        LachesisDaemonSDK.setRemoteConfigSupplier(new RemoteConfigSupplier.SimpleSupplier() {
+//            @Override
+//            public boolean isLogEnabled(String key) {
+//
+//                int value = CloudPropertyManager.getInt(mContext, CloudPropertyManager.PATH_RUBBISH, "daemon.enable", 1);
+//                //NeptuneRemoteConfig.getInt(key, 1);
+//                if (DEBUG) {
+//                    Log.d(TAG, "isLogEnabled: " + value);
+//                }
+//                return value == 1;
+//            }
+//        });
+//        LachesisBuilder builder = new LachesisBuilder()
+////                .addKeepLiveService(BackgroundService.class.getName())
+////                .addKeepLiveService(MainService.class.getName())
+//                .addDaemon(new JobSchedulerDaemon.Builder())
+//                .addDaemon(new AccountLachesisDaemon.Builder())
+//                .addDaemon(new GcmDaemon.Builder());
+        LachesisDaemonSDK.startAllLachesisDaemon(this);
 
         //主进程中调用，尽量在靠前的地方开启保活
 //        LachesisDaemonSDK.startAllLachesisDaemon(this);
