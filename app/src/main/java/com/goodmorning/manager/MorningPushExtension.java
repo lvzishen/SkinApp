@@ -118,8 +118,8 @@ public class MorningPushExtension extends IPushExtension {
         //设置大标题
         mRemoteViews.setTextViewText(R.id.title, pushBean.title);
         mRemoteViews.setTextViewText(R.id.desc, pushBean.description);
-        mRemoteViews.setBoolean(R.id.title, "setSingleLine", false);
-        mRemoteViews.setInt(R.id.title, "setMaxLines", 2);
+//        mRemoteViews.setBoolean(R.id.title, "setSingleLine", true);
+//        mRemoteViews.setInt(R.id.title, "setMaxLines", 2);
         //设置图像
 //        Glide.with(context)
 //                .load(pushBean.extra.getPicUrl())

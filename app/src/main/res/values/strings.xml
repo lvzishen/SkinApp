@@ -10,7 +10,7 @@
     <string name="sign_in_to">Login Now</string>
     <string name="tab_greeting">Messages</string>
     <string name="tab_my">Mine</string>
-    <string name="nicknamethis">this is your nickname</string>
+    <string name="nicknamethis">Your nickname</string>
     <string name="share_message_title">Share via</string>
     <string name="content_offline">This content has been deleted</string>
     <string name="contents_ui__news_share" formatted="false">SHARE via </string>
