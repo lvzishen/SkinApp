@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/qb_px_24"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:background="@drawable/selector_background">
 
         <ImageView

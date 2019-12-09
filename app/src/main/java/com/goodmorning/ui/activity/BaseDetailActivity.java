@@ -45,6 +45,7 @@ import com.goodmorning.manager.MorningPushExtension;
 import com.goodmorning.share.ShareTypeManager;
 import com.goodmorning.utils.BitmapUtils;
 import com.goodmorning.utils.ImageUtilHandle;
+import com.goodmorning.utils.ResUtils;
 import com.goodmorning.view.image.RoundedImageView;
 import com.goodmorning.view.recyclerview.normal.CommonRecyclerView;
 import com.goodmorning.view.recyclerview.normal.IItem;
@@ -151,6 +152,8 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_detail);
+        setStatusBarColor(ResUtils.getColor(R.color.transparent));
+        setAndroidNativeLightStatusBar(true);
         initIntent();
 //        mImageLayout = findViewById(R.id.image_detail_fl);
         mBackLayout = findViewById(R.id.back);
