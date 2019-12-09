@@ -35,7 +35,7 @@ public class SaveImageImpl implements ISaveImage {
     public String saveImage(Context context, String name, Bitmap bmp) {
         File appDir = new File(Environment.getExternalStorageDirectory() + File.separator + Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator);
         if (Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor")) {
-            appDir = new File(Environment.getExternalStorageDirectory() + File.separator + File.separator + "SunnyDay" + File.separator);
+            appDir = new File(Environment.getExternalStorageDirectory() + File.separator + "Pictures" + File.separator + "SunnyDay" + File.separator);
         }
         if (GlobalConfig.DEBUG) {
             Log.i("SaveImageImpl", "Save Path: " + appDir.getAbsolutePath());
@@ -46,11 +46,6 @@ public class SaveImageImpl implements ISaveImage {
         String fileName = name + ".jpg";
         File file = new File(appDir, fileName);
         try {
-            FileOutputStream fos;
-//            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-//            fos.flush();
-//            fos.close();
-
             ContentValues values = new ContentValues();
             ContentResolver resolver = context.getContentResolver();
             values.put(MediaStore.Images.ImageColumns.DATA, file.getAbsolutePath());
@@ -60,26 +55,28 @@ public class SaveImageImpl implements ISaveImage {
             values.put(MediaStore.Images.ImageColumns.DATE_TAKEN, System.currentTimeMillis() + "");
             Uri uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
             if (uri != null) {
-                fos = (FileOutputStream) resolver.openOutputStream(uri);
+                FileOutputStream fos = (FileOutputStream) resolver.openOutputStream(uri);
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 fos.flush();
                 fos.close();
             }
+            if (!(Build.BRAND.toLowerCase().equals("huawei") || Build.BRAND.toLowerCase().equals("honor"))) {
+                if (GlobalConfig.DEBUG) {
+                    Log.i("SaveImageImpl", "Not huawei");
+                }
+                try {
+                    MediaStore.Images.Media.insertImage(context.getContentResolver(),
+                            file.getAbsolutePath(), fileName, null);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                // 最后通知图库更新
+                Uri localUri = Uri.fromFile(file);
 
-//            if (!(Build.BRAND.toLowerCase().equals("huawei") && Build.BRAND.toLowerCase().equals("honor"))) {
-            try {
-                MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                        file.getAbsolutePath(), fileName, null);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
+
+                context.sendBroadcast(localIntent);
             }
-            // 最后通知图库更新
-            Uri localUri = Uri.fromFile(file);
-
-            Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
-
-            context.sendBroadcast(localIntent);
-//            }
             Toast.makeText(context.getApplicationContext(), context.getString(R.string.save_to_album), Toast.LENGTH_SHORT).show();
             return file.getAbsolutePath();
         } catch (IOException e) {
