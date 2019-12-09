@@ -29,12 +29,16 @@ import com.goodmorning.share.util.RPlatformHelper;
  */
 public class ShareTypeManager {
 
+    public static final String URL_TEXT = "Sunny Day： Kahe apno ko Namaste!\n" +
+            "https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
+    public static final String URL = "https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
+
     public static void shareWithWhatsapp(int mType, Activity activity, DataListItem mDataItem, Bitmap mBitmap) {
         if (mType == DataListItem.DATA_TYPE_1) {
             RWhatsAppManager.getInstance().shareText(activity, mDataItem.getData());
         }
         if (mType == DataListItem.DATA_TYPE_2 && mBitmap != null) {
-            RWhatsAppManager.getInstance().shareImageAndText(activity, mBitmap, "123456");
+            RWhatsAppManager.getInstance().shareImageAndText(activity, mBitmap, URL_TEXT);
         }
         if (mType == DataListItem.DATA_TYPE_3) {
             RWhatsAppManager.getInstance().shareText(activity, mDataItem.getVideoUrl());
@@ -102,7 +106,7 @@ public class ShareTypeManager {
         ShareDialog shareDialog = new ShareDialog(activity);
         shareDialog.registerCallback(callbackManager, callback);
         if (mType == DataListItem.DATA_TYPE_1) {
-            ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).setQuote(mDataItem.getData()).build();
+            ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse(URL)).setQuote(mDataItem.getData()).build();
             shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
         }
         if (mType == DataListItem.DATA_TYPE_2 && mBitmap != null) {

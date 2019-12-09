@@ -112,7 +112,7 @@ public class ShareManager implements ISaveImage {
         String path = RFileHelper.saveBitmapToExternalSharePath(context, bitmap);
         RFileHelper.detectFileUriExposure();
         //share
-        Uri imageUri = RFileHelper.getExternalSharePathFileUris(context,path).get(0);
+        Uri imageUri = RFileHelper.getExternalSharePathFileUris(context, path).get(0);
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_STREAM, imageUri);
@@ -130,7 +130,7 @@ public class ShareManager implements ISaveImage {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, content);    //设置要分享的内容
+        intent.putExtra(Intent.EXTRA_TEXT, content + ShareTypeManager.URL_TEXT);    //设置要分享的内容
         Intent shareIntent = getShareIntent(context, intent, context.getString(R.string.share_message_title));
         if (shareIntent == null) {
             shareIntent = intent;
