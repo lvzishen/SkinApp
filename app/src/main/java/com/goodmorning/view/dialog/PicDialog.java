@@ -76,7 +76,6 @@ public class PicDialog extends Dialog implements View.OnClickListener {
 //                .into(ivPic);
         ImageUtil.displayImageView(getContext(),ivPic,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
         StatisticLoggerX.logShowUpload("","pic popup","","","");
-        SharedPref.setBoolean(getApplicationContext(), CheckUtils.keyStartTime,true);
     }
 
     public void setDataListItem(DataListItem dataListItem){
