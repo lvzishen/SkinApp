@@ -45,11 +45,11 @@ public class HomeGreetingHelper {
                 String content = jsonObject.optString("content");
                 Calendar calendar = Calendar.getInstance();
                 int h = calendar.get(Calendar.HOUR_OF_DAY);
-                int m = calendar.get(Calendar.MINUTE);
-                int curr = h * 60 + m;
+//                int m = calendar.get(Calendar.MINUTE);
+//                int curr = h * 60 + m;
 
 
-                if ((curr >= from && curr <= to)) {
+                if ((h >= from && h < to)) {
                     if (DEBUG) {
                         Log.i(TAG, "showText: "+jsonObject.toString());
                     }
@@ -88,11 +88,11 @@ public class HomeGreetingHelper {
                 int to = jsonObject.optInt("to");
                 Calendar calendar = Calendar.getInstance();
                 int h = calendar.get(Calendar.HOUR_OF_DAY);
-                int m = calendar.get(Calendar.MINUTE);
-                int curr = h * 60 + m;
+//                int m = calendar.get(Calendar.MINUTE);
+//                int curr = h * 60 + m;
 
 
-                if ((curr >= from && curr <= to)) {
+                if ((h >= from && h < to)) {
                     return ++i;
                 }
             }

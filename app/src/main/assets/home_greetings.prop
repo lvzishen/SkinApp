@@ -1,4 +1,4 @@
 #home header title greetings  lang
-h.h.t.g.en=[{"content":"Good Morning!","from":360,"to":540},{"content":"Hello!","from":540,"to":1020},{"content":"Good Evening!","from":1020,"to":1260}]
-h.h.t.g.hi=[{"content":"शुभ प्रभात!","from":360,"to":540},{"content":"हैलो!","from":540,"to":1020},{"content":"सुसंध्या!","from":1020,"to":1260}]
-h.h.t.g.ta=[{"content":"காலை வணக்கம்!","from":360,"to":540},{"content":"வணக்கம்!","from":540,"to":1020},{"content":"மாலை வணக்கம்!","from":1020,"to":1260}]
+h.h.t.g.en=[{"content":"Good Morning!","from":6,"to":9},{"content":"Hello!","from":9,"to":17},{"content":"Good Evening!","from":17,"to":21}]
+h.h.t.g.hi=[{"content":"शुभ प्रभात!","from":6,"to":9},{"content":"हैलो!","from":9,"to":17},{"content":"सुसंध्या!","from":17,"to":21}]
+h.h.t.g.ta=[{"content":"காலை வணக்கம்!","from":6,"to":9},{"content":"வணக்கம்!","from":9,"to":17},{"content":"மாலை வணக்கம்!","from":17,"to":21}]
