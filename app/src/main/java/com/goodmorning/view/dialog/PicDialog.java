@@ -2,6 +2,7 @@ package com.goodmorning.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -11,12 +12,19 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticLoggerX;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.ui.activity.PicDetailActivity;
@@ -26,6 +34,7 @@ import com.goodmorning.utils.GlideRoundTransform;
 import com.goodmorning.utils.ImageUtil;
 import com.goodmorning.utils.ImageUtilHandle;
 import com.goodmorning.utils.ResUtils;
+import com.goodmorning.view.image.NiceImageView;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
@@ -34,6 +43,7 @@ public class PicDialog extends Dialog implements View.OnClickListener {
     private ImageButton btnClose;
     private Button btnShare;
     private DataListItem dataListItem;
+    private TextView imgDayTitle,imgDaytxt;
     public PicDialog(@NonNull Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -49,9 +59,14 @@ public class PicDialog extends Dialog implements View.OnClickListener {
         ivPic = findViewById(R.id.iv_pic);
         btnClose = findViewById(R.id.btn_close);
         btnShare = findViewById(R.id.btn_share);
-//        ivPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imgDayTitle = findViewById(R.id.img_day_title);
+        imgDaytxt = findViewById(R.id.img_day_txt);
         btnClose.setOnClickListener(this);
         btnShare.setOnClickListener(this);
+        btnShare.setText(getContext().getString(R.string.share));
+        imgDayTitle.setText(getContext().getString(R.string.img_day));
+        imgDaytxt.setText(getContext().getString(R.string.img_share_day));
+
     }
 
     private void initDialog(){
@@ -69,12 +84,12 @@ public class PicDialog extends Dialog implements View.OnClickListener {
     }
 
     private void addData(){
-        ViewGroup.LayoutParams layoutParams =  ivPic.getLayoutParams();
-//        Glide.with(getContext()).load("https://scontent-sin2-2.cdninstagram.com/v/t51.2885-15/e35/74662517_184769705984354_1258180862395512181_n.jpg?_nc_ht=scontent-sin2-2.cdninstagram.com&_nc_cat=102&oh=2afdfde0d2a70f3f1e0167522a84ea23&oe=5E554E81")
-//                .placeholder(R.drawable.shape_list_item_default)
-//                .transform(new GlideRoundTransform(getContext(), 6))
-//                .into(ivPic);
-        ImageUtil.displayImageView(getContext(),ivPic,dataListItem.getPicUrl(),R.drawable.shape_list_item_default,layoutParams.width, layoutParams.height);
+        Glide.with(getContext())
+                .load(dataListItem.getPicUrl())
+                .placeholder(R.drawable.shape_list_item_default)
+                .error(R.drawable.shape_list_item_default)
+                .apply(RequestOptions.bitmapTransform(new GranularRoundedCorners(25,25,0,0)))
+                .into(ivPic);
         StatisticLoggerX.logShowUpload("","pic popup","","","");
     }
 

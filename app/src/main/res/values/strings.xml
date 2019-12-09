@@ -119,5 +119,6 @@
     <string name="load_more_bottom">Ohh, no more content...</string>
     <string name="press_again_exit">Press again to exit the app</string>
     <string name="share_copy">Copied</string>
-
+    <string name="img_day">Image of the Day</string>
+    <string name="img_share_day">Share with the one you love</string>
 </resources>

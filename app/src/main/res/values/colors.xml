@@ -86,5 +86,6 @@
     <color name="retry_btn_color">#FFD210</color>
     <color name="retry_btn_txt_color">#724500</color>
     <color name="color_333333">#333333</color>
+    <color name="color_bbbbbb">#BBBBBB</color>
 
 </resources>

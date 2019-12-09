@@ -176,4 +176,6 @@
     <string name="user_terms_n_privacy_link_text">लॉगिन का मतलब है कि आप सेवा की शर्तों और गोपनीयता नीति से सहमत हैं</string>
     <string name="press_again_exit">बाहर जानें के लिए दोबारा दबाएं</string>
     <string name="share_copy">कॉपी हो गय</string>
+    <string name="img_day">आज का इमेज</string>
+    <string name="img_share_day">अपने चाहने वालों के साथ शेयर करें</string>
 </resources>

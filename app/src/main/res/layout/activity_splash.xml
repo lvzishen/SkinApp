@@ -65,7 +65,7 @@
                 android:background="@drawable/toast_btn"
                 android:gravity="center"
                 android:text="@string/string_splash_start"
-                android:textAllCaps="true"
+                android:textAllCaps="false"
                 android:textColor="@color/retry_btn_txt_color"
                 android:textSize="@dimen/qb_sp_16"
                 android:textStyle="bold" />
