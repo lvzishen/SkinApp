@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.view.recyclerview.interfaces.ILoadMoreFooter;
 import com.goodmorning.view.recyclerview.interfaces.OnLoadMoreListener;
@@ -17,8 +19,10 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
     private View mMoreContainer;
 //    private ImageView ivMore;
     private TextView tvMore;
-    private LinearLayout llFooter;
+    private RelativeLayout llFooter;
     private Context context;
+    private LottieAnimationView ivBottomIcon;
+    private LinearLayout llBottomView;
 
     public CustomLoadingFooter(Context context) {
         super(context);
@@ -43,6 +47,8 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
         llFooter = mMoreContainer.findViewById(R.id.ll_footer);
 //        ivMore = mMoreContainer.findViewById(R.id.iv_more);
         tvMore = mMoreContainer.findViewById(R.id.tv_more);
+        ivBottomIcon = mMoreContainer.findViewById(R.id.iv_bottom_icon);
+        llBottomView = mMoreContainer.findViewById(R.id.ll_bottom_view);
 //        llFooter.setVisibility(GONE);
         setOnClickListener(null);
         //初始化隐藏状态
@@ -66,13 +72,15 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
         switch (state){
             case Normal:
                 setOnClickListener(null);
-                mMoreContainer.setVisibility(GONE);
-                tvMore.setVisibility(INVISIBLE);
+                mMoreContainer.setVisibility(VISIBLE);
+                tvMore.setVisibility(GONE);
+                llBottomView.setVisibility(VISIBLE);
                 break;
             case Loading:
                 setOnClickListener(null);
-                mMoreContainer.setVisibility(GONE);
-                tvMore.setVisibility(INVISIBLE);
+                mMoreContainer.setVisibility(VISIBLE);
+                tvMore.setVisibility(GONE);
+                llBottomView.setVisibility(VISIBLE);
 //                tvMore.setText("正在加载...");
                 break;
             case NoMore:
@@ -80,6 +88,7 @@ public class CustomLoadingFooter extends RelativeLayout implements ILoadMoreFoot
                 mMoreContainer.setVisibility(VISIBLE);
                 tvMore.setVisibility(VISIBLE);
                 tvMore.setText(context.getString(R.string.load_more_bottom));
+                llBottomView.setVisibility(GONE);
                 break;
             case NetWorkError:
                 mMoreContainer.setVisibility(GONE);
