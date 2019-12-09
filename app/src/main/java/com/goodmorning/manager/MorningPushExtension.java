@@ -14,12 +14,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.bean.DataListItem;
@@ -52,6 +58,7 @@ public class MorningPushExtension extends IPushExtension {
     private static final int NOTIFICATION_REQUEST_PIC_BROADCAST = 10000;
     private static final int NOTIFICATION_PIC_DETAIL = 1001;
     public static DataListItem pushDataListItem = null;
+    public static PushBean mPushBean = null;
 
     @Override
     public boolean handleMessage(PushMessage message, Context context) throws Exception {
@@ -76,40 +83,54 @@ public class MorningPushExtension extends IPushExtension {
         if (pushBean == null) {
             return;
         }
+        mPushBean = pushBean;
         showNotification(pushBean, context);
     }
 
-    private void showNotification(PushBean pushBean, Context context) {
+    public static void showNotification(PushBean pushBean, Context context) {
         NotificationManager nm = getNotificationManager(context);
         if (nm == null)
             return;
         if (DEBUG) {
             Log.i(TAG, "pushBean:---->" + pushBean.toString());
         }
+        nm.cancel(NOTIFICATION_PIC_DETAIL);
         bindNotificationChannel(context, nm);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "goodmorning_notification_channelid");
 
         DataListItem dataListItem = new DataListItem();
         dataListItem.setType(DataListItem.DATA_TYPE_2);
-        dataListItem.setPicUrl(pushBean.big_image);
         String str[] = pushBean.action_main.split(",");
-        dataListItem.setResourceId(Long.valueOf(str[0]));
-        dataListItem.setWidth(Integer.valueOf(str[1]));
-        dataListItem.setHeight(Integer.valueOf(str[2]));
+        if (!TextUtils.isEmpty(str[0])) {
+            dataListItem.setResourceId(Long.valueOf(str[0]));
+        }
+        if (!TextUtils.isEmpty(str[1])) {
+            dataListItem.setWidth(Integer.valueOf(str[1]));
+        }
+        if (!TextUtils.isEmpty(str[2])) {
+            dataListItem.setHeight(Integer.valueOf(str[2]));
+        }
+        if (!TextUtils.isEmpty(str[3])) {
+            dataListItem.setPicUrl(str[3]);
+        }
         dataListItem.setChannelName("push");
         if (DEBUG) {
             Log.i(TAG, "dataListItem:---->" + dataListItem.toString());
         }
         Intent intent = null;
-        SharedPref.setString(getApplicationContext(),SharedPref.KEY_PUSH_STARTTIME,pushBean.start_time);
+        SharedPref.setString(getApplicationContext(), SharedPref.KEY_PUSH_STARTTIME, pushBean.start_time);
         if (CheckUtils.isShowPic(Long.valueOf(pushBean.start_time), Long.valueOf(pushBean.end_time))) {
             //展示弹窗 跳首页
             intent = new Intent(context, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("is_from_noti", true);
-//            intent.putExtra(TRANSFER_DATA, dataListItem);
             pushDataListItem = dataListItem;
         } else {
+            //跳详情页
+            intent = new Intent(context, PicDetailActivity.class);
+            intent.putExtra(TRANSFER_DATA, dataListItem);
+        }
+        if (SharedPref.getBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(), SharedPref.KEY_PROP_STARTTIME, "0"), false)) {
             //跳详情页
             intent = new Intent(context, PicDetailActivity.class);
             intent.putExtra(TRANSFER_DATA, dataListItem);
@@ -121,26 +142,24 @@ public class MorningPushExtension extends IPushExtension {
         //设置大标题
         mRemoteViews.setTextViewText(R.id.title, pushBean.title);
         mRemoteViews.setTextViewText(R.id.desc, pushBean.description);
-//        mRemoteViews.setBoolean(R.id.title, "setSingleLine", true);
-//        mRemoteViews.setInt(R.id.title, "setMaxLines", 2);
         //设置图像
-//        Glide.with(context)
-//                .load(pushBean.extra.getPicUrl())
-//                .asBitmap()
-//                .placeholder(R.drawable.ic_launcher1)
-//                .error(R.drawable.ic_launcher1)
-//                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-//                    @Override
-//                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                        mRemoteViews.setImageViewBitmap(R.id.notify_big_image, resource);
-//                    }
-//                });
-        mRemoteViews.setImageViewBitmap(R.id.notify_big_image, BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher1));
+        Glide.with(context)
+                .asBitmap()
+                .load(pushBean.icon)
+                .placeholder(R.drawable.ic_launcher1)
+                .error(R.drawable.ic_launcher1)
+                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        mRemoteViews.setImageViewBitmap(R.id.notify_big_image, resource);
+                    }
+                });
+//        mRemoteViews.setImageViewBitmap(R.id.notify_big_image, BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher1));
         mBuilder.setContent(mRemoteViews)
                 .setContentIntent(pendingIntent)
                 .setOngoing(false)
                 .setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_launcher1);
+                .setSmallIcon(R.drawable.ic_coner_launcher);
 
         if (DeviceUtil.isAboveLollipop(true)) {
             mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
@@ -152,7 +171,7 @@ public class MorningPushExtension extends IPushExtension {
         nm.notify(NOTIFICATION_PIC_DETAIL, notify);
     }
 
-    private NotificationManager getNotificationManager(Context cxt) {
+    public static NotificationManager getNotificationManager(Context cxt) {
         return (NotificationManager) cxt.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 

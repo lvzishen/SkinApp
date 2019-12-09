@@ -41,6 +41,7 @@ import com.goodmorning.adapter.ShareCommonHolder;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.bean.ShareItem;
 import com.goodmorning.config.GlobalConfig;
+import com.goodmorning.manager.MorningPushExtension;
 import com.goodmorning.share.ShareTypeManager;
 import com.goodmorning.utils.BitmapUtils;
 import com.goodmorning.utils.ImageUtilHandle;
@@ -262,6 +263,7 @@ public abstract class BaseDetailActivity extends BaseActivity implements ShareCo
         if (getIntent() != null && getIntent().getSerializableExtra(TRANSFER_DATA) != null) {
             boolean isFromNoti = getIntent().getBooleanExtra("is_from_noti", false);
             if (isFromNoti) {
+                MorningPushExtension.mPushBean = null;
                 StatisticLoggerX.logClick(StatisticConstants.FROM_NOTIFICATION, "push click", StatisticConstants.FROM_NOTIFICATION);
             }
             mDataItem = (DataListItem) getIntent().getSerializableExtra(TRANSFER_DATA);
