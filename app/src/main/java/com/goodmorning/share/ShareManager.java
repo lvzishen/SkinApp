@@ -125,6 +125,11 @@ public class ShareManager implements ISaveImage {
         return null;
     }
 
+    @Override
+    public String saveVideo(Context context, String videoName, String videoUrl) {
+        return null;
+    }
+
 
     public final Intent getShareStringIntent(Context context, String content) {
         Intent intent = new Intent();

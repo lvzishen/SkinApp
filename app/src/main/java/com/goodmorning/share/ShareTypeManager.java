@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -77,10 +78,14 @@ public class ShareTypeManager {
         Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.share_copy), Toast.LENGTH_SHORT).show();
     }
 
-    public static void shareWithImage(int mType, Activity activity, Bitmap mBitmap) {
+    public static void shareWithImage(int mType, Activity activity, Bitmap mBitmap, String videoUrl) {
         if (mType == DataListItem.DATA_TYPE_2 && mBitmap != null) {
             SavePicProxy savePicProxy = new SavePicProxy();
             savePicProxy.savePic(activity, System.currentTimeMillis() + "", mBitmap, SavePicProxy.SAVE_TYPE);
+        }
+        if (mType == DataListItem.DATA_TYPE_3 && !TextUtils.isEmpty(videoUrl)) {
+            SavePicProxy savePicProxy = new SavePicProxy();
+            savePicProxy.saveVideo(activity, System.currentTimeMillis() + "", videoUrl, SavePicProxy.SAVE_TYPE);
         }
     }
 

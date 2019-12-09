@@ -72,4 +72,9 @@ final public class RInstagramManager extends RShare implements ISaveImage {
         context.startActivity(intent);
         return null;
     }
+
+    @Override
+    public String saveVideo(Context context, String videoName, String videoUrl) {
+        return null;
+    }
 }

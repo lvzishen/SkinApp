@@ -10,4 +10,6 @@ import android.graphics.Bitmap;
  */
 public interface ISaveImage {
     String saveImage(Context context, String picName, Bitmap bitmap);
+
+    String saveVideo(Context context, String videoName, String videoUrl);
 }
