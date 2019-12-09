@@ -494,6 +494,7 @@ public class HomeFragment extends Fragment {
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                SharedPref.setString(getApplicationContext(),SharedPref.KEY_PROP_STARTTIME,String.valueOf(finalDayPicture.getStartTime()));
                                 PicDialog picDialog = new PicDialog(mActivity);
                                 DataListItem dataListItem = new DataListItem();
                                 dataListItem.setType(DataListItem.DATA_TYPE_2);
@@ -504,6 +505,7 @@ public class HomeFragment extends Fragment {
                                 dataListItem.setWidth(finalDayPicture.getWidth());
                                 picDialog.setDataListItem(dataListItem);
                                 picDialog.show();
+                                SharedPref.setBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(),SharedPref.KEY_PROP_STARTTIME,"0"),true);
                             }
                         });
                     }else {

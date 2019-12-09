@@ -245,6 +245,15 @@ public class SharedPref {
      * 切换主题
      */
     public static final String IS_SWITCH_THEME = "isSwitchTheme";
+
+    /**
+     * push推送开始时间
+     */
+    public static final String KEY_PUSH_STARTTIME = "key_push_startTime";
+    /**
+     * 配置云控开始时间
+     */
+    public static final String KEY_PROP_STARTTIME = "key_prop_startTime";
 //    static SharedPrefStub getInstance(Context cxt) {
 //        return SharedPrefStub.getInstance(cxt);
 ////        IBinder binder = BinderManager.getService(cxt, KEY_SHAREDPREF);

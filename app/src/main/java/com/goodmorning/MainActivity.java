@@ -32,6 +32,7 @@ import com.goodmorning.ui.activity.SettingActivity;
 import com.goodmorning.ui.fragment.HomeFragment;
 import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.utils.AppUtils;
+import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.ResUtils;
 import com.goodmorning.view.dialog.PicDialog;
 import com.goodmorning.view.tab.BottomBarLayout;
@@ -187,7 +188,7 @@ public class MainActivity extends BaseActivity {
             Log.i("MorningPushExtension", "onnewintent isFromNoti" + isFromNoti);
         }
         DataListItem dataListItem = MorningPushExtension.pushDataListItem;
-        if (isFromNoti && dataListItem != null) {
+        if (isFromNoti && dataListItem != null && CheckUtils.isShowPic(SharedPref.getString(getApplicationContext(),SharedPref.KEY_PUSH_STARTTIME,"0"))) {
             if (DEBUG) {
                 Log.i("MorningPushExtension", "onnewintent dataListItem" + dataListItem.toString());
             }
@@ -195,6 +196,7 @@ public class MainActivity extends BaseActivity {
             PicDialog picDialog = new PicDialog(this);
             picDialog.setDataListItem(dataListItem);
             picDialog.show();
+            SharedPref.setBoolean(getApplicationContext(), SharedPref.getString(getApplicationContext(),SharedPref.KEY_PUSH_STARTTIME,"0"),true);
         }
     }
 
