@@ -4,7 +4,7 @@
     <!-- 以后不要把应用程序的版本号放到 AppEnv 里了，放到这里来，将来自动打包的时候就可以自动修改 build 号     -->
 
     <string name="app_version">1.0.0</string>
-    <string name="app_build">1001</string>
+    <string name="app_build">1002</string>
     <integer name="app_version_code">1</integer>
     <string name="app_name">@string/string_app_name</string>
 
