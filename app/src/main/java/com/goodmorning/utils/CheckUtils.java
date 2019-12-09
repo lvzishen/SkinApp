@@ -1,11 +1,13 @@
 package com.goodmorning.utils;
 
+import android.util.Log;
+
 import com.baselib.sp.SharedPref;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 public class CheckUtils {
-    public static String keyStartTime;
+//    public static String keyStartTime;
     /**
      * 检查是否显示每日一图
      * 1、当日早上6点到次日早上6点
@@ -22,11 +24,24 @@ public class CheckUtils {
             if (isShowed){
                 return false;
             }else {
-                keyStartTime = String.valueOf(startTime);
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * 是否显示每日一图
+     * @param startTime
+     * @return
+     */
+    public static boolean isShowPic(String startTime){
+        boolean isShowed  = SharedPref.getBoolean(getApplicationContext(),String.valueOf(startTime),false);
+        if (isShowed){
+            return false;
+        }else {
+            return true;
+        }
     }
 
     /**

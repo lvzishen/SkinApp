@@ -17,6 +17,7 @@ import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 
 import com.baselib.bitmap.util.DeviceUtil;
+import com.baselib.sp.SharedPref;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
 import com.creativeindia.goodmorning.R;
@@ -38,6 +39,7 @@ import java.util.Locale;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static com.goodmorning.utils.ActivityCtrl.TRANSFER_DATA;
+import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
 /**
  * 创建日期：2019/11/29 on 20:30
@@ -99,6 +101,7 @@ public class MorningPushExtension extends IPushExtension {
             Log.i(TAG, "dataListItem:---->" + dataListItem.toString());
         }
         Intent intent = null;
+        SharedPref.setString(getApplicationContext(),SharedPref.KEY_PUSH_STARTTIME,pushBean.start_time);
         if (CheckUtils.isShowPic(Long.valueOf(pushBean.start_time), Long.valueOf(pushBean.end_time))) {
             //展示弹窗 跳首页
             intent = new Intent(context, MainActivity.class);

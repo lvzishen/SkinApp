@@ -34,7 +34,6 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
     private TextView tvShareCope;
     private RelativeLayout llShareDialog;
     private Activity mActivity;
-    private String shareMsg = "Sunny Day： Kahe apno ko Namaste!\n" +"https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
     private String ShareUrl = "https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
     public ShareDialog(@NonNull Context context) {
         super(context);
@@ -77,7 +76,7 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_share_whatsapp:
-                RWhatsAppManager.getInstance().shareText(getContext(),shareMsg);
+                RWhatsAppManager.getInstance().shareText(getContext(),getShareMsg());
                 dismiss();
                 break;
             case R.id.tv_share_facebook:
@@ -85,13 +84,18 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
                 dismiss();
                 break;
             case R.id.tv_share_copy:
-                ShareTypeManager.shareWithCopy(mActivity, shareMsg);
+                ShareTypeManager.shareWithCopy(mActivity, getShareMsg());
                 dismiss();
                 break;
             case R.id.rl_share_dialog:
                 dismiss();
                 break;
         }
+    }
+
+    private String getShareMsg(){
+        String shareMsg = "Sunny Day： Kahe apno ko Namaste!\n" +new String(Character.toChars(128591))+"https://play.google.com/store/apps/details?id=com.creativeindia.goodmorning";
+        return shareMsg;
     }
 
     private void shareFaceBook(Activity activity){
