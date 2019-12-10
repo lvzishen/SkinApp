@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,12 +18,8 @@ import com.goodmorning.config.GlobalConfig;
 import com.goodmorning.share.util.DownloadUtil;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * 创建日期：2019/11/26 on 11:14
@@ -89,6 +84,7 @@ public class SaveImageImpl implements ISaveImage {
                         ContentResolver localContentResolver = context.getContentResolver();
                         ContentValues localContentValues = getVideoContentValues(context, file, System.currentTimeMillis());
                         Uri localUri = localContentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, localContentValues);
+                        Toast.makeText(context.getApplicationContext(), context.getString(R.string.save_to_album), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -100,9 +96,15 @@ public class SaveImageImpl implements ISaveImage {
 
             @Override
             public void onDownloadFailed() {
-                if (GlobalConfig.DEBUG) {
-                    Log.i("SaveImageImpl", "下载失败");
-                }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (GlobalConfig.DEBUG) {
+                            Log.i("SaveImageImpl", "下载失败");
+                        }
+                        Toast.makeText(context.getApplicationContext(), context.getString(R.string.news_ui__save_failure), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         return "";
