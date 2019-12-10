@@ -212,17 +212,19 @@ public class App extends Application {
 
             @Override
             public String getNewsCountry() {
-                if (DEBUG) {
+//                if (DEBUG) {
 //                    Properties testProp = ThanosDataCore.getTestProp();
 //                    String newsCountry = testProp.getProperty("newsCountry", null);
 //                    if (!TextUtils.isEmpty(newsCountry)) {
 //                        if (DEBUG) {
 //                            Log.i(TAG, "getNewsCountry: Use " + newsCountry + " for TEST");
 //                        }
-                    return "IN";
+                String newsCountry = CloudPropertyManager.getString(getApplicationContext(), CloudPropertyManager.PATH_HOME_GREETING,
+                        "newsCountry", "IN");
+                return TextUtils.isEmpty(newsCountry) ? "IN" : newsCountry;
 //                    }
-                }
-                return Utils.getNewsCountry(XalContext.getContext());
+//                }
+//                return Utils.getNewsCountry(XalContext.getContext());
             }
 
             @Override

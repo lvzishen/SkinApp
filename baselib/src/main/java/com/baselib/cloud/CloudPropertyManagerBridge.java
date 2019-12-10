@@ -87,6 +87,7 @@ public class CloudPropertyManagerBridge {
     public static final String PATH_CHECK_UPDATE = "check_update.prop";
     public static final String PATH_EVERYDAY_PIC = "everyday_pic.prop";
     public static final String PATH_SHAREGUIDE_PROP = "share_login.prop";
+    public static final String PATH_THANOS_CONFIG_PROP = "thanos_config.prop";
     private static CloudPropertyImpl sCloudProperty = null;
 
     public static CloudPropertyImpl getCloudPropertyServiceStub(Context cxt) {

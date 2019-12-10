@@ -81,7 +81,7 @@ public class CloudPropertyManager {
     public static final String PATH_UNINSTALL_POP_DIALOG_PROP = CloudPropertyManagerBridge.PATH_UNINSTALL_POP_DIALOG_PRO;
     public static final String PATH_CHECK_UPDATE = CloudPropertyManagerBridge.PATH_CHECK_UPDATE;
     public static final String PATH_EVERYDAY_PIC = CloudPropertyManagerBridge.PATH_EVERYDAY_PIC;
-
+    public static final String PATH_THANOS_CONFIG_PROP = CloudPropertyManagerBridge.PATH_THANOS_CONFIG_PROP;
     public static CloudPropertyImpl getCloudPropertyServiceStub(Context cxt) {
         synchronized (CloudPropertyManager.class) {
             if (sCloudProperty == null) {
