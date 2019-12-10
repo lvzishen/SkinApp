@@ -35,9 +35,7 @@
                 app:itemText="@string/tab_greeting"
                 app:textColorNormal="?attr/tab_normal_color"
                 app:textColorSelected="?attr/tab_selected_color"
-                app:itemTextSize="11sp"
-                app:openTouchBg="true"
-                app:touchDrawable="?attr/selector_bg"/>
+                app:itemTextSize="11sp"/>
 
             <com.goodmorning.view.tab.BottomBarItem
                 android:layout_width="0dp"
@@ -48,9 +46,7 @@
                 app:itemText="@string/tab_my"
                 app:textColorNormal="?attr/tab_normal_color"
                 app:textColorSelected="?attr/tab_selected_color"
-                app:itemTextSize="11sp"
-                app:openTouchBg="true"
-                app:touchDrawable="?attr/selector_bg"/>
+                app:itemTextSize="11sp"/>
 
 
         </com.goodmorning.view.tab.BottomBarLayout>
