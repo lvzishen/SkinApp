@@ -141,13 +141,13 @@ public class App extends Application {
             LanguageUtil.changeAppLanguage(sContext, language);
         }
         setProcessWebViewPath();
-        MoPubStarkInit.getInstance().setAllowLoaderAdListener(new IAllowLoaderAdListener() {
-            @Override
-            public boolean isAllowLoaderAd(String unitId, String adpositionId) {
-                return AdSwitchUtil.isOpen(mContext);
-            }
-        });
-        MoPubStarkInit.getInstance().init(this, "333be164417b41a1b8a1e21382ccacd8");
+//        MoPubStarkInit.getInstance().setAllowLoaderAdListener(new IAllowLoaderAdListener() {
+//            @Override
+//            public boolean isAllowLoaderAd(String unitId, String adpositionId) {
+//                return AdSwitchUtil.isOpen(mContext);
+//            }
+//        });
+//        MoPubStarkInit.getInstance().init(this, "333be164417b41a1b8a1e21382ccacd8");
         if (matchProcess(FLAG_PROCESS_BACKGROUND)) {
             BinderManager.setIsHostProcess(true);
         }
@@ -167,24 +167,11 @@ public class App extends Application {
         ParamUtils.initParms(String.valueOf(AppConfig.UIVERSION));
 
         GlobalConfig.init(getApplicationContext());
-        BaseModule.init(new BaseModule.ExternalConfig() {
-            @Override
-            public String[] listFileX(File file) {
-                try {
-                    return file.list();//OS.listFile(mContext, file);
-                } catch (Exception e) {
-                    if (DEBUG) {
-                        Log.e(TAG, "listFileX: ", e);
-                    }
-                }
-                return new String[0];
-            }
-        });
 
         ModuleConfig.VERSION_NAME = com.creativeindia.goodmorning.BuildConfig.VERSION_FULL;
-        new SplashModule().init(getApplicationContext(), MainActivity.class);
+//        new SplashModule().init(getApplicationContext(), MainActivity.class);
 
-        initAdSDK(mContext);
+//        initAdSDK(mContext);
 
 //        initXALApkUpdate();
 
