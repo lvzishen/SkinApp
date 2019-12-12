@@ -115,7 +115,7 @@ public class ImageUtil {
             drawableTypeRequest.override(width, heghit);//加载特定宽度高度的图片
         }
         drawableTypeRequest.apply(RequestOptions.bitmapTransform(new RoundedCorners( 20)));
-//        drawableTypeRequest.transition(new DrawableTransitionOptions().crossFade(500));
+        drawableTypeRequest.transition(new DrawableTransitionOptions().crossFade(300));
         drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);

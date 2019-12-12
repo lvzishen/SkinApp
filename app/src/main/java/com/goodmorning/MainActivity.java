@@ -33,6 +33,7 @@ import com.goodmorning.ui.fragment.MyFragment;
 import com.goodmorning.utils.AppUtils;
 import com.goodmorning.utils.CheckUtils;
 import com.goodmorning.utils.ResUtils;
+import com.goodmorning.view.CustomScrollViewPager;
 import com.goodmorning.view.dialog.PicDialog;
 import com.goodmorning.view.tab.BottomBarLayout;
 
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity {
     public static final String CONTENT = "content";
     public static final String CHANNEL_NAME = "channel_name";
     public static final String KEY_EXTRA_ISMINE = "key_extra_ismine";
-    private ViewPager mVpContent;
+    private CustomScrollViewPager mVpContent;
     private BottomBarLayout mBottomBarLayout;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private GoodAdapter goodAdapter;
