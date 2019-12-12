@@ -11,6 +11,7 @@
         android:id="@+id/iv_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

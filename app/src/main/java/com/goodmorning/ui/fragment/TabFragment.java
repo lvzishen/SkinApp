@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -17,12 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.baselib.bitmap.util.DeviceUtil;
 import com.baselib.statistic.StatisticConstants;
 import com.baselib.statistic.StatisticLoggerX;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.MainListAdapter;
+import com.goodmorning.animator.FadeInDownAnimator;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.ui.activity.PicDetailActivity;
 import com.goodmorning.ui.activity.TextDetailActivity;
@@ -57,6 +62,7 @@ public class TabFragment extends Fragment {
     private CommonRecyclerView mRecyclerView;
     private LinearLayout llListRetry;
     private Button listRetryBtn;
+    private LottieAnimationView ivLoadIcon;
     private MainListAdapter mainListAdapter;
     private CommonRecyclerViewAdapter mRecyclerViewAdapter;
     private int sessionId;
@@ -64,7 +70,7 @@ public class TabFragment extends Fragment {
     private String channelName;
     private Activity mActivity;
     private boolean isRefresh = false;
-
+    private List<Fragment> fragmentList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class TabFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.rv_list);
         llListRetry = view.findViewById(R.id.ll_list_retry);
         listRetryBtn = view.findViewById(R.id.list_retry_btn);
+        ivLoadIcon = view.findViewById(R.id.iv_home_load_icon);
     }
 
     private void initData() {
@@ -87,6 +94,7 @@ public class TabFragment extends Fragment {
             channelId = getArguments().getInt(MainActivity.CONTENT);
             channelName = getArguments().getString(MainActivity.CHANNEL_NAME);
         }
+        fragmentList = getFragmentManager().getFragments();
         mainListAdapter = new MainListAdapter(mActivity);
         mRecyclerViewAdapter = new CommonRecyclerViewAdapter(mainListAdapter);
         CustomRefreshHeader customRefreshHeader = new CustomRefreshHeader(getContext());
@@ -98,7 +106,7 @@ public class TabFragment extends Fragment {
         //防止item位置互换
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(new DiverItemDecoration(25, 2));
+        mRecyclerView.addItemDecoration(new DiverItemDecoration(27, 2));
         mRecyclerView.setLoadMoreEnabled(true);
         CustomLoadingFooter customLoadingFooter = new CustomLoadingFooter(getContext());
         mRecyclerView.setLoadMoreFooter(customLoadingFooter, true);
@@ -236,6 +244,7 @@ public class TabFragment extends Fragment {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                showLoading(false);
                 if (mainListAdapter.getDataSize() == 0) {
                     llListRetry.setVisibility(View.VISIBLE);
                 } else {
@@ -245,4 +254,19 @@ public class TabFragment extends Fragment {
         });
     }
 
+    public boolean isShowLoading(){
+        if (mainListAdapter.getDataSize() == 0 && llListRetry.getVisibility() == View.GONE){
+            //显示loading
+            return true;
+        }else {
+            //不显示loading
+            return false;
+        }
+    }
+
+    public void showLoading(boolean isShow){
+        if (mActivity != null){
+            ((MainActivity)mActivity).getHomeFragment().showLoading(isShow);
+        }
+    }
 }

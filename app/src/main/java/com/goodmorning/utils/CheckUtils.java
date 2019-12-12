@@ -1,8 +1,13 @@
 package com.goodmorning.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.baselib.cloud.CloudPropertyManager;
 import com.baselib.sp.SharedPref;
+import com.goodmorning.bean.CloudPicture;
+
+import org.thanos.netcore.helper.JsonHelper;
 
 import static org.interlaken.common.impl.BaseXalContext.getApplicationContext;
 
@@ -56,6 +61,34 @@ public class CheckUtils {
             return true;
         }else {
             return false;
+        }
+    }
+
+    /**
+     * 检查是否显示云控图片
+     * @param cloudKey 云控key
+     * @return
+     */
+        public static CloudPicture checkCloudPic(String cloudKey){
+        String json = CloudControlUtils.getCloudData(getApplicationContext(), CloudPropertyManager.PATH_CLOUD_PIC_PROP,cloudKey);
+        JsonHelper<CloudPicture> jsonHelper = new JsonHelper<CloudPicture>() {
+        };
+        CloudPicture cloudPicture = jsonHelper.getJsonObject(json);
+        long curTime =  TimeUtils.dateToStamp(TimeUtils.getCurrentDate());
+        long startTime = 0;
+        long endTime = 0;
+        if (cloudPicture != null){
+            if (!TextUtils.isEmpty(cloudPicture.getStartTime()) && !TextUtils.isEmpty(cloudPicture.getEndTime())){
+                startTime  = TimeUtils.dateToStamp(cloudPicture.getStartTime());
+                endTime = TimeUtils.dateToStamp(cloudPicture.getEndTime());
+            }
+        }
+        if (curTime >= startTime && curTime <= endTime && !TextUtils.isEmpty(cloudPicture.getPicUrl())){
+            //满足条件显示
+            return cloudPicture;
+        }else {
+            //不满足条件不显示
+            return null;
         }
     }
 }

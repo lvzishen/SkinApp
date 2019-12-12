@@ -3,6 +3,7 @@ package com.goodmorning.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,11 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.bitmap.TransformationUtils;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
@@ -111,6 +115,7 @@ public class ImageUtil {
             drawableTypeRequest.override(width, heghit);//加载特定宽度高度的图片
         }
         drawableTypeRequest.apply(RequestOptions.bitmapTransform(new RoundedCorners( 20)));
+//        drawableTypeRequest.transition(new DrawableTransitionOptions().crossFade(500));
         drawableTypeRequest.into(imageView);
         if (DEBUG) {
             Log.i(TAG, "displayImage: " + url);

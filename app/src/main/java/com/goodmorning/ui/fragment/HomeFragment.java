@@ -32,6 +32,7 @@ import com.baselib.statistic.StatisticLoggerX;
 import com.creativeindia.goodmorning.R;
 import com.goodmorning.MainActivity;
 import com.goodmorning.adapter.LanguageAdapter;
+import com.goodmorning.bean.CloudPicture;
 import com.goodmorning.bean.DataListItem;
 import com.goodmorning.bean.DayPicture;
 import com.goodmorning.manager.ContentManager;
@@ -103,19 +104,25 @@ public class HomeFragment extends Fragment {
     private void hideTitleGreetings() {
         String text = HomeGreetingHelper.showText(getApplicationContext());
         int status = HomeGreetingHelper.dayTimeStatus(getApplicationContext());
-        switch (status) {
-            case 0:
-                break;
-            case 1:
-                ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_morning));
-                break;
-            case 2:
-                ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_morning));
-                break;
-            case 3:
-                ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_night));
-                break;
+        CloudPicture cloudPicture = CheckUtils.checkCloudPic("skin_pic");
+        if (cloudPicture != null){
+            ImageLoader.displayImageByName(getApplicationContext(), cloudPicture.getPicUrl(),R.drawable.home_morning,R.drawable.home_morning,ivDayPic);
+        }else {
+            switch (status) {
+                case 0:
+                    break;
+                case 1:
+                    ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_morning));
+                    break;
+                case 2:
+                    ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_morning));
+                    break;
+                case 3:
+                    ivDayPic.setBackground(ResUtils.getDrawable(R.drawable.home_night));
+                    break;
+            }
         }
+
         if (android.text.TextUtils.isEmpty(text)) {
             tvTitle.setText(getString(R.string.string_app_name));
         } else {
@@ -256,6 +263,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 StatisticLoggerX.logShowUpload("homepage", "hometab", channelIds.get(position), "", "");
+                childLoading(position);
             }
 
             @Override
@@ -325,15 +333,16 @@ public class HomeFragment extends Fragment {
                 }
                 if (tabLayout.getTabAt(0) != null) {
                     tabLayout.getTabAt(0).select();
+                    childLoading(0);
                 }
                 if (channelIds.size() > 0) {
                     StatisticLoggerX.logShowUpload("homepage", "hometab", channelIds.get(0), "", "");
                 }
                 if (tabLayout.getTabCount() == 0) {
-                    showLoading(false);
+//                    showLoading(false);
                     llChannelRetry.setVisibility(View.VISIBLE);
                 } else {
-                    showLoading(false);
+//                    showLoading(false);
                     llChannelRetry.setVisibility(View.GONE);
                 }
             }
@@ -524,11 +533,15 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void showLoading(boolean isShow) {
+    public void showLoading(boolean isShow) {
         if (isShow) {
             lottieAnimationView.setVisibility(View.VISIBLE);
         } else {
             lottieAnimationView.setVisibility(View.GONE);
         }
+    }
+
+    public void childLoading(int position){
+        ((TabFragment)mFragmentList.get(position)).showLoading(((TabFragment)mFragmentList.get(position)).isShowLoading());
     }
 }

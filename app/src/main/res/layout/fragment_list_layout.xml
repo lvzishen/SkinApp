@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.goodmorning.view.recyclerview.CommonRecyclerView
@@ -43,5 +45,17 @@
             android:id="@+id/list_retry_btn"/>
 
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/qb_px_138"
+        android:visibility="gone"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_scale="0.2"
+        android:id="@+id/iv_home_load_icon"/>
 
 </RelativeLayout>

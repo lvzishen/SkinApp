@@ -367,4 +367,11 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    public HomeFragment getHomeFragment(){
+        if (mFragmentList != null && mFragmentList.size() > 0){
+            return (HomeFragment) mFragmentList.get(0);
+        }
+        return new HomeFragment();
+    }
 }
