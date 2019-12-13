@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="notification_channel_name">手機優化</string>
-    <string name="notification_channel_des">幫您保護隱私，清理垃圾，查殺病毒以及加速手機等</string>
-</resources>

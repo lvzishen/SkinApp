@@ -8,19 +8,6 @@
         </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-3.5-all/exhrs6ca08n232b14ue48lbye/gradle-3.5" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/adslib" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/baselib" />
-            <option value="$PROJECT_DIR$/binder" />
-            <option value="$PROJECT_DIR$/config" />
-            <option value="$PROJECT_DIR$/permission" />
-            <option value="$PROJECT_DIR$/servicemanager" />
-          </set>
-        </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>

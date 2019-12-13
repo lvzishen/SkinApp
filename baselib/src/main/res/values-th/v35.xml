@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="need_your_permissions_to_work">%1$s ต้องการให้คุณอนุญาตเพื่อใช้งาน</string>
-    <string name="chat_messages_may_be_read_without_app_lock">ข้อความแชทของคุณอาจถูกคนอื่นอ่านได้หากไม่มี App Lock</string>
-</resources>

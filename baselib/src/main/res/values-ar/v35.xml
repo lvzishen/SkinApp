@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="need_your_permissions_to_work">يحتاج %1$s الإذن للعمل</string>
-    <string name="chat_messages_may_be_read_without_app_lock">قد يتمكن الآخرون من قراءة رسائل دردشاتك بدون قفل التطبيقات</string>
-</resources>

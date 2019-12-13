@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="notification_channel_name">通話を最適化</string>
-    <string name="notification_channel_des">プライバシーを保護し、迷惑メールを削除し、ウイルスを排除し、通話を強化</string>
-</resources>

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-	<string name="no_permissions_allowed">未授予權限</string>
-	<string name="string_privacy_policy"><u>隱私政策</u></string>
-	<string name="please_agreement">請同意用戶協議</string>
-	<string name="please_privacy">請同意隱私政策</string>
-	<string name="string_user_agreement"><u>用戶協議</u></string>
-</resources>

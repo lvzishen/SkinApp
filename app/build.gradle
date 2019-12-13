@@ -1,196 +1,28 @@
-apply plugin: 'xal.app'
 apply plugin: 'com.android.application'
-apply plugin: 'AndResGuard'
 
 android {
-    compileSdkVersion Integer.parseInt(CompileSdkVersion)
-    buildToolsVersion BuildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion "28.0.0"
     defaultConfig {
-        applicationId "com.creativeindia.goodmorning"
-//        applicationId "com.apusapps.launcher"
-//        applicationId "com.typin.fcmtestapp"
-        minSdkVersion Integer.parseInt(MinSdkVersion)
-        targetSdkVersion Integer.parseInt(TargetSdkVersion)
-        ndk {
-            abiFilters "armeabi-v7a"
-            abiFilters "arm64-v8a"
-            abiFilters "x86"
-            abiFilters "x86_64"
-        }
-        /*   resConfigs "en",
-                *//*"ar", "de",*//* "es", *//*"fa", "fr",*//* "hi", "in", *//*"it",
-                "ja", "ko",*//* "pt", "pt-rBR", *//*"ru", "th",*//* "tr",
-                "vi", *//*"zh", "zh-rCN", "zh-rTW",*//* "uk"*/
+        applicationId "com.time.skindemo"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-            zipAlignEnabled false
-            shrinkResources false
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
         release {
-            signingConfig signingConfigs.debug
-            zipAlignEnabled true
-            minifyEnabled true
-            shrinkResources false
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-    signingConfigs {
-        debug {
-            storeFile file("debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
-
-    }
-    lintOptions {
-        ignoreWarnings true
-        abortOnError false
-    }
-/*    bundle {
-        language {
-            enableSplit = true
-        }
-        density {
-            enableSplit = true
-        }
-        abi {
-            enableSplit = true
-        }
-    }*/
-    dexOptions {
-        javaMaxHeapSize "4g"
-        jumboMode = true
-        preDexLibraries = true
-        threadCount = 8
-    }
-
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
-
-    packagingOptions {
-        doNotStrip "*/arm64-v8a/libdu.so"
-        doNotStrip "*/armeabi/libdu.so"
-        doNotStrip "*/armeabi-v7a/libdu.so"
-        doNotStrip "*/x86/libdu.so"
-        doNotStrip "*/x86_64/libdu.so"
     }
 }
-
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':libCore')
-    implementation project(':baselib')
-    implementation project(':permission')
-    implementation project(':binder')
-    implementation project(':adslib')
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    xalApi 'com.lachesis:daemon:2.3.14'
-    debugCompileOnly("org.trade.adsmodule:splash-module:$TRADE_SPLASH-debug") {
-        exclude(group: 'com.squareup.okhttp3', module: 'okhttp')
-    }
-    releaseCompileOnly("org.trade.adsmodule:splash-module:$TRADE_SPLASH-release") {
-        exclude(group: 'com.squareup.okhttp3', module: 'okhttp')
-    }
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
-    releaseImplementation("org.trade.vision:vision-sdk:1.0.50-release")
-
-    debugImplementation("org.trade.vision:vision-sdk:1.0.50-debug")
-
-
-    // Thanos
-    xalApi ('com.xal.thanos:ui:1.0.24-push3rd'){
-        exclude(group: 'com.github.bumptech.glide', module: 'okhttp3-integration')
-    }
-    xalApi 'com.push:pushsdk:2.3.18-3rd'
-    xalApi ('com.push:pushsdk-ui:1.0.10.3-3rd'){
-        exclude(group: 'com.github.bumptech.glide', module: 'okhttp3-integration')
-    }
-//    //账号sdk，【必选】
-//    xalImplementation 'org.njord.account:core:' + ACCOUNT_VERSION
-//    xalImplementation 'org.njord.account:ui:' + ACCOUNT_UI_VERSION
-    //facebook
-    implementation 'com.facebook.android:facebook-core:4.34.0'
-    implementation 'com.facebook.android:facebook-login:4.34.0'
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-    implementation 'com.alibaba:fastjson:1.2.62'
-    implementation 'com.airbnb.android:lottie:3.0.0'
-    implementation project(':jiaozivideoplayer')
-    implementation "com.github.bumptech.glide:okhttp3-integration:4.9.0"
-    xalApi 'com.xal.publicrepository:apollo-downloader-wrapper:' + APOLLO_DOWNLOADER_WRAPPER_VERSION
-}
-
-// XAL Plugin
-apply plugin: 'com.google.gms.google-services'
-xal {
-    xmlConfigVersion true
-    persistProcessName 'com.creativeindia.goodmorning'
-    setVersionXmlFile("src/main/res/values/donottranslate.xml")
-
-}
-
-configurations.all {
-    resolutionStrategy.force 'com.android.support:recyclerview-v7:' + SupportVersion
-    resolutionStrategy.force 'com.google.android.gms:play-services-basement:' + GOOGLE_VERSION
-    resolutionStrategy.force 'com.android.support:support-v4:' + SupportVersion
-    resolutionStrategy.force 'com.android.support:support-media-compat:' + SupportVersion
-}
-
-andResGuard {
-    // mappingFile = file("./resource_mapping.txt")
-    // mappingFile = null
-    use7zip = false
-    useSign = true
-    // 打开这个开关，会keep住所有资源的原始路径，只混淆资源的名字
-    keepRoot = false
-
-// 白名单请加入应用图标，以及下面链接中相关的库的白名单
-// https://github.com/shwenzhang/AndResGuard/blob/master/doc/white_list.md
-// 其他通过getIdentifier访问的资源也必须加入白名单
-    whiteList = [
-            // for your icon
-            "R.drawable.ic_launcher1",
-            "R.string.app_name",
-
-            "R.string.google_api_key",
-            "R.string.google_app_id",
-            "R.string.google_crash_reporting_api_key",
-            "R.string.google_storage_bucket",
-            "R.string.default_web_client_id",
-            "R.string.firebase_database_url",
-            "R.string.gcm_defaultSenderId",
-            "R.string.project_id"
-    ]
-
-    compressFilePattern = [
-            "*.png",
-            "*.jpg",
-            "*.jpeg",
-            "*.gif"
-            // "resources.arsc"
-    ]
-    /** sevenzip {artifact = 'com.tencent.mm:SevenZip:1.2.13'
-     path = "/usr/local/bin/7za"}**/
-
-
-    /**
-     * 可选： 如果不设置则会默认覆盖assemble输出的apk
-     **/
-    finalApkBackupPath = "${project.rootDir}/final.apk"
-
-    /**
-     * 可选: 指定v1签名时生成jar文件的摘要算法
-     * 默认值为“SHA-1”
-     **/
-    // digestalg = "SHA-256"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7: 28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="string_today">วันนี้</string>
-    <string name="string_yesterday">เมื่อวานนี้</string>
-
-    <string name="string_permissions">การอนุญาต</string>
-    <string name="string_storage">พื้นที่เก็บข้อมูล</string>
-    <string name="string_layer_overlapping_permissions">แสดงทับแอปอื่น</string>
-</resources>

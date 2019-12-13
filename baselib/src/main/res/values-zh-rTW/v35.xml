@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="need_your_permissions_to_work">%1$s尚未成功開啟,需要授予許可權</string>
-    <string name="chat_messages_may_be_read_without_app_lock">您的聊天記錄仍然有被偷看的風險</string>
-</resources>

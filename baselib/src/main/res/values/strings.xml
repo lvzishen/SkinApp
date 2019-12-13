@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- booster引导打开辅助功能时候的提示文案 -->
-    <string name="boost_accessibility_open_guide_stadge1">Step 1: Tap APUS Turbo Cleaner to continue</string>
-
-    <string name="strong_acc_guide">We need accessibility permission to :\n1.Stop unnecessary apps thoroughly(Memory Boost). \n2.Clear system cache on Android6.0+(Junk Files). \n3.Extend battery life on Android6.0+ by put apps into "standby" mode(Battery Saver). \nNo data provided by accessibility services will be stored or uploaded.</string>
-    <string name="no_browser_installed">Browser not found</string>
-</resources>

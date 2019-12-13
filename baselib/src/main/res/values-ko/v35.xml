@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="need_your_permissions_to_work">%1$s에 작업 권한이 필요합니다</string>
-    <string name="chat_messages_may_be_read_without_app_lock">채팅 메시지가 앱 잠금 없이 다른 사람에게 읽힐 수 있습니다</string>
-</resources>

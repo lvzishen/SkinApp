@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="permission_guide_title_default">Find \"%1$s\" and enable the feature</string>
-    <string name="permission_guide_desc_acc">We need accessibility permission to</string>
-    <string name="permission_guide_desc_acc_1">Extend Battery life</string>
-    <string name="permission_guide_desc_acc_2">Stop unnecessary apps thoroughly</string>
-    <string name="permission_guide_desc_acc_3">Clear system cache</string>
-    <string name="permission_guide_title">Find \"%1$s\" Activate \"%2$s\"</string>
-</resources>

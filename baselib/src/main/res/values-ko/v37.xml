@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="common_clean">청소</string>
-    <string name="string_applications">애플리케이션</string>
-    <string name="allow_access">접근 허용</string>
-</resources>

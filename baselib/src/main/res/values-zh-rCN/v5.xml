@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="notification_channel_name">手机优化</string>
-    <string name="notification_channel_des">帮您保护隐私，清理垃圾，查杀病毒以及加速手机等</string>
-    <string name="string_notification_cleaner_push_info">清理无用的通知，让你的手机更快捷！</string>
-</resources>

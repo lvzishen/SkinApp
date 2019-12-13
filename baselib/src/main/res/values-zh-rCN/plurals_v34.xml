@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <plurals name="string_x_hours">
-        <item quantity="other">%s 小时</item>
-    </plurals>
-    <plurals name="string_x_minutes">
-        <item quantity="other">%s 分钟</item>
-    </plurals>
-</resources>
