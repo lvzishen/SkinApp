@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import com.time.skindemo.BaseActivity;
 import com.time.skindemo.skin.attr.SkinView;
+import com.time.skindemo.skin.callback.ISkinChangeListener;
 import com.time.skindemo.skin.config.SkinPreUtils;
 
 import java.io.File;
@@ -23,7 +24,7 @@ public class SkinManager {
     private SkinResource mSkinResource;
     private Context mContext;
     private static volatile SkinManager skinManager;
-    private Map<Activity, List<SkinView>> mSkinViews = new HashMap<>();
+    private Map<ISkinChangeListener, List<SkinView>> mSkinViews = new HashMap<>();
 
     private SkinManager() {
     }
@@ -69,17 +70,45 @@ public class SkinManager {
      * @return
      */
     public int loadSkin(String skinPath) {
+        //文件不存在直接清空皮肤
+        File file = new File(skinPath);
+        if (!file.exists()) {
+            //不存在，清空皮肤
+            SkinPreUtils.getInstance(mContext).clearSkinInfo();
+            return SkinPreUtils.SKIN_FILE_NOT_EXSIST;
+        }
+        //当前皮肤如果一样不去进行换肤
+        String currentSkinPath = SkinPreUtils.getInstance(mContext).getSkinPath();
+        if (skinPath.equals(currentSkinPath)) {
+            return SkinPreUtils.SKIN_NOTNEED_CHANGE;
+        }
+        //判断是否能拿到皮肤包的包名
+        String packageName = mContext.getPackageManager()
+                .getPackageArchiveInfo(skinPath, PackageManager.GET_ACTIVITIES).packageName;
+        if (TextUtils.isEmpty(packageName)) {
+            return SkinPreUtils.SKIN_FILE_ERROR;
+        }
         //初始化资源管理
         initSkinResouce(mContext, skinPath);
-        for (Activity activity : mSkinViews.keySet()) {
-            List<SkinView> skinViews = mSkinViews.get(activity);
-            for (SkinView skinView : skinViews) {
-                skinView.skin();
-            }
-        }
+        //改变皮肤
+        changeSkin();
         //保存皮肤的状态
         saveSkinStatus(skinPath);
         return 0;
+    }
+
+    /**
+     * 改变皮肤
+     */
+    private void changeSkin() {
+        for (ISkinChangeListener iSkinChangeListener : mSkinViews.keySet()) {
+            List<SkinView> skinViews = mSkinViews.get(iSkinChangeListener);
+            for (SkinView skinView : skinViews) {
+                skinView.skin();
+            }
+            //通知Activity进行第三方自定义换肤
+            iSkinChangeListener.changeSkin(mSkinResource);
+        }
     }
 
     private void saveSkinStatus(String skinPath) {
@@ -114,12 +143,7 @@ public class SkinManager {
         //当前手机运行APK的资源路径
         String skinPath = mContext.getPackageResourcePath();
         initSkinResouce(mContext, skinPath);
-        for (Activity activity : mSkinViews.keySet()) {
-            List<SkinView> skinViews = mSkinViews.get(activity);
-            for (SkinView skinView : skinViews) {
-                skinView.skin();
-            }
-        }
+        changeSkin();
         SkinPreUtils.getInstance(mContext).clearSkinInfo();
         return SkinPreUtils.SKIN_CHANGE_SUCCESS;
     }
@@ -134,8 +158,12 @@ public class SkinManager {
         return mSkinViews.get(activity);
     }
 
-    public void register(Activity activity, List<SkinView> skinViews) {
-        mSkinViews.put(activity, skinViews);
+    public void register(ISkinChangeListener skinChangeListener, List<SkinView> skinViews) {
+        mSkinViews.put(skinChangeListener, skinViews);
+    }
+
+    public void unRegister(ISkinChangeListener skinChangeListener) {
+        mSkinViews.remove(skinChangeListener);
     }
 
     /**

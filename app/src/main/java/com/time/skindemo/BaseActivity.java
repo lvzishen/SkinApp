@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.time.skindemo.skin.SkinAttrsSupport;
 import com.time.skindemo.skin.SkinManager;
+import com.time.skindemo.skin.SkinResource;
 import com.time.skindemo.skin.attr.SkinAttr;
 import com.time.skindemo.skin.attr.SkinView;
+import com.time.skindemo.skin.callback.ISkinChangeListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.List;
  * 描述: 换肤BaseActivity
  * 作者: lvzishen
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements ISkinChangeListener {
     private static final String TAG = "BaseActivity";
 
     @Override
@@ -57,6 +59,21 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         });
         super.onCreate(savedInstanceState);
+
+    }
+
+    /**
+     * 防止内存泄漏
+     */
+    @Override
+    protected void onDestroy() {
+        SkinManager.getInstance().unRegister(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void changeSkin(SkinResource skinResource) {
+
 
     }
 

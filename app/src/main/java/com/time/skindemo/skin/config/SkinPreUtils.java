@@ -15,6 +15,10 @@ public class SkinPreUtils {
     public static final String SKIN_INFO_NAME = "skinInfo";
     public static final String SKIN_PATH_NAME = "skinPath";
     public static final int SKIN_NOTNEED_CHANGE = -1;
+    //皮肤包不存在
+    public static final int SKIN_FILE_NOT_EXSIST = -2;
+    //文件错误，可能不是一个APK
+    public static final int SKIN_FILE_ERROR = -3;
     public static final int SKIN_CHANGE_SUCCESS = 1;
 
     private SkinPreUtils(Context context) {
